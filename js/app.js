@@ -3,7 +3,7 @@
   const STORAGE_KEY = 'tms-apple-demo-v1';
 
   // Labels and statuses
-  const TABS = { trucks: 'Trucks', trailers: 'Trailers', repairs: 'Repairs', expenses: 'Expenses' };
+  const TABS = { dashboard:'Dashboard', trucks: 'Trucks', trailers: 'Trailers', repairs: 'Repairs', expenses: 'Expenses' };
   const STATUS = { ACTIVE: 'Active', SERVICE: 'Service', REPAIR: 'Repair' };
   const REPAIR_STATUS = { IN_PROGRESS: 'In progress', DONE: 'Completed' };
 
@@ -32,7 +32,7 @@
   /* ---------- State ---------- */
   let data = load();
   const state = {
-    tab: 'trucks',
+    tab: 'dashboard',
     sort: { key: null, dir: 1 },
     filter: '',
     scope: 'all',
@@ -172,11 +172,28 @@
     pageTitle.textContent = TABS[tab];
     qsa('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.tab === tab));
 
-    const rows = sortBy(applyFilter(applyScope(data[tab])));
-    pageCount.textContent = `• ${rows.length} items`;
-
     // KPI
     updateKpi();
+
+    const chartsRow = qs('#chartsRow');
+    const panel = qs('#panel');
+
+    if(tab === 'dashboard'){
+      // Show charts, hide table
+      chartsRow?.classList.remove('hidden');
+      panel?.classList.add('hidden');
+      pageCount.textContent = `• ${data.trucks.length} trucks • ${data.trailers.length} trailers`;
+      grid.innerHTML = '';
+      pageTransition();
+      drawCharts();
+      return;
+    } else {
+      chartsRow?.classList.add('hidden');
+      panel?.classList.remove('hidden');
+    }
+
+    const rows = sortBy(applyFilter(applyScope(data[tab])));
+    pageCount.textContent = `• ${rows.length} items`;
 
     // Build grid
     const cols = columnsFor(tab);
@@ -213,7 +230,6 @@
     grid.appendChild(thead);
     grid.appendChild(tbody);
     pageTransition();
-    drawCharts();
   }
 
   function rowActions(tab, id){
@@ -483,6 +499,8 @@
     kpiRepairing.textContent = number(repairing);
     kpiMonthCost.textContent = money(monthSum);
     kpiAvgRepair.textContent = money(avgRepair);
+    const bar = qs('#barRepair');
+    if(bar){ const ratio = total? (repairing/total)*100 : 0; requestAnimationFrame(()=> bar.style.width = ratio.toFixed(1)+'%'); }
   }
 
   /* ---------- Page transition ---------- */

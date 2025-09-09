@@ -152,6 +152,10 @@ body{
 .seg-btn:hover{ transform: translateY(-1px); }
 .seg-btn.active{ background: color-mix(in oklab, var(--brand), transparent 85%); }
 
+/* Sidebar bold fonts and global bold labels */
+.sidebar, .sidebar *{ font-weight: 700; }
+th, td, .btn, .seg-btn, .kpi-title, .kpi-value, label, .chart-title, .nav-item{ font-weight: 700; }
+
 /* Buttons */
 .btn{
   --bg: var(--bg2);
