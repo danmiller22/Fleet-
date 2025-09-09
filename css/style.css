@@ -28,6 +28,11 @@
     --panel: rgba(0,0,0,.06); --border:#e6e7eb; --text:#0a0b0d; --muted:#57606a;
   }
 }
+/* Explicit light theme override via class (used by JS toggle) */
+.light{
+  --bg0:#f7f7f9; --bg1:#ffffff; --bg2:#f2f4f7;
+  --panel: rgba(0,0,0,.06); --border:#e6e7eb; --text:#0a0b0d; --muted:#57606a;
+}
 @media (prefers-reduced-motion: reduce){
   *{ animation: none !important; transition: none !important; }
 }
@@ -37,7 +42,11 @@
 html,body{ height:100%; }
 body{
   margin:0;
-  font: 14px/1.45 system-ui, -apple-system, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+  font: 14px/1.45 system-ui, -apple-system, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   background:
     radial-gradient(1100px 700px at 10% -10%, color-mix(in oklab, var(--brand), transparent 85%), transparent 60%),
     radial-gradient(1200px 800px at 120% 0%, color-mix(in oklab, var(--brand), transparent 90%), transparent 50%),
@@ -73,7 +82,7 @@ body{
   box-shadow: 0 6px 20px color-mix(in oklab, var(--brand), transparent 70%);
 }
 .brand-meta{ display:flex; flex-direction:column; gap:4px; }
-.brand-name{ font-size:20px; font-weight:700; letter-spacing:.2px; }
+.brand-name{ font-size:20px; font-weight:800; letter-spacing:.2px; }
 .brand-tag{ font-size:12px; color:var(--muted); }
 
 .sidebar-search{
