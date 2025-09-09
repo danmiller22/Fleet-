@@ -43,14 +43,11 @@ html,body{ height:100%; }
 body{
   margin:0;
   font: 14px/1.45 system-ui, -apple-system, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
-  font-weight: 500;
+  font-weight: 600;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  background:
-    radial-gradient(1100px 700px at 10% -10%, color-mix(in oklab, var(--brand), transparent 85%), transparent 60%),
-    radial-gradient(1200px 800px at 120% 0%, color-mix(in oklab, var(--brand), transparent 90%), transparent 50%),
-    var(--bg0);
+  background: var(--bg0);
   color:var(--text);
 }
 
@@ -62,7 +59,7 @@ body{
 /* Sidebar */
 .sidebar{
   border-right:1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.02)), var(--bg1);
+  background: var(--bg1);
   padding:18px 16px 14px; display:flex; flex-direction:column; gap:16px;
 }
 
@@ -70,7 +67,7 @@ body{
   display:flex; align-items:center; gap:14px;
   padding:16px; border-radius:20px;
   border:1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)), var(--bg2);
+  background: var(--bg2);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.06), var(--shadow);
   backdrop-filter: blur(10px) saturate(140%);
   transition: transform var(--t-fast) var(--ease-out), box-shadow var(--t) var(--ease-out);
@@ -90,7 +87,7 @@ body{
 }
 .sidebar-search input{
   width:100%; padding:12px 36px 12px 40px; border-radius:14px; border:1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.00)), var(--bg2);
+  background: var(--bg2);
   outline:none;
   transition: border-color var(--t) var(--ease-out), box-shadow var(--t) var(--ease-out);
 }
@@ -137,7 +134,7 @@ body{
   position:sticky; top:0; z-index:10;
   display:flex; align-items:center; justify-content:space-between; gap:14px;
   padding:16px 18px; border-bottom:1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.02)), var(--bg1);
+  background: var(--bg1);
   backdrop-filter: blur(8px) saturate(140%);
 }
 .title{ display:flex; align-items:baseline; gap:12px; }
@@ -161,18 +158,18 @@ body{
   --b: var(--border);
   display:inline-flex; align-items:center; gap:10px;
   padding:10px 14px; border-radius:14px; border:1px solid var(--b);
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)), var(--bg);
+  background: var(--bg);
   box-shadow: 0 1px 0 rgba(255,255,255,.05), 0 10px 20px rgba(0,0,0,.14);
   cursor:pointer; user-select:none;
   transition: transform var(--t-fast) var(--ease-out), box-shadow var(--t) var(--ease-out), border-color var(--t) var(--ease-out), background var(--t) var(--ease-out);
 }
-.btn:hover{ transform: translateY(-1px); box-shadow: 0 14px 26px rgba(0,0,0,.22); }
+.btn:hover{ transform: translateY(-1px); box-shadow: 0 14px 26px rgba(0,0,0,.22), 0 0 0 4px color-mix(in oklab, var(--brand), transparent 90%); filter: brightness(1.06); }
 .btn:active{ transform: translateY(0) scale(.995); }
 .btn .btn-icon{ width:16px; height:16px; display:grid; place-items:center; opacity:.9; }
 .btn-sm{ padding:8px 10px; border-radius:12px; }
 
 .btn-primary{
-  --bg: linear-gradient(180deg, color-mix(in oklab, var(--brand), white 12%), var(--brand));
+  --bg: var(--brand);
   --b: color-mix(in oklab, var(--brand), black 22%);
   color:white;
   box-shadow: 0 12px 28px color-mix(in oklab, var(--brand), transparent 70%);
@@ -210,7 +207,7 @@ body{
 .kpi-row{ display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:12px; margin-bottom:12px; }
 .kpi{
   padding:14px; border-radius:16px; border:1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0)), var(--bg1);
+  background: var(--bg1);
   box-shadow: var(--shadow); transform: translateY(8px); opacity:0; animation: kpiIn var(--t-slow) var(--ease-out) forwards;
 }
 .kpi:nth-child(1){ animation-delay: 60ms; }
@@ -222,6 +219,7 @@ body{
 
 .panel{
   border:1px solid var(--border); border-radius:18px; background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.00)), var(--bg1);
+  background: var(--bg1);
   box-shadow: var(--shadow); padding:14px; animation: cardIn var(--t-slow) var(--ease-out);
 }
 .panel-toolbar{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
@@ -239,6 +237,7 @@ th .sort{ opacity:0; transition: opacity var(--t) var(--ease-out); margin-left:4
 th:hover .sort{ opacity:.9; }
 tr{ transition: background var(--t) var(--ease-out), transform var(--t) var(--ease-out); }
 tr:hover{ background: rgba(255,255,255,.04); }
+.light tr:hover{ background: rgba(0,0,0,.04); }
 .badge{
   font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid var(--border);
 }
@@ -251,7 +250,7 @@ tr:hover{ background: rgba(255,255,255,.04); }
   border:1px solid var(--border); background: var(--bg2); border-radius:12px; padding:8px; cursor:pointer;
   transition: transform var(--t-fast) var(--ease-out), background var(--t) var(--ease-out), box-shadow var(--t) var(--ease-out);
 }
-.icon-btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.05); box-shadow: 0 10px 16px rgba(0,0,0,.2); }
+.icon-btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.05); box-shadow: 0 10px 16px rgba(0,0,0,.2), 0 0 0 3px color-mix(in oklab, var(--brand), transparent 90%); filter: brightness(1.06); }
 
 /* Modal */
 .modal{ position:fixed; inset:0; display:none; place-items:center; background: rgba(0,0,0,.38); backdrop-filter: blur(4px); z-index:100; }
@@ -294,6 +293,12 @@ label{ color:var(--muted); font-size:12px; }
 .hidden{ display:none !important; }
 @keyframes cardIn{ from{ transform: translateY(8px); opacity:0 } to{ transform:none; opacity:1 } }
 @keyframes kpiIn{ to{ transform:none; opacity:1 } }
+
+/* Charts */
+.charts-row{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:12px; margin-top:12px; }
+.chart-card{ padding:14px; border:1px solid var(--border); border-radius:18px; background: var(--bg1); box-shadow: var(--shadow); }
+.chart-title{ color:var(--muted); font-size:12px; margin-bottom:8px; }
+canvas{ display:block; width:100%; height:auto; }
 
 /* Responsive */
 @media (max-width: 1100px){

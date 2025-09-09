@@ -213,6 +213,7 @@
     grid.appendChild(thead);
     grid.appendChild(tbody);
     pageTransition();
+    drawCharts();
   }
 
   function rowActions(tab, id){
@@ -495,6 +496,54 @@
 
   /* ---------- Utilities ---------- */
   function today(){ return new Date().toISOString().slice(0,10); }
+
+  /* ---------- Charts ---------- */
+  function monthsRange(n){
+    const out=[]; const d=new Date(); d.setDate(1);
+    for(let i=n-1;i>=0;i--){ const x=new Date(d.getFullYear(), d.getMonth()-i, 1); out.push(x.toISOString().slice(0,7)); }
+    return out; // ['YYYY-MM']
+  }
+  function buildSeries(items, key='amount', months=6){
+    const range = monthsRange(months);
+    const map = Object.fromEntries(range.map(m=>[m,0]));
+    items.forEach(it=>{ const m = it.date?.slice(0,7); if(map[m]!=null){ map[m] += Number(it[key]||0); }});
+    return { labels: range, values: range.map(m=> map[m]) };
+  }
+  function drawLine(canvasId, values, color){
+    const cv = qs('#'+canvasId); if(!cv) return; const ctx = cv.getContext('2d');
+    const w = cv.width, h = cv.height; ctx.clearRect(0,0,w,h);
+    const max = Math.max(1, ...values); const min = Math.min(0, ...values);
+    const pad = 10; const xstep = (w-2*pad)/Math.max(1, values.length-1);
+    ctx.lineWidth = 2; ctx.strokeStyle = color; ctx.beginPath();
+    values.forEach((v,i)=>{
+      const x = pad + i*xstep; const y = h - pad - (v-min)/(max-min || 1)*(h-2*pad);
+      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    });
+    ctx.stroke();
+    // fill under curve
+    const grad = ctx.createLinearGradient(0,0,0,h);
+    grad.addColorStop(0, color.replace('1)', '.25)'));
+    grad.addColorStop(1, color.replace('1)', '0)'));
+    ctx.lineTo(w-pad, h-pad); ctx.lineTo(pad, h-pad); ctx.closePath();
+    ctx.fillStyle = grad; ctx.fill();
+  }
+  function drawCharts(){
+    try{
+      const exp = buildSeries(data.expenses||[], 'amount', 6);
+      const rep = buildSeries(data.repairs||[], 'cost', 6);
+      // brand color: use computed style to build rgba
+      const c = getComputedStyle(document.documentElement).getPropertyValue('--brand').trim() || '#ff3b30';
+      const brandRGBA = 'rgba('+hexToRgb(c)+',1)';
+      const warnRGBA = 'rgba(255,193,7,1)';
+      drawLine('expensesChart', exp.values, brandRGBA);
+      drawLine('repairsChart', rep.values, warnRGBA);
+    }catch(e){ /* ignore */ }
+  }
+  function hexToRgb(hex){
+    const s = hex.replace('#','');
+    const bigint = parseInt(s.length===3 ? s.split('').map(x=>x+x).join('') : s, 16);
+    return [(bigint>>16)&255, (bigint>>8)&255, bigint&255].join(',');
+  }
 
   /* ---------- Init ---------- */
   async function init(){
