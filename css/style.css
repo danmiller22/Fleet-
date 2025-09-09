@@ -216,6 +216,8 @@ body{
 .kpi:nth-child(4){ animation-delay: 240ms; }
 .kpi-title{ color:var(--muted); font-size:12px; }
 .kpi-value{ font-size:22px; font-weight:700; letter-spacing:.2px; }
+.kpi-bar{ height:6px; background: var(--bg2); border-radius:999px; overflow:hidden; margin-top:8px; }
+.kpi-bar span{ display:block; height:100%; width:0%; background: color-mix(in oklab, var(--brand), white 8%); box-shadow: 0 6px 16px color-mix(in oklab, var(--brand), transparent 80%); transition: width var(--t-slow) var(--spring); }
 
 .panel{
   border:1px solid var(--border); border-radius:18px; background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.00)), var(--bg1);
@@ -296,9 +298,11 @@ label{ color:var(--muted); font-size:12px; }
 
 /* Charts */
 .charts-row{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:12px; margin-top:12px; }
-.chart-card{ padding:14px; border:1px solid var(--border); border-radius:18px; background: var(--bg1); box-shadow: var(--shadow); }
+.chart-card{ position:relative; padding:14px; border:1px solid var(--border); border-radius:18px; background: var(--bg1); box-shadow: var(--shadow); overflow:hidden; }
 .chart-title{ color:var(--muted); font-size:12px; margin-bottom:8px; }
 canvas{ display:block; width:100%; height:auto; }
+.chart-tooltip{ position:absolute; pointer-events:none; padding:6px 8px; border-radius:10px; border:1px solid var(--border); background: var(--bg2); color:var(--text); font-size:12px; box-shadow: var(--shadow); transform: translate(-50%, -120%); opacity:0; transition: opacity var(--t) var(--ease-out), transform var(--t) var(--ease-out); }
+.chart-card.show-tip .chart-tooltip{ opacity:1; transform: translate(-50%, -140%); }
 
 /* Responsive */
 @media (max-width: 1100px){

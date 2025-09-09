@@ -88,6 +88,7 @@
           <div class="kpi">
             <div class="kpi-title">In repair/service</div>
             <div class="kpi-value" id="kpiRepairing">—</div>
+            <div class="kpi-bar"><span id="barRepair"></span></div>
           </div>
           <div class="kpi">
             <div class="kpi-title">This month’s expenses ($)</div>
@@ -115,10 +116,12 @@
           <div class="chart-card">
             <div class="chart-title">Expenses — last 6 months</div>
             <canvas id="expensesChart" width="600" height="180" aria-label="Expenses chart"></canvas>
+            <div class="chart-tooltip" id="expensesTip"></div>
           </div>
           <div class="chart-card">
             <div class="chart-title">Repairs — last 6 months</div>
             <canvas id="repairsChart" width="600" height="180" aria-label="Repairs chart"></canvas>
+            <div class="chart-tooltip" id="repairsTip"></div>
           </div>
         </div>
       </section>
