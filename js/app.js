@@ -38,6 +38,14 @@
     scope: 'all',
   };
 
+  // API mode detection (Cloudflare Pages: same-origin /api; local dev: http://localhost:3000/api)
+  let useApi = false;
+  const API_BASE = (window.API_BASE)
+    ? window.API_BASE.replace(/\/$/, '')
+    : ((location.hostname.endsWith('.pages.dev') || location.hostname.endsWith('.workers.dev'))
+        ? '/api'
+        : (location.port === '5173' ? 'http://localhost:3000/api' : '/api'));
+
   /* ---------- Elements ---------- */
   const nav = qs('#nav');
   const pageTitle = qs('#pageTitle');
@@ -81,6 +89,12 @@
   }
   function persist(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
   function esc(v){ return v==null? '' : String(v).replace(/[&<>"']/g, s=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;' })[s]); }
+
+  // ---- API client (optional) ----
+  async function apiList(col){ const r = await fetch(`${API_BASE}/${col}`); if(!r.ok) throw new Error(`GET ${col} ${r.status}`); return r.json(); }
+  async function apiCreate(col, payload){ const r = await fetch(`${API_BASE}/${col}`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) }); if(!r.ok) throw new Error(`POST ${col} ${r.status}`); return r.json(); }
+  async function apiUpdate(col, id, payload){ const r = await fetch(`${API_BASE}/${col}/${id}`, { method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) }); if(!r.ok) throw new Error(`PUT ${col}/${id} ${r.status}`); return r.json(); }
+  async function apiDelete(col, id){ const r = await fetch(`${API_BASE}/${col}/${id}`, { method:'DELETE' }); if(!(r.ok || r.status===204)) throw new Error(`DELETE ${col}/${id} ${r.status}`); }
 
   /* ---------- Rendering ---------- */
   function applyScope(items){
@@ -310,25 +324,45 @@
     return wrap;
   }
 
-  function onSave(){
+  async function onSave(){
     const tab = editCtx.tab;
     const fields = qsa('input,select,textarea', formBody);
     const payload = fields.reduce((acc,el)=>{ acc[el.dataset.name] = el.type==='number' ? (el.value? Number(el.value):0) : el.value; return acc; }, {});
-    if(editCtx.id){
-      const i = data[tab].findIndex(x=> x.id===editCtx.id);
-      if(i>-1) data[tab][i] = { ...data[tab][i], ...payload };
-      toast('Saved');
-    }else{
-      data[tab].unshift({ id: uid(), ...payload });
-      toast('Created');
+    try{
+      if(useApi){
+        if(editCtx.id){
+          const updated = await apiUpdate(tab, editCtx.id, payload);
+          const i = data[tab].findIndex(x=> x.id===editCtx.id);
+          if(i>-1) data[tab][i] = updated; else data[tab].unshift(updated);
+          toast('Saved');
+        }else{
+          const created = await apiCreate(tab, payload);
+          data[tab].unshift(created);
+          toast('Created');
+        }
+      }else{
+        if(editCtx.id){
+          const i = data[tab].findIndex(x=> x.id===editCtx.id);
+          if(i>-1) data[tab][i] = { ...data[tab][i], ...payload };
+          toast('Saved');
+        }else{
+          data[tab].unshift({ id: uid(), ...payload });
+          toast('Created');
+        }
+      }
+    }catch(e){
+      console.error(e); toast('Save failed');
     }
     persist(); hideModal(); render();
   }
 
-  function removeRow(tab, id){
+  async function removeRow(tab, id){
     if(!confirm('Delete this record?')) return;
-    data[tab] = data[tab].filter(x=> x.id!==id);
-    persist(); render(); toast('Deleted');
+    try{
+      if(useApi){ await apiDelete(tab, id); }
+      data[tab] = data[tab].filter(x=> x.id!==id);
+      persist(); render(); toast('Deleted');
+    }catch(e){ console.error(e); toast('Delete failed'); }
   }
 
   /* ---------- Navigation & scope ---------- */
@@ -463,6 +497,23 @@
   function today(){ return new Date().toISOString().slice(0,10); }
 
   /* ---------- Init ---------- */
-  render();
+  async function init(){
+    // Try to enable API mode and sync data
+    try{
+      const trucks = await apiList('trucks');
+      const [trailers, repairs, expenses] = await Promise.all([
+        apiList('trailers'), apiList('repairs'), apiList('expenses')
+      ]);
+      data = { trucks, trailers, repairs, expenses };
+      useApi = true;
+      persist();
+      toast('Connected to API');
+      render();
+    }catch(e){
+      console.log('API unavailable, staying in offline mode:', e?.message || e);
+      render();
+    }
+  }
+  init();
 
 })();
