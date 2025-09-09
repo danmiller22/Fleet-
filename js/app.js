@@ -64,6 +64,7 @@
   const paletteList = qs('#paletteList');
   const themeToggle = qs('#themeToggle');
   const brandCard = qs('#brandCard');
+  const connBadge = qs('#connBadge');
 
   /* ---------- Helpers ---------- */
   function uid(){ return Math.random().toString(36).slice(2,9); }
@@ -73,6 +74,7 @@
   function money(n){ return new Intl.NumberFormat('en-US', { style:'currency', currency:'USD', maximumFractionDigits:2 }).format(n); }
   function html(str){ const t=document.createElement('template'); t.innerHTML=str.trim(); return t.content.firstElementChild; }
   function toast(msg){ const t=qs('#toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2300); }
+  function setConn(on){ if(!connBadge) return; connBadge.textContent = on? 'Online' : 'Offline'; connBadge.classList.toggle('online', !!on); }
   function clone(obj){
     try {
       return (typeof structuredClone === 'function') ? structuredClone(obj) : JSON.parse(JSON.stringify(obj));
@@ -628,9 +630,11 @@
       useApi = true;
       persist();
       toast('Connected to API');
+      setConn(true);
       render();
     }catch(e){
       console.log('API unavailable, staying in offline mode:', e?.message || e);
+      setConn(false);
       render();
     }
   }
