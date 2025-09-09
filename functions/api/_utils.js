@@ -37,20 +37,29 @@ export function seedData(){
   };
 }
 
+function kv(env){
+  return env.DB || env.MY_KV || env.MYKV || env.KV || env.STORE;
+}
+
 export async function ensureSeed(env){
-  const flag = await env.DB.get('seeded');
+  const store = kv(env);
+  if(!store) throw new Error('KV binding not found. Bind as DB or MY_KV.');
+  const flag = await store.get('seeded');
   if(flag) return;
   const data = seedData();
-  await Promise.all(collections.map(col => env.DB.put(col, JSON.stringify(data[col]))));
-  await env.DB.put('seeded', '1');
+  await Promise.all(collections.map(col => store.put(col, JSON.stringify(data[col]))));
+  await store.put('seeded', '1');
 }
 
 export async function readCol(env, col){
-  const s = await env.DB.get(col);
+  const store = kv(env);
+  if(!store) throw new Error('KV binding not found. Bind as DB or MY_KV.');
+  const s = await store.get(col);
   return s ? JSON.parse(s) : [];
 }
 
 export async function writeCol(env, col, arr){
-  await env.DB.put(col, JSON.stringify(arr));
+  const store = kv(env);
+  if(!store) throw new Error('KV binding not found. Bind as DB or MY_KV.');
+  await store.put(col, JSON.stringify(arr));
 }
-
