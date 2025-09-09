@@ -1,0 +1,15 @@
+# Node / tooling
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.pnpm-store/
+
+# Local data/runtime
+data/
+.wrangler/
+.env*
+
+# OS files
+.DS_Store
+Thumbs.db
+

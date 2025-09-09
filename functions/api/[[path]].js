@@ -1,0 +1,60 @@
+import { collections, json, corsHeaders, notFound, badRequest, ensureSeed, readCol, writeCol, uid } from './_utils';
+
+export async function onRequest(context) {
+  const { request, env } = context;
+  const url = new URL(request.url);
+  const parts = url.pathname.replace(/^\/+|\/+$/g,'').split('/'); // e.g., ['api','trucks','id']
+
+  // CORS preflight
+  if (request.method === 'OPTIONS') return new Response('', { status:204, headers: corsHeaders() });
+
+  if (parts[0] !== 'api') return notFound();
+  const col = parts[1];
+  const id  = parts[2];
+  if (!collections.includes(col)) return notFound();
+
+  await ensureSeed(env);
+
+  try {
+    if (request.method === 'GET' && !id) {
+      const items = await readCol(env, col);
+      return json(items);
+    }
+    if (request.method === 'GET' && id) {
+      const items = await readCol(env, col);
+      const rec = items.find(x => String(x.id) === String(id));
+      return rec ? json(rec) : notFound();
+    }
+    if (request.method === 'POST' && !id) {
+      const payload = await request.json().catch(()=>null);
+      if (!payload || typeof payload !== 'object') return badRequest('Invalid JSON');
+      const items = await readCol(env, col);
+      const rec = { id: uid(), ...payload };
+      items.unshift(rec);
+      await writeCol(env, col, items);
+      return json(rec, { status:201 });
+    }
+    if (request.method === 'PUT' && id) {
+      const payload = await request.json().catch(()=>null);
+      if (!payload || typeof payload !== 'object') return badRequest('Invalid JSON');
+      const items = await readCol(env, col);
+      const i = items.findIndex(x => String(x.id) === String(id));
+      if (i === -1) return notFound();
+      items[i] = { ...items[i], ...payload, id: items[i].id };
+      await writeCol(env, col, items);
+      return json(items[i]);
+    }
+    if (request.method === 'DELETE' && id) {
+      const items = await readCol(env, col);
+      const before = items.length;
+      const next = items.filter(x => String(x.id) !== String(id));
+      if (next.length === before) return notFound();
+      await writeCol(env, col, next);
+      return new Response('', { status:204, headers: corsHeaders() });
+    }
+    return badRequest();
+  } catch (e) {
+    return json({ error:'Server error', detail: String(e) }, { status:500 });
+  }
+}
+
