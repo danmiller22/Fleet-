@@ -1,193 +1,27 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>TranGo — Fleet Dashboard</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>TranGo — TMS</title>
   <meta name="color-scheme" content="dark light">
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app" id="app">
-    <aside class="sidebar" aria-label="Sidebar">
-      <div class="brand-card" id="brandCard">
-        <img class="brand-logo" src="./assets/logo.png" alt="Company logo" />
-        <div class="brand-meta">
-          <div class="brand-name">US TEAM CORP</div>
-        </div>
-      </div>
+  <div id="app"></div>
 
-      <div class="sidebar-search">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-3.8-3.8M17 10.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <input id="globalSearch" placeholder="Search" aria-label="Global search"/>
-      </div>
+  <!-- Toast host -->
+  <div id="toast" role="status" aria-live="polite"></div>
 
-      <nav class="nav" id="nav">
-        <button class="nav-item active" data-tab="dashboard">
-          <span class="icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3V3zm10 0h8v5h-8V3zM3 13h5v8H3v-8zm7 6h11v2H10v-2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-          </span>
-          Dashboard
-        </button>
-        <button class="nav-item" data-tab="trucks">
-          <span class="icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13V6a1 1 0 011-1h9v8H3zM13 13h3.6a1 1 0 01.8.4l2 2.6V13h1v6h-2a2 2 0 01-4 0H9a2 2 0 01-4 0H3v-3h10v-3z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-          </span>
-          Trucks
-        </button>
-        <button class="nav-item" data-tab="trailers">
-          <span class="icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 14V7a1 1 0 011-1h11a1 1 0 011 1v7H3zM20 14h1v4h-2a2 2 0 01-4 0H9a2 2 0 01-4 0H3v-2h17v-2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-          </span>
-          Trailers
-        </button>
-        <button class="nav-item" data-tab="repairs">
-          <span class="icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21l5-5m6.5-9.5a3.5 3.5 0 10-5 4.9l-8 8V21h.6l8-8a3.5 3.5 0 004.9-5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          Repairs
-        </button>
-        <button class="nav-item" data-tab="expenses">
-          <span class="icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </span>
-          Expenses
-        </button>
-      </nav>
-    </aside>
+  <!-- Optional: smooth scroll for anchor nav -->
+  <script>try{history.scrollRestoration="manual"}catch{}</script>
 
-    <main class="main">
-      <header class="topbar">
-        <div class="title">
-          <h1 id="pageTitle">Dashboard</h1>
-          <span id="pageCount" class="muted"></span>
-        </div>
-        <div class="top-actions">
-          <div class="seg searchbox">
-            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M21 21l-3.8-3.8M17 10.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <input id="topSearch" placeholder="Search" />
-          </div>
-          <button class="icon-btn" id="bellBtn" title="Notifications" aria-label="Notifications">
-            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h11zm-7 0a3 3 0 006 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="seg">
-            <button class="seg-btn active" data-scope="all">All</button>
-            <button class="seg-btn" data-scope="active">Active</button>
-            <button class="seg-btn" data-scope="service">In service</button>
-          </div>
-          <button class="btn" id="exportBtn" title="Export CSV">
-            <span class="btn-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            Export
-          </button>
-          <button class="btn btn-primary" id="createBtn">
-            <span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m7-7H5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-            Create
-          </button>
-          <div class="toggle" id="themeToggle" role="switch" tabindex="0" aria-label="Toggle theme">
-            <div class="knob"></div>
-          </div>
-          <span class="conn-badge" id="connBadge" title="Backend connection">Offline</span>
-        </div>
-      </header>
-
-      <section class="content">
-        <div class="skeleton" id="skeletonOverlay" aria-hidden="true"></div>
-        <div class="kpi-row" id="kpiRow">
-          <div class="kpi">
-            <div class="kpi-title">Total assets</div>
-            <div class="kpi-value" id="kpiTotal">—</div>
-          </div>
-          <div class="kpi">
-            <div class="kpi-title">In repair/service</div>
-            <div class="kpi-value" id="kpiRepairing">—</div>
-            <div class="kpi-bar"><span id="barRepair"></span></div>
-          </div>
-          <div class="kpi">
-            <div class="kpi-title">This month’s expenses ($)</div>
-            <div class="kpi-value" id="kpiMonthCost">—</div>
-          </div>
-          <div class="kpi">
-            <div class="kpi-title">Average repair cost</div>
-            <div class="kpi-value" id="kpiAvgRepair">—</div>
-          </div>
-        </div>
-
-        <!-- Stat cards with sparklines -->
-        <!-- stat cards removed by request -->
-
-        <div class="panel" id="panel">
-          <div class="panel-toolbar">
-            <div class="field">
-              <input id="tableFilter" placeholder="Table filter (search)" />
-            </div>
-            <div class="spacer"></div>
-          </div>
-          <div class="table-wrap">
-            <table id="grid"></table>
-          </div>
-        </div>
-
-        <div class="charts-row" id="chartsRow">
-          <div class="chart-card">
-            <div class="chart-title">Expenses — last 6 months</div>
-            <canvas id="expensesChart" width="600" height="180" aria-label="Expenses chart"></canvas>
-            <div class="chart-tooltip" id="expensesTip"></div>
-          </div>
-          <div class="chart-card">
-            <div class="chart-title">Repairs — last 6 months</div>
-            <canvas id="repairsChart" width="600" height="180" aria-label="Repairs chart"></canvas>
-            <div class="chart-tooltip" id="repairsTip"></div>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal" id="modal" aria-hidden="true">
-    <div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <header class="modal-head">
-        <h3 id="modalTitle">Record form</h3>
-        <button class="btn btn-ghost" id="modalClose">
-          <span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-          Close
-        </button>
-      </header>
-      <div class="modal-body" id="formBody"></div>
-      <footer class="modal-foot">
-        <button class="btn btn-ghost" id="modalCancel">Cancel</button>
-        <button class="btn btn-primary" id="modalSave">Save</button>
-      </footer>
-    </div>
-  </div>
-
-  <!-- Command palette (hint hidden) -->
-  <div class="palette" id="palette" aria-hidden="true">
-    <div class="palette-panel">
-      <input id="paletteInput" placeholder="Command" />
-      <div class="palette-list" id="paletteList"></div>
-    </div>
-  </div>
-
-  <div class="toast" id="toast"></div>
-
-  <!-- Auth -->
-  <div class="auth" id="auth">
-    <div class="auth-card">
-      <h3 class="auth-title">Sign in</h3>
-      <div class="auth-note">Access is restricted. Please sign in.</div>
-      <div class="field"><label for="authUser">Username</label><input id="authUser" type="text" autocomplete="username"></div>
-      <div class="field"><label for="authPass">Password</label><input id="authPass" type="password" autocomplete="current-password"></div>
-      <div class="auth-actions">
-        <button class="btn btn-ghost" id="signUpBtn">Sign up</button>
-        <button class="btn btn-primary" id="signInBtn">Sign in</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="./js/app.js"></script>
-  <script src="./js/motion.js"></script>
+  <!-- Brand color extraction (from logo.png) -->
+  <script type="module" src="./brand.js"></script>
+  <!-- Motion helpers -->
+  <script type="module" src="./motion.js"></script>
+  <!-- React app -->
+  <script type="module" src="./app.js"></script>
 </body>
 </html>
