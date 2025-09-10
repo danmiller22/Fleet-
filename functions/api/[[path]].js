@@ -1,4 +1,4 @@
-import { collections, json, corsHeaders, notFound, badRequest, ensureSeed, readCol, writeCol, uid, requireAuth } from './_utils';
+import { collections, json, corsHeaders, notFound, badRequest, ensureSeed, readCol, writeCol, uid, requireAuth, users, computeToken } from './_utils';
 import { isConfigured as supaReady, list as sList, getOne as sGet, create as sCreate, update as sUpdate, remove as sDelete } from './supabase';
 
 export async function onRequest(context) {
@@ -10,10 +10,21 @@ export async function onRequest(context) {
   if (request.method === 'OPTIONS') return new Response('', { status:204, headers: corsHeaders() });
 
   if (parts[0] !== 'api') return notFound();
-  if(parts[1]==='auth' && parts[2]==='check'){
-    return requireAuth(env, request) ? json({ ok:true }) : json({ ok:false }, { status:401 });
+  // auth routes
+  if(parts[1]==='auth' && parts[2]==='login' && request.method==='POST'){
+    const body = await request.json().catch(()=>({})) || {};
+    const login = String(body.login||'').trim();
+    const password = String(body.password||'');
+    const us = users(env);
+    const ok = us.find(u => (u.login||'').toLowerCase()===login.toLowerCase() && String(u.password)===password);
+    if(!ok) return json({ error:'Invalid credentials' }, { status:401 });
+    const token = await computeToken(env, login, password);
+    return json({ token, user:{ login: ok.login } });
   }
-  if(!requireAuth(env, request)) return json({ error:'Unauthorized' }, { status:401 });
+  if(parts[1]==='auth' && parts[2]==='check'){
+    return (await requireAuth(env, request)) ? json({ ok:true }) : json({ ok:false }, { status:401 });
+  }
+  if(!(await requireAuth(env, request))) return json({ error:'Unauthorized' }, { status:401 });
 
   const col = parts[1];
   const id  = parts[2];
@@ -86,4 +97,3 @@ export async function onRequest(context) {
     return json({ error:'Server error', detail: String(e) }, { status:500 });
   }
 }
-

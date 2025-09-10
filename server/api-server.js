@@ -8,6 +8,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
+const crypto = require('crypto');
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 8787;
 const ROOT = path.resolve(__dirname, '..');
@@ -63,7 +64,7 @@ function saveDB(db){
 function setCors(res){
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 }
 
 function send(res, status, data, headers={}){
@@ -125,14 +126,48 @@ function getAllowedTokens(){
   return null; // no auth configured
 }
 
+function getUsers(){
+  try{
+    const envJson = process.env.USERS_JSON || process.env.ALLOWED_USERS;
+    if(envJson){
+      const arr = JSON.parse(envJson);
+      if(Array.isArray(arr)) return arr;
+    }
+  }catch{}
+  try{
+    const p = path.resolve(__dirname, 'users.json');
+    if(fs.existsSync(p)){
+      const arr = JSON.parse(fs.readFileSync(p, 'utf8'));
+      if(Array.isArray(arr)) return arr;
+    }
+  }catch{}
+  return [
+    { login:'Kevin',  password:'primary key' },
+    { login:'Dan',    password:'status text' },
+    { login:'Max',    password:'text not null' },
+    { login:'Robert', password:'enable row level security' },
+  ];
+}
+
+function computeToken(login, password){
+  const secret = process.env.AUTH_SECRET || '';
+  const data = `${(login||'').toLowerCase()}:${password||''}:${secret}`;
+  return crypto.createHash('sha256').update(data).digest('hex');
+}
+
 const allowedTokens = getAllowedTokens();
+const volatileTokens = new Set();
 
 function authOk(req){
   if(!allowedTokens || allowedTokens.size===0) return true; // open if not configured
   const h = req.headers['authorization'] || '';
   const m = /^Bearer\s+(.+)$/i.exec(h||'');
   const token = m && m[1];
-  return token && allowedTokens.has(token);
+  if(!token) return false;
+  if(allowedTokens.has(token)) return true;
+  if(volatileTokens.has(token)) return true;
+  const users = getUsers();
+  return users.some(u => computeToken(u.login, u.password) === token);
 }
 
 const server = http.createServer(async (req, res) => {
@@ -146,6 +181,21 @@ const server = http.createServer(async (req, res) => {
   const parts = (parsed.pathname||'').replace(/^\/+|\/+$/g,'').split('/');
 
   if(parts[0] !== 'api'){ return notFound(res); }
+  if(parts[1]==='auth' && parts[2]==='login' && req.method==='POST'){
+    try{
+      const body = await parseBody(req) || {};
+      const login = String(body.login||'').trim();
+      const password = String(body.password||'');
+      const users = getUsers();
+      const ok = users.find(u => (u.login||'').toLowerCase() === login.toLowerCase() && String(u.password) === password);
+      if(!ok) return send(res, 401, { error:'Invalid credentials' });
+      const token = computeToken(login, password);
+      volatileTokens.add(token);
+      return send(res, 200, { token, user: { login: ok.login } });
+    }catch(e){
+      return send(res, 400, { error:'Bad request' });
+    }
+  }
   if(parts[1]==='auth' && parts[2]==='check'){
     if(!authOk(req)) return send(res, 401, { ok:false });
     return send(res, 200, { ok:true });

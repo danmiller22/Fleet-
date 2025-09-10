@@ -15,13 +15,36 @@ export function json(data, init={}){
 }
 
 export function corsHeaders(){
-  return { 'Access-Control-Allow-Origin':'*', 'Access-Control-Allow-Methods':'GET,POST,PUT,DELETE,OPTIONS', 'Access-Control-Allow-Headers':'Content-Type' };
+  return { 'Access-Control-Allow-Origin':'*', 'Access-Control-Allow-Methods':'GET,POST,PUT,DELETE,OPTIONS', 'Access-Control-Allow-Headers':'Content-Type, Authorization' };
 }
 
 export function notFound(){ return json({ error:'Not found' }, { status:404 }); }
 export function badRequest(msg='Bad request'){ return json({ error: msg }, { status:400 }); }
 
 export function uid(){ return Math.random().toString(36).slice(2,9); }
+
+export function users(env){
+  try{
+    const raw = env.USERS_JSON || env.ALLOWED_USERS;
+    if(raw){ const arr = JSON.parse(raw); if(Array.isArray(arr)) return arr; }
+  }catch{}
+  return [
+    { login:'Kevin',  password:'primary key' },
+    { login:'Dan',    password:'status text' },
+    { login:'Max',    password:'text not null' },
+    { login:'Robert', password:'enable row level security' },
+  ];
+}
+
+export async function computeToken(env, login, password){
+  const secret = env.AUTH_SECRET || '';
+  const data = `${(login||'').toLowerCase()}:${password||''}:${secret}`;
+  // SHA-256 hex
+  const enc = new TextEncoder();
+  const buf = await crypto.subtle.digest('SHA-256', enc.encode(data));
+  const bytes = Array.from(new Uint8Array(buf));
+  return bytes.map(b=>b.toString(16).padStart(2,'0')).join('');
+}
 
 export function seedData(){
   return {
@@ -76,4 +99,34 @@ export async function writeCol(env, col, arr){
   const store = kv(env);
   if(!store) throw new Error('KV binding not found. Bind as DB or MY_KV.');
   await store.put(col, JSON.stringify(arr));
+}
+
+export function tokenFromHeader(request){
+  const h = request.headers.get('Authorization') || '';
+  const m = /^Bearer\s+(.+)$/i.exec(h || '');
+  return m && m[1];
+}
+
+export async function requireAuth(env, request){
+  const raw = (env.AUTH_TOKENS || env.ALLOWED_TOKENS || '').trim();
+  const token = tokenFromHeader(request);
+  if(!raw && !token) return false;
+  if(!raw && token){
+    // accept user-derived token
+    const us = users(env);
+    for(const u of us){
+      const t = await computeToken(env, u.login, u.password);
+      if(t === token) return true;
+    }
+    return false;
+  }
+  const set = new Set(raw.split(/[,\s]+/).map(s=>s.trim()).filter(Boolean));
+  if(token && set.has(token)) return true;
+  // also accept derived user tokens when AUTH_TOKENS present
+  const us = users(env);
+  for(const u of us){
+    const t = await computeToken(env, u.login, u.password);
+    if(t === token) return true;
+  }
+  return false;
 }

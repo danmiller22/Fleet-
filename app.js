@@ -181,17 +181,21 @@ function Kbd({children}){ return <kbd className="kbd">{children}</kbd>; }
 function AuthGate(){
   const [token, setToken] = useState(()=> store.get('auth.token',''));
   const [ok, setOk] = useState(true);
+  const [err, setErr] = useState('');
   useEffect(()=>{ if(!token) { setOk(false); return; } (async()=>{ try{ const r = await fetch('/api/auth/check', { headers: { 'Authorization':`Bearer ${token}` } }); setOk(r.ok); }catch{ setOk(false); } })(); }, [token]);
   if(ok) return null;
   return (
     <div style={{position:'fixed',inset:0,display:'grid',placeItems:'center',backdropFilter:'blur(14px)',background:'rgba(0,0,0,.35)',zIndex:50}}>
       <div className="panel" style={{width:380}}>
-        <h3>Members only</h3>
-        <p style={{fontSize:13,color:'var(--muted)',margin:'6px 0 12px'}}>Enter your access token to continue.</p>
-        <form onSubmit={e=>{ e.preventDefault(); const t = (e.currentTarget.token.value||'').trim(); store.set('auth.token', t); setToken(t); }}>
-          <input name="token" placeholder="Bearer token" autoFocus/>
+        <h3>Sign in</h3>
+        {err && <div className="badge badge-destructive" style={{margin:'6px 0'}}>{err}</div>}
+        <form onSubmit={async e=>{ e.preventDefault(); setErr(''); const f=new FormData(e.currentTarget); const login=String(f.get('login')||'').trim(); const password=String(f.get('password')||''); try{ const r=await fetch('/api/auth/login',{ method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ login, password })}); if(!r.ok){ setErr('Invalid credentials'); return; } const data=await r.json(); const t=data.token; store.set('auth.token', t); setToken(t); toast.success('Welcome'); }catch{ setErr('Network error'); } }}>
+          <div style={{display:'grid',gap:8}}>
+            <input name="login" placeholder="Email or name" autoFocus/>
+            <input name="password" type="password" placeholder="Password"/>
+          </div>
           <div style={{display:'flex',justifyContent:'flex-end',marginTop:10}}>
-            <Button className="btn btn-primary" type="submit">Unlock</Button>
+            <Button className="btn btn-primary" type="submit">Sign in</Button>
           </div>
         </form>
       </div>
