@@ -38,7 +38,7 @@ export async function onRequest(context) {
       const payload = await request.json().catch(()=>null);
       if (!payload || typeof payload !== 'object') return badRequest('Invalid JSON');
       if(useSupa){
-        const rec = await sCreate(env, col, payload);
+        const rec = await sCreate(env, col, { id: uid(), ...payload });
         return json(rec, { status:201 });
       }else{
         const items = await readCol(env, col);

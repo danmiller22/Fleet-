@@ -7,9 +7,9 @@ yarn-error.log*
 # Local data/runtime
 data/
 .wrangler/
+.dev.vars
 .env*
 
 # OS files
 .DS_Store
 Thumbs.db
-
