@@ -428,7 +428,7 @@
   const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   const savedTheme = localStorage.getItem('tms-theme');
   setTheme(savedTheme ?? (prefersDark ? 'dark' : 'light'));
-  themeToggle.addEventListener('click', ()=> setTheme(document.documentElement.classList.contains('light') ? 'dark' : 'light'));
+  themeToggle.addEventListener('click', ()=> smoothSetTheme(document.documentElement.classList.contains('light') ? 'dark' : 'light'));
   themeToggle.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); themeToggle.click(); } });
 
   function setTheme(mode){
@@ -436,6 +436,19 @@
     themeToggle.classList.toggle('on', mode==='dark'); // knob right in dark
     localStorage.setItem('tms-theme', mode);
     toast(mode==='dark' ? 'Dark theme' : 'Light theme');
+  }
+  function smoothSetTheme(mode){
+    // Create wipe overlay colored by target theme
+    const wipe = document.createElement('div');
+    wipe.className = 'theme-wipe';
+    // Temporarily apply target palette to overlay only
+    if(mode==='light') document.documentElement.classList.add('light'); else document.documentElement.classList.remove('light');
+    document.body.appendChild(wipe);
+    // After animation, finalize theme and remove overlay
+    setTimeout(()=>{
+      setTheme(mode);
+      wipe.remove();
+    }, 900);
   }
 
   /* ---------- Palette (⌘/Ctrl + K) ---------- */
@@ -497,12 +510,22 @@
     const month = new Date().toISOString().slice(0,7);
     const monthSum = data.expenses.filter(e=> e.date?.slice(0,7)===month).reduce((s,e)=> s+Number(e.amount||0), 0);
     const avgRepair = data.repairs.length ? data.repairs.reduce((s,r)=> s+Number(r.cost||0),0)/data.repairs.length : 0;
-    kpiTotal.textContent = number(total);
-    kpiRepairing.textContent = number(repairing);
-    kpiMonthCost.textContent = money(monthSum);
-    kpiAvgRepair.textContent = money(avgRepair);
+    countUp(kpiTotal, total, number);
+    countUp(kpiRepairing, repairing, number);
+    countUp(kpiMonthCost, monthSum, money);
+    countUp(kpiAvgRepair, avgRepair, money);
     const bar = qs('#barRepair');
     if(bar){ const ratio = total? (repairing/total)*100 : 0; requestAnimationFrame(()=> bar.style.width = ratio.toFixed(1)+'%'); }
+  }
+  function countUp(el, value, fmt){
+    if(!el) return; const start = 0; const dur = 720; const t0 = performance.now();
+    function step(t){
+      const p = Math.min(1, (t - t0)/dur); const eased = 1 - Math.pow(1-p,3);
+      const v = start + (value - start)*eased;
+      el.textContent = fmt(v);
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
   }
 
   /* ---------- Page transition ---------- */
