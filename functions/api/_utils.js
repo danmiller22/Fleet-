@@ -1,6 +1,6 @@
 export const collections = ['trucks','trailers','repairs','expenses','cases'];
 
-export function requireAuth(env, request){
+export function requireAuthSimple(env, request){
   const raw = (env.AUTH_TOKENS || env.ALLOWED_TOKENS || '').trim();
   if(!raw) return true; // open if no tokens configured
   const tokens = new Set(raw.split(/[,\s]+/).map(s=>s.trim()).filter(Boolean));
