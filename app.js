@@ -119,11 +119,12 @@ function useSeededState(key, initial) {
 // API client + hook (sync with backend; fallback to local storage)
 const API_BASE = (typeof window !== 'undefined' && window.API_BASE) || '';
 const COL_MAP = { ledger:'expenses', trucks:'trucks', trailers:'trailers', cases:'cases' };
+function authHeader(){ const t = store.get('auth.token',''); return t ? { 'Authorization': `Bearer ${t}` } : {}; }
 const apiClient = {
-  async list(col){ const r = await fetch(`${API_BASE}/api/${col}`); if(!r.ok) throw new Error('list'); return r.json(); },
-  async create(col, data){ const r = await fetch(`${API_BASE}/api/${col}`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) }); if(!r.ok) throw new Error('create'); return r.json(); },
-  async update(col, id, data){ const r = await fetch(`${API_BASE}/api/${col}/${encodeURIComponent(id)}`, { method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) }); if(!r.ok) throw new Error('update'); return r.json(); },
-  async remove(col, id){ const r = await fetch(`${API_BASE}/api/${col}/${encodeURIComponent(id)}`, { method:'DELETE' }); if(!r.ok && r.status!==204) throw new Error('delete'); return true; },
+  async list(col){ const r = await fetch(`${API_BASE}/api/${col}`, { headers: { ...authHeader() } }); if(!r.ok) throw new Error('list'); return r.json(); },
+  async create(col, data){ const r = await fetch(`${API_BASE}/api/${col}`, { method:'POST', headers:{ 'Content-Type':'application/json', ...authHeader() }, body: JSON.stringify(data) }); if(!r.ok) throw new Error('create'); return r.json(); },
+  async update(col, id, data){ const r = await fetch(`${API_BASE}/api/${col}/${encodeURIComponent(id)}`, { method:'PUT', headers:{ 'Content-Type':'application/json', ...authHeader() }, body: JSON.stringify(data) }); if(!r.ok) throw new Error('update'); return r.json(); },
+  async remove(col, id){ const r = await fetch(`${API_BASE}/api/${col}/${encodeURIComponent(id)}`, { method:'DELETE', headers: { ...authHeader() } }); if(!r.ok && r.status!==204) throw new Error('delete'); return true; },
 };
 
 function useCollectionApi(key, seed){
@@ -176,6 +177,27 @@ function useCollectionApi(key, seed){
 }
 
 function Kbd({children}){ return <kbd className="kbd">{children}</kbd>; }
+
+function AuthGate(){
+  const [token, setToken] = useState(()=> store.get('auth.token',''));
+  const [ok, setOk] = useState(true);
+  useEffect(()=>{ if(!token) { setOk(false); return; } (async()=>{ try{ const r = await fetch('/api/auth/check', { headers: { 'Authorization':`Bearer ${token}` } }); setOk(r.ok); }catch{ setOk(false); } })(); }, [token]);
+  if(ok) return null;
+  return (
+    <div style={{position:'fixed',inset:0,display:'grid',placeItems:'center',backdropFilter:'blur(14px)',background:'rgba(0,0,0,.35)',zIndex:50}}>
+      <div className="panel" style={{width:380}}>
+        <h3>Members only</h3>
+        <p style={{fontSize:13,color:'var(--muted)',margin:'6px 0 12px'}}>Enter your access token to continue.</p>
+        <form onSubmit={e=>{ e.preventDefault(); const t = (e.currentTarget.token.value||'').trim(); store.set('auth.token', t); setToken(t); }}>
+          <input name="token" placeholder="Bearer token" autoFocus/>
+          <div style={{display:'flex',justifyContent:'flex-end',marginTop:10}}>
+            <Button className="btn btn-primary" type="submit">Unlock</Button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
 
 /** Shared blocks **/
 function Stat({label, value, icon:IconCmp}){
@@ -663,9 +685,9 @@ function App(){
 
   // Initial sync from backend when available
   useEffect(()=>{ (async()=>{ try{ const r=await fetch('/api/trucks'); if(r.ok){ const data=await r.json(); Array.isArray(data)&& setTrucks(data); } }catch{} })(); },[]);
-  useEffect(()=>{ (async()=>{ try{ const r=await fetch('/api/trailers'); if(r.ok){ const data=await r.json(); Array.isArray(data)&& setTrailers(data); } }catch{} })(); },[]);
-  useEffect(()=>{ (async()=>{ try{ const r=await fetch('/api/cases'); if(r.ok){ const data=await r.json(); Array.isArray(data)&& setCases(data); } }catch{} })(); },[]);
-  useEffect(()=>{ (async()=>{ try{ const r=await fetch('/api/expenses'); if(r.ok){ const data=await r.json(); Array.isArray(data)&& setLedger(data); } }catch{} })(); },[]);
+  useEffect(()=>{ (async()=>{ try{ const r=await fetch('/api/trailers',{ headers: authHeader() }); if(r.ok){ const data=await r.json(); Array.isArray(data)&& setTrailers(data); } }catch{} })(); },[]);
+  useEffect(()=>{ (async()=>{ try{ const r=await fetch('/api/cases',{ headers: authHeader() }); if(r.ok){ const data=await r.json(); Array.isArray(data)&& setCases(data); } }catch{} })(); },[]);
+  useEffect(()=>{ (async()=>{ try{ const r=await fetch('/api/expenses',{ headers: authHeader() }); if(r.ok){ const data=await r.json(); Array.isArray(data)&& setLedger(data); } }catch{} })(); },[]);
 
   useEffect(()=>{
     const onK = (e) => { if(e.ctrlKey && (e.key||'').toLowerCase()==='k'){ e.preventDefault(); const i = document.getElementById('global-search'); i && i.focus && i.focus(); } };
@@ -678,6 +700,7 @@ function App(){
 
   return (
     <div className="shell">
+      <AuthGate/>
       <div className="topbar">
         <div className="brand">
           <BrandMark/>

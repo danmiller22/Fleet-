@@ -42,3 +42,7 @@ Minimal demo of a Transport Management System UI. All data is local (stored in `
 
 
 
+
+
+## Auth (allowlist)\n- API requires Bearer token when AUTH_TOKENS is set (comma-separated).\n- Local: set env var AUTH_TOKENS=token1,token2 before 
+pm start, or put tokens array in server/allowlist.json.\n- SPA shows a token prompt overlay and sends Authorization: Bearer <token>.\n- Cloudflare Pages Functions: set AUTH_TOKENS secret in project settings.\n

@@ -111,6 +111,30 @@ async function parseBody(req){
   try{ return JSON.parse(raw); }catch{ return null; }
 }
 
+function getAllowedTokens(){
+  const env = process.env.AUTH_TOKENS || process.env.ALLOWED_TOKENS || '';
+  const list = env.split(/[,\s]+/).map(s=>s.trim()).filter(Boolean);
+  if(list.length) return new Set(list);
+  try{
+    const p = path.resolve(__dirname, 'allowlist.json');
+    if(fs.existsSync(p)){
+      const arr = JSON.parse(fs.readFileSync(p, 'utf8'));
+      if(Array.isArray(arr)) return new Set(arr.map(String));
+    }
+  }catch{}
+  return null; // no auth configured
+}
+
+const allowedTokens = getAllowedTokens();
+
+function authOk(req){
+  if(!allowedTokens || allowedTokens.size===0) return true; // open if not configured
+  const h = req.headers['authorization'] || '';
+  const m = /^Bearer\s+(.+)$/i.exec(h||'');
+  const token = m && m[1];
+  return token && allowedTokens.has(token);
+}
+
 const server = http.createServer(async (req, res) => {
   setCors(res);
   if(req.method === 'OPTIONS'){ res.writeHead(204); res.end(); return; }
@@ -122,6 +146,11 @@ const server = http.createServer(async (req, res) => {
   const parts = (parsed.pathname||'').replace(/^\/+|\/+$/g,'').split('/');
 
   if(parts[0] !== 'api'){ return notFound(res); }
+  if(parts[1]==='auth' && parts[2]==='check'){
+    if(!authOk(req)) return send(res, 401, { ok:false });
+    return send(res, 200, { ok:true });
+  }
+  if(!authOk(req)) return send(res, 401, { error:'Unauthorized' });
   const col = parts[1];
   const id  = parts[2];
   if(!collections.has(col)) return notFound(res);
