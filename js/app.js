@@ -91,7 +91,7 @@
   }
   function doSignIn(){
     const u=(authUser?.value||'').trim(); const p=(authPass?.value||'').trim();
-    if(u===AUTH.user && p===AUTH.pass){ localStorage.setItem('tms-auth','ok'); auth?.classList.remove('open'); toast('Signed in'); render(); }
+    if(u===AUTH.user && p===AUTH.pass){ localStorage.setItem('tms-auth','ok'); auth?.classList.remove('open'); toast('Signed in'); render(); init(); }
     else{ toast('Invalid credentials'); }
   }
   signInBtn?.addEventListener('click', doSignIn);
@@ -660,6 +660,8 @@
 
   /* ---------- Init ---------- */
   async function init(){
+    // Gate by auth
+    if(!checkAuth()) { return; }
     // Try to enable API mode and sync data
     try{
       const trucks = await apiList('trucks');
