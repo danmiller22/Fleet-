@@ -16,6 +16,16 @@ Minimal demo of a Transport Management System UI. All data is local (stored in `
 - After creating the Pages project, go to Settings → Functions → KV Bindings and add a KV namespace named `DB`.
 - Endpoints: `GET/POST/PUT/DELETE /api/{trucks|trailers|repairs|expenses}`.
 
+## Supabase (free Postgres)
+- Optional: Use Supabase instead of KV. Steps:
+  1) Create a Supabase project (Free tier).
+  2) Open SQL editor and run `supabase/schema.sql` from this repo to create tables.
+  3) In Cloudflare Pages → Settings → Environment variables, add:
+     - `SUPABASE_URL` = your Supabase project URL (e.g., https://xxxx.supabase.co)
+     - `SUPABASE_KEY` = service role key (preferred) or anon key
+  4) Redeploy. The API will auto-detect Supabase and use it; KV remains a fallback.
+  5) Endpoints unchanged: `/api/{collection}`.
+
 ## Features
 - Sections: Trucks / Trailers / Repairs / Expenses
 - CRUD modal forms (view, edit, create, delete)
