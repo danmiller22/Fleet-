@@ -1,37 +1,40 @@
 # US Fleet
 
-Minimal demo of a Transport Management System UI. All data is local (stored in `localStorage`). No backend required.
+Minimal demo of a Transport Management System UI. Supports offline mode (localStorage), a local Node API, and a free cloud DB.
 
-## How to run
-- Local (optional):
-  - Backend (Node, no deps): `node server/api-server.js` → http://localhost:3000
-  - Frontend (static dev server): `node tools/dev-server.js` → http://localhost:5173
-  - Or open `index.html` directly in a modern browser (Chrome / Safari / Edge)
+## Local Dev
+- Quick start: `npm run dev`
+  - API: http://localhost:3000 (`/api/{trucks|trailers|repairs|expenses}`)
+  - Web: http://localhost:5173
+- Or run separately:
+  - API only: `npm run api`
+  - Web only: `npm run serve`
+
+## Backend Options (free)
+- Local JSON (default):
+  - Node API reads/writes `data/db.json` (auto-seeded).
+- Supabase (free Postgres):
+  1) Create a Supabase project (Free tier).
+  2) In SQL editor, run `supabase/schema.sql`.
+  3) Set env vars for Node API (or Pages Functions):
+     - `SUPABASE_URL` (e.g. https://xxxx.supabase.co)
+     - `SUPABASE_KEY` (service role key preferred; anon works for demo)
+  4) Restart `npm run dev`. The API auto-detects Supabase and uses it; JSON remains a fallback when not configured.
 
 ## Cloudflare Pages (free)
-- This repo contains Pages Functions under `functions/api` that expose the REST API using Cloudflare KV (binding `DB`).
-- Two ways to deploy:
-  1) Dashboard → Pages → Create project → Connect Git (recommended). Build output directory: root (`/`). Functions: auto-detected from `functions/`.
-  2) CLI: `npx wrangler pages deploy .` (free). Requires Node. `wrangler.toml` is included.
-- After creating the Pages project, go to Settings → Functions → KV Bindings and add a KV namespace named `DB`.
-- Endpoints: `GET/POST/PUT/DELETE /api/{trucks|trailers|repairs|expenses}`.
-
-## Supabase (free Postgres)
-- Optional: Use Supabase instead of KV. Steps:
-  1) Create a Supabase project (Free tier).
-  2) Open SQL editor and run `supabase/schema.sql` from this repo to create tables.
-  3) In Cloudflare Pages → Settings → Environment variables, add:
-     - `SUPABASE_URL` = your Supabase project URL (e.g., https://xxxx.supabase.co)
-     - `SUPABASE_KEY` = service role key (preferred) or anon key
-  4) Redeploy. The API will auto-detect Supabase and use it; KV remains a fallback.
-  5) Endpoints unchanged: `/api/{collection}`.
+- Functions in `functions/api` provide the same REST API using KV or Supabase.
+- Deploy options:
+  1) Dashboard → Pages → Create project → Connect Git (build output dir: root `/`). Functions auto-detected.
+  2) CLI: `npx wrangler pages deploy .` (see `wrangler.toml`).
+- Bind KV in Settings → Functions → KV Bindings: add a namespace named `DB`.
+- Optional: set `SUPABASE_URL`, `SUPABASE_KEY` env vars to use Supabase instead of KV.
 
 ## Features
 - Sections: Trucks / Trailers / Repairs / Expenses
 - CRUD modal forms (view, edit, create, delete)
 - Global and table search, CSV export
 - KPI counters and smooth animations
-- Command palette (⌘/Ctrl + K)
+- Command palette (Ctrl/Cmd + K)
 - Light/Dark theme toggle
 
 ## Customization
@@ -40,8 +43,6 @@ Minimal demo of a Transport Management System UI. All data is local (stored in `
 - Company name: `.brand-name` in `index.html`
 
 ## Notes
-- Data persists via `localStorage` (see `load()` / `persist()` in `js/app.js`).
-- When integrating a backend, wire `render()` / `onSave()` / `removeRow()` to your API.
-- Backend: JSON file store at `data/db.json`, REST endpoints under `/api`.
-- CORS enabled. Collections: `trucks`, `trailers`, `repairs`, `expenses`.
-- Cloudflare variant: KV-based storage (free tier). Seed data auto-initialized on first run.
+- Data persists via `localStorage` when offline.
+- The frontend auto-detects the API: for local dev it uses `http://localhost:3000/api`; in Pages it uses same-origin `/api`.
+- Collections: `trucks`, `trailers`, `repairs`, `expenses`.

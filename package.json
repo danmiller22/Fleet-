@@ -1,0 +1,13 @@
+{
+  "name": "fleet-dashboard",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Fleet dashboard with optional backend + free DB",
+  "scripts": {
+    "dev": "node tools/dev.js",
+    "api": "node server/api-server.js",
+    "serve": "node tools/dev-server.js",
+    "pages:dev": "npx wrangler pages dev . --kv DB",
+    "seed:supabase": "node tools/seed-supabase.js"
+  }
+}

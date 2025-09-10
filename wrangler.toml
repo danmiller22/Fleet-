@@ -2,6 +2,8 @@ name = "tms-pages"
 compatibility_date = "2024-01-01"
 
 [vars]
+SUPABASE_URL = ""
+SUPABASE_KEY = ""
 
 [[kv_namespaces]]
 binding = "DB"
@@ -9,4 +11,3 @@ id = "KV_NAMESPACE_ID_PLACEHOLDER"
 
 # For Pages local dev you can run: `npx wrangler pages dev .`.
 # For production, create a Pages project in the dashboard and bind KV named `DB`.
-

@@ -4,6 +4,7 @@
 const http = require('http');
 const url = require('url');
 const { loadDB, saveDB, ensureDB, uid } = require('./db');
+const supa = require('./supabase');
 
 const PORT = process.env.API_PORT || 3000;
 const collections = new Set(['trucks','trailers','repairs','expenses']);
@@ -48,37 +49,63 @@ const server = http.createServer(async (req, res) => {
   const id  = parts[2];
   if(!collections.has(col)) return notFound(res);
 
-  let db = loadDB();
+  const useSupa = supa.isConfigured(process.env);
+  let db = useSupa ? null : loadDB();
 
   try{
     if(req.method === 'GET' && !id){
-      return send(res, 200, db[col]);
+      if(useSupa) {
+        const items = await supa.list(process.env, col);
+        return send(res, 200, items);
+      } else {
+        return send(res, 200, db[col]);
+      }
     }
     if(req.method === 'GET' && id){
-      const rec = db[col].find(x=> String(x.id) === String(id));
-      return rec ? send(res, 200, rec) : notFound(res);
+      if(useSupa) {
+        const rec = await supa.getOne(process.env, col, id);
+        return rec ? send(res, 200, rec) : notFound(res);
+      } else {
+        const rec = db[col].find(x=> String(x.id) === String(id));
+        return rec ? send(res, 200, rec) : notFound(res);
+      }
     }
     if(req.method === 'POST' && !id){
       const payload = await parseBody(req);
-      const rec = { id: uid(), ...payload };
-      db[col].unshift(rec);
-      saveDB(db);
-      return send(res, 201, rec);
+      if(useSupa){
+        const rec = await supa.create(process.env, col, { id: uid(), ...payload });
+        return send(res, 201, rec);
+      } else {
+        const rec = { id: uid(), ...payload };
+        db[col].unshift(rec);
+        saveDB(db);
+        return send(res, 201, rec);
+      }
     }
     if(req.method === 'PUT' && id){
       const payload = await parseBody(req);
-      const i = db[col].findIndex(x=> String(x.id) === String(id));
-      if(i === -1) return notFound(res);
-      db[col][i] = { ...db[col][i], ...payload, id: db[col][i].id };
-      saveDB(db);
-      return send(res, 200, db[col][i]);
+      if(useSupa){
+        const rec = await supa.update(process.env, col, id, payload);
+        return rec ? send(res, 200, rec) : notFound(res);
+      } else {
+        const i = db[col].findIndex(x=> String(x.id) === String(id));
+        if(i === -1) return notFound(res);
+        db[col][i] = { ...db[col][i], ...payload, id: db[col][i].id };
+        saveDB(db);
+        return send(res, 200, db[col][i]);
+      }
     }
     if(req.method === 'DELETE' && id){
-      const before = db[col].length;
-      db[col] = db[col].filter(x=> String(x.id) !== String(id));
-      if(db[col].length === before) return notFound(res);
-      saveDB(db);
-      return send(res, 204, '');
+      if(useSupa){
+        const ok = await supa.remove(process.env, col, id);
+        return ok ? send(res, 204, '') : notFound(res);
+      } else {
+        const before = db[col].length;
+        db[col] = db[col].filter(x=> String(x.id) !== String(id));
+        if(db[col].length === before) return notFound(res);
+        saveDB(db);
+        return send(res, 204, '');
+      }
     }
     return badRequest(res);
   }catch(err){
@@ -90,4 +117,3 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, () => {
   console.log(`API server listening on http://localhost:${PORT}`);
 });
-
