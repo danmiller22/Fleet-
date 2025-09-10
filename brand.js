@@ -1,4 +1,4 @@
-
+﻿
 // brand.js — extract a brand color from /logo.png and set CSS var --brand
 (async function(){
   try{
@@ -36,3 +36,4 @@
     // fallback color kept
   }
 })();
+

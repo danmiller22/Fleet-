@@ -1,4 +1,4 @@
-
+﻿
 /* =============================================================
    TranGo TMS — Apple-style dark glass UI
    - SF stack via -apple-system
@@ -186,3 +186,4 @@ input:focus, textarea:focus, select:focus{
 
 :focus-visible{ outline:none; box-shadow: 0 0 0 8px color-mix(in oklab, var(--brand), transparent 88%); }
 @media (prefers-reduced-motion: reduce){ *{ transition:none !important; animation: none !important; } }
+

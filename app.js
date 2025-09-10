@@ -1,4 +1,4 @@
-
+﻿
 import React, { useEffect, useMemo, useState } from 'https://esm.sh/react@18';
 import { createRoot } from 'https://esm.sh/react-dom@18/client';
 import * as Recharts from 'https://esm.sh/recharts@2?bundle';
@@ -25,16 +25,6 @@ function useDarkMode(){
     const cl = document.documentElement.classList;
     if(dark) cl.add('dark'); else cl.remove('dark');
     localStorage.setItem('ui.dark', String(dark));
-    // Subtle Apple-like theme fade overlay
-    try{
-      const ov = document.createElement('div');
-      ov.style.position='fixed'; ov.style.inset='0'; ov.style.zIndex='9999';
-      ov.style.pointerEvents='none';
-      ov.style.background = 'radial-gradient(1200px 800px at 20% -20%, rgba(255,255,255,.08), transparent 55%), var(--bg)';
-      ov.style.opacity='0'; ov.style.transition='opacity 240ms var(--ease)';
-      document.body.appendChild(ov);
-      requestAnimationFrame(()=>{ ov.style.opacity='1'; setTimeout(()=>{ ov.style.opacity='0'; setTimeout(()=>ov.remove(), 240); }, 60); });
-    }catch{}
   }, [dark]);
   return [dark, setDark];
 }
@@ -116,92 +106,7 @@ function useSeededState(key, initial) {
   return [state, setState];
 }
 
-// API client + hook (sync with backend; fallback to local storage)
-const API_BASE = (typeof window !== 'undefined' && window.API_BASE) || '';
-const COL_MAP = { ledger:'expenses', trucks:'trucks', trailers:'trailers', cases:'cases' };
-function authHeader(){ const t = store.get('auth.token',''); return t ? { 'Authorization': `Bearer ${t}` } : {}; }
-const apiClient = {
-  async list(col){ const r = await fetch(`${API_BASE}/api/${col}`, { headers: { ...authHeader() } }); if(!r.ok) throw new Error('list'); return r.json(); },
-  async create(col, data){ const r = await fetch(`${API_BASE}/api/${col}`, { method:'POST', headers:{ 'Content-Type':'application/json', ...authHeader() }, body: JSON.stringify(data) }); if(!r.ok) throw new Error('create'); return r.json(); },
-  async update(col, id, data){ const r = await fetch(`${API_BASE}/api/${col}/${encodeURIComponent(id)}`, { method:'PUT', headers:{ 'Content-Type':'application/json', ...authHeader() }, body: JSON.stringify(data) }); if(!r.ok) throw new Error('update'); return r.json(); },
-  async remove(col, id){ const r = await fetch(`${API_BASE}/api/${col}/${encodeURIComponent(id)}`, { method:'DELETE', headers: { ...authHeader() } }); if(!r.ok && r.status!==204) throw new Error('delete'); return true; },
-};
-
-function useCollectionApi(key, seed){
-  const col = COL_MAP[key] || key;
-  const [items, setItems] = useState(()=> store.get(key, seed ?? []));
-  const [ready, setReady] = useState(false);
-  const [online, setOnline] = useState(true);
-
-  useEffect(()=>{
-    (async ()=>{
-      try{
-        const data = await apiClient.list(col);
-        setItems(data || []);
-        store.set(key, data || []);
-        setOnline(true);
-      }catch{
-        setItems(store.get(key, seed ?? []));
-        setOnline(false);
-      }finally{ setReady(true); }
-    })();
-  }, [col, key]);
-
-  async function add(data){
-    try{
-      const rec = await apiClient.create(col, data);
-      setItems(prev => [rec, ...prev]); store.set(key, [rec, ...items]); setOnline(true); toast.success('Saved');
-      return rec;
-    }catch{
-      const rec = { id: uid(), ...data };
-      setItems(prev => [rec, ...prev]); store.set(key, [rec, ...items]); setOnline(false); toast.error('Saved locally');
-      return rec;
-    }
-  }
-  async function update(id, patch){
-    try{
-      const rec = await apiClient.update(col, id, patch);
-      setItems(prev => prev.map(x => x.id===id ? { ...x, ...rec } : x)); store.set(key, (store.get(key, items)||[]).map(x => x.id===id ? { ...x, ...rec } : x)); setOnline(true);
-      return rec;
-    }catch{
-      setItems(prev => prev.map(x => x.id===id ? { ...x, ...patch } : x)); store.set(key, (store.get(key, items)||[]).map(x => x.id===id ? { ...x, ...patch } : x)); setOnline(false); toast.error('Updated locally');
-      return { id, ...patch };
-    }
-  }
-  async function remove(id){
-    try{ await apiClient.remove(col, id); setItems(prev => prev.filter(x => x.id!==id)); store.set(key, (store.get(key, items)||[]).filter(x => x.id!==id)); setOnline(true); }
-    catch{ setItems(prev => prev.filter(x => x.id!==id)); store.set(key, (store.get(key, items)||[]).filter(x => x.id!==id)); setOnline(false); toast.error('Deleted locally'); }
-  }
-
-  return { items, ready, online, add, update, remove, setItems };
-}
-
 function Kbd({children}){ return <kbd className="kbd">{children}</kbd>; }
-
-function AuthGate(){
-  const [token, setToken] = useState(()=> store.get('auth.token',''));
-  const [ok, setOk] = useState(true);
-  const [err, setErr] = useState('');
-  useEffect(()=>{ if(!token) { setOk(false); return; } (async()=>{ try{ const r = await fetch('/api/auth/check', { headers: { 'Authorization':`Bearer ${token}` } }); setOk(r.ok); }catch{ setOk(false); } })(); }, [token]);
-  if(ok) return null;
-  return (
-    <div style={{position:'fixed',inset:0,display:'grid',placeItems:'center',backdropFilter:'blur(14px)',background:'rgba(0,0,0,.35)',zIndex:50}}>
-      <div className="panel" style={{width:380}}>
-        <h3>Sign in</h3>
-        {err && <div className="badge badge-destructive" style={{margin:'6px 0'}}>{err}</div>}
-        <form onSubmit={async e=>{ e.preventDefault(); setErr(''); const f=new FormData(e.currentTarget); const login=String(f.get('login')||'').trim(); const password=String(f.get('password')||''); try{ const r=await fetch('/api/auth/login',{ method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ login, password })}); if(!r.ok){ setErr('Invalid credentials'); return; } const data=await r.json(); const t=data.token; store.set('auth.token', t); setToken(t); toast.success('Welcome'); }catch{ setErr('Network error'); } }}>
-          <div style={{display:'grid',gap:8}}>
-            <input name="login" placeholder="Email or name" autoFocus/>
-            <input name="password" type="password" placeholder="Password"/>
-          </div>
-          <div style={{display:'flex',justifyContent:'flex-end',marginTop:10}}>
-            <Button className="btn btn-primary" type="submit">Sign in</Button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-}
 
 /** Shared blocks **/
 function Stat({label, value, icon:IconCmp}){
@@ -293,11 +198,11 @@ function Trucks({ trucks, setTrucks }){
       vin: f.get('vin'), status: f.get('status'), miles: Number(f.get('miles')),
       pmInterval: Number(f.get('pmInterval')), pmDueAt: Number(f.get('pmDueAt')), notes: f.get('notes')
     };
-    setTrucks(prev => [...prev, t]); try{ fetch('/api/trucks',{method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(t)}); }catch{ }
+    setTrucks(prev => [...prev, t]);
     e.currentTarget.reset();
     setOpen(false); toast.success('Truck added');
   }
-  const remove = (id) => { setTrucks(prev => prev.filter(t=>t.id!==id)); try{ fetch('/api/trucks/'+encodeURIComponent(id), { method:'DELETE' }); }catch{ } };
+  const remove = (id) => setTrucks(prev => prev.filter(t=>t.id!==id));
 
   return (
     <div className="space-y">
@@ -359,7 +264,7 @@ function Trailers({ trailers, setTrailers }){
     e.preventDefault();
     const f = new FormData(e.currentTarget);
     const t = { id: f.get('id'), type: f.get('type'), owner: f.get('owner'), status: f.get('status'), extId: f.get('extId'), notes: f.get('notes') };
-    setTrailers(prev => [...prev, t]); try{ fetch('/api/trailers',{method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(t)}); }catch{ }
+    setTrailers(prev => [...prev, t]);
     e.currentTarget.reset(); setOpen(false); toast.success('Trailer added');
   }
 
@@ -429,7 +334,7 @@ function Cases({ cases, setCases }){
       createdAt: Date.now(), cost: 0, assigned: f.get('assigned'),
       timeline: [{ t: Date.now(), note: 'Case created' }], invoices: []
     };
-    setCases(prev => [c, ...prev]); try{ fetch('/api/cases',{method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(c)}); }catch{ } e.currentTarget.reset(); toast.success('Case created');
+    setCases(prev => [c, ...prev]); e.currentTarget.reset(); toast.success('Case created');
   }
 
   function pushStage(id){
@@ -518,7 +423,7 @@ function Finance({ ledger, setLedger }){
     e.preventDefault();
     const f = new FormData(e.currentTarget);
     const it = { id: uid(), type, amount: Number(f.get('amount')), category: f.get('category'), note: f.get('note'), ref: f.get('ref') };
-    setLedger(prev => [it, ...prev]); try{ fetch('/api/expenses',{method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(it)}); }catch{} e.currentTarget.reset();
+    setLedger(prev => [it, ...prev]); e.currentTarget.reset();
   }
 
   return (
@@ -687,12 +592,6 @@ function App(){
   const [ledger, setLedger] = useSeededState('ledger', SEED.ledger);
   const [dark, setDark] = useDarkMode();
 
-  // Initial sync from backend when available
-  useEffect(()=>{ (async()=>{ try{ const r=await fetch('/api/trucks'); if(r.ok){ const data=await r.json(); Array.isArray(data)&& setTrucks(data); } }catch{} })(); },[]);
-  useEffect(()=>{ (async()=>{ try{ const r=await fetch('/api/trailers',{ headers: authHeader() }); if(r.ok){ const data=await r.json(); Array.isArray(data)&& setTrailers(data); } }catch{} })(); },[]);
-  useEffect(()=>{ (async()=>{ try{ const r=await fetch('/api/cases',{ headers: authHeader() }); if(r.ok){ const data=await r.json(); Array.isArray(data)&& setCases(data); } }catch{} })(); },[]);
-  useEffect(()=>{ (async()=>{ try{ const r=await fetch('/api/expenses',{ headers: authHeader() }); if(r.ok){ const data=await r.json(); Array.isArray(data)&& setLedger(data); } }catch{} })(); },[]);
-
   useEffect(()=>{
     const onK = (e) => { if(e.ctrlKey && (e.key||'').toLowerCase()==='k'){ e.preventDefault(); const i = document.getElementById('global-search'); i && i.focus && i.focus(); } };
     window.addEventListener('keydown', onK); return ()=>window.removeEventListener('keydown', onK);
@@ -704,7 +603,6 @@ function App(){
 
   return (
     <div className="shell">
-      <AuthGate/>
       <div className="topbar">
         <div className="brand">
           <BrandMark/>
@@ -760,9 +658,4 @@ function App(){
 }
 
 createRoot(document.getElementById('app')).render(<App/>);
-
-
-
-
-
 

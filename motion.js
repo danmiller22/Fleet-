@@ -1,4 +1,4 @@
-
+﻿
 // motion.js — lightweight reveal animations, Apple-like easing
 (() => {
   const spring = 'cubic-bezier(.22,1,.36,1)';
@@ -42,3 +42,4 @@
     observer.disconnect();
   }
 })();
+
