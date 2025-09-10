@@ -1,7 +1,7 @@
-﻿
-import React, { useEffect, useMemo, useState } from 'https://esm.sh/react@18';
-import { createRoot } from 'https://esm.sh/react-dom@18/client';
-import * as Recharts from 'https://esm.sh/recharts@2?bundle';
+
+import React, { useEffect, useMemo, useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import * as Recharts from 'recharts';
 
 const { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip:ReTooltip, Legend, Area, AreaChart, PieChart, Pie, Cell } = Recharts;
 
@@ -88,15 +88,15 @@ const SEED = {
   ],
   trailers: [
     { id: 'XTRA-40123', type: 'Dry Van', owner: 'XTRA Lease', status: 'On Road', extId: 'SkyB-12345', notes: 'External tracked' },
-    { id: 'UST-9001', type: 'Dry Van', owner: 'US TEAM', status: 'Yard', extId: '—', notes: 'Ready' },
+    { id: 'UST-9001', type: 'Dry Van', owner: 'US TEAM', status: 'Yard', extId: 'â€”', notes: 'Ready' },
   ],
   cases: [
     { id: uid(), assetType: 'truck', assetId: '3252', title: 'Coolant leak', priority: 'High', stage: 'Diagnose', createdAt: Date.now() - 86400000*2, cost: 0, assigned: 'Jack', timeline: [ { t: Date.now() - 86400000*2, note: 'Driver reports coolant on ground.' } ], invoices: [] },
     { id: uid(), assetType: 'trailer', assetId: 'XTRA-40123', title: 'ABS light ON', priority: 'Medium', stage: 'Parts', createdAt: Date.now() - 86400000*1, cost: 75, assigned: 'Aidar', timeline: [ { t: Date.now()- 86400000, note: 'Mobile tech scheduled.' } ], invoices: [] }
   ],
   ledger: [
-    { id: uid(), type: 'expense', amount: 535, category: 'Tires', note: 'Steer tire fix — Houston, TX', ref: '2023/00' },
-    { id: uid(), type: 'expense', amount: 325, category: 'Windshield', note: 'Windshield mobile — Wichita, KS', ref: '2025/09/04' },
+    { id: uid(), type: 'expense', amount: 535, category: 'Tires', note: 'Steer tire fix â€” Houston, TX', ref: '2023/00' },
+    { id: uid(), type: 'expense', amount: 325, category: 'Windshield', note: 'Windshield mobile â€” Wichita, KS', ref: '2025/09/04' },
     { id: uid(), type: 'income', amount: 4200, category: 'Load', note: 'Load #AB-778, Jack', ref: '2025/09/03' },
   ]
 };
@@ -159,7 +159,7 @@ function Dashboard({ trucks, trailers, cases, ledger }){
       </Row>
 
       <div className="panel span-12">
-        <h3 className="mb-2" style={{display:'flex',alignItems:'center',gap:8}}><Icon.Chart/> 10‑day Finance Trend</h3>
+        <h3 className="mb-2" style={{display:'flex',alignItems:'center',gap:8}}><Icon.Chart/> 10â€‘day Finance Trend</h3>
         <div style={{height:260}}>
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={chartData}>
@@ -218,11 +218,11 @@ function Trucks({ trucks, setTrucks }){
       </div>
 
       {open && (
-        <div className="panel" style="position:fixed; inset:0; background:rgba(0,0,0,.45); display:grid; place-items:center; z-index:50;">
-          <div className="panel" style="max-width:720px; width:92%;">
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+        <div className="panel" style={{position:'fixed', inset:0, background:'rgba(0,0,0,.45)', display:'grid', placeItems:'center', zIndex:50}}>
+          <div className="panel" style={{maxWidth:720, width:'92%'}}>
+            <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:8}}>
               <h3>Add truck</h3>
-              <button class="btn btn-ghost" onclick="this.closest('[style*=inset]').remove()"><span>×</span></button>
+              <button className="btn btn-ghost" onclick="this.closest('[style*=inset]').remove()"><span>Ã—</span></button>
             </div>
           </div>
         </div>
@@ -233,7 +233,7 @@ function Trucks({ trucks, setTrucks }){
           <div key={t.id} className="panel span-4">
             <div className="mb-2">
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-                <h3 style={{fontSize:15}}># {t.id} • {t.make} {t.model}</h3>
+                <h3 style={{fontSize:15}}># {t.id} â€¢ {t.make} {t.model}</h3>
                 <Badge> {t.status} </Badge>
               </div>
               <div style={{fontSize:12,color:'var(--muted)'}}>VIN {t.vin}</div>
@@ -286,10 +286,10 @@ function Trailers({ trailers, setTrailers }){
           <div key={t.id} className="panel span-4">
             <div className="mb-2">
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-                <h3 style={{fontSize:15}}>{t.id} • {t.type}</h3>
+                <h3 style={{fontSize:15}}>{t.id} â€¢ {t.type}</h3>
                 <Badge>{t.status}</Badge>
               </div>
-              <div style={{fontSize:12,color:'var(--muted)'}}>Owner {t.owner} • Ext {t.extId || '—'}</div>
+              <div style={{fontSize:12,color:'var(--muted)'}}>Owner {t.owner} â€¢ Ext {t.extId || 'â€”'}</div>
             </div>
             <div><p style={{color:'var(--muted)'}}>{t.notes}</p></div>
           </div>
@@ -298,13 +298,13 @@ function Trailers({ trailers, setTrailers }){
 
       {open && (
         <div className="modal">
-          <div className="panel" style="max-width:720px; width:92%;">
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+          <div className="panel" style={{maxWidth:720, width:'92%'}}>
+            <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:8}}>
               <h3>Add trailer</h3>
-              <button class="btn btn-ghost" onclick="this.closest('.modal').remove()">×</button>
+              <button className="btn btn-ghost" onClick={()=>setOpen(false)}>Ã—</button>
             </div>
-            <form class="grid" onsubmit="return false;">
-              <!-- form omitted in this static modal; actual app.js below implements real modal via React -->
+            <form className="grid" onSubmit={(e)=>{e.preventDefault();}}>
+              {/* form omitted in this static modal; actual app.js below implements real modal via React */}
             </form>
           </div>
         </div>
@@ -341,7 +341,7 @@ function Cases({ cases, setCases }){
     setCases(prev => prev.map(c => {
       if(c.id!==id) return c;
       const idx = STAGES.indexOf(c.stage); const next = Math.min(idx+1, STAGES.length-1);
-      const nc = { ...c, stage: STAGES[next], timeline: [...c.timeline, { t: Date.now(), note: `Moved → ${STAGES[next]}` }] };
+      const nc = { ...c, stage: STAGES[next], timeline: [...c.timeline, { t: Date.now(), note: `Moved â†’ ${STAGES[next]}` }] };
       if (STAGES[next]==='Closed') nc.timeline.push({ t: Date.now(), note: 'Case closed' });
       return nc;
     }));
@@ -368,10 +368,10 @@ function Cases({ cases, setCases }){
           <div key={c.id} className="panel span-6">
             <div className="mb-2">
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-                <h3 style={{fontSize:15}}>{c.title} • <span style={{color:'var(--muted)'}}>{c.assetId}</span></h3>
+                <h3 style={{fontSize:15}}>{c.title} â€¢ <span style={{color:'var(--muted)'}}>{c.assetId}</span></h3>
                 <Badge className={c.priority==='High'||c.priority==='Critical'?'badge-destructive':''}>{c.priority}</Badge>
               </div>
-              <div style={{fontSize:12,color:'var(--muted)'}}>Stage: {c.stage} • Opened {new Date(c.createdAt).toLocaleDateString()}</div>
+              <div style={{fontSize:12,color:'var(--muted)'}}>Stage: {c.stage} â€¢ Opened {new Date(c.createdAt).toLocaleDateString()}</div>
             </div>
             <div className="space-y">
               <div className="text-xs" style={{color:'var(--muted)'}}>Timeline</div>
@@ -385,10 +385,10 @@ function Cases({ cases, setCases }){
                 ))}
               </div>
               <div style={{display:'flex', alignItems:'center', gap:8}}>
-                <input placeholder="Add note…" onKeyDown={(e)=>{
+                <input placeholder="Add noteâ€¦" onKeyDown={(e)=>{
                   if(e.key==='Enter'){ const v=(e.target.value||'').trim(); if(v){ setCases(prev => prev.map(x => x.id===c.id ? { ...x, timeline:[...x.timeline, { t: Date.now(), note: v }] } : x)); e.target.value=''; } }
                 }}/>
-                <Button className="btn" onClick={()=>pushStage(c.id)}>Next →</Button>
+                <Button className="btn" onClick={()=>pushStage(c.id)}>Next â†’</Button>
               </div>
             </div>
           </div>
@@ -548,7 +548,7 @@ function SettingsPanel(){
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between', marginTop:8}}>
           <div>
             <div style={{fontWeight:600}}>Dark mode</div>
-            <div style={{fontSize:13, color:'var(--muted)'}}>Apple‑style subtle dark theme</div>
+            <div style={{fontSize:13, color:'var(--muted)'}}>Appleâ€‘style subtle dark theme</div>
           </div>
           <Switch checked={dark} onChange={setDark} />
         </div>
@@ -606,7 +606,7 @@ function App(){
       <div className="topbar">
         <div className="brand">
           <BrandMark/>
-          <div className="title">TranGo — TMS</div>
+          <div className="title">TranGo â€” TMS</div>
           <span className="badge" style={{marginLeft:8}}>Free</span>
         </div>
         <div style={{display:'flex',alignItems:'center',gap:8}}>
@@ -631,7 +631,7 @@ function App(){
           <div className="tips">
             <div style={{fontSize:12}}>Tips</div>
             <ul style={{fontSize:12, marginTop:6, paddingLeft:16}}>
-              <li>Use Ctrl+K to quick‑search</li>
+              <li>Use Ctrl+K to quickâ€‘search</li>
               <li>Export JSON in Settings</li>
               <li>Attach invoices to cases</li>
             </ul>

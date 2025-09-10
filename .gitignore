@@ -1,0 +1,8 @@
+node_modules/
+.DS_Store
+Thumbs.db
+npm-debug.log*
+yarn-error.log
+pnpm-lock.yaml
+# Optional: local DB cache file created by server
+server/db.json
