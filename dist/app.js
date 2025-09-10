@@ -4,7 +4,13 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __commonJS = (cb, mod) => function __require() {
+var __require = /* @__PURE__ */ ((x2) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x2, {
+  get: (a2, b) => (typeof require !== "undefined" ? require : a2)[b]
+}) : x2)(function(x2) {
+  if (typeof require !== "undefined") return require.apply(this, arguments);
+  throw Error('Dynamic require of "' + x2 + '" is not supported');
+});
+var __commonJS = (cb, mod) => function __require2() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var __export = (target, all) => {
@@ -241,20 +247,20 @@ var require_react_development = __commonJS({
         {
           Object.freeze(emptyObject);
         }
-        function Component6(props, context, updater) {
+        function Component8(props, context, updater) {
           this.props = props;
           this.context = context;
           this.refs = emptyObject;
           this.updater = updater || ReactNoopUpdateQueue;
         }
-        Component6.prototype.isReactComponent = {};
-        Component6.prototype.setState = function(partialState, callback) {
+        Component8.prototype.isReactComponent = {};
+        Component8.prototype.setState = function(partialState, callback) {
           if (typeof partialState !== "object" && typeof partialState !== "function" && partialState != null) {
             throw new Error("setState(...): takes an object of state variables to update or a function which returns an object of state variables.");
           }
           this.updater.enqueueSetState(this, partialState, callback, "setState");
         };
-        Component6.prototype.forceUpdate = function(callback) {
+        Component8.prototype.forceUpdate = function(callback) {
           this.updater.enqueueForceUpdate(this, callback, "forceUpdate");
         };
         {
@@ -263,7 +269,7 @@ var require_react_development = __commonJS({
             replaceState: ["replaceState", "Refactor your code to use setState instead (see https://github.com/facebook/react/issues/3236)."]
           };
           var defineDeprecationWarning = function(methodName, info) {
-            Object.defineProperty(Component6.prototype, methodName, {
+            Object.defineProperty(Component8.prototype, methodName, {
               get: function() {
                 warn5("%s(...) is deprecated in plain JavaScript React classes. %s", info[0], info[1]);
                 return void 0;
@@ -278,7 +284,7 @@ var require_react_development = __commonJS({
         }
         function ComponentDummy() {
         }
-        ComponentDummy.prototype = Component6.prototype;
+        ComponentDummy.prototype = Component8.prototype;
         function PureComponent19(props, context, updater) {
           this.props = props;
           this.context = context;
@@ -287,7 +293,7 @@ var require_react_development = __commonJS({
         }
         var pureComponentPrototype = PureComponent19.prototype = new ComponentDummy();
         pureComponentPrototype.constructor = PureComponent19;
-        assign2(pureComponentPrototype, Component6.prototype);
+        assign2(pureComponentPrototype, Component8.prototype);
         pureComponentPrototype.isPureReactComponent = true;
         function createRef() {
           var refObject = {
@@ -513,7 +519,7 @@ var require_react_development = __commonJS({
           }
           return element;
         };
-        function createElement9(type, config, children) {
+        function createElement12(type, config, children) {
           var propName;
           var props = {};
           var key = null;
@@ -581,7 +587,7 @@ var require_react_development = __commonJS({
           var newElement = ReactElement(oldElement.type, newKey, oldElement.ref, oldElement._self, oldElement._source, oldElement._owner, oldElement.props);
           return newElement;
         }
-        function cloneElement9(element, config, children) {
+        function cloneElement10(element, config, children) {
           if (element === null || element === void 0) {
             throw new Error("React.cloneElement(...): The argument must be a React element, but you passed " + element + ".");
           }
@@ -629,7 +635,7 @@ var require_react_development = __commonJS({
           }
           return ReactElement(element.type, key, ref, self2, source, owner, props);
         }
-        function isValidElement9(object) {
+        function isValidElement10(object) {
           return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
         }
         var SEPARATOR = ".";
@@ -694,7 +700,7 @@ var require_react_development = __commonJS({
                 return c2;
               });
             } else if (mappedChild != null) {
-              if (isValidElement9(mappedChild)) {
+              if (isValidElement10(mappedChild)) {
                 {
                   if (mappedChild.key && (!_child || _child.key !== mappedChild.key)) {
                     checkKeyStringCoercion(mappedChild.key);
@@ -782,12 +788,12 @@ var require_react_development = __commonJS({
           }) || [];
         }
         function onlyChild(children) {
-          if (!isValidElement9(children)) {
+          if (!isValidElement10(children)) {
             throw new Error("React.Children.only expected to receive a single React element child.");
           }
           return children;
         }
-        function createContext2(defaultValue) {
+        function createContext8(defaultValue) {
           var context = {
             $$typeof: REACT_CONTEXT_TYPE,
             // As a workaround to support multiple concurrent renderers, we categorize
@@ -974,7 +980,7 @@ var require_react_development = __commonJS({
           }
           return lazyType;
         }
-        function forwardRef3(render) {
+        function forwardRef6(render) {
           {
             if (render != null && render.$$typeof === REACT_MEMO_TYPE) {
               error("forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...)).");
@@ -1035,7 +1041,7 @@ var require_react_development = __commonJS({
           }
           return false;
         }
-        function memo(type, compare) {
+        function memo2(type, compare) {
           {
             if (!isValidElementType(type)) {
               error("memo: The first argument must be a component. Instead received: %s", type === null ? "null" : typeof type);
@@ -1073,7 +1079,7 @@ var require_react_development = __commonJS({
           }
           return dispatcher;
         }
-        function useContext2(Context) {
+        function useContext10(Context) {
           var dispatcher = resolveDispatcher();
           {
             if (Context._context !== void 0) {
@@ -1087,7 +1093,7 @@ var require_react_development = __commonJS({
           }
           return dispatcher.useContext(Context);
         }
-        function useState6(initialState) {
+        function useState7(initialState) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useState(initialState);
         }
@@ -1095,27 +1101,27 @@ var require_react_development = __commonJS({
           var dispatcher = resolveDispatcher();
           return dispatcher.useReducer(reducer, initialArg, init);
         }
-        function useRef4(initialValue) {
+        function useRef8(initialValue) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useRef(initialValue);
         }
-        function useEffect5(create, deps) {
+        function useEffect9(create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useEffect(create, deps);
         }
-        function useInsertionEffect(create, deps) {
+        function useInsertionEffect3(create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useInsertionEffect(create, deps);
         }
-        function useLayoutEffect(create, deps) {
+        function useLayoutEffect2(create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useLayoutEffect(create, deps);
         }
-        function useCallback2(callback, deps) {
+        function useCallback4(callback, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useCallback(callback, deps);
         }
-        function useMemo4(create, deps) {
+        function useMemo10(create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useMemo(create, deps);
         }
@@ -1137,7 +1143,7 @@ var require_react_development = __commonJS({
           var dispatcher = resolveDispatcher();
           return dispatcher.useDeferredValue(value);
         }
-        function useId() {
+        function useId4() {
           var dispatcher = resolveDispatcher();
           return dispatcher.useId();
         }
@@ -1249,9 +1255,9 @@ var require_react_development = __commonJS({
             return "";
           }
           {
-            var frame = componentFrameCache.get(fn);
-            if (frame !== void 0) {
-              return frame;
+            var frame2 = componentFrameCache.get(fn);
+            if (frame2 !== void 0) {
+              return frame2;
             }
           }
           var control;
@@ -1352,8 +1358,8 @@ var require_react_development = __commonJS({
             return describeNativeComponentFrame(fn, false);
           }
         }
-        function shouldConstruct(Component7) {
-          var prototype = Component7.prototype;
+        function shouldConstruct(Component9) {
+          var prototype = Component9.prototype;
           return !!(prototype && prototype.isReactComponent);
         }
         function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
@@ -1513,11 +1519,11 @@ var require_react_development = __commonJS({
           if (isArray2(node)) {
             for (var i = 0; i < node.length; i++) {
               var child = node[i];
-              if (isValidElement9(child)) {
+              if (isValidElement10(child)) {
                 validateExplicitKey(child, parentType);
               }
             }
-          } else if (isValidElement9(node)) {
+          } else if (isValidElement10(node)) {
             if (node._store) {
               node._store.validated = true;
             }
@@ -1528,7 +1534,7 @@ var require_react_development = __commonJS({
                 var iterator = iteratorFn.call(node);
                 var step;
                 while (!(step = iterator.next()).done) {
-                  if (isValidElement9(step.value)) {
+                  if (isValidElement10(step.value)) {
                     validateExplicitKey(step.value, parentType);
                   }
                 }
@@ -1612,7 +1618,7 @@ var require_react_development = __commonJS({
               error("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
             }
           }
-          var element = createElement9.apply(this, arguments);
+          var element = createElement12.apply(this, arguments);
           if (element == null) {
             return element;
           }
@@ -1651,7 +1657,7 @@ var require_react_development = __commonJS({
           return validatedFactory;
         }
         function cloneElementWithValidation(element, props, children) {
-          var newElement = cloneElement9.apply(this, arguments);
+          var newElement = cloneElement10.apply(this, arguments);
           for (var i = 2; i < arguments.length; i++) {
             validateChildKeys(arguments[i], newElement.type);
           }
@@ -1851,15 +1857,15 @@ var require_react_development = __commonJS({
         var createElement$1 = createElementWithValidation;
         var cloneElement$1 = cloneElementWithValidation;
         var createFactory = createFactoryWithValidation;
-        var Children4 = {
+        var Children5 = {
           map: mapChildren,
           forEach: forEachChildren,
           count: countChildren,
           toArray: toArray3,
           only: onlyChild
         };
-        exports.Children = Children4;
-        exports.Component = Component6;
+        exports.Children = Children5;
+        exports.Component = Component8;
         exports.Fragment = REACT_FRAGMENT_TYPE;
         exports.Profiler = REACT_PROFILER_TYPE;
         exports.PureComponent = PureComponent19;
@@ -1868,29 +1874,29 @@ var require_react_development = __commonJS({
         exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals;
         exports.act = act;
         exports.cloneElement = cloneElement$1;
-        exports.createContext = createContext2;
+        exports.createContext = createContext8;
         exports.createElement = createElement$1;
         exports.createFactory = createFactory;
         exports.createRef = createRef;
-        exports.forwardRef = forwardRef3;
-        exports.isValidElement = isValidElement9;
+        exports.forwardRef = forwardRef6;
+        exports.isValidElement = isValidElement10;
         exports.lazy = lazy;
-        exports.memo = memo;
+        exports.memo = memo2;
         exports.startTransition = startTransition;
         exports.unstable_act = act;
-        exports.useCallback = useCallback2;
-        exports.useContext = useContext2;
+        exports.useCallback = useCallback4;
+        exports.useContext = useContext10;
         exports.useDebugValue = useDebugValue;
         exports.useDeferredValue = useDeferredValue;
-        exports.useEffect = useEffect5;
-        exports.useId = useId;
+        exports.useEffect = useEffect9;
+        exports.useId = useId4;
         exports.useImperativeHandle = useImperativeHandle2;
-        exports.useInsertionEffect = useInsertionEffect;
-        exports.useLayoutEffect = useLayoutEffect;
-        exports.useMemo = useMemo4;
+        exports.useInsertionEffect = useInsertionEffect3;
+        exports.useLayoutEffect = useLayoutEffect2;
+        exports.useMemo = useMemo10;
         exports.useReducer = useReducer;
-        exports.useRef = useRef4;
-        exports.useState = useState6;
+        exports.useRef = useRef8;
+        exports.useState = useState7;
         exports.useSyncExternalStore = useSyncExternalStore;
         exports.useTransition = useTransition;
         exports.version = ReactVersion;
@@ -2183,9 +2189,9 @@ var require_scheduler_development = __commonJS({
           var currentTime = exports.unstable_now();
           var startTime2;
           if (typeof options === "object" && options !== null) {
-            var delay = options.delay;
-            if (typeof delay === "number" && delay > 0) {
-              startTime2 = currentTime + delay;
+            var delay2 = options.delay;
+            if (typeof delay2 === "number" && delay2 > 0) {
+              startTime2 = currentTime + delay2;
             } else {
               startTime2 = currentTime;
             }
@@ -2386,9 +2392,9 @@ var require_react_dom_development = __commonJS({
         if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
           __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
         }
-        var React54 = require_react();
+        var React56 = require_react();
         var Scheduler = require_scheduler();
-        var ReactSharedInternals = React54.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React56.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         var suppressWarning = false;
         function setSuppressWarning(newSuppressWarning) {
           {
@@ -2437,7 +2443,7 @@ var require_react_dom_development = __commonJS({
         var HostPortal = 4;
         var HostComponent = 5;
         var HostText = 6;
-        var Fragment = 7;
+        var Fragment4 = 7;
         var Mode = 8;
         var ContextConsumer = 9;
         var ContextProvider = 10;
@@ -3316,9 +3322,9 @@ var require_react_dom_development = __commonJS({
             return "";
           }
           {
-            var frame = componentFrameCache.get(fn);
-            if (frame !== void 0) {
-              return frame;
+            var frame2 = componentFrameCache.get(fn);
+            if (frame2 !== void 0) {
+              return frame2;
             }
           }
           var control;
@@ -3424,8 +3430,8 @@ var require_react_dom_development = __commonJS({
             return describeNativeComponentFrame(fn, false);
           }
         }
-        function shouldConstruct(Component6) {
-          var prototype = Component6.prototype;
+        function shouldConstruct(Component8) {
+          var prototype = Component8.prototype;
           return !!(prototype && prototype.isReactComponent);
         }
         function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
@@ -3594,7 +3600,7 @@ var require_react_dom_development = __commonJS({
               return "DehydratedFragment";
             case ForwardRef:
               return getWrappedName$1(type, type.render, "ForwardRef");
-            case Fragment:
+            case Fragment4:
               return "Fragment";
             case HostComponent:
               return type;
@@ -3995,7 +4001,7 @@ var require_react_dom_development = __commonJS({
           {
             if (props.value == null) {
               if (typeof props.children === "object" && props.children !== null) {
-                React54.Children.forEach(props.children, function(child) {
+                React56.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -6004,7 +6010,7 @@ var require_react_dom_development = __commonJS({
         var cancelCallback = Scheduler.unstable_cancelCallback;
         var shouldYield = Scheduler.unstable_shouldYield;
         var requestPaint = Scheduler.unstable_requestPaint;
-        var now = Scheduler.unstable_now;
+        var now2 = Scheduler.unstable_now;
         var getCurrentPriorityLevel = Scheduler.unstable_getCurrentPriorityLevel;
         var ImmediatePriority = Scheduler.unstable_ImmediatePriority;
         var UserBlockingPriority = Scheduler.unstable_UserBlockingPriority;
@@ -9356,10 +9362,10 @@ var require_react_dom_development = __commonJS({
         function getOwnerDocumentFromRootContainer(rootContainerElement) {
           return rootContainerElement.nodeType === DOCUMENT_NODE ? rootContainerElement : rootContainerElement.ownerDocument;
         }
-        function noop() {
+        function noop2() {
         }
         function trapClickOnNonInteractiveElement(node) {
-          node.onclick = noop;
+          node.onclick = noop2;
         }
         function setInitialDOMProperties(tag, domElement, rootContainerElement, nextProps, isCustomComponentTag) {
           for (var propKey in nextProps) {
@@ -9419,7 +9425,7 @@ var require_react_dom_development = __commonJS({
             }
           }
         }
-        function createElement9(type, props, rootContainerElement, parentNamespace) {
+        function createElement12(type, props, rootContainerElement, parentNamespace) {
           var isCustomComponentTag;
           var ownerDocument = getOwnerDocumentFromRootContainer(rootContainerElement);
           var domElement;
@@ -10289,7 +10295,7 @@ var require_react_dom_development = __commonJS({
             }
             parentNamespace = hostContextDev.namespace;
           }
-          var domElement = createElement9(type, props, rootContainerInstance, parentNamespace);
+          var domElement = createElement12(type, props, rootContainerInstance, parentNamespace);
           precacheFiberNode(internalInstanceHandle, domElement);
           updateFiberProps(domElement, props);
           return domElement;
@@ -10888,9 +10894,9 @@ var require_react_dom_development = __commonJS({
         var contextStackCursor = createCursor(emptyContextObject);
         var didPerformWorkStackCursor = createCursor(false);
         var previousContext = emptyContextObject;
-        function getUnmaskedContext(workInProgress2, Component6, didPushOwnContextIfProvider) {
+        function getUnmaskedContext(workInProgress2, Component8, didPushOwnContextIfProvider) {
           {
-            if (didPushOwnContextIfProvider && isContextProvider(Component6)) {
+            if (didPushOwnContextIfProvider && isContextProvider(Component8)) {
               return previousContext;
             }
             return contextStackCursor.current;
@@ -11027,8 +11033,8 @@ var require_react_dom_development = __commonJS({
                 case HostRoot:
                   return node.stateNode.context;
                 case ClassComponent: {
-                  var Component6 = node.type;
-                  if (isContextProvider(Component6)) {
+                  var Component8 = node.type;
+                  if (isContextProvider(Component8)) {
                     return node.stateNode.__reactInternalMemoizedMergedChildContext;
                   }
                   break;
@@ -11110,8 +11116,8 @@ var require_react_dom_development = __commonJS({
         function getTreeId() {
           var overflow = treeContextOverflow;
           var idWithLeadingBit = treeContextId;
-          var id = idWithLeadingBit & ~getLeadingBit(idWithLeadingBit);
-          return id.toString(32) + overflow;
+          var id3 = idWithLeadingBit & ~getLeadingBit(idWithLeadingBit);
+          return id3.toString(32) + overflow;
         }
         function pushTreeFork(workInProgress2, totalChildren) {
           warnIfNotHydrating();
@@ -11140,9 +11146,9 @@ var require_react_dom_development = __commonJS({
             var restOfBaseLength = baseLength - numberOfOverflowBits;
             var restOfLength = getBitLength(totalChildren) + restOfBaseLength;
             var restOfNewBits = slot << restOfBaseLength;
-            var id = restOfNewBits | restOfBaseId;
+            var id3 = restOfNewBits | restOfBaseId;
             var overflow = newOverflow + baseOverflow;
-            treeContextId = 1 << restOfLength | id;
+            treeContextId = 1 << restOfLength | id3;
             treeContextOverflow = overflow;
           } else {
             var newBits = slot << baseLength;
@@ -11162,11 +11168,11 @@ var require_react_dom_development = __commonJS({
             pushTreeId(workInProgress2, numberOfForks, slotIndex);
           }
         }
-        function getBitLength(number4) {
-          return 32 - clz32(number4);
+        function getBitLength(number5) {
+          return 32 - clz32(number5);
         }
-        function getLeadingBit(id) {
-          return 1 << getBitLength(id) - 1;
+        function getLeadingBit(id3) {
+          return 1 << getBitLength(id3) - 1;
         }
         function popTreeContext(workInProgress2) {
           while (workInProgress2 === treeForkProvider) {
@@ -12023,7 +12029,7 @@ var require_react_dom_development = __commonJS({
             }
           }
           function updateFragment2(returnFiber, current2, fragment, lanes, key) {
-            if (current2 === null || current2.tag !== Fragment) {
+            if (current2 === null || current2.tag !== Fragment4) {
               var created = createFiberFromFragment(fragment, returnFiber.mode, lanes, key);
               created.return = returnFiber;
               return created;
@@ -12426,7 +12432,7 @@ var require_react_dom_development = __commonJS({
               if (child.key === key) {
                 var elementType = element.type;
                 if (elementType === REACT_FRAGMENT_TYPE) {
-                  if (child.tag === Fragment) {
+                  if (child.tag === Fragment4) {
                     deleteRemainingChildren(returnFiber, child.sibling);
                     var existing = useFiber(child, element.props.children);
                     existing.return = returnFiber;
@@ -13482,7 +13488,7 @@ var require_react_dom_development = __commonJS({
           }
           return true;
         }
-        function renderWithHooks(current2, workInProgress2, Component6, props, secondArg, nextRenderLanes) {
+        function renderWithHooks(current2, workInProgress2, Component8, props, secondArg, nextRenderLanes) {
           renderLanes = nextRenderLanes;
           currentlyRenderingFiber$1 = workInProgress2;
           {
@@ -13502,7 +13508,7 @@ var require_react_dom_development = __commonJS({
               ReactCurrentDispatcher$1.current = HooksDispatcherOnMountInDEV;
             }
           }
-          var children = Component6(props, secondArg);
+          var children = Component8(props, secondArg);
           if (didScheduleRenderPhaseUpdateDuringThisPass) {
             var numberOfReRenders = 0;
             do {
@@ -13522,7 +13528,7 @@ var require_react_dom_development = __commonJS({
                 hookTypesUpdateIndexDev = -1;
               }
               ReactCurrentDispatcher$1.current = HooksDispatcherOnRerenderInDEV;
-              children = Component6(props, secondArg);
+              children = Component8(props, secondArg);
             } while (didScheduleRenderPhaseUpdateDuringThisPass);
           }
           ReactCurrentDispatcher$1.current = ContextOnlyDispatcher;
@@ -14264,26 +14270,26 @@ var require_react_dom_development = __commonJS({
           var hook = mountWorkInProgressHook();
           var root2 = getWorkInProgressRoot();
           var identifierPrefix = root2.identifierPrefix;
-          var id;
+          var id3;
           if (getIsHydrating()) {
             var treeId = getTreeId();
-            id = ":" + identifierPrefix + "R" + treeId;
+            id3 = ":" + identifierPrefix + "R" + treeId;
             var localId = localIdCounter++;
             if (localId > 0) {
-              id += "H" + localId.toString(32);
+              id3 += "H" + localId.toString(32);
             }
-            id += ":";
+            id3 += ":";
           } else {
             var globalClientId = globalClientIdCounter++;
-            id = ":" + identifierPrefix + "r" + globalClientId.toString(32) + ":";
+            id3 = ":" + identifierPrefix + "r" + globalClientId.toString(32) + ":";
           }
-          hook.memoizedState = id;
-          return id;
+          hook.memoizedState = id3;
+          return id3;
         }
         function updateId() {
           var hook = updateWorkInProgressHook();
-          var id = hook.memoizedState;
-          return id;
+          var id3 = hook.memoizedState;
+          return id3;
         }
         function dispatchReducerAction(fiber, queue, action) {
           {
@@ -15321,10 +15327,10 @@ var require_react_dom_development = __commonJS({
             child = child.sibling;
           }
         }
-        function resolveDefaultProps(Component6, baseProps) {
-          if (Component6 && Component6.defaultProps) {
+        function resolveDefaultProps(Component8, baseProps) {
+          if (Component8 && Component8.defaultProps) {
             var props = assign2({}, baseProps);
-            var defaultProps5 = Component6.defaultProps;
+            var defaultProps5 = Component8.defaultProps;
             for (var propName in defaultProps5) {
               if (props[propName] === void 0) {
                 props[propName] = defaultProps5[propName];
@@ -16253,22 +16259,22 @@ var require_react_dom_development = __commonJS({
           workInProgress2.child = reconcileChildFibers(workInProgress2, current2.child, null, renderLanes2);
           workInProgress2.child = reconcileChildFibers(workInProgress2, null, nextChildren, renderLanes2);
         }
-        function updateForwardRef(current2, workInProgress2, Component6, nextProps, renderLanes2) {
+        function updateForwardRef(current2, workInProgress2, Component8, nextProps, renderLanes2) {
           {
             if (workInProgress2.type !== workInProgress2.elementType) {
-              var innerPropTypes = Component6.propTypes;
+              var innerPropTypes = Component8.propTypes;
               if (innerPropTypes) {
                 checkPropTypes(
                   innerPropTypes,
                   nextProps,
                   // Resolved props
                   "prop",
-                  getComponentNameFromType(Component6)
+                  getComponentNameFromType(Component8)
                 );
               }
             }
           }
-          var render2 = Component6.render;
+          var render2 = Component8.render;
           var ref = workInProgress2.ref;
           var nextChildren;
           var hasId;
@@ -16306,11 +16312,11 @@ var require_react_dom_development = __commonJS({
           reconcileChildren(current2, workInProgress2, nextChildren, renderLanes2);
           return workInProgress2.child;
         }
-        function updateMemoComponent(current2, workInProgress2, Component6, nextProps, renderLanes2) {
+        function updateMemoComponent(current2, workInProgress2, Component8, nextProps, renderLanes2) {
           if (current2 === null) {
-            var type = Component6.type;
-            if (isSimpleFunctionComponent(type) && Component6.compare === null && // SimpleMemoComponent codepath doesn't resolve outer props either.
-            Component6.defaultProps === void 0) {
+            var type = Component8.type;
+            if (isSimpleFunctionComponent(type) && Component8.compare === null && // SimpleMemoComponent codepath doesn't resolve outer props either.
+            Component8.defaultProps === void 0) {
               var resolvedType = type;
               {
                 resolvedType = resolveFunctionForHotReloading(type);
@@ -16333,7 +16339,7 @@ var require_react_dom_development = __commonJS({
                   getComponentNameFromType(type)
                 );
               }
-              if (Component6.defaultProps !== void 0) {
+              if (Component8.defaultProps !== void 0) {
                 var componentName = getComponentNameFromType(type) || "Unknown";
                 if (!didWarnAboutDefaultPropsOnFunctionComponent[componentName]) {
                   error("%s: Support for defaultProps will be removed from memo components in a future major release. Use JavaScript default parameters instead.", componentName);
@@ -16341,14 +16347,14 @@ var require_react_dom_development = __commonJS({
                 }
               }
             }
-            var child = createFiberFromTypeAndProps(Component6.type, null, nextProps, workInProgress2, workInProgress2.mode, renderLanes2);
+            var child = createFiberFromTypeAndProps(Component8.type, null, nextProps, workInProgress2, workInProgress2.mode, renderLanes2);
             child.ref = workInProgress2.ref;
             child.return = workInProgress2;
             workInProgress2.child = child;
             return child;
           }
           {
-            var _type = Component6.type;
+            var _type = Component8.type;
             var _innerPropTypes = _type.propTypes;
             if (_innerPropTypes) {
               checkPropTypes(
@@ -16364,7 +16370,7 @@ var require_react_dom_development = __commonJS({
           var hasScheduledUpdateOrContext = checkScheduledUpdateOrContext(current2, renderLanes2);
           if (!hasScheduledUpdateOrContext) {
             var prevProps = currentChild.memoizedProps;
-            var compare = Component6.compare;
+            var compare = Component8.compare;
             compare = compare !== null ? compare : shallowEqual3;
             if (compare(prevProps, nextProps) && current2.ref === workInProgress2.ref) {
               return bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
@@ -16377,7 +16383,7 @@ var require_react_dom_development = __commonJS({
           workInProgress2.child = newChild;
           return newChild;
         }
-        function updateSimpleMemoComponent(current2, workInProgress2, Component6, nextProps, renderLanes2) {
+        function updateSimpleMemoComponent(current2, workInProgress2, Component8, nextProps, renderLanes2) {
           {
             if (workInProgress2.type !== workInProgress2.elementType) {
               var outerMemoType = workInProgress2.elementType;
@@ -16417,7 +16423,7 @@ var require_react_dom_development = __commonJS({
               }
             }
           }
-          return updateFunctionComponent(current2, workInProgress2, Component6, nextProps, renderLanes2);
+          return updateFunctionComponent(current2, workInProgress2, Component8, nextProps, renderLanes2);
         }
         function updateOffscreenComponent(current2, workInProgress2, renderLanes2) {
           var nextProps = workInProgress2.pendingProps;
@@ -16507,24 +16513,24 @@ var require_react_dom_development = __commonJS({
             }
           }
         }
-        function updateFunctionComponent(current2, workInProgress2, Component6, nextProps, renderLanes2) {
+        function updateFunctionComponent(current2, workInProgress2, Component8, nextProps, renderLanes2) {
           {
             if (workInProgress2.type !== workInProgress2.elementType) {
-              var innerPropTypes = Component6.propTypes;
+              var innerPropTypes = Component8.propTypes;
               if (innerPropTypes) {
                 checkPropTypes(
                   innerPropTypes,
                   nextProps,
                   // Resolved props
                   "prop",
-                  getComponentNameFromType(Component6)
+                  getComponentNameFromType(Component8)
                 );
               }
             }
           }
           var context;
           {
-            var unmaskedContext = getUnmaskedContext(workInProgress2, Component6, true);
+            var unmaskedContext = getUnmaskedContext(workInProgress2, Component8, true);
             context = getMaskedContext(workInProgress2, unmaskedContext);
           }
           var nextChildren;
@@ -16536,12 +16542,12 @@ var require_react_dom_development = __commonJS({
           {
             ReactCurrentOwner$1.current = workInProgress2;
             setIsRendering(true);
-            nextChildren = renderWithHooks(current2, workInProgress2, Component6, nextProps, context, renderLanes2);
+            nextChildren = renderWithHooks(current2, workInProgress2, Component8, nextProps, context, renderLanes2);
             hasId = checkDidRenderIdHook();
             if (workInProgress2.mode & StrictLegacyMode) {
               setIsStrictModeForDevtools(true);
               try {
-                nextChildren = renderWithHooks(current2, workInProgress2, Component6, nextProps, context, renderLanes2);
+                nextChildren = renderWithHooks(current2, workInProgress2, Component8, nextProps, context, renderLanes2);
                 hasId = checkDidRenderIdHook();
               } finally {
                 setIsStrictModeForDevtools(false);
@@ -16563,7 +16569,7 @@ var require_react_dom_development = __commonJS({
           reconcileChildren(current2, workInProgress2, nextChildren, renderLanes2);
           return workInProgress2.child;
         }
-        function updateClassComponent(current2, workInProgress2, Component6, nextProps, renderLanes2) {
+        function updateClassComponent(current2, workInProgress2, Component8, nextProps, renderLanes2) {
           {
             switch (shouldError(workInProgress2)) {
               case false: {
@@ -16586,20 +16592,20 @@ var require_react_dom_development = __commonJS({
               }
             }
             if (workInProgress2.type !== workInProgress2.elementType) {
-              var innerPropTypes = Component6.propTypes;
+              var innerPropTypes = Component8.propTypes;
               if (innerPropTypes) {
                 checkPropTypes(
                   innerPropTypes,
                   nextProps,
                   // Resolved props
                   "prop",
-                  getComponentNameFromType(Component6)
+                  getComponentNameFromType(Component8)
                 );
               }
             }
           }
           var hasContext;
-          if (isContextProvider(Component6)) {
+          if (isContextProvider(Component8)) {
             hasContext = true;
             pushContextProvider(workInProgress2);
           } else {
@@ -16610,15 +16616,15 @@ var require_react_dom_development = __commonJS({
           var shouldUpdate;
           if (instance === null) {
             resetSuspendedCurrentOnMountInLegacyMode(current2, workInProgress2);
-            constructClassInstance(workInProgress2, Component6, nextProps);
-            mountClassInstance(workInProgress2, Component6, nextProps, renderLanes2);
+            constructClassInstance(workInProgress2, Component8, nextProps);
+            mountClassInstance(workInProgress2, Component8, nextProps, renderLanes2);
             shouldUpdate = true;
           } else if (current2 === null) {
-            shouldUpdate = resumeMountClassInstance(workInProgress2, Component6, nextProps, renderLanes2);
+            shouldUpdate = resumeMountClassInstance(workInProgress2, Component8, nextProps, renderLanes2);
           } else {
-            shouldUpdate = updateClassInstance(current2, workInProgress2, Component6, nextProps, renderLanes2);
+            shouldUpdate = updateClassInstance(current2, workInProgress2, Component8, nextProps, renderLanes2);
           }
-          var nextUnitOfWork = finishClassComponent(current2, workInProgress2, Component6, shouldUpdate, hasContext, renderLanes2);
+          var nextUnitOfWork = finishClassComponent(current2, workInProgress2, Component8, shouldUpdate, hasContext, renderLanes2);
           {
             var inst = workInProgress2.stateNode;
             if (shouldUpdate && inst.props !== nextProps) {
@@ -16630,19 +16636,19 @@ var require_react_dom_development = __commonJS({
           }
           return nextUnitOfWork;
         }
-        function finishClassComponent(current2, workInProgress2, Component6, shouldUpdate, hasContext, renderLanes2) {
+        function finishClassComponent(current2, workInProgress2, Component8, shouldUpdate, hasContext, renderLanes2) {
           markRef(current2, workInProgress2);
           var didCaptureError = (workInProgress2.flags & DidCapture) !== NoFlags;
           if (!shouldUpdate && !didCaptureError) {
             if (hasContext) {
-              invalidateContextProvider(workInProgress2, Component6, false);
+              invalidateContextProvider(workInProgress2, Component8, false);
             }
             return bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
           }
           var instance = workInProgress2.stateNode;
           ReactCurrentOwner$1.current = workInProgress2;
           var nextChildren;
-          if (didCaptureError && typeof Component6.getDerivedStateFromError !== "function") {
+          if (didCaptureError && typeof Component8.getDerivedStateFromError !== "function") {
             nextChildren = null;
             {
               stopProfilerTimerIfRunning();
@@ -16676,7 +16682,7 @@ var require_react_dom_development = __commonJS({
           }
           workInProgress2.memoizedState = instance.state;
           if (hasContext) {
-            invalidateContextProvider(workInProgress2, Component6, true);
+            invalidateContextProvider(workInProgress2, Component8, true);
           }
           return workInProgress2.child;
         }
@@ -16776,45 +16782,45 @@ var require_react_dom_development = __commonJS({
           var lazyComponent = elementType;
           var payload = lazyComponent._payload;
           var init = lazyComponent._init;
-          var Component6 = init(payload);
-          workInProgress2.type = Component6;
-          var resolvedTag = workInProgress2.tag = resolveLazyComponentTag(Component6);
-          var resolvedProps = resolveDefaultProps(Component6, props);
+          var Component8 = init(payload);
+          workInProgress2.type = Component8;
+          var resolvedTag = workInProgress2.tag = resolveLazyComponentTag(Component8);
+          var resolvedProps = resolveDefaultProps(Component8, props);
           var child;
           switch (resolvedTag) {
             case FunctionComponent: {
               {
-                validateFunctionComponentInDev(workInProgress2, Component6);
-                workInProgress2.type = Component6 = resolveFunctionForHotReloading(Component6);
+                validateFunctionComponentInDev(workInProgress2, Component8);
+                workInProgress2.type = Component8 = resolveFunctionForHotReloading(Component8);
               }
-              child = updateFunctionComponent(null, workInProgress2, Component6, resolvedProps, renderLanes2);
+              child = updateFunctionComponent(null, workInProgress2, Component8, resolvedProps, renderLanes2);
               return child;
             }
             case ClassComponent: {
               {
-                workInProgress2.type = Component6 = resolveClassForHotReloading(Component6);
+                workInProgress2.type = Component8 = resolveClassForHotReloading(Component8);
               }
-              child = updateClassComponent(null, workInProgress2, Component6, resolvedProps, renderLanes2);
+              child = updateClassComponent(null, workInProgress2, Component8, resolvedProps, renderLanes2);
               return child;
             }
             case ForwardRef: {
               {
-                workInProgress2.type = Component6 = resolveForwardRefForHotReloading(Component6);
+                workInProgress2.type = Component8 = resolveForwardRefForHotReloading(Component8);
               }
-              child = updateForwardRef(null, workInProgress2, Component6, resolvedProps, renderLanes2);
+              child = updateForwardRef(null, workInProgress2, Component8, resolvedProps, renderLanes2);
               return child;
             }
             case MemoComponent: {
               {
                 if (workInProgress2.type !== workInProgress2.elementType) {
-                  var outerPropTypes = Component6.propTypes;
+                  var outerPropTypes = Component8.propTypes;
                   if (outerPropTypes) {
                     checkPropTypes(
                       outerPropTypes,
                       resolvedProps,
                       // Resolved for outer only
                       "prop",
-                      getComponentNameFromType(Component6)
+                      getComponentNameFromType(Component8)
                     );
                   }
                 }
@@ -16822,8 +16828,8 @@ var require_react_dom_development = __commonJS({
               child = updateMemoComponent(
                 null,
                 workInProgress2,
-                Component6,
-                resolveDefaultProps(Component6.type, resolvedProps),
+                Component8,
+                resolveDefaultProps(Component8.type, resolvedProps),
                 // The inner type can have defaults too
                 renderLanes2
               );
@@ -16832,33 +16838,33 @@ var require_react_dom_development = __commonJS({
           }
           var hint = "";
           {
-            if (Component6 !== null && typeof Component6 === "object" && Component6.$$typeof === REACT_LAZY_TYPE) {
+            if (Component8 !== null && typeof Component8 === "object" && Component8.$$typeof === REACT_LAZY_TYPE) {
               hint = " Did you wrap a component in React.lazy() more than once?";
             }
           }
-          throw new Error("Element type is invalid. Received a promise that resolves to: " + Component6 + ". " + ("Lazy element type must resolve to a class or function." + hint));
+          throw new Error("Element type is invalid. Received a promise that resolves to: " + Component8 + ". " + ("Lazy element type must resolve to a class or function." + hint));
         }
-        function mountIncompleteClassComponent(_current, workInProgress2, Component6, nextProps, renderLanes2) {
+        function mountIncompleteClassComponent(_current, workInProgress2, Component8, nextProps, renderLanes2) {
           resetSuspendedCurrentOnMountInLegacyMode(_current, workInProgress2);
           workInProgress2.tag = ClassComponent;
           var hasContext;
-          if (isContextProvider(Component6)) {
+          if (isContextProvider(Component8)) {
             hasContext = true;
             pushContextProvider(workInProgress2);
           } else {
             hasContext = false;
           }
           prepareToReadContext(workInProgress2, renderLanes2);
-          constructClassInstance(workInProgress2, Component6, nextProps);
-          mountClassInstance(workInProgress2, Component6, nextProps, renderLanes2);
-          return finishClassComponent(null, workInProgress2, Component6, true, hasContext, renderLanes2);
+          constructClassInstance(workInProgress2, Component8, nextProps);
+          mountClassInstance(workInProgress2, Component8, nextProps, renderLanes2);
+          return finishClassComponent(null, workInProgress2, Component8, true, hasContext, renderLanes2);
         }
-        function mountIndeterminateComponent(_current, workInProgress2, Component6, renderLanes2) {
+        function mountIndeterminateComponent(_current, workInProgress2, Component8, renderLanes2) {
           resetSuspendedCurrentOnMountInLegacyMode(_current, workInProgress2);
           var props = workInProgress2.pendingProps;
           var context;
           {
-            var unmaskedContext = getUnmaskedContext(workInProgress2, Component6, false);
+            var unmaskedContext = getUnmaskedContext(workInProgress2, Component8, false);
             context = getMaskedContext(workInProgress2, unmaskedContext);
           }
           prepareToReadContext(workInProgress2, renderLanes2);
@@ -16868,8 +16874,8 @@ var require_react_dom_development = __commonJS({
             markComponentRenderStarted(workInProgress2);
           }
           {
-            if (Component6.prototype && typeof Component6.prototype.render === "function") {
-              var componentName = getComponentNameFromType(Component6) || "Unknown";
+            if (Component8.prototype && typeof Component8.prototype.render === "function") {
+              var componentName = getComponentNameFromType(Component8) || "Unknown";
               if (!didWarnAboutBadClass[componentName]) {
                 error("The <%s /> component appears to have a render method, but doesn't extend React.Component. This is likely to cause errors. Change %s to extend React.Component instead.", componentName, componentName);
                 didWarnAboutBadClass[componentName] = true;
@@ -16880,7 +16886,7 @@ var require_react_dom_development = __commonJS({
             }
             setIsRendering(true);
             ReactCurrentOwner$1.current = workInProgress2;
-            value = renderWithHooks(null, workInProgress2, Component6, props, context, renderLanes2);
+            value = renderWithHooks(null, workInProgress2, Component8, props, context, renderLanes2);
             hasId = checkDidRenderIdHook();
             setIsRendering(false);
           }
@@ -16890,7 +16896,7 @@ var require_react_dom_development = __commonJS({
           workInProgress2.flags |= PerformedWork;
           {
             if (typeof value === "object" && value !== null && typeof value.render === "function" && value.$$typeof === void 0) {
-              var _componentName = getComponentNameFromType(Component6) || "Unknown";
+              var _componentName = getComponentNameFromType(Component8) || "Unknown";
               if (!didWarnAboutModulePatternComponent[_componentName]) {
                 error("The <%s /> component appears to be a function component that returns a class instance. Change %s to a class that extends React.Component instead. If you can't use a class try assigning the prototype on the function as a workaround. `%s.prototype = React.Component.prototype`. Don't use an arrow function since it cannot be called with `new` by React.", _componentName, _componentName, _componentName);
                 didWarnAboutModulePatternComponent[_componentName] = true;
@@ -16903,7 +16909,7 @@ var require_react_dom_development = __commonJS({
             typeof value === "object" && value !== null && typeof value.render === "function" && value.$$typeof === void 0
           ) {
             {
-              var _componentName2 = getComponentNameFromType(Component6) || "Unknown";
+              var _componentName2 = getComponentNameFromType(Component8) || "Unknown";
               if (!didWarnAboutModulePatternComponent[_componentName2]) {
                 error("The <%s /> component appears to be a function component that returns a class instance. Change %s to a class that extends React.Component instead. If you can't use a class try assigning the prototype on the function as a workaround. `%s.prototype = React.Component.prototype`. Don't use an arrow function since it cannot be called with `new` by React.", _componentName2, _componentName2, _componentName2);
                 didWarnAboutModulePatternComponent[_componentName2] = true;
@@ -16913,7 +16919,7 @@ var require_react_dom_development = __commonJS({
             workInProgress2.memoizedState = null;
             workInProgress2.updateQueue = null;
             var hasContext = false;
-            if (isContextProvider(Component6)) {
+            if (isContextProvider(Component8)) {
               hasContext = true;
               pushContextProvider(workInProgress2);
             } else {
@@ -16922,15 +16928,15 @@ var require_react_dom_development = __commonJS({
             workInProgress2.memoizedState = value.state !== null && value.state !== void 0 ? value.state : null;
             initializeUpdateQueue(workInProgress2);
             adoptClassInstance(workInProgress2, value);
-            mountClassInstance(workInProgress2, Component6, props, renderLanes2);
-            return finishClassComponent(null, workInProgress2, Component6, true, hasContext, renderLanes2);
+            mountClassInstance(workInProgress2, Component8, props, renderLanes2);
+            return finishClassComponent(null, workInProgress2, Component8, true, hasContext, renderLanes2);
           } else {
             workInProgress2.tag = FunctionComponent;
             {
               if (workInProgress2.mode & StrictLegacyMode) {
                 setIsStrictModeForDevtools(true);
                 try {
-                  value = renderWithHooks(null, workInProgress2, Component6, props, context, renderLanes2);
+                  value = renderWithHooks(null, workInProgress2, Component8, props, context, renderLanes2);
                   hasId = checkDidRenderIdHook();
                 } finally {
                   setIsStrictModeForDevtools(false);
@@ -16942,16 +16948,16 @@ var require_react_dom_development = __commonJS({
             }
             reconcileChildren(null, workInProgress2, value, renderLanes2);
             {
-              validateFunctionComponentInDev(workInProgress2, Component6);
+              validateFunctionComponentInDev(workInProgress2, Component8);
             }
             return workInProgress2.child;
           }
         }
-        function validateFunctionComponentInDev(workInProgress2, Component6) {
+        function validateFunctionComponentInDev(workInProgress2, Component8) {
           {
-            if (Component6) {
-              if (Component6.childContextTypes) {
-                error("%s(...): childContextTypes cannot be defined on a function component.", Component6.displayName || Component6.name || "Component");
+            if (Component8) {
+              if (Component8.childContextTypes) {
+                error("%s(...): childContextTypes cannot be defined on a function component.", Component8.displayName || Component8.name || "Component");
               }
             }
             if (workInProgress2.ref !== null) {
@@ -16970,22 +16976,22 @@ var require_react_dom_development = __commonJS({
                 error("Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?%s", info);
               }
             }
-            if (Component6.defaultProps !== void 0) {
-              var componentName = getComponentNameFromType(Component6) || "Unknown";
+            if (Component8.defaultProps !== void 0) {
+              var componentName = getComponentNameFromType(Component8) || "Unknown";
               if (!didWarnAboutDefaultPropsOnFunctionComponent[componentName]) {
                 error("%s: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.", componentName);
                 didWarnAboutDefaultPropsOnFunctionComponent[componentName] = true;
               }
             }
-            if (typeof Component6.getDerivedStateFromProps === "function") {
-              var _componentName3 = getComponentNameFromType(Component6) || "Unknown";
+            if (typeof Component8.getDerivedStateFromProps === "function") {
+              var _componentName3 = getComponentNameFromType(Component8) || "Unknown";
               if (!didWarnAboutGetDerivedStateOnFunctionComponent[_componentName3]) {
                 error("%s: Function components do not support getDerivedStateFromProps.", _componentName3);
                 didWarnAboutGetDerivedStateOnFunctionComponent[_componentName3] = true;
               }
             }
-            if (typeof Component6.contextType === "object" && Component6.contextType !== null) {
-              var _componentName4 = getComponentNameFromType(Component6) || "Unknown";
+            if (typeof Component8.contextType === "object" && Component8.contextType !== null) {
+              var _componentName4 = getComponentNameFromType(Component8) || "Unknown";
               if (!didWarnAboutContextTypeOnFunctionComponent[_componentName4]) {
                 error("%s: Function components do not support contextType.", _componentName4);
                 didWarnAboutContextTypeOnFunctionComponent[_componentName4] = true;
@@ -17747,8 +17753,8 @@ var require_react_dom_development = __commonJS({
               pushHostContext(workInProgress2);
               break;
             case ClassComponent: {
-              var Component6 = workInProgress2.type;
-              if (isContextProvider(Component6)) {
+              var Component8 = workInProgress2.type;
+              if (isContextProvider(Component8)) {
                 pushContextProvider(workInProgress2);
               }
               break;
@@ -17875,10 +17881,10 @@ var require_react_dom_development = __commonJS({
               return mountLazyComponent(current2, workInProgress2, elementType, renderLanes2);
             }
             case FunctionComponent: {
-              var Component6 = workInProgress2.type;
+              var Component8 = workInProgress2.type;
               var unresolvedProps = workInProgress2.pendingProps;
-              var resolvedProps = workInProgress2.elementType === Component6 ? unresolvedProps : resolveDefaultProps(Component6, unresolvedProps);
-              return updateFunctionComponent(current2, workInProgress2, Component6, resolvedProps, renderLanes2);
+              var resolvedProps = workInProgress2.elementType === Component8 ? unresolvedProps : resolveDefaultProps(Component8, unresolvedProps);
+              return updateFunctionComponent(current2, workInProgress2, Component8, resolvedProps, renderLanes2);
             }
             case ClassComponent: {
               var _Component = workInProgress2.type;
@@ -17902,7 +17908,7 @@ var require_react_dom_development = __commonJS({
               var _resolvedProps2 = workInProgress2.elementType === type ? _unresolvedProps2 : resolveDefaultProps(type, _unresolvedProps2);
               return updateForwardRef(current2, workInProgress2, type, _resolvedProps2, renderLanes2);
             }
-            case Fragment:
+            case Fragment4:
               return updateFragment(current2, workInProgress2, renderLanes2);
             case Mode:
               return updateMode(current2, workInProgress2, renderLanes2);
@@ -18174,7 +18180,7 @@ var require_react_dom_development = __commonJS({
             case SimpleMemoComponent:
             case FunctionComponent:
             case ForwardRef:
-            case Fragment:
+            case Fragment4:
             case Mode:
             case Profiler:
             case ContextConsumer:
@@ -18182,8 +18188,8 @@ var require_react_dom_development = __commonJS({
               bubbleProperties(workInProgress2);
               return null;
             case ClassComponent: {
-              var Component6 = workInProgress2.type;
-              if (isContextProvider(Component6)) {
+              var Component8 = workInProgress2.type;
+              if (isContextProvider(Component8)) {
                 popContext(workInProgress2);
               }
               bubbleProperties(workInProgress2);
@@ -18390,7 +18396,7 @@ var require_react_dom_development = __commonJS({
                       row = row.sibling;
                     }
                   }
-                  if (renderState.tail !== null && now() > getRenderTargetTime()) {
+                  if (renderState.tail !== null && now2() > getRenderTargetTime()) {
                     workInProgress2.flags |= DidCapture;
                     didSuspendAlready = true;
                     cutOffTailIfNeeded(renderState, false);
@@ -18419,7 +18425,7 @@ var require_react_dom_development = __commonJS({
                     // The time it took to render last row is greater than the remaining
                     // time we have to render. So rendering one more row would likely
                     // exceed it.
-                    now() * 2 - renderState.renderingStartTime > getRenderTargetTime() && renderLanes2 !== OffscreenLane
+                    now2() * 2 - renderState.renderingStartTime > getRenderTargetTime() && renderLanes2 !== OffscreenLane
                   ) {
                     workInProgress2.flags |= DidCapture;
                     didSuspendAlready = true;
@@ -18444,7 +18450,7 @@ var require_react_dom_development = __commonJS({
                 var next = renderState.tail;
                 renderState.rendering = next;
                 renderState.tail = next.sibling;
-                renderState.renderingStartTime = now();
+                renderState.renderingStartTime = now2();
                 next.sibling = null;
                 var suspenseContext = suspenseStackCursor.current;
                 if (didSuspendAlready) {
@@ -18501,8 +18507,8 @@ var require_react_dom_development = __commonJS({
           popTreeContext(workInProgress2);
           switch (workInProgress2.tag) {
             case ClassComponent: {
-              var Component6 = workInProgress2.type;
-              if (isContextProvider(Component6)) {
+              var Component8 = workInProgress2.type;
+              if (isContextProvider(Component8)) {
                 popContext(workInProgress2);
               }
               var flags = workInProgress2.flags;
@@ -18915,7 +18921,7 @@ var require_react_dom_development = __commonJS({
               switch (finishedWork.tag) {
                 case Profiler: {
                   var passiveEffectDuration = finishedWork.stateNode.passiveEffectDuration;
-                  var _finishedWork$memoize = finishedWork.memoizedProps, id = _finishedWork$memoize.id, onPostCommit = _finishedWork$memoize.onPostCommit;
+                  var _finishedWork$memoize = finishedWork.memoizedProps, id3 = _finishedWork$memoize.id, onPostCommit = _finishedWork$memoize.onPostCommit;
                   var commitTime2 = getCommitTime();
                   var phase = finishedWork.alternate === null ? "mount" : "update";
                   {
@@ -18924,7 +18930,7 @@ var require_react_dom_development = __commonJS({
                     }
                   }
                   if (typeof onPostCommit === "function") {
-                    onPostCommit(id, phase, passiveEffectDuration, commitTime2);
+                    onPostCommit(id3, phase, passiveEffectDuration, commitTime2);
                   }
                   var parentFiber = finishedWork.return;
                   outer: while (parentFiber !== null) {
@@ -20416,7 +20422,7 @@ var require_react_dom_development = __commonJS({
         var RENDER_TIMEOUT_MS = 500;
         var workInProgressTransitions = null;
         function resetRenderTimer() {
-          workInProgressRootRenderTargetTime = now() + RENDER_TIMEOUT_MS;
+          workInProgressRootRenderTargetTime = now2() + RENDER_TIMEOUT_MS;
         }
         function getRenderTargetTime() {
           return workInProgressRootRenderTargetTime;
@@ -20445,12 +20451,12 @@ var require_react_dom_development = __commonJS({
         }
         function requestEventTime() {
           if ((executionContext & (RenderContext | CommitContext)) !== NoContext) {
-            return now();
+            return now2();
           }
           if (currentEventTime !== NoTimestamp) {
             return currentEventTime;
           }
-          currentEventTime = now();
+          currentEventTime = now2();
           return currentEventTime;
         }
         function requestUpdateLane(fiber) {
@@ -20647,7 +20653,7 @@ var require_react_dom_development = __commonJS({
               var fatalError = workInProgressRootFatalError;
               prepareFreshStack(root2, NoLanes);
               markRootSuspended$1(root2, lanes);
-              ensureRootIsScheduled(root2, now());
+              ensureRootIsScheduled(root2, now2());
               throw fatalError;
             }
             if (exitStatus === RootDidNotComplete) {
@@ -20668,7 +20674,7 @@ var require_react_dom_development = __commonJS({
                   var _fatalError = workInProgressRootFatalError;
                   prepareFreshStack(root2, NoLanes);
                   markRootSuspended$1(root2, lanes);
-                  ensureRootIsScheduled(root2, now());
+                  ensureRootIsScheduled(root2, now2());
                   throw _fatalError;
                 }
               }
@@ -20677,7 +20683,7 @@ var require_react_dom_development = __commonJS({
               finishConcurrentRender(root2, exitStatus, lanes);
             }
           }
-          ensureRootIsScheduled(root2, now());
+          ensureRootIsScheduled(root2, now2());
           if (root2.callbackNode === originalCallbackNode) {
             return performConcurrentWorkOnRoot.bind(null, root2);
           }
@@ -20726,7 +20732,7 @@ var require_react_dom_development = __commonJS({
               markRootSuspended$1(root2, lanes);
               if (includesOnlyRetries(lanes) && // do not delay if we're inside an act() scope
               !shouldForceFlushFallbacksInDEV()) {
-                var msUntilTimeout = globalMostRecentFallbackTime + FALLBACK_THROTTLE_MS - now();
+                var msUntilTimeout = globalMostRecentFallbackTime + FALLBACK_THROTTLE_MS - now2();
                 if (msUntilTimeout > 10) {
                   var nextLanes = getNextLanes(root2, NoLanes);
                   if (nextLanes !== NoLanes) {
@@ -20753,7 +20759,7 @@ var require_react_dom_development = __commonJS({
               if (!shouldForceFlushFallbacksInDEV()) {
                 var mostRecentEventTime = getMostRecentEventTime(root2, lanes);
                 var eventTimeMs = mostRecentEventTime;
-                var timeElapsedMs = now() - eventTimeMs;
+                var timeElapsedMs = now2() - eventTimeMs;
                 var _msUntilTimeout = jnd(timeElapsedMs) - timeElapsedMs;
                 if (_msUntilTimeout > 10) {
                   root2.timeoutHandle = scheduleTimeout(commitRoot.bind(null, root2, workInProgressRootRecoverableErrors, workInProgressTransitions), _msUntilTimeout);
@@ -20830,7 +20836,7 @@ var require_react_dom_development = __commonJS({
           flushPassiveEffects();
           var lanes = getNextLanes(root2, NoLanes);
           if (!includesSomeLane(lanes, SyncLane)) {
-            ensureRootIsScheduled(root2, now());
+            ensureRootIsScheduled(root2, now2());
             return null;
           }
           var exitStatus = renderRootSync(root2, lanes);
@@ -20845,7 +20851,7 @@ var require_react_dom_development = __commonJS({
             var fatalError = workInProgressRootFatalError;
             prepareFreshStack(root2, NoLanes);
             markRootSuspended$1(root2, lanes);
-            ensureRootIsScheduled(root2, now());
+            ensureRootIsScheduled(root2, now2());
             throw fatalError;
           }
           if (exitStatus === RootDidNotComplete) {
@@ -20855,13 +20861,13 @@ var require_react_dom_development = __commonJS({
           root2.finishedWork = finishedWork;
           root2.finishedLanes = lanes;
           commitRoot(root2, workInProgressRootRecoverableErrors, workInProgressTransitions);
-          ensureRootIsScheduled(root2, now());
+          ensureRootIsScheduled(root2, now2());
           return null;
         }
         function flushRoot(root2, lanes) {
           if (lanes !== NoLanes) {
             markRootEntangled(root2, mergeLanes(lanes, SyncLane));
-            ensureRootIsScheduled(root2, now());
+            ensureRootIsScheduled(root2, now2());
             if ((executionContext & (RenderContext | CommitContext)) === NoContext) {
               resetRenderTimer();
               flushSyncCallbacks();
@@ -21021,7 +21027,7 @@ var require_react_dom_development = __commonJS({
           ReactCurrentDispatcher$2.current = prevDispatcher;
         }
         function markCommitTimeOfFallback() {
-          globalMostRecentFallbackTime = now();
+          globalMostRecentFallbackTime = now2();
         }
         function markSkippedUpdateLanes(lane) {
           workInProgressRootSkippedLanes = mergeLanes(lane, workInProgressRootSkippedLanes);
@@ -21355,7 +21361,7 @@ var require_react_dom_development = __commonJS({
           {
             onCommitRoot$1();
           }
-          ensureRootIsScheduled(root2, now());
+          ensureRootIsScheduled(root2, now2());
           if (recoverableErrors !== null) {
             var onRecoverableError = root2.onRecoverableError;
             for (var i = 0; i < recoverableErrors.length; i++) {
@@ -21562,7 +21568,7 @@ var require_react_dom_development = __commonJS({
           markRootPinged(root2, pingedLanes);
           warnIfSuspenseResolutionNotWrappedWithActDEV(root2);
           if (workInProgressRoot === root2 && isSubsetOfLanes(workInProgressRootRenderLanes, pingedLanes)) {
-            if (workInProgressRootExitStatus === RootSuspendedWithDelay || workInProgressRootExitStatus === RootSuspended && includesOnlyRetries(workInProgressRootRenderLanes) && now() - globalMostRecentFallbackTime < FALLBACK_THROTTLE_MS) {
+            if (workInProgressRootExitStatus === RootSuspendedWithDelay || workInProgressRootExitStatus === RootSuspended && includesOnlyRetries(workInProgressRootRenderLanes) && now2() - globalMostRecentFallbackTime < FALLBACK_THROTTLE_MS) {
               prepareFreshStack(root2, NoLanes);
             } else {
               workInProgressRootPingedLanes = mergeLanes(workInProgressRootPingedLanes, pingedLanes);
@@ -22187,18 +22193,18 @@ var require_react_dom_development = __commonJS({
         var createFiber = function(tag, pendingProps, key, mode) {
           return new FiberNode(tag, pendingProps, key, mode);
         };
-        function shouldConstruct$1(Component6) {
-          var prototype = Component6.prototype;
+        function shouldConstruct$1(Component8) {
+          var prototype = Component8.prototype;
           return !!(prototype && prototype.isReactComponent);
         }
         function isSimpleFunctionComponent(type) {
           return typeof type === "function" && !shouldConstruct$1(type) && type.defaultProps === void 0;
         }
-        function resolveLazyComponentTag(Component6) {
-          if (typeof Component6 === "function") {
-            return shouldConstruct$1(Component6) ? ClassComponent : FunctionComponent;
-          } else if (Component6 !== void 0 && Component6 !== null) {
-            var $$typeof = Component6.$$typeof;
+        function resolveLazyComponentTag(Component8) {
+          if (typeof Component8 === "function") {
+            return shouldConstruct$1(Component8) ? ClassComponent : FunctionComponent;
+          } else if (Component8 !== void 0 && Component8 !== null) {
+            var $$typeof = Component8.$$typeof;
             if ($$typeof === REACT_FORWARD_REF_TYPE) {
               return ForwardRef;
             }
@@ -22435,7 +22441,7 @@ var require_react_dom_development = __commonJS({
           return fiber;
         }
         function createFiberFromFragment(elements, mode, lanes, key) {
-          var fiber = createFiber(Fragment, elements, key, mode);
+          var fiber = createFiber(Fragment4, elements, key, mode);
           fiber.lanes = lanes;
           return fiber;
         }
@@ -22639,9 +22645,9 @@ var require_react_dom_development = __commonJS({
           var fiber = get10(parentComponent);
           var parentContext = findCurrentUnmaskedContext(fiber);
           if (fiber.tag === ClassComponent) {
-            var Component6 = fiber.type;
-            if (isContextProvider(Component6)) {
-              return processChildContext(fiber, Component6, parentContext);
+            var Component8 = fiber.type;
+            if (isContextProvider(Component8)) {
+              return processChildContext(fiber, Component8, parentContext);
             }
           }
           return parentContext;
@@ -22912,16 +22918,16 @@ var require_react_dom_development = __commonJS({
           var copyWithSet = function(obj, path2, value) {
             return copyWithSetImpl(obj, path2, 0, value);
           };
-          var findHook = function(fiber, id) {
+          var findHook = function(fiber, id3) {
             var currentHook2 = fiber.memoizedState;
-            while (currentHook2 !== null && id > 0) {
+            while (currentHook2 !== null && id3 > 0) {
               currentHook2 = currentHook2.next;
-              id--;
+              id3--;
             }
             return currentHook2;
           };
-          overrideHookState = function(fiber, id, path2, value) {
-            var hook = findHook(fiber, id);
+          overrideHookState = function(fiber, id3, path2, value) {
+            var hook = findHook(fiber, id3);
             if (hook !== null) {
               var newState = copyWithSet(hook.memoizedState, path2, value);
               hook.memoizedState = newState;
@@ -22933,8 +22939,8 @@ var require_react_dom_development = __commonJS({
               }
             }
           };
-          overrideHookStateDeletePath = function(fiber, id, path2) {
-            var hook = findHook(fiber, id);
+          overrideHookStateDeletePath = function(fiber, id3, path2) {
+            var hook = findHook(fiber, id3);
             if (hook !== null) {
               var newState = copyWithDelete(hook.memoizedState, path2);
               hook.memoizedState = newState;
@@ -22946,8 +22952,8 @@ var require_react_dom_development = __commonJS({
               }
             }
           };
-          overrideHookStateRenamePath = function(fiber, id, oldPath, newPath) {
-            var hook = findHook(fiber, id);
+          overrideHookStateRenamePath = function(fiber, id3, oldPath, newPath) {
+            var hook = findHook(fiber, id3);
             if (hook !== null) {
               var newState = copyWithRename(hook.memoizedState, oldPath, newPath);
               hook.memoizedState = newState;
@@ -23584,6 +23590,911 @@ var require_client = __commonJS({
   }
 });
 
+// node_modules/react/cjs/react-jsx-runtime.development.js
+var require_react_jsx_runtime_development = __commonJS({
+  "node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
+    "use strict";
+    if (true) {
+      (function() {
+        "use strict";
+        var React56 = require_react();
+        var REACT_ELEMENT_TYPE = Symbol.for("react.element");
+        var REACT_PORTAL_TYPE = Symbol.for("react.portal");
+        var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
+        var REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode");
+        var REACT_PROFILER_TYPE = Symbol.for("react.profiler");
+        var REACT_PROVIDER_TYPE = Symbol.for("react.provider");
+        var REACT_CONTEXT_TYPE = Symbol.for("react.context");
+        var REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref");
+        var REACT_SUSPENSE_TYPE = Symbol.for("react.suspense");
+        var REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list");
+        var REACT_MEMO_TYPE = Symbol.for("react.memo");
+        var REACT_LAZY_TYPE = Symbol.for("react.lazy");
+        var REACT_OFFSCREEN_TYPE = Symbol.for("react.offscreen");
+        var MAYBE_ITERATOR_SYMBOL = Symbol.iterator;
+        var FAUX_ITERATOR_SYMBOL = "@@iterator";
+        function getIteratorFn(maybeIterable) {
+          if (maybeIterable === null || typeof maybeIterable !== "object") {
+            return null;
+          }
+          var maybeIterator = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL];
+          if (typeof maybeIterator === "function") {
+            return maybeIterator;
+          }
+          return null;
+        }
+        var ReactSharedInternals = React56.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        function error(format2) {
+          {
+            {
+              for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+                args[_key2 - 1] = arguments[_key2];
+              }
+              printWarning("error", format2, args);
+            }
+          }
+        }
+        function printWarning(level, format2, args) {
+          {
+            var ReactDebugCurrentFrame2 = ReactSharedInternals.ReactDebugCurrentFrame;
+            var stack = ReactDebugCurrentFrame2.getStackAddendum();
+            if (stack !== "") {
+              format2 += "%s";
+              args = args.concat([stack]);
+            }
+            var argsWithFormat = args.map(function(item) {
+              return String(item);
+            });
+            argsWithFormat.unshift("Warning: " + format2);
+            Function.prototype.apply.call(console[level], console, argsWithFormat);
+          }
+        }
+        var enableScopeAPI = false;
+        var enableCacheElement = false;
+        var enableTransitionTracing = false;
+        var enableLegacyHidden = false;
+        var enableDebugTracing = false;
+        var REACT_MODULE_REFERENCE;
+        {
+          REACT_MODULE_REFERENCE = Symbol.for("react.module.reference");
+        }
+        function isValidElementType(type) {
+          if (typeof type === "string" || typeof type === "function") {
+            return true;
+          }
+          if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden || type === REACT_OFFSCREEN_TYPE || enableScopeAPI || enableCacheElement || enableTransitionTracing) {
+            return true;
+          }
+          if (typeof type === "object" && type !== null) {
+            if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
+            // types supported by any Flight configuration anywhere since
+            // we don't know which Flight build this will end up being used
+            // with.
+            type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== void 0) {
+              return true;
+            }
+          }
+          return false;
+        }
+        function getWrappedName(outerType, innerType, wrapperName) {
+          var displayName = outerType.displayName;
+          if (displayName) {
+            return displayName;
+          }
+          var functionName = innerType.displayName || innerType.name || "";
+          return functionName !== "" ? wrapperName + "(" + functionName + ")" : wrapperName;
+        }
+        function getContextName(type) {
+          return type.displayName || "Context";
+        }
+        function getComponentNameFromType(type) {
+          if (type == null) {
+            return null;
+          }
+          {
+            if (typeof type.tag === "number") {
+              error("Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue.");
+            }
+          }
+          if (typeof type === "function") {
+            return type.displayName || type.name || null;
+          }
+          if (typeof type === "string") {
+            return type;
+          }
+          switch (type) {
+            case REACT_FRAGMENT_TYPE:
+              return "Fragment";
+            case REACT_PORTAL_TYPE:
+              return "Portal";
+            case REACT_PROFILER_TYPE:
+              return "Profiler";
+            case REACT_STRICT_MODE_TYPE:
+              return "StrictMode";
+            case REACT_SUSPENSE_TYPE:
+              return "Suspense";
+            case REACT_SUSPENSE_LIST_TYPE:
+              return "SuspenseList";
+          }
+          if (typeof type === "object") {
+            switch (type.$$typeof) {
+              case REACT_CONTEXT_TYPE:
+                var context = type;
+                return getContextName(context) + ".Consumer";
+              case REACT_PROVIDER_TYPE:
+                var provider = type;
+                return getContextName(provider._context) + ".Provider";
+              case REACT_FORWARD_REF_TYPE:
+                return getWrappedName(type, type.render, "ForwardRef");
+              case REACT_MEMO_TYPE:
+                var outerName = type.displayName || null;
+                if (outerName !== null) {
+                  return outerName;
+                }
+                return getComponentNameFromType(type.type) || "Memo";
+              case REACT_LAZY_TYPE: {
+                var lazyComponent = type;
+                var payload = lazyComponent._payload;
+                var init = lazyComponent._init;
+                try {
+                  return getComponentNameFromType(init(payload));
+                } catch (x2) {
+                  return null;
+                }
+              }
+            }
+          }
+          return null;
+        }
+        var assign2 = Object.assign;
+        var disabledDepth = 0;
+        var prevLog;
+        var prevInfo;
+        var prevWarn;
+        var prevError;
+        var prevGroup;
+        var prevGroupCollapsed;
+        var prevGroupEnd;
+        function disabledLog() {
+        }
+        disabledLog.__reactDisabledLog = true;
+        function disableLogs() {
+          {
+            if (disabledDepth === 0) {
+              prevLog = console.log;
+              prevInfo = console.info;
+              prevWarn = console.warn;
+              prevError = console.error;
+              prevGroup = console.group;
+              prevGroupCollapsed = console.groupCollapsed;
+              prevGroupEnd = console.groupEnd;
+              var props = {
+                configurable: true,
+                enumerable: true,
+                value: disabledLog,
+                writable: true
+              };
+              Object.defineProperties(console, {
+                info: props,
+                log: props,
+                warn: props,
+                error: props,
+                group: props,
+                groupCollapsed: props,
+                groupEnd: props
+              });
+            }
+            disabledDepth++;
+          }
+        }
+        function reenableLogs() {
+          {
+            disabledDepth--;
+            if (disabledDepth === 0) {
+              var props = {
+                configurable: true,
+                enumerable: true,
+                writable: true
+              };
+              Object.defineProperties(console, {
+                log: assign2({}, props, {
+                  value: prevLog
+                }),
+                info: assign2({}, props, {
+                  value: prevInfo
+                }),
+                warn: assign2({}, props, {
+                  value: prevWarn
+                }),
+                error: assign2({}, props, {
+                  value: prevError
+                }),
+                group: assign2({}, props, {
+                  value: prevGroup
+                }),
+                groupCollapsed: assign2({}, props, {
+                  value: prevGroupCollapsed
+                }),
+                groupEnd: assign2({}, props, {
+                  value: prevGroupEnd
+                })
+              });
+            }
+            if (disabledDepth < 0) {
+              error("disabledDepth fell below zero. This is a bug in React. Please file an issue.");
+            }
+          }
+        }
+        var ReactCurrentDispatcher = ReactSharedInternals.ReactCurrentDispatcher;
+        var prefix2;
+        function describeBuiltInComponentFrame(name, source, ownerFn) {
+          {
+            if (prefix2 === void 0) {
+              try {
+                throw Error();
+              } catch (x2) {
+                var match = x2.stack.trim().match(/\n( *(at )?)/);
+                prefix2 = match && match[1] || "";
+              }
+            }
+            return "\n" + prefix2 + name;
+          }
+        }
+        var reentry = false;
+        var componentFrameCache;
+        {
+          var PossiblyWeakMap = typeof WeakMap === "function" ? WeakMap : Map;
+          componentFrameCache = new PossiblyWeakMap();
+        }
+        function describeNativeComponentFrame(fn, construct) {
+          if (!fn || reentry) {
+            return "";
+          }
+          {
+            var frame2 = componentFrameCache.get(fn);
+            if (frame2 !== void 0) {
+              return frame2;
+            }
+          }
+          var control;
+          reentry = true;
+          var previousPrepareStackTrace = Error.prepareStackTrace;
+          Error.prepareStackTrace = void 0;
+          var previousDispatcher;
+          {
+            previousDispatcher = ReactCurrentDispatcher.current;
+            ReactCurrentDispatcher.current = null;
+            disableLogs();
+          }
+          try {
+            if (construct) {
+              var Fake = function() {
+                throw Error();
+              };
+              Object.defineProperty(Fake.prototype, "props", {
+                set: function() {
+                  throw Error();
+                }
+              });
+              if (typeof Reflect === "object" && Reflect.construct) {
+                try {
+                  Reflect.construct(Fake, []);
+                } catch (x2) {
+                  control = x2;
+                }
+                Reflect.construct(fn, [], Fake);
+              } else {
+                try {
+                  Fake.call();
+                } catch (x2) {
+                  control = x2;
+                }
+                fn.call(Fake.prototype);
+              }
+            } else {
+              try {
+                throw Error();
+              } catch (x2) {
+                control = x2;
+              }
+              fn();
+            }
+          } catch (sample) {
+            if (sample && control && typeof sample.stack === "string") {
+              var sampleLines = sample.stack.split("\n");
+              var controlLines = control.stack.split("\n");
+              var s2 = sampleLines.length - 1;
+              var c2 = controlLines.length - 1;
+              while (s2 >= 1 && c2 >= 0 && sampleLines[s2] !== controlLines[c2]) {
+                c2--;
+              }
+              for (; s2 >= 1 && c2 >= 0; s2--, c2--) {
+                if (sampleLines[s2] !== controlLines[c2]) {
+                  if (s2 !== 1 || c2 !== 1) {
+                    do {
+                      s2--;
+                      c2--;
+                      if (c2 < 0 || sampleLines[s2] !== controlLines[c2]) {
+                        var _frame = "\n" + sampleLines[s2].replace(" at new ", " at ");
+                        if (fn.displayName && _frame.includes("<anonymous>")) {
+                          _frame = _frame.replace("<anonymous>", fn.displayName);
+                        }
+                        {
+                          if (typeof fn === "function") {
+                            componentFrameCache.set(fn, _frame);
+                          }
+                        }
+                        return _frame;
+                      }
+                    } while (s2 >= 1 && c2 >= 0);
+                  }
+                  break;
+                }
+              }
+            }
+          } finally {
+            reentry = false;
+            {
+              ReactCurrentDispatcher.current = previousDispatcher;
+              reenableLogs();
+            }
+            Error.prepareStackTrace = previousPrepareStackTrace;
+          }
+          var name = fn ? fn.displayName || fn.name : "";
+          var syntheticFrame = name ? describeBuiltInComponentFrame(name) : "";
+          {
+            if (typeof fn === "function") {
+              componentFrameCache.set(fn, syntheticFrame);
+            }
+          }
+          return syntheticFrame;
+        }
+        function describeFunctionComponentFrame(fn, source, ownerFn) {
+          {
+            return describeNativeComponentFrame(fn, false);
+          }
+        }
+        function shouldConstruct(Component8) {
+          var prototype = Component8.prototype;
+          return !!(prototype && prototype.isReactComponent);
+        }
+        function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
+          if (type == null) {
+            return "";
+          }
+          if (typeof type === "function") {
+            {
+              return describeNativeComponentFrame(type, shouldConstruct(type));
+            }
+          }
+          if (typeof type === "string") {
+            return describeBuiltInComponentFrame(type);
+          }
+          switch (type) {
+            case REACT_SUSPENSE_TYPE:
+              return describeBuiltInComponentFrame("Suspense");
+            case REACT_SUSPENSE_LIST_TYPE:
+              return describeBuiltInComponentFrame("SuspenseList");
+          }
+          if (typeof type === "object") {
+            switch (type.$$typeof) {
+              case REACT_FORWARD_REF_TYPE:
+                return describeFunctionComponentFrame(type.render);
+              case REACT_MEMO_TYPE:
+                return describeUnknownElementTypeFrameInDEV(type.type, source, ownerFn);
+              case REACT_LAZY_TYPE: {
+                var lazyComponent = type;
+                var payload = lazyComponent._payload;
+                var init = lazyComponent._init;
+                try {
+                  return describeUnknownElementTypeFrameInDEV(init(payload), source, ownerFn);
+                } catch (x2) {
+                }
+              }
+            }
+          }
+          return "";
+        }
+        var hasOwnProperty2 = Object.prototype.hasOwnProperty;
+        var loggedTypeFailures = {};
+        var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
+        function setCurrentlyValidatingElement(element) {
+          {
+            if (element) {
+              var owner = element._owner;
+              var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
+              ReactDebugCurrentFrame.setExtraStackFrame(stack);
+            } else {
+              ReactDebugCurrentFrame.setExtraStackFrame(null);
+            }
+          }
+        }
+        function checkPropTypes(typeSpecs, values, location, componentName, element) {
+          {
+            var has = Function.call.bind(hasOwnProperty2);
+            for (var typeSpecName in typeSpecs) {
+              if (has(typeSpecs, typeSpecName)) {
+                var error$1 = void 0;
+                try {
+                  if (typeof typeSpecs[typeSpecName] !== "function") {
+                    var err = Error((componentName || "React class") + ": " + location + " type `" + typeSpecName + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
+                    err.name = "Invariant Violation";
+                    throw err;
+                  }
+                  error$1 = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED");
+                } catch (ex) {
+                  error$1 = ex;
+                }
+                if (error$1 && !(error$1 instanceof Error)) {
+                  setCurrentlyValidatingElement(element);
+                  error("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", componentName || "React class", location, typeSpecName, typeof error$1);
+                  setCurrentlyValidatingElement(null);
+                }
+                if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
+                  loggedTypeFailures[error$1.message] = true;
+                  setCurrentlyValidatingElement(element);
+                  error("Failed %s type: %s", location, error$1.message);
+                  setCurrentlyValidatingElement(null);
+                }
+              }
+            }
+          }
+        }
+        var isArrayImpl = Array.isArray;
+        function isArray2(a2) {
+          return isArrayImpl(a2);
+        }
+        function typeName(value) {
+          {
+            var hasToStringTag = typeof Symbol === "function" && Symbol.toStringTag;
+            var type = hasToStringTag && value[Symbol.toStringTag] || value.constructor.name || "Object";
+            return type;
+          }
+        }
+        function willCoercionThrow(value) {
+          {
+            try {
+              testStringCoercion(value);
+              return false;
+            } catch (e) {
+              return true;
+            }
+          }
+        }
+        function testStringCoercion(value) {
+          return "" + value;
+        }
+        function checkKeyStringCoercion(value) {
+          {
+            if (willCoercionThrow(value)) {
+              error("The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value));
+              return testStringCoercion(value);
+            }
+          }
+        }
+        var ReactCurrentOwner = ReactSharedInternals.ReactCurrentOwner;
+        var RESERVED_PROPS = {
+          key: true,
+          ref: true,
+          __self: true,
+          __source: true
+        };
+        var specialPropKeyWarningShown;
+        var specialPropRefWarningShown;
+        var didWarnAboutStringRefs;
+        {
+          didWarnAboutStringRefs = {};
+        }
+        function hasValidRef(config) {
+          {
+            if (hasOwnProperty2.call(config, "ref")) {
+              var getter = Object.getOwnPropertyDescriptor(config, "ref").get;
+              if (getter && getter.isReactWarning) {
+                return false;
+              }
+            }
+          }
+          return config.ref !== void 0;
+        }
+        function hasValidKey(config) {
+          {
+            if (hasOwnProperty2.call(config, "key")) {
+              var getter = Object.getOwnPropertyDescriptor(config, "key").get;
+              if (getter && getter.isReactWarning) {
+                return false;
+              }
+            }
+          }
+          return config.key !== void 0;
+        }
+        function warnIfStringRefCannotBeAutoConverted(config, self2) {
+          {
+            if (typeof config.ref === "string" && ReactCurrentOwner.current && self2 && ReactCurrentOwner.current.stateNode !== self2) {
+              var componentName = getComponentNameFromType(ReactCurrentOwner.current.type);
+              if (!didWarnAboutStringRefs[componentName]) {
+                error('Component "%s" contains the string ref "%s". Support for string refs will be removed in a future major release. This case cannot be automatically converted to an arrow function. We ask you to manually fix this case by using useRef() or createRef() instead. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-string-ref', getComponentNameFromType(ReactCurrentOwner.current.type), config.ref);
+                didWarnAboutStringRefs[componentName] = true;
+              }
+            }
+          }
+        }
+        function defineKeyPropWarningGetter(props, displayName) {
+          {
+            var warnAboutAccessingKey = function() {
+              if (!specialPropKeyWarningShown) {
+                specialPropKeyWarningShown = true;
+                error("%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)", displayName);
+              }
+            };
+            warnAboutAccessingKey.isReactWarning = true;
+            Object.defineProperty(props, "key", {
+              get: warnAboutAccessingKey,
+              configurable: true
+            });
+          }
+        }
+        function defineRefPropWarningGetter(props, displayName) {
+          {
+            var warnAboutAccessingRef = function() {
+              if (!specialPropRefWarningShown) {
+                specialPropRefWarningShown = true;
+                error("%s: `ref` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)", displayName);
+              }
+            };
+            warnAboutAccessingRef.isReactWarning = true;
+            Object.defineProperty(props, "ref", {
+              get: warnAboutAccessingRef,
+              configurable: true
+            });
+          }
+        }
+        var ReactElement = function(type, key, ref, self2, source, owner, props) {
+          var element = {
+            // This tag allows us to uniquely identify this as a React Element
+            $$typeof: REACT_ELEMENT_TYPE,
+            // Built-in properties that belong on the element
+            type,
+            key,
+            ref,
+            props,
+            // Record the component responsible for creating this element.
+            _owner: owner
+          };
+          {
+            element._store = {};
+            Object.defineProperty(element._store, "validated", {
+              configurable: false,
+              enumerable: false,
+              writable: true,
+              value: false
+            });
+            Object.defineProperty(element, "_self", {
+              configurable: false,
+              enumerable: false,
+              writable: false,
+              value: self2
+            });
+            Object.defineProperty(element, "_source", {
+              configurable: false,
+              enumerable: false,
+              writable: false,
+              value: source
+            });
+            if (Object.freeze) {
+              Object.freeze(element.props);
+              Object.freeze(element);
+            }
+          }
+          return element;
+        };
+        function jsxDEV(type, config, maybeKey, source, self2) {
+          {
+            var propName;
+            var props = {};
+            var key = null;
+            var ref = null;
+            if (maybeKey !== void 0) {
+              {
+                checkKeyStringCoercion(maybeKey);
+              }
+              key = "" + maybeKey;
+            }
+            if (hasValidKey(config)) {
+              {
+                checkKeyStringCoercion(config.key);
+              }
+              key = "" + config.key;
+            }
+            if (hasValidRef(config)) {
+              ref = config.ref;
+              warnIfStringRefCannotBeAutoConverted(config, self2);
+            }
+            for (propName in config) {
+              if (hasOwnProperty2.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
+                props[propName] = config[propName];
+              }
+            }
+            if (type && type.defaultProps) {
+              var defaultProps5 = type.defaultProps;
+              for (propName in defaultProps5) {
+                if (props[propName] === void 0) {
+                  props[propName] = defaultProps5[propName];
+                }
+              }
+            }
+            if (key || ref) {
+              var displayName = typeof type === "function" ? type.displayName || type.name || "Unknown" : type;
+              if (key) {
+                defineKeyPropWarningGetter(props, displayName);
+              }
+              if (ref) {
+                defineRefPropWarningGetter(props, displayName);
+              }
+            }
+            return ReactElement(type, key, ref, self2, source, ReactCurrentOwner.current, props);
+          }
+        }
+        var ReactCurrentOwner$1 = ReactSharedInternals.ReactCurrentOwner;
+        var ReactDebugCurrentFrame$1 = ReactSharedInternals.ReactDebugCurrentFrame;
+        function setCurrentlyValidatingElement$1(element) {
+          {
+            if (element) {
+              var owner = element._owner;
+              var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
+              ReactDebugCurrentFrame$1.setExtraStackFrame(stack);
+            } else {
+              ReactDebugCurrentFrame$1.setExtraStackFrame(null);
+            }
+          }
+        }
+        var propTypesMisspellWarningShown;
+        {
+          propTypesMisspellWarningShown = false;
+        }
+        function isValidElement10(object) {
+          {
+            return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+          }
+        }
+        function getDeclarationErrorAddendum() {
+          {
+            if (ReactCurrentOwner$1.current) {
+              var name = getComponentNameFromType(ReactCurrentOwner$1.current.type);
+              if (name) {
+                return "\n\nCheck the render method of `" + name + "`.";
+              }
+            }
+            return "";
+          }
+        }
+        function getSourceInfoErrorAddendum(source) {
+          {
+            if (source !== void 0) {
+              var fileName = source.fileName.replace(/^.*[\\\/]/, "");
+              var lineNumber = source.lineNumber;
+              return "\n\nCheck your code at " + fileName + ":" + lineNumber + ".";
+            }
+            return "";
+          }
+        }
+        var ownerHasKeyUseWarning = {};
+        function getCurrentComponentErrorInfo(parentType) {
+          {
+            var info = getDeclarationErrorAddendum();
+            if (!info) {
+              var parentName = typeof parentType === "string" ? parentType : parentType.displayName || parentType.name;
+              if (parentName) {
+                info = "\n\nCheck the top-level render call using <" + parentName + ">.";
+              }
+            }
+            return info;
+          }
+        }
+        function validateExplicitKey(element, parentType) {
+          {
+            if (!element._store || element._store.validated || element.key != null) {
+              return;
+            }
+            element._store.validated = true;
+            var currentComponentErrorInfo = getCurrentComponentErrorInfo(parentType);
+            if (ownerHasKeyUseWarning[currentComponentErrorInfo]) {
+              return;
+            }
+            ownerHasKeyUseWarning[currentComponentErrorInfo] = true;
+            var childOwner = "";
+            if (element && element._owner && element._owner !== ReactCurrentOwner$1.current) {
+              childOwner = " It was passed a child from " + getComponentNameFromType(element._owner.type) + ".";
+            }
+            setCurrentlyValidatingElement$1(element);
+            error('Each child in a list should have a unique "key" prop.%s%s See https://reactjs.org/link/warning-keys for more information.', currentComponentErrorInfo, childOwner);
+            setCurrentlyValidatingElement$1(null);
+          }
+        }
+        function validateChildKeys(node, parentType) {
+          {
+            if (typeof node !== "object") {
+              return;
+            }
+            if (isArray2(node)) {
+              for (var i = 0; i < node.length; i++) {
+                var child = node[i];
+                if (isValidElement10(child)) {
+                  validateExplicitKey(child, parentType);
+                }
+              }
+            } else if (isValidElement10(node)) {
+              if (node._store) {
+                node._store.validated = true;
+              }
+            } else if (node) {
+              var iteratorFn = getIteratorFn(node);
+              if (typeof iteratorFn === "function") {
+                if (iteratorFn !== node.entries) {
+                  var iterator = iteratorFn.call(node);
+                  var step;
+                  while (!(step = iterator.next()).done) {
+                    if (isValidElement10(step.value)) {
+                      validateExplicitKey(step.value, parentType);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        function validatePropTypes(element) {
+          {
+            var type = element.type;
+            if (type === null || type === void 0 || typeof type === "string") {
+              return;
+            }
+            var propTypes;
+            if (typeof type === "function") {
+              propTypes = type.propTypes;
+            } else if (typeof type === "object" && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Note: Memo only checks outer props here.
+            // Inner props are checked in the reconciler.
+            type.$$typeof === REACT_MEMO_TYPE)) {
+              propTypes = type.propTypes;
+            } else {
+              return;
+            }
+            if (propTypes) {
+              var name = getComponentNameFromType(type);
+              checkPropTypes(propTypes, element.props, "prop", name, element);
+            } else if (type.PropTypes !== void 0 && !propTypesMisspellWarningShown) {
+              propTypesMisspellWarningShown = true;
+              var _name = getComponentNameFromType(type);
+              error("Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?", _name || "Unknown");
+            }
+            if (typeof type.getDefaultProps === "function" && !type.getDefaultProps.isReactClassApproved) {
+              error("getDefaultProps is only used on classic React.createClass definitions. Use a static property named `defaultProps` instead.");
+            }
+          }
+        }
+        function validateFragmentProps(fragment) {
+          {
+            var keys2 = Object.keys(fragment.props);
+            for (var i = 0; i < keys2.length; i++) {
+              var key = keys2[i];
+              if (key !== "children" && key !== "key") {
+                setCurrentlyValidatingElement$1(fragment);
+                error("Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.", key);
+                setCurrentlyValidatingElement$1(null);
+                break;
+              }
+            }
+            if (fragment.ref !== null) {
+              setCurrentlyValidatingElement$1(fragment);
+              error("Invalid attribute `ref` supplied to `React.Fragment`.");
+              setCurrentlyValidatingElement$1(null);
+            }
+          }
+        }
+        var didWarnAboutKeySpread = {};
+        function jsxWithValidation(type, props, key, isStaticChildren, source, self2) {
+          {
+            var validType = isValidElementType(type);
+            if (!validType) {
+              var info = "";
+              if (type === void 0 || typeof type === "object" && type !== null && Object.keys(type).length === 0) {
+                info += " You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.";
+              }
+              var sourceInfo = getSourceInfoErrorAddendum(source);
+              if (sourceInfo) {
+                info += sourceInfo;
+              } else {
+                info += getDeclarationErrorAddendum();
+              }
+              var typeString;
+              if (type === null) {
+                typeString = "null";
+              } else if (isArray2(type)) {
+                typeString = "array";
+              } else if (type !== void 0 && type.$$typeof === REACT_ELEMENT_TYPE) {
+                typeString = "<" + (getComponentNameFromType(type.type) || "Unknown") + " />";
+                info = " Did you accidentally export a JSX literal instead of a component?";
+              } else {
+                typeString = typeof type;
+              }
+              error("React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
+            }
+            var element = jsxDEV(type, props, key, source, self2);
+            if (element == null) {
+              return element;
+            }
+            if (validType) {
+              var children = props.children;
+              if (children !== void 0) {
+                if (isStaticChildren) {
+                  if (isArray2(children)) {
+                    for (var i = 0; i < children.length; i++) {
+                      validateChildKeys(children[i], type);
+                    }
+                    if (Object.freeze) {
+                      Object.freeze(children);
+                    }
+                  } else {
+                    error("React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead.");
+                  }
+                } else {
+                  validateChildKeys(children, type);
+                }
+              }
+            }
+            {
+              if (hasOwnProperty2.call(props, "key")) {
+                var componentName = getComponentNameFromType(type);
+                var keys2 = Object.keys(props).filter(function(k2) {
+                  return k2 !== "key";
+                });
+                var beforeExample = keys2.length > 0 ? "{key: someKey, " + keys2.join(": ..., ") + ": ...}" : "{key: someKey}";
+                if (!didWarnAboutKeySpread[componentName + beforeExample]) {
+                  var afterExample = keys2.length > 0 ? "{" + keys2.join(": ..., ") + ": ...}" : "{}";
+                  error('A props object containing a "key" prop is being spread into JSX:\n  let props = %s;\n  <%s {...props} />\nReact keys must be passed directly to JSX without using spread:\n  let props = %s;\n  <%s key={someKey} {...props} />', beforeExample, componentName, afterExample, componentName);
+                  didWarnAboutKeySpread[componentName + beforeExample] = true;
+                }
+              }
+            }
+            if (type === REACT_FRAGMENT_TYPE) {
+              validateFragmentProps(element);
+            } else {
+              validatePropTypes(element);
+            }
+            return element;
+          }
+        }
+        function jsxWithValidationStatic(type, props, key) {
+          {
+            return jsxWithValidation(type, props, key, true);
+          }
+        }
+        function jsxWithValidationDynamic(type, props, key) {
+          {
+            return jsxWithValidation(type, props, key, false);
+          }
+        }
+        var jsx7 = jsxWithValidationDynamic;
+        var jsxs3 = jsxWithValidationStatic;
+        exports.Fragment = REACT_FRAGMENT_TYPE;
+        exports.jsx = jsx7;
+        exports.jsxs = jsxs3;
+      })();
+    }
+  }
+});
+
+// node_modules/react/jsx-runtime.js
+var require_jsx_runtime = __commonJS({
+  "node_modules/react/jsx-runtime.js"(exports, module) {
+    "use strict";
+    if (false) {
+      module.exports = null;
+    } else {
+      module.exports = require_react_jsx_runtime_development();
+    }
+  }
+});
+
 // node_modules/lodash/isArray.js
 var require_isArray = __commonJS({
   "node_modules/lodash/isArray.js"(exports, module) {
@@ -23726,11 +24637,11 @@ var require_isKey = __commonJS({
 // node_modules/lodash/isObject.js
 var require_isObject = __commonJS({
   "node_modules/lodash/isObject.js"(exports, module) {
-    function isObject5(value) {
+    function isObject6(value) {
       var type = typeof value;
       return value != null && (type == "object" || type == "function");
     }
-    module.exports = isObject5;
+    module.exports = isObject6;
   }
 });
 
@@ -23738,13 +24649,13 @@ var require_isObject = __commonJS({
 var require_isFunction = __commonJS({
   "node_modules/lodash/isFunction.js"(exports, module) {
     var baseGetTag = require_baseGetTag();
-    var isObject5 = require_isObject();
+    var isObject6 = require_isObject();
     var asyncTag = "[object AsyncFunction]";
     var funcTag = "[object Function]";
     var genTag = "[object GeneratorFunction]";
     var proxyTag = "[object Proxy]";
     function isFunction30(value) {
-      if (!isObject5(value)) {
+      if (!isObject6(value)) {
         return false;
       }
       var tag = baseGetTag(value);
@@ -23805,7 +24716,7 @@ var require_baseIsNative = __commonJS({
   "node_modules/lodash/_baseIsNative.js"(exports, module) {
     var isFunction30 = require_isFunction();
     var isMasked = require_isMasked();
-    var isObject5 = require_isObject();
+    var isObject6 = require_isObject();
     var toSource = require_toSource();
     var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
     var reIsHostCtor = /^\[object .+?Constructor\]$/;
@@ -23817,7 +24728,7 @@ var require_baseIsNative = __commonJS({
       "^" + funcToString.call(hasOwnProperty2).replace(reRegExpChar, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$"
     );
     function baseIsNative(value) {
-      if (!isObject5(value) || isMasked(value)) {
+      if (!isObject6(value) || isMasked(value)) {
         return false;
       }
       var pattern = isFunction30(value) ? reIsNative : reIsHostCtor;
@@ -24265,8 +25176,8 @@ var require_stringToPath = __commonJS({
       if (string.charCodeAt(0) === 46) {
         result.push("");
       }
-      string.replace(rePropName, function(match, number4, quote, subString) {
-        result.push(quote ? subString.replace(reEscapeChar, "$1") : number4 || match);
+      string.replace(rePropName, function(match, number5, quote, subString) {
+        result.push(quote ? subString.replace(reEscapeChar, "$1") : number5 || match);
       });
       return result;
     });
@@ -24495,9 +25406,9 @@ var require_react_is_development = __commonJS({
         }
         var ContextConsumer = REACT_CONTEXT_TYPE;
         var ContextProvider = REACT_PROVIDER_TYPE;
-        var Element = REACT_ELEMENT_TYPE;
+        var Element2 = REACT_ELEMENT_TYPE;
         var ForwardRef = REACT_FORWARD_REF_TYPE;
-        var Fragment = REACT_FRAGMENT_TYPE;
+        var Fragment4 = REACT_FRAGMENT_TYPE;
         var Lazy = REACT_LAZY_TYPE;
         var Memo = REACT_MEMO_TYPE;
         var Portal = REACT_PORTAL_TYPE;
@@ -24563,9 +25474,9 @@ var require_react_is_development = __commonJS({
         }
         exports.ContextConsumer = ContextConsumer;
         exports.ContextProvider = ContextProvider;
-        exports.Element = Element;
+        exports.Element = Element2;
         exports.ForwardRef = ForwardRef;
-        exports.Fragment = Fragment;
+        exports.Fragment = Fragment4;
         exports.Lazy = Lazy;
         exports.Memo = Memo;
         exports.Portal = Portal;
@@ -25723,9 +26634,9 @@ var require_baseIsMatch = __commonJS({
 // node_modules/lodash/_isStrictComparable.js
 var require_isStrictComparable = __commonJS({
   "node_modules/lodash/_isStrictComparable.js"(exports, module) {
-    var isObject5 = require_isObject();
+    var isObject6 = require_isObject();
     function isStrictComparable(value) {
-      return value === value && !isObject5(value);
+      return value === value && !isObject6(value);
     }
     module.exports = isStrictComparable;
   }
@@ -26017,9 +26928,9 @@ var require_arrayIncludesWith = __commonJS({
 // node_modules/lodash/noop.js
 var require_noop = __commonJS({
   "node_modules/lodash/noop.js"(exports, module) {
-    function noop() {
+    function noop2() {
     }
-    module.exports = noop;
+    module.exports = noop2;
   }
 });
 
@@ -26027,10 +26938,10 @@ var require_noop = __commonJS({
 var require_createSet = __commonJS({
   "node_modules/lodash/_createSet.js"(exports, module) {
     var Set2 = require_Set();
-    var noop = require_noop();
+    var noop2 = require_noop();
     var setToArray = require_setToArray();
     var INFINITY = 1 / 0;
-    var createSet = !(Set2 && 1 / setToArray(new Set2([, -0]))[1] == INFINITY) ? noop : function(values) {
+    var createSet = !(Set2 && 1 / setToArray(new Set2([, -0]))[1] == INFINITY) ? noop2 : function(values) {
       return new Set2(values);
     };
     module.exports = createSet;
@@ -26479,9 +27390,9 @@ var require_isIterateeCall = __commonJS({
     var eq = require_eq();
     var isArrayLike = require_isArrayLike();
     var isIndex = require_isIndex();
-    var isObject5 = require_isObject();
+    var isObject6 = require_isObject();
     function isIterateeCall(value, index, object) {
-      if (!isObject5(object)) {
+      if (!isObject6(object)) {
         return false;
       }
       var type = typeof index;
@@ -26521,10 +27432,10 @@ var require_sortBy = __commonJS({
 var require_now = __commonJS({
   "node_modules/lodash/now.js"(exports, module) {
     var root = require_root();
-    var now = function() {
+    var now2 = function() {
       return root.Date.now();
     };
-    module.exports = now;
+    module.exports = now2;
   }
 });
 
@@ -26558,7 +27469,7 @@ var require_baseTrim = __commonJS({
 var require_toNumber = __commonJS({
   "node_modules/lodash/toNumber.js"(exports, module) {
     var baseTrim = require_baseTrim();
-    var isObject5 = require_isObject();
+    var isObject6 = require_isObject();
     var isSymbol = require_isSymbol();
     var NAN = 0 / 0;
     var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
@@ -26572,9 +27483,9 @@ var require_toNumber = __commonJS({
       if (isSymbol(value)) {
         return NAN;
       }
-      if (isObject5(value)) {
+      if (isObject6(value)) {
         var other = typeof value.valueOf == "function" ? value.valueOf() : value;
-        value = isObject5(other) ? other + "" : other;
+        value = isObject6(other) ? other + "" : other;
       }
       if (typeof value != "string") {
         return value === 0 ? value : +value;
@@ -26590,8 +27501,8 @@ var require_toNumber = __commonJS({
 // node_modules/lodash/debounce.js
 var require_debounce = __commonJS({
   "node_modules/lodash/debounce.js"(exports, module) {
-    var isObject5 = require_isObject();
-    var now = require_now();
+    var isObject6 = require_isObject();
+    var now2 = require_now();
     var toNumber = require_toNumber();
     var FUNC_ERROR_TEXT = "Expected a function";
     var nativeMax = Math.max;
@@ -26602,43 +27513,43 @@ var require_debounce = __commonJS({
         throw new TypeError(FUNC_ERROR_TEXT);
       }
       wait = toNumber(wait) || 0;
-      if (isObject5(options)) {
+      if (isObject6(options)) {
         leading = !!options.leading;
         maxing = "maxWait" in options;
         maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
         trailing = "trailing" in options ? !!options.trailing : trailing;
       }
-      function invokeFunc(time2) {
+      function invokeFunc(time3) {
         var args = lastArgs, thisArg = lastThis;
         lastArgs = lastThis = void 0;
-        lastInvokeTime = time2;
+        lastInvokeTime = time3;
         result = func.apply(thisArg, args);
         return result;
       }
-      function leadingEdge(time2) {
-        lastInvokeTime = time2;
+      function leadingEdge(time3) {
+        lastInvokeTime = time3;
         timerId = setTimeout(timerExpired, wait);
-        return leading ? invokeFunc(time2) : result;
+        return leading ? invokeFunc(time3) : result;
       }
-      function remainingWait(time2) {
-        var timeSinceLastCall = time2 - lastCallTime, timeSinceLastInvoke = time2 - lastInvokeTime, timeWaiting = wait - timeSinceLastCall;
+      function remainingWait(time3) {
+        var timeSinceLastCall = time3 - lastCallTime, timeSinceLastInvoke = time3 - lastInvokeTime, timeWaiting = wait - timeSinceLastCall;
         return maxing ? nativeMin(timeWaiting, maxWait - timeSinceLastInvoke) : timeWaiting;
       }
-      function shouldInvoke(time2) {
-        var timeSinceLastCall = time2 - lastCallTime, timeSinceLastInvoke = time2 - lastInvokeTime;
+      function shouldInvoke(time3) {
+        var timeSinceLastCall = time3 - lastCallTime, timeSinceLastInvoke = time3 - lastInvokeTime;
         return lastCallTime === void 0 || timeSinceLastCall >= wait || timeSinceLastCall < 0 || maxing && timeSinceLastInvoke >= maxWait;
       }
       function timerExpired() {
-        var time2 = now();
-        if (shouldInvoke(time2)) {
-          return trailingEdge(time2);
+        var time3 = now2();
+        if (shouldInvoke(time3)) {
+          return trailingEdge(time3);
         }
-        timerId = setTimeout(timerExpired, remainingWait(time2));
+        timerId = setTimeout(timerExpired, remainingWait(time3));
       }
-      function trailingEdge(time2) {
+      function trailingEdge(time3) {
         timerId = void 0;
         if (trailing && lastArgs) {
-          return invokeFunc(time2);
+          return invokeFunc(time3);
         }
         lastArgs = lastThis = void 0;
         return result;
@@ -26651,13 +27562,13 @@ var require_debounce = __commonJS({
         lastArgs = lastCallTime = lastThis = timerId = void 0;
       }
       function flush() {
-        return timerId === void 0 ? result : trailingEdge(now());
+        return timerId === void 0 ? result : trailingEdge(now2());
       }
       function debounced() {
-        var time2 = now(), isInvoking = shouldInvoke(time2);
+        var time3 = now2(), isInvoking = shouldInvoke(time3);
         lastArgs = arguments;
         lastThis = this;
-        lastCallTime = time2;
+        lastCallTime = time3;
         if (isInvoking) {
           if (timerId === void 0) {
             return leadingEdge(lastCallTime);
@@ -26685,14 +27596,14 @@ var require_debounce = __commonJS({
 var require_throttle = __commonJS({
   "node_modules/lodash/throttle.js"(exports, module) {
     var debounce = require_debounce();
-    var isObject5 = require_isObject();
+    var isObject6 = require_isObject();
     var FUNC_ERROR_TEXT = "Expected a function";
     function throttle3(func, wait, options) {
       var leading = true, trailing = true;
       if (typeof func != "function") {
         throw new TypeError(FUNC_ERROR_TEXT);
       }
-      if (isObject5(options)) {
+      if (isObject6(options)) {
         leading = "leading" in options ? !!options.leading : leading;
         trailing = "trailing" in options ? !!options.trailing : trailing;
       }
@@ -27872,9 +28783,9 @@ var require_react_is_development2 = __commonJS({
         var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
         var ContextConsumer = REACT_CONTEXT_TYPE;
         var ContextProvider = REACT_PROVIDER_TYPE;
-        var Element = REACT_ELEMENT_TYPE;
+        var Element2 = REACT_ELEMENT_TYPE;
         var ForwardRef = REACT_FORWARD_REF_TYPE;
-        var Fragment = REACT_FRAGMENT_TYPE;
+        var Fragment4 = REACT_FRAGMENT_TYPE;
         var Lazy = REACT_LAZY_TYPE;
         var Memo = REACT_MEMO_TYPE;
         var Portal = REACT_PORTAL_TYPE;
@@ -27931,9 +28842,9 @@ var require_react_is_development2 = __commonJS({
         exports.ConcurrentMode = ConcurrentMode;
         exports.ContextConsumer = ContextConsumer;
         exports.ContextProvider = ContextProvider;
-        exports.Element = Element;
+        exports.Element = Element2;
         exports.ForwardRef = ForwardRef;
-        exports.Fragment = Fragment;
+        exports.Fragment = Fragment4;
         exports.Lazy = Lazy;
         exports.Memo = Memo;
         exports.Portal = Portal;
@@ -28150,7 +29061,7 @@ var require_factoryWithTypeCheckers = __commonJS({
     function emptyFunctionThatReturnsNull() {
       return null;
     }
-    module.exports = function(isValidElement9, throwOnDirectAccess) {
+    module.exports = function(isValidElement10, throwOnDirectAccess) {
       var ITERATOR_SYMBOL = typeof Symbol === "function" && Symbol.iterator;
       var FAUX_ITERATOR_SYMBOL = "@@iterator";
       function getIteratorFn(maybeIterable) {
@@ -28278,7 +29189,7 @@ var require_factoryWithTypeCheckers = __commonJS({
       function createElementTypeChecker() {
         function validate(props, propName, componentName, location, propFullName) {
           var propValue = props[propName];
-          if (!isValidElement9(propValue)) {
+          if (!isValidElement10(propValue)) {
             var propType = getPropType(propValue);
             return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type " + ("`" + propType + "` supplied to `" + componentName + "`, expected a single ReactElement."));
           }
@@ -28466,7 +29377,7 @@ var require_factoryWithTypeCheckers = __commonJS({
             if (Array.isArray(propValue)) {
               return propValue.every(isNode);
             }
-            if (propValue === null || isValidElement9(propValue)) {
+            if (propValue === null || isValidElement10(propValue)) {
               return true;
             }
             var iteratorFn = getIteratorFn(propValue);
@@ -29192,13 +30103,13 @@ var require_nativeKeysIn = __commonJS({
 // node_modules/lodash/_baseKeysIn.js
 var require_baseKeysIn = __commonJS({
   "node_modules/lodash/_baseKeysIn.js"(exports, module) {
-    var isObject5 = require_isObject();
+    var isObject6 = require_isObject();
     var isPrototype = require_isPrototype();
     var nativeKeysIn = require_nativeKeysIn();
     var objectProto = Object.prototype;
     var hasOwnProperty2 = objectProto.hasOwnProperty;
     function baseKeysIn(object) {
-      if (!isObject5(object)) {
+      if (!isObject6(object)) {
         return nativeKeysIn(object);
       }
       var isProto = isPrototype(object), result = [];
@@ -29478,13 +30389,13 @@ var require_initCloneByTag = __commonJS({
 // node_modules/lodash/_baseCreate.js
 var require_baseCreate = __commonJS({
   "node_modules/lodash/_baseCreate.js"(exports, module) {
-    var isObject5 = require_isObject();
+    var isObject6 = require_isObject();
     var objectCreate = Object.create;
     var baseCreate = /* @__PURE__ */ function() {
       function object() {
       }
       return function(proto) {
-        if (!isObject5(proto)) {
+        if (!isObject6(proto)) {
           return {};
         }
         if (objectCreate) {
@@ -29584,7 +30495,7 @@ var require_baseClone = __commonJS({
     var isArray2 = require_isArray();
     var isBuffer = require_isBuffer();
     var isMap = require_isMap();
-    var isObject5 = require_isObject();
+    var isObject6 = require_isObject();
     var isSet = require_isSet();
     var keys2 = require_keys();
     var keysIn = require_keysIn();
@@ -29628,7 +30539,7 @@ var require_baseClone = __commonJS({
       if (result !== void 0) {
         return result;
       }
-      if (!isObject5(value)) {
+      if (!isObject6(value)) {
         return value;
       }
       var isArr = isArray2(value);
@@ -29816,914 +30727,8246 @@ var require_sumBy = __commonJS({
   }
 });
 
-// node_modules/react/cjs/react-jsx-runtime.development.js
-var require_react_jsx_runtime_development = __commonJS({
-  "node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
-    "use strict";
-    if (true) {
-      (function() {
-        "use strict";
-        var React54 = require_react();
-        var REACT_ELEMENT_TYPE = Symbol.for("react.element");
-        var REACT_PORTAL_TYPE = Symbol.for("react.portal");
-        var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
-        var REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode");
-        var REACT_PROFILER_TYPE = Symbol.for("react.profiler");
-        var REACT_PROVIDER_TYPE = Symbol.for("react.provider");
-        var REACT_CONTEXT_TYPE = Symbol.for("react.context");
-        var REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref");
-        var REACT_SUSPENSE_TYPE = Symbol.for("react.suspense");
-        var REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list");
-        var REACT_MEMO_TYPE = Symbol.for("react.memo");
-        var REACT_LAZY_TYPE = Symbol.for("react.lazy");
-        var REACT_OFFSCREEN_TYPE = Symbol.for("react.offscreen");
-        var MAYBE_ITERATOR_SYMBOL = Symbol.iterator;
-        var FAUX_ITERATOR_SYMBOL = "@@iterator";
-        function getIteratorFn(maybeIterable) {
-          if (maybeIterable === null || typeof maybeIterable !== "object") {
-            return null;
-          }
-          var maybeIterator = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL];
-          if (typeof maybeIterator === "function") {
-            return maybeIterator;
-          }
-          return null;
-        }
-        var ReactSharedInternals = React54.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
-        function error(format2) {
-          {
-            {
-              for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-                args[_key2 - 1] = arguments[_key2];
-              }
-              printWarning("error", format2, args);
-            }
-          }
-        }
-        function printWarning(level, format2, args) {
-          {
-            var ReactDebugCurrentFrame2 = ReactSharedInternals.ReactDebugCurrentFrame;
-            var stack = ReactDebugCurrentFrame2.getStackAddendum();
-            if (stack !== "") {
-              format2 += "%s";
-              args = args.concat([stack]);
-            }
-            var argsWithFormat = args.map(function(item) {
-              return String(item);
-            });
-            argsWithFormat.unshift("Warning: " + format2);
-            Function.prototype.apply.call(console[level], console, argsWithFormat);
-          }
-        }
-        var enableScopeAPI = false;
-        var enableCacheElement = false;
-        var enableTransitionTracing = false;
-        var enableLegacyHidden = false;
-        var enableDebugTracing = false;
-        var REACT_MODULE_REFERENCE;
-        {
-          REACT_MODULE_REFERENCE = Symbol.for("react.module.reference");
-        }
-        function isValidElementType(type) {
-          if (typeof type === "string" || typeof type === "function") {
-            return true;
-          }
-          if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden || type === REACT_OFFSCREEN_TYPE || enableScopeAPI || enableCacheElement || enableTransitionTracing) {
-            return true;
-          }
-          if (typeof type === "object" && type !== null) {
-            if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
-            // types supported by any Flight configuration anywhere since
-            // we don't know which Flight build this will end up being used
-            // with.
-            type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== void 0) {
-              return true;
-            }
-          }
-          return false;
-        }
-        function getWrappedName(outerType, innerType, wrapperName) {
-          var displayName = outerType.displayName;
-          if (displayName) {
-            return displayName;
-          }
-          var functionName = innerType.displayName || innerType.name || "";
-          return functionName !== "" ? wrapperName + "(" + functionName + ")" : wrapperName;
-        }
-        function getContextName(type) {
-          return type.displayName || "Context";
-        }
-        function getComponentNameFromType(type) {
-          if (type == null) {
-            return null;
-          }
-          {
-            if (typeof type.tag === "number") {
-              error("Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue.");
-            }
-          }
-          if (typeof type === "function") {
-            return type.displayName || type.name || null;
-          }
-          if (typeof type === "string") {
-            return type;
-          }
-          switch (type) {
-            case REACT_FRAGMENT_TYPE:
-              return "Fragment";
-            case REACT_PORTAL_TYPE:
-              return "Portal";
-            case REACT_PROFILER_TYPE:
-              return "Profiler";
-            case REACT_STRICT_MODE_TYPE:
-              return "StrictMode";
-            case REACT_SUSPENSE_TYPE:
-              return "Suspense";
-            case REACT_SUSPENSE_LIST_TYPE:
-              return "SuspenseList";
-          }
-          if (typeof type === "object") {
-            switch (type.$$typeof) {
-              case REACT_CONTEXT_TYPE:
-                var context = type;
-                return getContextName(context) + ".Consumer";
-              case REACT_PROVIDER_TYPE:
-                var provider = type;
-                return getContextName(provider._context) + ".Provider";
-              case REACT_FORWARD_REF_TYPE:
-                return getWrappedName(type, type.render, "ForwardRef");
-              case REACT_MEMO_TYPE:
-                var outerName = type.displayName || null;
-                if (outerName !== null) {
-                  return outerName;
-                }
-                return getComponentNameFromType(type.type) || "Memo";
-              case REACT_LAZY_TYPE: {
-                var lazyComponent = type;
-                var payload = lazyComponent._payload;
-                var init = lazyComponent._init;
-                try {
-                  return getComponentNameFromType(init(payload));
-                } catch (x2) {
-                  return null;
-                }
-              }
-            }
-          }
-          return null;
-        }
-        var assign2 = Object.assign;
-        var disabledDepth = 0;
-        var prevLog;
-        var prevInfo;
-        var prevWarn;
-        var prevError;
-        var prevGroup;
-        var prevGroupCollapsed;
-        var prevGroupEnd;
-        function disabledLog() {
-        }
-        disabledLog.__reactDisabledLog = true;
-        function disableLogs() {
-          {
-            if (disabledDepth === 0) {
-              prevLog = console.log;
-              prevInfo = console.info;
-              prevWarn = console.warn;
-              prevError = console.error;
-              prevGroup = console.group;
-              prevGroupCollapsed = console.groupCollapsed;
-              prevGroupEnd = console.groupEnd;
-              var props = {
-                configurable: true,
-                enumerable: true,
-                value: disabledLog,
-                writable: true
-              };
-              Object.defineProperties(console, {
-                info: props,
-                log: props,
-                warn: props,
-                error: props,
-                group: props,
-                groupCollapsed: props,
-                groupEnd: props
-              });
-            }
-            disabledDepth++;
-          }
-        }
-        function reenableLogs() {
-          {
-            disabledDepth--;
-            if (disabledDepth === 0) {
-              var props = {
-                configurable: true,
-                enumerable: true,
-                writable: true
-              };
-              Object.defineProperties(console, {
-                log: assign2({}, props, {
-                  value: prevLog
-                }),
-                info: assign2({}, props, {
-                  value: prevInfo
-                }),
-                warn: assign2({}, props, {
-                  value: prevWarn
-                }),
-                error: assign2({}, props, {
-                  value: prevError
-                }),
-                group: assign2({}, props, {
-                  value: prevGroup
-                }),
-                groupCollapsed: assign2({}, props, {
-                  value: prevGroupCollapsed
-                }),
-                groupEnd: assign2({}, props, {
-                  value: prevGroupEnd
-                })
-              });
-            }
-            if (disabledDepth < 0) {
-              error("disabledDepth fell below zero. This is a bug in React. Please file an issue.");
-            }
-          }
-        }
-        var ReactCurrentDispatcher = ReactSharedInternals.ReactCurrentDispatcher;
-        var prefix2;
-        function describeBuiltInComponentFrame(name, source, ownerFn) {
-          {
-            if (prefix2 === void 0) {
-              try {
-                throw Error();
-              } catch (x2) {
-                var match = x2.stack.trim().match(/\n( *(at )?)/);
-                prefix2 = match && match[1] || "";
-              }
-            }
-            return "\n" + prefix2 + name;
-          }
-        }
-        var reentry = false;
-        var componentFrameCache;
-        {
-          var PossiblyWeakMap = typeof WeakMap === "function" ? WeakMap : Map;
-          componentFrameCache = new PossiblyWeakMap();
-        }
-        function describeNativeComponentFrame(fn, construct) {
-          if (!fn || reentry) {
-            return "";
-          }
-          {
-            var frame = componentFrameCache.get(fn);
-            if (frame !== void 0) {
-              return frame;
-            }
-          }
-          var control;
-          reentry = true;
-          var previousPrepareStackTrace = Error.prepareStackTrace;
-          Error.prepareStackTrace = void 0;
-          var previousDispatcher;
-          {
-            previousDispatcher = ReactCurrentDispatcher.current;
-            ReactCurrentDispatcher.current = null;
-            disableLogs();
-          }
-          try {
-            if (construct) {
-              var Fake = function() {
-                throw Error();
-              };
-              Object.defineProperty(Fake.prototype, "props", {
-                set: function() {
-                  throw Error();
-                }
-              });
-              if (typeof Reflect === "object" && Reflect.construct) {
-                try {
-                  Reflect.construct(Fake, []);
-                } catch (x2) {
-                  control = x2;
-                }
-                Reflect.construct(fn, [], Fake);
-              } else {
-                try {
-                  Fake.call();
-                } catch (x2) {
-                  control = x2;
-                }
-                fn.call(Fake.prototype);
-              }
-            } else {
-              try {
-                throw Error();
-              } catch (x2) {
-                control = x2;
-              }
-              fn();
-            }
-          } catch (sample) {
-            if (sample && control && typeof sample.stack === "string") {
-              var sampleLines = sample.stack.split("\n");
-              var controlLines = control.stack.split("\n");
-              var s2 = sampleLines.length - 1;
-              var c2 = controlLines.length - 1;
-              while (s2 >= 1 && c2 >= 0 && sampleLines[s2] !== controlLines[c2]) {
-                c2--;
-              }
-              for (; s2 >= 1 && c2 >= 0; s2--, c2--) {
-                if (sampleLines[s2] !== controlLines[c2]) {
-                  if (s2 !== 1 || c2 !== 1) {
-                    do {
-                      s2--;
-                      c2--;
-                      if (c2 < 0 || sampleLines[s2] !== controlLines[c2]) {
-                        var _frame = "\n" + sampleLines[s2].replace(" at new ", " at ");
-                        if (fn.displayName && _frame.includes("<anonymous>")) {
-                          _frame = _frame.replace("<anonymous>", fn.displayName);
-                        }
-                        {
-                          if (typeof fn === "function") {
-                            componentFrameCache.set(fn, _frame);
-                          }
-                        }
-                        return _frame;
-                      }
-                    } while (s2 >= 1 && c2 >= 0);
-                  }
-                  break;
-                }
-              }
-            }
-          } finally {
-            reentry = false;
-            {
-              ReactCurrentDispatcher.current = previousDispatcher;
-              reenableLogs();
-            }
-            Error.prepareStackTrace = previousPrepareStackTrace;
-          }
-          var name = fn ? fn.displayName || fn.name : "";
-          var syntheticFrame = name ? describeBuiltInComponentFrame(name) : "";
-          {
-            if (typeof fn === "function") {
-              componentFrameCache.set(fn, syntheticFrame);
-            }
-          }
-          return syntheticFrame;
-        }
-        function describeFunctionComponentFrame(fn, source, ownerFn) {
-          {
-            return describeNativeComponentFrame(fn, false);
-          }
-        }
-        function shouldConstruct(Component6) {
-          var prototype = Component6.prototype;
-          return !!(prototype && prototype.isReactComponent);
-        }
-        function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
-          if (type == null) {
-            return "";
-          }
-          if (typeof type === "function") {
-            {
-              return describeNativeComponentFrame(type, shouldConstruct(type));
-            }
-          }
-          if (typeof type === "string") {
-            return describeBuiltInComponentFrame(type);
-          }
-          switch (type) {
-            case REACT_SUSPENSE_TYPE:
-              return describeBuiltInComponentFrame("Suspense");
-            case REACT_SUSPENSE_LIST_TYPE:
-              return describeBuiltInComponentFrame("SuspenseList");
-          }
-          if (typeof type === "object") {
-            switch (type.$$typeof) {
-              case REACT_FORWARD_REF_TYPE:
-                return describeFunctionComponentFrame(type.render);
-              case REACT_MEMO_TYPE:
-                return describeUnknownElementTypeFrameInDEV(type.type, source, ownerFn);
-              case REACT_LAZY_TYPE: {
-                var lazyComponent = type;
-                var payload = lazyComponent._payload;
-                var init = lazyComponent._init;
-                try {
-                  return describeUnknownElementTypeFrameInDEV(init(payload), source, ownerFn);
-                } catch (x2) {
-                }
-              }
-            }
-          }
-          return "";
-        }
-        var hasOwnProperty2 = Object.prototype.hasOwnProperty;
-        var loggedTypeFailures = {};
-        var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
-        function setCurrentlyValidatingElement(element) {
-          {
-            if (element) {
-              var owner = element._owner;
-              var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
-              ReactDebugCurrentFrame.setExtraStackFrame(stack);
-            } else {
-              ReactDebugCurrentFrame.setExtraStackFrame(null);
-            }
-          }
-        }
-        function checkPropTypes(typeSpecs, values, location, componentName, element) {
-          {
-            var has = Function.call.bind(hasOwnProperty2);
-            for (var typeSpecName in typeSpecs) {
-              if (has(typeSpecs, typeSpecName)) {
-                var error$1 = void 0;
-                try {
-                  if (typeof typeSpecs[typeSpecName] !== "function") {
-                    var err = Error((componentName || "React class") + ": " + location + " type `" + typeSpecName + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
-                    err.name = "Invariant Violation";
-                    throw err;
-                  }
-                  error$1 = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED");
-                } catch (ex) {
-                  error$1 = ex;
-                }
-                if (error$1 && !(error$1 instanceof Error)) {
-                  setCurrentlyValidatingElement(element);
-                  error("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", componentName || "React class", location, typeSpecName, typeof error$1);
-                  setCurrentlyValidatingElement(null);
-                }
-                if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
-                  loggedTypeFailures[error$1.message] = true;
-                  setCurrentlyValidatingElement(element);
-                  error("Failed %s type: %s", location, error$1.message);
-                  setCurrentlyValidatingElement(null);
-                }
-              }
-            }
-          }
-        }
-        var isArrayImpl = Array.isArray;
-        function isArray2(a2) {
-          return isArrayImpl(a2);
-        }
-        function typeName(value) {
-          {
-            var hasToStringTag = typeof Symbol === "function" && Symbol.toStringTag;
-            var type = hasToStringTag && value[Symbol.toStringTag] || value.constructor.name || "Object";
-            return type;
-          }
-        }
-        function willCoercionThrow(value) {
-          {
-            try {
-              testStringCoercion(value);
-              return false;
-            } catch (e) {
-              return true;
-            }
-          }
-        }
-        function testStringCoercion(value) {
-          return "" + value;
-        }
-        function checkKeyStringCoercion(value) {
-          {
-            if (willCoercionThrow(value)) {
-              error("The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value));
-              return testStringCoercion(value);
-            }
-          }
-        }
-        var ReactCurrentOwner = ReactSharedInternals.ReactCurrentOwner;
-        var RESERVED_PROPS = {
-          key: true,
-          ref: true,
-          __self: true,
-          __source: true
-        };
-        var specialPropKeyWarningShown;
-        var specialPropRefWarningShown;
-        var didWarnAboutStringRefs;
-        {
-          didWarnAboutStringRefs = {};
-        }
-        function hasValidRef(config) {
-          {
-            if (hasOwnProperty2.call(config, "ref")) {
-              var getter = Object.getOwnPropertyDescriptor(config, "ref").get;
-              if (getter && getter.isReactWarning) {
-                return false;
-              }
-            }
-          }
-          return config.ref !== void 0;
-        }
-        function hasValidKey(config) {
-          {
-            if (hasOwnProperty2.call(config, "key")) {
-              var getter = Object.getOwnPropertyDescriptor(config, "key").get;
-              if (getter && getter.isReactWarning) {
-                return false;
-              }
-            }
-          }
-          return config.key !== void 0;
-        }
-        function warnIfStringRefCannotBeAutoConverted(config, self2) {
-          {
-            if (typeof config.ref === "string" && ReactCurrentOwner.current && self2 && ReactCurrentOwner.current.stateNode !== self2) {
-              var componentName = getComponentNameFromType(ReactCurrentOwner.current.type);
-              if (!didWarnAboutStringRefs[componentName]) {
-                error('Component "%s" contains the string ref "%s". Support for string refs will be removed in a future major release. This case cannot be automatically converted to an arrow function. We ask you to manually fix this case by using useRef() or createRef() instead. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-string-ref', getComponentNameFromType(ReactCurrentOwner.current.type), config.ref);
-                didWarnAboutStringRefs[componentName] = true;
-              }
-            }
-          }
-        }
-        function defineKeyPropWarningGetter(props, displayName) {
-          {
-            var warnAboutAccessingKey = function() {
-              if (!specialPropKeyWarningShown) {
-                specialPropKeyWarningShown = true;
-                error("%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)", displayName);
-              }
-            };
-            warnAboutAccessingKey.isReactWarning = true;
-            Object.defineProperty(props, "key", {
-              get: warnAboutAccessingKey,
-              configurable: true
-            });
-          }
-        }
-        function defineRefPropWarningGetter(props, displayName) {
-          {
-            var warnAboutAccessingRef = function() {
-              if (!specialPropRefWarningShown) {
-                specialPropRefWarningShown = true;
-                error("%s: `ref` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)", displayName);
-              }
-            };
-            warnAboutAccessingRef.isReactWarning = true;
-            Object.defineProperty(props, "ref", {
-              get: warnAboutAccessingRef,
-              configurable: true
-            });
-          }
-        }
-        var ReactElement = function(type, key, ref, self2, source, owner, props) {
-          var element = {
-            // This tag allows us to uniquely identify this as a React Element
-            $$typeof: REACT_ELEMENT_TYPE,
-            // Built-in properties that belong on the element
-            type,
-            key,
-            ref,
-            props,
-            // Record the component responsible for creating this element.
-            _owner: owner
-          };
-          {
-            element._store = {};
-            Object.defineProperty(element._store, "validated", {
-              configurable: false,
-              enumerable: false,
-              writable: true,
-              value: false
-            });
-            Object.defineProperty(element, "_self", {
-              configurable: false,
-              enumerable: false,
-              writable: false,
-              value: self2
-            });
-            Object.defineProperty(element, "_source", {
-              configurable: false,
-              enumerable: false,
-              writable: false,
-              value: source
-            });
-            if (Object.freeze) {
-              Object.freeze(element.props);
-              Object.freeze(element);
-            }
-          }
-          return element;
-        };
-        function jsxDEV(type, config, maybeKey, source, self2) {
-          {
-            var propName;
-            var props = {};
-            var key = null;
-            var ref = null;
-            if (maybeKey !== void 0) {
-              {
-                checkKeyStringCoercion(maybeKey);
-              }
-              key = "" + maybeKey;
-            }
-            if (hasValidKey(config)) {
-              {
-                checkKeyStringCoercion(config.key);
-              }
-              key = "" + config.key;
-            }
-            if (hasValidRef(config)) {
-              ref = config.ref;
-              warnIfStringRefCannotBeAutoConverted(config, self2);
-            }
-            for (propName in config) {
-              if (hasOwnProperty2.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
-                props[propName] = config[propName];
-              }
-            }
-            if (type && type.defaultProps) {
-              var defaultProps5 = type.defaultProps;
-              for (propName in defaultProps5) {
-                if (props[propName] === void 0) {
-                  props[propName] = defaultProps5[propName];
-                }
-              }
-            }
-            if (key || ref) {
-              var displayName = typeof type === "function" ? type.displayName || type.name || "Unknown" : type;
-              if (key) {
-                defineKeyPropWarningGetter(props, displayName);
-              }
-              if (ref) {
-                defineRefPropWarningGetter(props, displayName);
-              }
-            }
-            return ReactElement(type, key, ref, self2, source, ReactCurrentOwner.current, props);
-          }
-        }
-        var ReactCurrentOwner$1 = ReactSharedInternals.ReactCurrentOwner;
-        var ReactDebugCurrentFrame$1 = ReactSharedInternals.ReactDebugCurrentFrame;
-        function setCurrentlyValidatingElement$1(element) {
-          {
-            if (element) {
-              var owner = element._owner;
-              var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
-              ReactDebugCurrentFrame$1.setExtraStackFrame(stack);
-            } else {
-              ReactDebugCurrentFrame$1.setExtraStackFrame(null);
-            }
-          }
-        }
-        var propTypesMisspellWarningShown;
-        {
-          propTypesMisspellWarningShown = false;
-        }
-        function isValidElement9(object) {
-          {
-            return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
-          }
-        }
-        function getDeclarationErrorAddendum() {
-          {
-            if (ReactCurrentOwner$1.current) {
-              var name = getComponentNameFromType(ReactCurrentOwner$1.current.type);
-              if (name) {
-                return "\n\nCheck the render method of `" + name + "`.";
-              }
-            }
-            return "";
-          }
-        }
-        function getSourceInfoErrorAddendum(source) {
-          {
-            if (source !== void 0) {
-              var fileName = source.fileName.replace(/^.*[\\\/]/, "");
-              var lineNumber = source.lineNumber;
-              return "\n\nCheck your code at " + fileName + ":" + lineNumber + ".";
-            }
-            return "";
-          }
-        }
-        var ownerHasKeyUseWarning = {};
-        function getCurrentComponentErrorInfo(parentType) {
-          {
-            var info = getDeclarationErrorAddendum();
-            if (!info) {
-              var parentName = typeof parentType === "string" ? parentType : parentType.displayName || parentType.name;
-              if (parentName) {
-                info = "\n\nCheck the top-level render call using <" + parentName + ">.";
-              }
-            }
-            return info;
-          }
-        }
-        function validateExplicitKey(element, parentType) {
-          {
-            if (!element._store || element._store.validated || element.key != null) {
-              return;
-            }
-            element._store.validated = true;
-            var currentComponentErrorInfo = getCurrentComponentErrorInfo(parentType);
-            if (ownerHasKeyUseWarning[currentComponentErrorInfo]) {
-              return;
-            }
-            ownerHasKeyUseWarning[currentComponentErrorInfo] = true;
-            var childOwner = "";
-            if (element && element._owner && element._owner !== ReactCurrentOwner$1.current) {
-              childOwner = " It was passed a child from " + getComponentNameFromType(element._owner.type) + ".";
-            }
-            setCurrentlyValidatingElement$1(element);
-            error('Each child in a list should have a unique "key" prop.%s%s See https://reactjs.org/link/warning-keys for more information.', currentComponentErrorInfo, childOwner);
-            setCurrentlyValidatingElement$1(null);
-          }
-        }
-        function validateChildKeys(node, parentType) {
-          {
-            if (typeof node !== "object") {
-              return;
-            }
-            if (isArray2(node)) {
-              for (var i = 0; i < node.length; i++) {
-                var child = node[i];
-                if (isValidElement9(child)) {
-                  validateExplicitKey(child, parentType);
-                }
-              }
-            } else if (isValidElement9(node)) {
-              if (node._store) {
-                node._store.validated = true;
-              }
-            } else if (node) {
-              var iteratorFn = getIteratorFn(node);
-              if (typeof iteratorFn === "function") {
-                if (iteratorFn !== node.entries) {
-                  var iterator = iteratorFn.call(node);
-                  var step;
-                  while (!(step = iterator.next()).done) {
-                    if (isValidElement9(step.value)) {
-                      validateExplicitKey(step.value, parentType);
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-        function validatePropTypes(element) {
-          {
-            var type = element.type;
-            if (type === null || type === void 0 || typeof type === "string") {
-              return;
-            }
-            var propTypes;
-            if (typeof type === "function") {
-              propTypes = type.propTypes;
-            } else if (typeof type === "object" && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Note: Memo only checks outer props here.
-            // Inner props are checked in the reconciler.
-            type.$$typeof === REACT_MEMO_TYPE)) {
-              propTypes = type.propTypes;
-            } else {
-              return;
-            }
-            if (propTypes) {
-              var name = getComponentNameFromType(type);
-              checkPropTypes(propTypes, element.props, "prop", name, element);
-            } else if (type.PropTypes !== void 0 && !propTypesMisspellWarningShown) {
-              propTypesMisspellWarningShown = true;
-              var _name = getComponentNameFromType(type);
-              error("Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?", _name || "Unknown");
-            }
-            if (typeof type.getDefaultProps === "function" && !type.getDefaultProps.isReactClassApproved) {
-              error("getDefaultProps is only used on classic React.createClass definitions. Use a static property named `defaultProps` instead.");
-            }
-          }
-        }
-        function validateFragmentProps(fragment) {
-          {
-            var keys2 = Object.keys(fragment.props);
-            for (var i = 0; i < keys2.length; i++) {
-              var key = keys2[i];
-              if (key !== "children" && key !== "key") {
-                setCurrentlyValidatingElement$1(fragment);
-                error("Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.", key);
-                setCurrentlyValidatingElement$1(null);
-                break;
-              }
-            }
-            if (fragment.ref !== null) {
-              setCurrentlyValidatingElement$1(fragment);
-              error("Invalid attribute `ref` supplied to `React.Fragment`.");
-              setCurrentlyValidatingElement$1(null);
-            }
-          }
-        }
-        var didWarnAboutKeySpread = {};
-        function jsxWithValidation(type, props, key, isStaticChildren, source, self2) {
-          {
-            var validType = isValidElementType(type);
-            if (!validType) {
-              var info = "";
-              if (type === void 0 || typeof type === "object" && type !== null && Object.keys(type).length === 0) {
-                info += " You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.";
-              }
-              var sourceInfo = getSourceInfoErrorAddendum(source);
-              if (sourceInfo) {
-                info += sourceInfo;
-              } else {
-                info += getDeclarationErrorAddendum();
-              }
-              var typeString;
-              if (type === null) {
-                typeString = "null";
-              } else if (isArray2(type)) {
-                typeString = "array";
-              } else if (type !== void 0 && type.$$typeof === REACT_ELEMENT_TYPE) {
-                typeString = "<" + (getComponentNameFromType(type.type) || "Unknown") + " />";
-                info = " Did you accidentally export a JSX literal instead of a component?";
-              } else {
-                typeString = typeof type;
-              }
-              error("React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
-            }
-            var element = jsxDEV(type, props, key, source, self2);
-            if (element == null) {
-              return element;
-            }
-            if (validType) {
-              var children = props.children;
-              if (children !== void 0) {
-                if (isStaticChildren) {
-                  if (isArray2(children)) {
-                    for (var i = 0; i < children.length; i++) {
-                      validateChildKeys(children[i], type);
-                    }
-                    if (Object.freeze) {
-                      Object.freeze(children);
-                    }
-                  } else {
-                    error("React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead.");
-                  }
-                } else {
-                  validateChildKeys(children, type);
-                }
-              }
-            }
-            {
-              if (hasOwnProperty2.call(props, "key")) {
-                var componentName = getComponentNameFromType(type);
-                var keys2 = Object.keys(props).filter(function(k2) {
-                  return k2 !== "key";
-                });
-                var beforeExample = keys2.length > 0 ? "{key: someKey, " + keys2.join(": ..., ") + ": ...}" : "{key: someKey}";
-                if (!didWarnAboutKeySpread[componentName + beforeExample]) {
-                  var afterExample = keys2.length > 0 ? "{" + keys2.join(": ..., ") + ": ...}" : "{}";
-                  error('A props object containing a "key" prop is being spread into JSX:\n  let props = %s;\n  <%s {...props} />\nReact keys must be passed directly to JSX without using spread:\n  let props = %s;\n  <%s key={someKey} {...props} />', beforeExample, componentName, afterExample, componentName);
-                  didWarnAboutKeySpread[componentName + beforeExample] = true;
-                }
-              }
-            }
-            if (type === REACT_FRAGMENT_TYPE) {
-              validateFragmentProps(element);
-            } else {
-              validatePropTypes(element);
-            }
-            return element;
-          }
-        }
-        function jsxWithValidationStatic(type, props, key) {
-          {
-            return jsxWithValidation(type, props, key, true);
-          }
-        }
-        function jsxWithValidationDynamic(type, props, key) {
-          {
-            return jsxWithValidation(type, props, key, false);
-          }
-        }
-        var jsx2 = jsxWithValidationDynamic;
-        var jsxs2 = jsxWithValidationStatic;
-        exports.Fragment = REACT_FRAGMENT_TYPE;
-        exports.jsx = jsx2;
-        exports.jsxs = jsxs2;
-      })();
-    }
-  }
-});
-
-// node_modules/react/jsx-runtime.js
-var require_jsx_runtime = __commonJS({
-  "node_modules/react/jsx-runtime.js"(exports, module) {
-    "use strict";
-    if (false) {
-      module.exports = null;
-    } else {
-      module.exports = require_react_jsx_runtime_development();
-    }
-  }
-});
-
 // app.js
-var import_react51 = __toESM(require_react());
+var import_react76 = __toESM(require_react());
 var import_client = __toESM(require_client());
+
+// node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs
+var import_jsx_runtime3 = __toESM(require_jsx_runtime(), 1);
+var import_react10 = __toESM(require_react(), 1);
+
+// node_modules/framer-motion/dist/es/context/LayoutGroupContext.mjs
+var import_react = __toESM(require_react(), 1);
+var LayoutGroupContext = (0, import_react.createContext)({});
+
+// node_modules/framer-motion/dist/es/utils/use-constant.mjs
+var import_react2 = __toESM(require_react(), 1);
+function useConstant(init) {
+  const ref = (0, import_react2.useRef)(null);
+  if (ref.current === null) {
+    ref.current = init();
+  }
+  return ref.current;
+}
+
+// node_modules/framer-motion/dist/es/utils/use-isomorphic-effect.mjs
+var import_react3 = __toESM(require_react(), 1);
+
+// node_modules/framer-motion/dist/es/utils/is-browser.mjs
+var isBrowser = typeof window !== "undefined";
+
+// node_modules/framer-motion/dist/es/utils/use-isomorphic-effect.mjs
+var useIsomorphicLayoutEffect = isBrowser ? import_react3.useLayoutEffect : import_react3.useEffect;
+
+// node_modules/framer-motion/dist/es/components/AnimatePresence/PresenceChild.mjs
+var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
+var React2 = __toESM(require_react(), 1);
+var import_react7 = __toESM(require_react(), 1);
+
+// node_modules/framer-motion/dist/es/context/PresenceContext.mjs
+var import_react4 = __toESM(require_react(), 1);
+var PresenceContext = /* @__PURE__ */ (0, import_react4.createContext)(null);
+
+// node_modules/framer-motion/dist/es/components/AnimatePresence/PopChild.mjs
+var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
+
+// node_modules/motion-utils/dist/es/array.mjs
+function addUniqueItem(arr, item) {
+  if (arr.indexOf(item) === -1)
+    arr.push(item);
+}
+function removeItem(arr, item) {
+  const index = arr.indexOf(item);
+  if (index > -1)
+    arr.splice(index, 1);
+}
+
+// node_modules/motion-utils/dist/es/clamp.mjs
+var clamp = (min4, max4, v) => {
+  if (v > max4)
+    return max4;
+  if (v < min4)
+    return min4;
+  return v;
+};
+
+// node_modules/motion-utils/dist/es/format-error-message.mjs
+function formatErrorMessage(message, errorCode) {
+  return errorCode ? `${message}. For more information and steps for solving, visit https://motion.dev/troubleshooting/${errorCode}` : message;
+}
+
+// node_modules/motion-utils/dist/es/errors.mjs
+var warning = () => {
+};
+var invariant = () => {
+};
+if (true) {
+  warning = (check, message, errorCode) => {
+    if (!check && typeof console !== "undefined") {
+      console.warn(formatErrorMessage(message, errorCode));
+    }
+  };
+  invariant = (check, message, errorCode) => {
+    if (!check) {
+      throw new Error(formatErrorMessage(message, errorCode));
+    }
+  };
+}
+
+// node_modules/motion-utils/dist/es/global-config.mjs
+var MotionGlobalConfig = {};
+
+// node_modules/motion-utils/dist/es/is-numerical-string.mjs
+var isNumericalString = (v) => /^-?(?:\d+(?:\.\d+)?|\.\d+)$/u.test(v);
+
+// node_modules/motion-utils/dist/es/is-object.mjs
+function isObject(value) {
+  return typeof value === "object" && value !== null;
+}
+
+// node_modules/motion-utils/dist/es/is-zero-value-string.mjs
+var isZeroValueString = (v) => /^0[^.\s]+$/u.test(v);
+
+// node_modules/motion-utils/dist/es/memo.mjs
+// @__NO_SIDE_EFFECTS__
+function memo(callback) {
+  let result;
+  return () => {
+    if (result === void 0)
+      result = callback();
+    return result;
+  };
+}
+
+// node_modules/motion-utils/dist/es/noop.mjs
+var noop = /* @__NO_SIDE_EFFECTS__ */ (any) => any;
+
+// node_modules/motion-utils/dist/es/pipe.mjs
+var combineFunctions = (a2, b) => (v) => b(a2(v));
+var pipe = (...transformers) => transformers.reduce(combineFunctions);
+
+// node_modules/motion-utils/dist/es/progress.mjs
+var progress = /* @__NO_SIDE_EFFECTS__ */ (from, to, value) => {
+  const toFromDifference = to - from;
+  return toFromDifference === 0 ? 1 : (value - from) / toFromDifference;
+};
+
+// node_modules/motion-utils/dist/es/subscription-manager.mjs
+var SubscriptionManager = class {
+  constructor() {
+    this.subscriptions = [];
+  }
+  add(handler) {
+    addUniqueItem(this.subscriptions, handler);
+    return () => removeItem(this.subscriptions, handler);
+  }
+  notify(a2, b, c2) {
+    const numSubscriptions = this.subscriptions.length;
+    if (!numSubscriptions)
+      return;
+    if (numSubscriptions === 1) {
+      this.subscriptions[0](a2, b, c2);
+    } else {
+      for (let i = 0; i < numSubscriptions; i++) {
+        const handler = this.subscriptions[i];
+        handler && handler(a2, b, c2);
+      }
+    }
+  }
+  getSize() {
+    return this.subscriptions.length;
+  }
+  clear() {
+    this.subscriptions.length = 0;
+  }
+};
+
+// node_modules/motion-utils/dist/es/time-conversion.mjs
+var secondsToMilliseconds = /* @__NO_SIDE_EFFECTS__ */ (seconds2) => seconds2 * 1e3;
+var millisecondsToSeconds = /* @__NO_SIDE_EFFECTS__ */ (milliseconds2) => milliseconds2 / 1e3;
+
+// node_modules/motion-utils/dist/es/velocity-per-second.mjs
+function velocityPerSecond(velocity, frameDuration) {
+  return frameDuration ? velocity * (1e3 / frameDuration) : 0;
+}
+
+// node_modules/motion-utils/dist/es/warn-once.mjs
+var warned = /* @__PURE__ */ new Set();
+function warnOnce(condition, message, errorCode) {
+  if (condition || warned.has(message))
+    return;
+  console.warn(formatErrorMessage(message, errorCode));
+  warned.add(message);
+}
+
+// node_modules/motion-utils/dist/es/easing/cubic-bezier.mjs
+var calcBezier = (t, a1, a2) => (((1 - 3 * a2 + 3 * a1) * t + (3 * a2 - 6 * a1)) * t + 3 * a1) * t;
+var subdivisionPrecision = 1e-7;
+var subdivisionMaxIterations = 12;
+function binarySubdivide(x2, lowerBound, upperBound, mX1, mX2) {
+  let currentX;
+  let currentT;
+  let i = 0;
+  do {
+    currentT = lowerBound + (upperBound - lowerBound) / 2;
+    currentX = calcBezier(currentT, mX1, mX2) - x2;
+    if (currentX > 0) {
+      upperBound = currentT;
+    } else {
+      lowerBound = currentT;
+    }
+  } while (Math.abs(currentX) > subdivisionPrecision && ++i < subdivisionMaxIterations);
+  return currentT;
+}
+function cubicBezier(mX1, mY1, mX2, mY2) {
+  if (mX1 === mY1 && mX2 === mY2)
+    return noop;
+  const getTForX = (aX) => binarySubdivide(aX, 0, 1, mX1, mX2);
+  return (t) => t === 0 || t === 1 ? t : calcBezier(getTForX(t), mY1, mY2);
+}
+
+// node_modules/motion-utils/dist/es/easing/modifiers/mirror.mjs
+var mirrorEasing = (easing) => (p) => p <= 0.5 ? easing(2 * p) / 2 : (2 - easing(2 * (1 - p))) / 2;
+
+// node_modules/motion-utils/dist/es/easing/modifiers/reverse.mjs
+var reverseEasing = (easing) => (p) => 1 - easing(1 - p);
+
+// node_modules/motion-utils/dist/es/easing/back.mjs
+var backOut = /* @__PURE__ */ cubicBezier(0.33, 1.53, 0.69, 0.99);
+var backIn = /* @__PURE__ */ reverseEasing(backOut);
+var backInOut = /* @__PURE__ */ mirrorEasing(backIn);
+
+// node_modules/motion-utils/dist/es/easing/anticipate.mjs
+var anticipate = (p) => (p *= 2) < 1 ? 0.5 * backIn(p) : 0.5 * (2 - Math.pow(2, -10 * (p - 1)));
+
+// node_modules/motion-utils/dist/es/easing/circ.mjs
+var circIn = (p) => 1 - Math.sin(Math.acos(p));
+var circOut = reverseEasing(circIn);
+var circInOut = mirrorEasing(circIn);
+
+// node_modules/motion-utils/dist/es/easing/ease.mjs
+var easeIn = /* @__PURE__ */ cubicBezier(0.42, 0, 1, 1);
+var easeOut = /* @__PURE__ */ cubicBezier(0, 0, 0.58, 1);
+var easeInOut = /* @__PURE__ */ cubicBezier(0.42, 0, 0.58, 1);
+
+// node_modules/motion-utils/dist/es/easing/utils/is-easing-array.mjs
+var isEasingArray = (ease2) => {
+  return Array.isArray(ease2) && typeof ease2[0] !== "number";
+};
+
+// node_modules/motion-utils/dist/es/easing/utils/is-bezier-definition.mjs
+var isBezierDefinition = (easing) => Array.isArray(easing) && typeof easing[0] === "number";
+
+// node_modules/motion-utils/dist/es/easing/utils/map.mjs
+var easingLookup = {
+  linear: noop,
+  easeIn,
+  easeInOut,
+  easeOut,
+  circIn,
+  circInOut,
+  circOut,
+  backIn,
+  backInOut,
+  backOut,
+  anticipate
+};
+var isValidEasing = (easing) => {
+  return typeof easing === "string";
+};
+var easingDefinitionToFunction = (definition) => {
+  if (isBezierDefinition(definition)) {
+    invariant(definition.length === 4, `Cubic bezier arrays must contain four numerical values.`, "cubic-bezier-length");
+    const [x1, y1, x2, y2] = definition;
+    return cubicBezier(x1, y1, x2, y2);
+  } else if (isValidEasing(definition)) {
+    invariant(easingLookup[definition] !== void 0, `Invalid easing type '${definition}'`, "invalid-easing-type");
+    return easingLookup[definition];
+  }
+  return definition;
+};
+
+// node_modules/motion-dom/dist/es/frameloop/order.mjs
+var stepsOrder = [
+  "setup",
+  // Compute
+  "read",
+  // Read
+  "resolveKeyframes",
+  // Write/Read/Write/Read
+  "preUpdate",
+  // Compute
+  "update",
+  // Compute
+  "preRender",
+  // Compute
+  "render",
+  // Write
+  "postRender"
+  // Compute
+];
+
+// node_modules/motion-dom/dist/es/stats/buffer.mjs
+var statsBuffer = {
+  value: null,
+  addProjectionMetrics: null
+};
+
+// node_modules/motion-dom/dist/es/frameloop/render-step.mjs
+function createRenderStep(runNextFrame, stepName) {
+  let thisFrame = /* @__PURE__ */ new Set();
+  let nextFrame = /* @__PURE__ */ new Set();
+  let isProcessing = false;
+  let flushNextFrame = false;
+  const toKeepAlive = /* @__PURE__ */ new WeakSet();
+  let latestFrameData = {
+    delta: 0,
+    timestamp: 0,
+    isProcessing: false
+  };
+  let numCalls = 0;
+  function triggerCallback(callback) {
+    if (toKeepAlive.has(callback)) {
+      step.schedule(callback);
+      runNextFrame();
+    }
+    numCalls++;
+    callback(latestFrameData);
+  }
+  const step = {
+    /**
+     * Schedule a process to run on the next frame.
+     */
+    schedule: (callback, keepAlive = false, immediate = false) => {
+      const addToCurrentFrame = immediate && isProcessing;
+      const queue = addToCurrentFrame ? thisFrame : nextFrame;
+      if (keepAlive)
+        toKeepAlive.add(callback);
+      if (!queue.has(callback))
+        queue.add(callback);
+      return callback;
+    },
+    /**
+     * Cancel the provided callback from running on the next frame.
+     */
+    cancel: (callback) => {
+      nextFrame.delete(callback);
+      toKeepAlive.delete(callback);
+    },
+    /**
+     * Execute all schedule callbacks.
+     */
+    process: (frameData2) => {
+      latestFrameData = frameData2;
+      if (isProcessing) {
+        flushNextFrame = true;
+        return;
+      }
+      isProcessing = true;
+      [thisFrame, nextFrame] = [nextFrame, thisFrame];
+      thisFrame.forEach(triggerCallback);
+      if (stepName && statsBuffer.value) {
+        statsBuffer.value.frameloop[stepName].push(numCalls);
+      }
+      numCalls = 0;
+      thisFrame.clear();
+      isProcessing = false;
+      if (flushNextFrame) {
+        flushNextFrame = false;
+        step.process(frameData2);
+      }
+    }
+  };
+  return step;
+}
+
+// node_modules/motion-dom/dist/es/frameloop/batcher.mjs
+var maxElapsed = 40;
+function createRenderBatcher(scheduleNextBatch, allowKeepAlive) {
+  let runNextFrame = false;
+  let useDefaultElapsed = true;
+  const state = {
+    delta: 0,
+    timestamp: 0,
+    isProcessing: false
+  };
+  const flagRunNextFrame = () => runNextFrame = true;
+  const steps = stepsOrder.reduce((acc, key) => {
+    acc[key] = createRenderStep(flagRunNextFrame, allowKeepAlive ? key : void 0);
+    return acc;
+  }, {});
+  const { setup, read, resolveKeyframes, preUpdate, update, preRender, render, postRender } = steps;
+  const processBatch = () => {
+    const timestamp = MotionGlobalConfig.useManualTiming ? state.timestamp : performance.now();
+    runNextFrame = false;
+    if (!MotionGlobalConfig.useManualTiming) {
+      state.delta = useDefaultElapsed ? 1e3 / 60 : Math.max(Math.min(timestamp - state.timestamp, maxElapsed), 1);
+    }
+    state.timestamp = timestamp;
+    state.isProcessing = true;
+    setup.process(state);
+    read.process(state);
+    resolveKeyframes.process(state);
+    preUpdate.process(state);
+    update.process(state);
+    preRender.process(state);
+    render.process(state);
+    postRender.process(state);
+    state.isProcessing = false;
+    if (runNextFrame && allowKeepAlive) {
+      useDefaultElapsed = false;
+      scheduleNextBatch(processBatch);
+    }
+  };
+  const wake = () => {
+    runNextFrame = true;
+    useDefaultElapsed = true;
+    if (!state.isProcessing) {
+      scheduleNextBatch(processBatch);
+    }
+  };
+  const schedule = stepsOrder.reduce((acc, key) => {
+    const step = steps[key];
+    acc[key] = (process2, keepAlive = false, immediate = false) => {
+      if (!runNextFrame)
+        wake();
+      return step.schedule(process2, keepAlive, immediate);
+    };
+    return acc;
+  }, {});
+  const cancel = (process2) => {
+    for (let i = 0; i < stepsOrder.length; i++) {
+      steps[stepsOrder[i]].cancel(process2);
+    }
+  };
+  return { schedule, cancel, state, steps };
+}
+
+// node_modules/motion-dom/dist/es/frameloop/frame.mjs
+var { schedule: frame, cancel: cancelFrame, state: frameData, steps: frameSteps } = /* @__PURE__ */ createRenderBatcher(typeof requestAnimationFrame !== "undefined" ? requestAnimationFrame : noop, true);
+
+// node_modules/motion-dom/dist/es/frameloop/sync-time.mjs
+var now;
+function clearTime() {
+  now = void 0;
+}
+var time = {
+  now: () => {
+    if (now === void 0) {
+      time.set(frameData.isProcessing || MotionGlobalConfig.useManualTiming ? frameData.timestamp : performance.now());
+    }
+    return now;
+  },
+  set: (newTime) => {
+    now = newTime;
+    queueMicrotask(clearTime);
+  }
+};
+
+// node_modules/motion-dom/dist/es/stats/animation-count.mjs
+var activeAnimations = {
+  layout: 0,
+  mainThread: 0,
+  waapi: 0
+};
+
+// node_modules/motion-dom/dist/es/animation/utils/is-css-variable.mjs
+var checkStringStartsWith = (token) => (key) => typeof key === "string" && key.startsWith(token);
+var isCSSVariableName = /* @__PURE__ */ checkStringStartsWith("--");
+var startsAsVariableToken = /* @__PURE__ */ checkStringStartsWith("var(--");
+var isCSSVariableToken = (value) => {
+  const startsWithToken = startsAsVariableToken(value);
+  if (!startsWithToken)
+    return false;
+  return singleCssVariableRegex.test(value.split("/*")[0].trim());
+};
+var singleCssVariableRegex = /var\(--(?:[\w-]+\s*|[\w-]+\s*,(?:\s*[^)(\s]|\s*\((?:[^)(]|\([^)(]*\))*\))+\s*)\)$/iu;
+
+// node_modules/motion-dom/dist/es/value/types/numbers/index.mjs
+var number = {
+  test: (v) => typeof v === "number",
+  parse: parseFloat,
+  transform: (v) => v
+};
+var alpha = {
+  ...number,
+  transform: (v) => clamp(0, 1, v)
+};
+var scale = {
+  ...number,
+  default: 1
+};
+
+// node_modules/motion-dom/dist/es/value/types/utils/sanitize.mjs
+var sanitize = (v) => Math.round(v * 1e5) / 1e5;
+
+// node_modules/motion-dom/dist/es/value/types/utils/float-regex.mjs
+var floatRegex = /-?(?:\d+(?:\.\d+)?|\.\d+)/gu;
+
+// node_modules/motion-dom/dist/es/value/types/utils/is-nullish.mjs
+function isNullish(v) {
+  return v == null;
+}
+
+// node_modules/motion-dom/dist/es/value/types/utils/single-color-regex.mjs
+var singleColorRegex = /^(?:#[\da-f]{3,8}|(?:rgb|hsl)a?\((?:-?[\d.]+%?[,\s]+){2}-?[\d.]+%?\s*(?:[,/]\s*)?(?:\b\d+(?:\.\d+)?|\.\d+)?%?\))$/iu;
+
+// node_modules/motion-dom/dist/es/value/types/color/utils.mjs
+var isColorString = (type, testProp) => (v) => {
+  return Boolean(typeof v === "string" && singleColorRegex.test(v) && v.startsWith(type) || testProp && !isNullish(v) && Object.prototype.hasOwnProperty.call(v, testProp));
+};
+var splitColor = (aName, bName, cName) => (v) => {
+  if (typeof v !== "string")
+    return v;
+  const [a2, b, c2, alpha4] = v.match(floatRegex);
+  return {
+    [aName]: parseFloat(a2),
+    [bName]: parseFloat(b),
+    [cName]: parseFloat(c2),
+    alpha: alpha4 !== void 0 ? parseFloat(alpha4) : 1
+  };
+};
+
+// node_modules/motion-dom/dist/es/value/types/color/rgba.mjs
+var clampRgbUnit = (v) => clamp(0, 255, v);
+var rgbUnit = {
+  ...number,
+  transform: (v) => Math.round(clampRgbUnit(v))
+};
+var rgba = {
+  test: /* @__PURE__ */ isColorString("rgb", "red"),
+  parse: /* @__PURE__ */ splitColor("red", "green", "blue"),
+  transform: ({ red, green, blue, alpha: alpha$1 = 1 }) => "rgba(" + rgbUnit.transform(red) + ", " + rgbUnit.transform(green) + ", " + rgbUnit.transform(blue) + ", " + sanitize(alpha.transform(alpha$1)) + ")"
+};
+
+// node_modules/motion-dom/dist/es/value/types/color/hex.mjs
+function parseHex(v) {
+  let r2 = "";
+  let g = "";
+  let b = "";
+  let a2 = "";
+  if (v.length > 5) {
+    r2 = v.substring(1, 3);
+    g = v.substring(3, 5);
+    b = v.substring(5, 7);
+    a2 = v.substring(7, 9);
+  } else {
+    r2 = v.substring(1, 2);
+    g = v.substring(2, 3);
+    b = v.substring(3, 4);
+    a2 = v.substring(4, 5);
+    r2 += r2;
+    g += g;
+    b += b;
+    a2 += a2;
+  }
+  return {
+    red: parseInt(r2, 16),
+    green: parseInt(g, 16),
+    blue: parseInt(b, 16),
+    alpha: a2 ? parseInt(a2, 16) / 255 : 1
+  };
+}
+var hex = {
+  test: /* @__PURE__ */ isColorString("#"),
+  parse: parseHex,
+  transform: rgba.transform
+};
+
+// node_modules/motion-dom/dist/es/value/types/numbers/units.mjs
+var createUnitType = /* @__NO_SIDE_EFFECTS__ */ (unit2) => ({
+  test: (v) => typeof v === "string" && v.endsWith(unit2) && v.split(" ").length === 1,
+  parse: parseFloat,
+  transform: (v) => `${v}${unit2}`
+});
+var degrees = /* @__PURE__ */ createUnitType("deg");
+var percent = /* @__PURE__ */ createUnitType("%");
+var px = /* @__PURE__ */ createUnitType("px");
+var vh = /* @__PURE__ */ createUnitType("vh");
+var vw = /* @__PURE__ */ createUnitType("vw");
+var progressPercentage = /* @__PURE__ */ (() => ({
+  ...percent,
+  parse: (v) => percent.parse(v) / 100,
+  transform: (v) => percent.transform(v * 100)
+}))();
+
+// node_modules/motion-dom/dist/es/value/types/color/hsla.mjs
+var hsla = {
+  test: /* @__PURE__ */ isColorString("hsl", "hue"),
+  parse: /* @__PURE__ */ splitColor("hue", "saturation", "lightness"),
+  transform: ({ hue, saturation, lightness, alpha: alpha$1 = 1 }) => {
+    return "hsla(" + Math.round(hue) + ", " + percent.transform(sanitize(saturation)) + ", " + percent.transform(sanitize(lightness)) + ", " + sanitize(alpha.transform(alpha$1)) + ")";
+  }
+};
+
+// node_modules/motion-dom/dist/es/value/types/color/index.mjs
+var color = {
+  test: (v) => rgba.test(v) || hex.test(v) || hsla.test(v),
+  parse: (v) => {
+    if (rgba.test(v)) {
+      return rgba.parse(v);
+    } else if (hsla.test(v)) {
+      return hsla.parse(v);
+    } else {
+      return hex.parse(v);
+    }
+  },
+  transform: (v) => {
+    return typeof v === "string" ? v : v.hasOwnProperty("red") ? rgba.transform(v) : hsla.transform(v);
+  },
+  getAnimatableNone: (v) => {
+    const parsed = color.parse(v);
+    parsed.alpha = 0;
+    return color.transform(parsed);
+  }
+};
+
+// node_modules/motion-dom/dist/es/value/types/utils/color-regex.mjs
+var colorRegex = /(?:#[\da-f]{3,8}|(?:rgb|hsl)a?\((?:-?[\d.]+%?[,\s]+){2}-?[\d.]+%?\s*(?:[,/]\s*)?(?:\b\d+(?:\.\d+)?|\.\d+)?%?\))/giu;
+
+// node_modules/motion-dom/dist/es/value/types/complex/index.mjs
+function test(v) {
+  return isNaN(v) && typeof v === "string" && (v.match(floatRegex)?.length || 0) + (v.match(colorRegex)?.length || 0) > 0;
+}
+var NUMBER_TOKEN = "number";
+var COLOR_TOKEN = "color";
+var VAR_TOKEN = "var";
+var VAR_FUNCTION_TOKEN = "var(";
+var SPLIT_TOKEN = "${}";
+var complexRegex = /var\s*\(\s*--(?:[\w-]+\s*|[\w-]+\s*,(?:\s*[^)(\s]|\s*\((?:[^)(]|\([^)(]*\))*\))+\s*)\)|#[\da-f]{3,8}|(?:rgb|hsl)a?\((?:-?[\d.]+%?[,\s]+){2}-?[\d.]+%?\s*(?:[,/]\s*)?(?:\b\d+(?:\.\d+)?|\.\d+)?%?\)|-?(?:\d+(?:\.\d+)?|\.\d+)/giu;
+function analyseComplexValue(value) {
+  const originalValue = value.toString();
+  const values = [];
+  const indexes = {
+    color: [],
+    number: [],
+    var: []
+  };
+  const types = [];
+  let i = 0;
+  const tokenised = originalValue.replace(complexRegex, (parsedValue) => {
+    if (color.test(parsedValue)) {
+      indexes.color.push(i);
+      types.push(COLOR_TOKEN);
+      values.push(color.parse(parsedValue));
+    } else if (parsedValue.startsWith(VAR_FUNCTION_TOKEN)) {
+      indexes.var.push(i);
+      types.push(VAR_TOKEN);
+      values.push(parsedValue);
+    } else {
+      indexes.number.push(i);
+      types.push(NUMBER_TOKEN);
+      values.push(parseFloat(parsedValue));
+    }
+    ++i;
+    return SPLIT_TOKEN;
+  });
+  const split = tokenised.split(SPLIT_TOKEN);
+  return { values, split, indexes, types };
+}
+function parseComplexValue(v) {
+  return analyseComplexValue(v).values;
+}
+function createTransformer(source) {
+  const { split, types } = analyseComplexValue(source);
+  const numSections = split.length;
+  return (v) => {
+    let output = "";
+    for (let i = 0; i < numSections; i++) {
+      output += split[i];
+      if (v[i] !== void 0) {
+        const type = types[i];
+        if (type === NUMBER_TOKEN) {
+          output += sanitize(v[i]);
+        } else if (type === COLOR_TOKEN) {
+          output += color.transform(v[i]);
+        } else {
+          output += v[i];
+        }
+      }
+    }
+    return output;
+  };
+}
+var convertNumbersToZero = (v) => typeof v === "number" ? 0 : color.test(v) ? color.getAnimatableNone(v) : v;
+function getAnimatableNone(v) {
+  const parsed = parseComplexValue(v);
+  const transformer4 = createTransformer(v);
+  return transformer4(parsed.map(convertNumbersToZero));
+}
+var complex = {
+  test,
+  parse: parseComplexValue,
+  createTransformer,
+  getAnimatableNone
+};
+
+// node_modules/motion-dom/dist/es/value/types/color/hsla-to-rgba.mjs
+function hueToRgb(p, q, t) {
+  if (t < 0)
+    t += 1;
+  if (t > 1)
+    t -= 1;
+  if (t < 1 / 6)
+    return p + (q - p) * 6 * t;
+  if (t < 1 / 2)
+    return q;
+  if (t < 2 / 3)
+    return p + (q - p) * (2 / 3 - t) * 6;
+  return p;
+}
+function hslaToRgba({ hue, saturation, lightness, alpha: alpha4 }) {
+  hue /= 360;
+  saturation /= 100;
+  lightness /= 100;
+  let red = 0;
+  let green = 0;
+  let blue = 0;
+  if (!saturation) {
+    red = green = blue = lightness;
+  } else {
+    const q = lightness < 0.5 ? lightness * (1 + saturation) : lightness + saturation - lightness * saturation;
+    const p = 2 * lightness - q;
+    red = hueToRgb(p, q, hue + 1 / 3);
+    green = hueToRgb(p, q, hue);
+    blue = hueToRgb(p, q, hue - 1 / 3);
+  }
+  return {
+    red: Math.round(red * 255),
+    green: Math.round(green * 255),
+    blue: Math.round(blue * 255),
+    alpha: alpha4
+  };
+}
+
+// node_modules/motion-dom/dist/es/utils/mix/immediate.mjs
+function mixImmediate(a2, b) {
+  return (p) => p > 0 ? b : a2;
+}
+
+// node_modules/motion-dom/dist/es/utils/mix/number.mjs
+var mixNumber = (from, to, progress2) => {
+  return from + (to - from) * progress2;
+};
+
+// node_modules/motion-dom/dist/es/utils/mix/color.mjs
+var mixLinearColor = (from, to, v) => {
+  const fromExpo = from * from;
+  const expo = v * (to * to - fromExpo) + fromExpo;
+  return expo < 0 ? 0 : Math.sqrt(expo);
+};
+var colorTypes = [hex, rgba, hsla];
+var getColorType = (v) => colorTypes.find((type) => type.test(v));
+function asRGBA(color3) {
+  const type = getColorType(color3);
+  warning(Boolean(type), `'${color3}' is not an animatable color. Use the equivalent color code instead.`, "color-not-animatable");
+  if (!Boolean(type))
+    return false;
+  let model = type.parse(color3);
+  if (type === hsla) {
+    model = hslaToRgba(model);
+  }
+  return model;
+}
+var mixColor = (from, to) => {
+  const fromRGBA = asRGBA(from);
+  const toRGBA = asRGBA(to);
+  if (!fromRGBA || !toRGBA) {
+    return mixImmediate(from, to);
+  }
+  const blended = { ...fromRGBA };
+  return (v) => {
+    blended.red = mixLinearColor(fromRGBA.red, toRGBA.red, v);
+    blended.green = mixLinearColor(fromRGBA.green, toRGBA.green, v);
+    blended.blue = mixLinearColor(fromRGBA.blue, toRGBA.blue, v);
+    blended.alpha = mixNumber(fromRGBA.alpha, toRGBA.alpha, v);
+    return rgba.transform(blended);
+  };
+};
+
+// node_modules/motion-dom/dist/es/utils/mix/visibility.mjs
+var invisibleValues = /* @__PURE__ */ new Set(["none", "hidden"]);
+function mixVisibility(origin, target) {
+  if (invisibleValues.has(origin)) {
+    return (p) => p <= 0 ? origin : target;
+  } else {
+    return (p) => p >= 1 ? target : origin;
+  }
+}
+
+// node_modules/motion-dom/dist/es/utils/mix/complex.mjs
+function mixNumber2(a2, b) {
+  return (p) => mixNumber(a2, b, p);
+}
+function getMixer(a2) {
+  if (typeof a2 === "number") {
+    return mixNumber2;
+  } else if (typeof a2 === "string") {
+    return isCSSVariableToken(a2) ? mixImmediate : color.test(a2) ? mixColor : mixComplex;
+  } else if (Array.isArray(a2)) {
+    return mixArray;
+  } else if (typeof a2 === "object") {
+    return color.test(a2) ? mixColor : mixObject;
+  }
+  return mixImmediate;
+}
+function mixArray(a2, b) {
+  const output = [...a2];
+  const numValues = output.length;
+  const blendValue = a2.map((v, i) => getMixer(v)(v, b[i]));
+  return (p) => {
+    for (let i = 0; i < numValues; i++) {
+      output[i] = blendValue[i](p);
+    }
+    return output;
+  };
+}
+function mixObject(a2, b) {
+  const output = { ...a2, ...b };
+  const blendValue = {};
+  for (const key in output) {
+    if (a2[key] !== void 0 && b[key] !== void 0) {
+      blendValue[key] = getMixer(a2[key])(a2[key], b[key]);
+    }
+  }
+  return (v) => {
+    for (const key in blendValue) {
+      output[key] = blendValue[key](v);
+    }
+    return output;
+  };
+}
+function matchOrder(origin, target) {
+  const orderedOrigin = [];
+  const pointers = { color: 0, var: 0, number: 0 };
+  for (let i = 0; i < target.values.length; i++) {
+    const type = target.types[i];
+    const originIndex = origin.indexes[type][pointers[type]];
+    const originValue = origin.values[originIndex] ?? 0;
+    orderedOrigin[i] = originValue;
+    pointers[type]++;
+  }
+  return orderedOrigin;
+}
+var mixComplex = (origin, target) => {
+  const template = complex.createTransformer(target);
+  const originStats = analyseComplexValue(origin);
+  const targetStats = analyseComplexValue(target);
+  const canInterpolate = originStats.indexes.var.length === targetStats.indexes.var.length && originStats.indexes.color.length === targetStats.indexes.color.length && originStats.indexes.number.length >= targetStats.indexes.number.length;
+  if (canInterpolate) {
+    if (invisibleValues.has(origin) && !targetStats.values.length || invisibleValues.has(target) && !originStats.values.length) {
+      return mixVisibility(origin, target);
+    }
+    return pipe(mixArray(matchOrder(originStats, targetStats), targetStats.values), template);
+  } else {
+    warning(true, `Complex values '${origin}' and '${target}' too different to mix. Ensure all colors are of the same type, and that each contains the same quantity of number and color values. Falling back to instant transition.`, "complex-values-different");
+    return mixImmediate(origin, target);
+  }
+};
+
+// node_modules/motion-dom/dist/es/utils/mix/index.mjs
+function mix(from, to, p) {
+  if (typeof from === "number" && typeof to === "number" && typeof p === "number") {
+    return mixNumber(from, to, p);
+  }
+  const mixer = getMixer(from);
+  return mixer(from, to);
+}
+
+// node_modules/motion-dom/dist/es/animation/drivers/frame.mjs
+var frameloopDriver = (update) => {
+  const passTimestamp = ({ timestamp }) => update(timestamp);
+  return {
+    start: (keepAlive = true) => frame.update(passTimestamp, keepAlive),
+    stop: () => cancelFrame(passTimestamp),
+    /**
+     * If we're processing this frame we can use the
+     * framelocked timestamp to keep things in sync.
+     */
+    now: () => frameData.isProcessing ? frameData.timestamp : time.now()
+  };
+};
+
+// node_modules/motion-dom/dist/es/animation/waapi/utils/linear.mjs
+var generateLinearEasing = (easing, duration, resolution = 10) => {
+  let points = "";
+  const numPoints = Math.max(Math.round(duration / resolution), 2);
+  for (let i = 0; i < numPoints; i++) {
+    points += Math.round(easing(i / (numPoints - 1)) * 1e4) / 1e4 + ", ";
+  }
+  return `linear(${points.substring(0, points.length - 2)})`;
+};
+
+// node_modules/motion-dom/dist/es/animation/generators/utils/calc-duration.mjs
+var maxGeneratorDuration = 2e4;
+function calcGeneratorDuration(generator) {
+  let duration = 0;
+  const timeStep = 50;
+  let state = generator.next(duration);
+  while (!state.done && duration < maxGeneratorDuration) {
+    duration += timeStep;
+    state = generator.next(duration);
+  }
+  return duration >= maxGeneratorDuration ? Infinity : duration;
+}
+
+// node_modules/motion-dom/dist/es/animation/generators/utils/create-generator-easing.mjs
+function createGeneratorEasing(options, scale2 = 100, createGenerator) {
+  const generator = createGenerator({ ...options, keyframes: [0, scale2] });
+  const duration = Math.min(calcGeneratorDuration(generator), maxGeneratorDuration);
+  return {
+    type: "keyframes",
+    ease: (progress2) => {
+      return generator.next(duration * progress2).value / scale2;
+    },
+    duration: millisecondsToSeconds(duration)
+  };
+}
+
+// node_modules/motion-dom/dist/es/animation/generators/utils/velocity.mjs
+var velocitySampleDuration = 5;
+function calcGeneratorVelocity(resolveValue, t, current) {
+  const prevT = Math.max(t - velocitySampleDuration, 0);
+  return velocityPerSecond(current - resolveValue(prevT), t - prevT);
+}
+
+// node_modules/motion-dom/dist/es/animation/generators/spring/defaults.mjs
+var springDefaults = {
+  // Default spring physics
+  stiffness: 100,
+  damping: 10,
+  mass: 1,
+  velocity: 0,
+  // Default duration/bounce-based options
+  duration: 800,
+  // in ms
+  bounce: 0.3,
+  visualDuration: 0.3,
+  // in seconds
+  // Rest thresholds
+  restSpeed: {
+    granular: 0.01,
+    default: 2
+  },
+  restDelta: {
+    granular: 5e-3,
+    default: 0.5
+  },
+  // Limits
+  minDuration: 0.01,
+  // in seconds
+  maxDuration: 10,
+  // in seconds
+  minDamping: 0.05,
+  maxDamping: 1
+};
+
+// node_modules/motion-dom/dist/es/animation/generators/spring/find.mjs
+var safeMin = 1e-3;
+function findSpring({ duration = springDefaults.duration, bounce = springDefaults.bounce, velocity = springDefaults.velocity, mass = springDefaults.mass }) {
+  let envelope;
+  let derivative;
+  warning(duration <= secondsToMilliseconds(springDefaults.maxDuration), "Spring duration must be 10 seconds or less", "spring-duration-limit");
+  let dampingRatio = 1 - bounce;
+  dampingRatio = clamp(springDefaults.minDamping, springDefaults.maxDamping, dampingRatio);
+  duration = clamp(springDefaults.minDuration, springDefaults.maxDuration, millisecondsToSeconds(duration));
+  if (dampingRatio < 1) {
+    envelope = (undampedFreq2) => {
+      const exponentialDecay = undampedFreq2 * dampingRatio;
+      const delta = exponentialDecay * duration;
+      const a2 = exponentialDecay - velocity;
+      const b = calcAngularFreq(undampedFreq2, dampingRatio);
+      const c2 = Math.exp(-delta);
+      return safeMin - a2 / b * c2;
+    };
+    derivative = (undampedFreq2) => {
+      const exponentialDecay = undampedFreq2 * dampingRatio;
+      const delta = exponentialDecay * duration;
+      const d = delta * velocity + velocity;
+      const e = Math.pow(dampingRatio, 2) * Math.pow(undampedFreq2, 2) * duration;
+      const f = Math.exp(-delta);
+      const g = calcAngularFreq(Math.pow(undampedFreq2, 2), dampingRatio);
+      const factor = -envelope(undampedFreq2) + safeMin > 0 ? -1 : 1;
+      return factor * ((d - e) * f) / g;
+    };
+  } else {
+    envelope = (undampedFreq2) => {
+      const a2 = Math.exp(-undampedFreq2 * duration);
+      const b = (undampedFreq2 - velocity) * duration + 1;
+      return -safeMin + a2 * b;
+    };
+    derivative = (undampedFreq2) => {
+      const a2 = Math.exp(-undampedFreq2 * duration);
+      const b = (velocity - undampedFreq2) * (duration * duration);
+      return a2 * b;
+    };
+  }
+  const initialGuess = 5 / duration;
+  const undampedFreq = approximateRoot(envelope, derivative, initialGuess);
+  duration = secondsToMilliseconds(duration);
+  if (isNaN(undampedFreq)) {
+    return {
+      stiffness: springDefaults.stiffness,
+      damping: springDefaults.damping,
+      duration
+    };
+  } else {
+    const stiffness = Math.pow(undampedFreq, 2) * mass;
+    return {
+      stiffness,
+      damping: dampingRatio * 2 * Math.sqrt(mass * stiffness),
+      duration
+    };
+  }
+}
+var rootIterations = 12;
+function approximateRoot(envelope, derivative, initialGuess) {
+  let result = initialGuess;
+  for (let i = 1; i < rootIterations; i++) {
+    result = result - envelope(result) / derivative(result);
+  }
+  return result;
+}
+function calcAngularFreq(undampedFreq, dampingRatio) {
+  return undampedFreq * Math.sqrt(1 - dampingRatio * dampingRatio);
+}
+
+// node_modules/motion-dom/dist/es/animation/generators/spring/index.mjs
+var durationKeys = ["duration", "bounce"];
+var physicsKeys = ["stiffness", "damping", "mass"];
+function isSpringType(options, keys2) {
+  return keys2.some((key) => options[key] !== void 0);
+}
+function getSpringOptions(options) {
+  let springOptions = {
+    velocity: springDefaults.velocity,
+    stiffness: springDefaults.stiffness,
+    damping: springDefaults.damping,
+    mass: springDefaults.mass,
+    isResolvedFromDuration: false,
+    ...options
+  };
+  if (!isSpringType(options, physicsKeys) && isSpringType(options, durationKeys)) {
+    if (options.visualDuration) {
+      const visualDuration = options.visualDuration;
+      const root = 2 * Math.PI / (visualDuration * 1.2);
+      const stiffness = root * root;
+      const damping = 2 * clamp(0.05, 1, 1 - (options.bounce || 0)) * Math.sqrt(stiffness);
+      springOptions = {
+        ...springOptions,
+        mass: springDefaults.mass,
+        stiffness,
+        damping
+      };
+    } else {
+      const derived = findSpring(options);
+      springOptions = {
+        ...springOptions,
+        ...derived,
+        mass: springDefaults.mass
+      };
+      springOptions.isResolvedFromDuration = true;
+    }
+  }
+  return springOptions;
+}
+function spring(optionsOrVisualDuration = springDefaults.visualDuration, bounce = springDefaults.bounce) {
+  const options = typeof optionsOrVisualDuration !== "object" ? {
+    visualDuration: optionsOrVisualDuration,
+    keyframes: [0, 1],
+    bounce
+  } : optionsOrVisualDuration;
+  let { restSpeed, restDelta } = options;
+  const origin = options.keyframes[0];
+  const target = options.keyframes[options.keyframes.length - 1];
+  const state = { done: false, value: origin };
+  const { stiffness, damping, mass, duration, velocity, isResolvedFromDuration } = getSpringOptions({
+    ...options,
+    velocity: -millisecondsToSeconds(options.velocity || 0)
+  });
+  const initialVelocity = velocity || 0;
+  const dampingRatio = damping / (2 * Math.sqrt(stiffness * mass));
+  const initialDelta = target - origin;
+  const undampedAngularFreq = millisecondsToSeconds(Math.sqrt(stiffness / mass));
+  const isGranularScale = Math.abs(initialDelta) < 5;
+  restSpeed || (restSpeed = isGranularScale ? springDefaults.restSpeed.granular : springDefaults.restSpeed.default);
+  restDelta || (restDelta = isGranularScale ? springDefaults.restDelta.granular : springDefaults.restDelta.default);
+  let resolveSpring;
+  if (dampingRatio < 1) {
+    const angularFreq = calcAngularFreq(undampedAngularFreq, dampingRatio);
+    resolveSpring = (t) => {
+      const envelope = Math.exp(-dampingRatio * undampedAngularFreq * t);
+      return target - envelope * ((initialVelocity + dampingRatio * undampedAngularFreq * initialDelta) / angularFreq * Math.sin(angularFreq * t) + initialDelta * Math.cos(angularFreq * t));
+    };
+  } else if (dampingRatio === 1) {
+    resolveSpring = (t) => target - Math.exp(-undampedAngularFreq * t) * (initialDelta + (initialVelocity + undampedAngularFreq * initialDelta) * t);
+  } else {
+    const dampedAngularFreq = undampedAngularFreq * Math.sqrt(dampingRatio * dampingRatio - 1);
+    resolveSpring = (t) => {
+      const envelope = Math.exp(-dampingRatio * undampedAngularFreq * t);
+      const freqForT = Math.min(dampedAngularFreq * t, 300);
+      return target - envelope * ((initialVelocity + dampingRatio * undampedAngularFreq * initialDelta) * Math.sinh(freqForT) + dampedAngularFreq * initialDelta * Math.cosh(freqForT)) / dampedAngularFreq;
+    };
+  }
+  const generator = {
+    calculatedDuration: isResolvedFromDuration ? duration || null : null,
+    next: (t) => {
+      const current = resolveSpring(t);
+      if (!isResolvedFromDuration) {
+        let currentVelocity = t === 0 ? initialVelocity : 0;
+        if (dampingRatio < 1) {
+          currentVelocity = t === 0 ? secondsToMilliseconds(initialVelocity) : calcGeneratorVelocity(resolveSpring, t, current);
+        }
+        const isBelowVelocityThreshold = Math.abs(currentVelocity) <= restSpeed;
+        const isBelowDisplacementThreshold = Math.abs(target - current) <= restDelta;
+        state.done = isBelowVelocityThreshold && isBelowDisplacementThreshold;
+      } else {
+        state.done = t >= duration;
+      }
+      state.value = state.done ? target : current;
+      return state;
+    },
+    toString: () => {
+      const calculatedDuration = Math.min(calcGeneratorDuration(generator), maxGeneratorDuration);
+      const easing = generateLinearEasing((progress2) => generator.next(calculatedDuration * progress2).value, calculatedDuration, 30);
+      return calculatedDuration + "ms " + easing;
+    },
+    toTransition: () => {
+    }
+  };
+  return generator;
+}
+spring.applyToOptions = (options) => {
+  const generatorOptions = createGeneratorEasing(options, 100, spring);
+  options.ease = generatorOptions.ease;
+  options.duration = secondsToMilliseconds(generatorOptions.duration);
+  options.type = "keyframes";
+  return options;
+};
+
+// node_modules/motion-dom/dist/es/animation/generators/inertia.mjs
+function inertia({ keyframes: keyframes2, velocity = 0, power = 0.8, timeConstant = 325, bounceDamping = 10, bounceStiffness = 500, modifyTarget, min: min4, max: max4, restDelta = 0.5, restSpeed }) {
+  const origin = keyframes2[0];
+  const state = {
+    done: false,
+    value: origin
+  };
+  const isOutOfBounds = (v) => min4 !== void 0 && v < min4 || max4 !== void 0 && v > max4;
+  const nearestBoundary = (v) => {
+    if (min4 === void 0)
+      return max4;
+    if (max4 === void 0)
+      return min4;
+    return Math.abs(min4 - v) < Math.abs(max4 - v) ? min4 : max4;
+  };
+  let amplitude = power * velocity;
+  const ideal = origin + amplitude;
+  const target = modifyTarget === void 0 ? ideal : modifyTarget(ideal);
+  if (target !== ideal)
+    amplitude = target - origin;
+  const calcDelta = (t) => -amplitude * Math.exp(-t / timeConstant);
+  const calcLatest = (t) => target + calcDelta(t);
+  const applyFriction = (t) => {
+    const delta = calcDelta(t);
+    const latest = calcLatest(t);
+    state.done = Math.abs(delta) <= restDelta;
+    state.value = state.done ? target : latest;
+  };
+  let timeReachedBoundary;
+  let spring$1;
+  const checkCatchBoundary = (t) => {
+    if (!isOutOfBounds(state.value))
+      return;
+    timeReachedBoundary = t;
+    spring$1 = spring({
+      keyframes: [state.value, nearestBoundary(state.value)],
+      velocity: calcGeneratorVelocity(calcLatest, t, state.value),
+      // TODO: This should be passing * 1000
+      damping: bounceDamping,
+      stiffness: bounceStiffness,
+      restDelta,
+      restSpeed
+    });
+  };
+  checkCatchBoundary(0);
+  return {
+    calculatedDuration: null,
+    next: (t) => {
+      let hasUpdatedFrame = false;
+      if (!spring$1 && timeReachedBoundary === void 0) {
+        hasUpdatedFrame = true;
+        applyFriction(t);
+        checkCatchBoundary(t);
+      }
+      if (timeReachedBoundary !== void 0 && t >= timeReachedBoundary) {
+        return spring$1.next(t - timeReachedBoundary);
+      } else {
+        !hasUpdatedFrame && applyFriction(t);
+        return state;
+      }
+    }
+  };
+}
+
+// node_modules/motion-dom/dist/es/utils/interpolate.mjs
+function createMixers(output, ease2, customMixer) {
+  const mixers = [];
+  const mixerFactory = customMixer || MotionGlobalConfig.mix || mix;
+  const numMixers = output.length - 1;
+  for (let i = 0; i < numMixers; i++) {
+    let mixer = mixerFactory(output[i], output[i + 1]);
+    if (ease2) {
+      const easingFunction = Array.isArray(ease2) ? ease2[i] || noop : ease2;
+      mixer = pipe(easingFunction, mixer);
+    }
+    mixers.push(mixer);
+  }
+  return mixers;
+}
+function interpolate(input, output, { clamp: isClamp = true, ease: ease2, mixer } = {}) {
+  const inputLength = input.length;
+  invariant(inputLength === output.length, "Both input and output ranges must be the same length", "range-length");
+  if (inputLength === 1)
+    return () => output[0];
+  if (inputLength === 2 && output[0] === output[1])
+    return () => output[1];
+  const isZeroDeltaRange = input[0] === input[1];
+  if (input[0] > input[inputLength - 1]) {
+    input = [...input].reverse();
+    output = [...output].reverse();
+  }
+  const mixers = createMixers(output, ease2, mixer);
+  const numMixers = mixers.length;
+  const interpolator = (v) => {
+    if (isZeroDeltaRange && v < input[0])
+      return output[0];
+    let i = 0;
+    if (numMixers > 1) {
+      for (; i < input.length - 2; i++) {
+        if (v < input[i + 1])
+          break;
+      }
+    }
+    const progressInRange = progress(input[i], input[i + 1], v);
+    return mixers[i](progressInRange);
+  };
+  return isClamp ? (v) => interpolator(clamp(input[0], input[inputLength - 1], v)) : interpolator;
+}
+
+// node_modules/motion-dom/dist/es/animation/keyframes/offsets/fill.mjs
+function fillOffset(offset, remaining) {
+  const min4 = offset[offset.length - 1];
+  for (let i = 1; i <= remaining; i++) {
+    const offsetProgress = progress(0, remaining, i);
+    offset.push(mixNumber(min4, 1, offsetProgress));
+  }
+}
+
+// node_modules/motion-dom/dist/es/animation/keyframes/offsets/default.mjs
+function defaultOffset(arr) {
+  const offset = [0];
+  fillOffset(offset, arr.length - 1);
+  return offset;
+}
+
+// node_modules/motion-dom/dist/es/animation/keyframes/offsets/time.mjs
+function convertOffsetToTimes(offset, duration) {
+  return offset.map((o) => o * duration);
+}
+
+// node_modules/motion-dom/dist/es/animation/generators/keyframes.mjs
+function defaultEasing(values, easing) {
+  return values.map(() => easing || easeInOut).splice(0, values.length - 1);
+}
+function keyframes({ duration = 300, keyframes: keyframeValues, times, ease: ease2 = "easeInOut" }) {
+  const easingFunctions = isEasingArray(ease2) ? ease2.map(easingDefinitionToFunction) : easingDefinitionToFunction(ease2);
+  const state = {
+    done: false,
+    value: keyframeValues[0]
+  };
+  const absoluteTimes = convertOffsetToTimes(
+    // Only use the provided offsets if they're the correct length
+    // TODO Maybe we should warn here if there's a length mismatch
+    times && times.length === keyframeValues.length ? times : defaultOffset(keyframeValues),
+    duration
+  );
+  const mapTimeToKeyframe = interpolate(absoluteTimes, keyframeValues, {
+    ease: Array.isArray(easingFunctions) ? easingFunctions : defaultEasing(keyframeValues, easingFunctions)
+  });
+  return {
+    calculatedDuration: duration,
+    next: (t) => {
+      state.value = mapTimeToKeyframe(t);
+      state.done = t >= duration;
+      return state;
+    }
+  };
+}
+
+// node_modules/motion-dom/dist/es/animation/keyframes/get-final.mjs
+var isNotNull = (value) => value !== null;
+function getFinalKeyframe(keyframes2, { repeat, repeatType = "loop" }, finalKeyframe, speed = 1) {
+  const resolvedKeyframes = keyframes2.filter(isNotNull);
+  const useFirstKeyframe = speed < 0 || repeat && repeatType !== "loop" && repeat % 2 === 1;
+  const index = useFirstKeyframe ? 0 : resolvedKeyframes.length - 1;
+  return !index || finalKeyframe === void 0 ? resolvedKeyframes[index] : finalKeyframe;
+}
+
+// node_modules/motion-dom/dist/es/animation/utils/replace-transition-type.mjs
+var transitionTypeMap = {
+  decay: inertia,
+  inertia,
+  tween: keyframes,
+  keyframes,
+  spring
+};
+function replaceTransitionType(transition) {
+  if (typeof transition.type === "string") {
+    transition.type = transitionTypeMap[transition.type];
+  }
+}
+
+// node_modules/motion-dom/dist/es/animation/utils/WithPromise.mjs
+var WithPromise = class {
+  constructor() {
+    this.updateFinished();
+  }
+  get finished() {
+    return this._finished;
+  }
+  updateFinished() {
+    this._finished = new Promise((resolve) => {
+      this.resolve = resolve;
+    });
+  }
+  notifyFinished() {
+    this.resolve();
+  }
+  /**
+   * Allows the animation to be awaited.
+   *
+   * @deprecated Use `finished` instead.
+   */
+  then(onResolve, onReject) {
+    return this.finished.then(onResolve, onReject);
+  }
+};
+
+// node_modules/motion-dom/dist/es/animation/JSAnimation.mjs
+var percentToProgress = (percent2) => percent2 / 100;
+var JSAnimation = class extends WithPromise {
+  constructor(options) {
+    super();
+    this.state = "idle";
+    this.startTime = null;
+    this.isStopped = false;
+    this.currentTime = 0;
+    this.holdTime = null;
+    this.playbackSpeed = 1;
+    this.stop = () => {
+      const { motionValue: motionValue2 } = this.options;
+      if (motionValue2 && motionValue2.updatedAt !== time.now()) {
+        this.tick(time.now());
+      }
+      this.isStopped = true;
+      if (this.state === "idle")
+        return;
+      this.teardown();
+      this.options.onStop?.();
+    };
+    activeAnimations.mainThread++;
+    this.options = options;
+    this.initAnimation();
+    this.play();
+    if (options.autoplay === false)
+      this.pause();
+  }
+  initAnimation() {
+    const { options } = this;
+    replaceTransitionType(options);
+    const { type = keyframes, repeat = 0, repeatDelay = 0, repeatType, velocity = 0 } = options;
+    let { keyframes: keyframes$1 } = options;
+    const generatorFactory = type || keyframes;
+    if (generatorFactory !== keyframes) {
+      invariant(keyframes$1.length <= 2, `Only two keyframes currently supported with spring and inertia animations. Trying to animate ${keyframes$1}`, "spring-two-frames");
+    }
+    if (generatorFactory !== keyframes && typeof keyframes$1[0] !== "number") {
+      this.mixKeyframes = pipe(percentToProgress, mix(keyframes$1[0], keyframes$1[1]));
+      keyframes$1 = [0, 100];
+    }
+    const generator = generatorFactory({ ...options, keyframes: keyframes$1 });
+    if (repeatType === "mirror") {
+      this.mirroredGenerator = generatorFactory({
+        ...options,
+        keyframes: [...keyframes$1].reverse(),
+        velocity: -velocity
+      });
+    }
+    if (generator.calculatedDuration === null) {
+      generator.calculatedDuration = calcGeneratorDuration(generator);
+    }
+    const { calculatedDuration } = generator;
+    this.calculatedDuration = calculatedDuration;
+    this.resolvedDuration = calculatedDuration + repeatDelay;
+    this.totalDuration = this.resolvedDuration * (repeat + 1) - repeatDelay;
+    this.generator = generator;
+  }
+  updateTime(timestamp) {
+    const animationTime = Math.round(timestamp - this.startTime) * this.playbackSpeed;
+    if (this.holdTime !== null) {
+      this.currentTime = this.holdTime;
+    } else {
+      this.currentTime = animationTime;
+    }
+  }
+  tick(timestamp, sample = false) {
+    const { generator, totalDuration, mixKeyframes, mirroredGenerator, resolvedDuration, calculatedDuration } = this;
+    if (this.startTime === null)
+      return generator.next(0);
+    const { delay: delay2 = 0, keyframes: keyframes2, repeat, repeatType, repeatDelay, type, onUpdate, finalKeyframe } = this.options;
+    if (this.speed > 0) {
+      this.startTime = Math.min(this.startTime, timestamp);
+    } else if (this.speed < 0) {
+      this.startTime = Math.min(timestamp - totalDuration / this.speed, this.startTime);
+    }
+    if (sample) {
+      this.currentTime = timestamp;
+    } else {
+      this.updateTime(timestamp);
+    }
+    const timeWithoutDelay = this.currentTime - delay2 * (this.playbackSpeed >= 0 ? 1 : -1);
+    const isInDelayPhase = this.playbackSpeed >= 0 ? timeWithoutDelay < 0 : timeWithoutDelay > totalDuration;
+    this.currentTime = Math.max(timeWithoutDelay, 0);
+    if (this.state === "finished" && this.holdTime === null) {
+      this.currentTime = totalDuration;
+    }
+    let elapsed = this.currentTime;
+    let frameGenerator = generator;
+    if (repeat) {
+      const progress2 = Math.min(this.currentTime, totalDuration) / resolvedDuration;
+      let currentIteration = Math.floor(progress2);
+      let iterationProgress = progress2 % 1;
+      if (!iterationProgress && progress2 >= 1) {
+        iterationProgress = 1;
+      }
+      iterationProgress === 1 && currentIteration--;
+      currentIteration = Math.min(currentIteration, repeat + 1);
+      const isOddIteration = Boolean(currentIteration % 2);
+      if (isOddIteration) {
+        if (repeatType === "reverse") {
+          iterationProgress = 1 - iterationProgress;
+          if (repeatDelay) {
+            iterationProgress -= repeatDelay / resolvedDuration;
+          }
+        } else if (repeatType === "mirror") {
+          frameGenerator = mirroredGenerator;
+        }
+      }
+      elapsed = clamp(0, 1, iterationProgress) * resolvedDuration;
+    }
+    const state = isInDelayPhase ? { done: false, value: keyframes2[0] } : frameGenerator.next(elapsed);
+    if (mixKeyframes) {
+      state.value = mixKeyframes(state.value);
+    }
+    let { done } = state;
+    if (!isInDelayPhase && calculatedDuration !== null) {
+      done = this.playbackSpeed >= 0 ? this.currentTime >= totalDuration : this.currentTime <= 0;
+    }
+    const isAnimationFinished = this.holdTime === null && (this.state === "finished" || this.state === "running" && done);
+    if (isAnimationFinished && type !== inertia) {
+      state.value = getFinalKeyframe(keyframes2, this.options, finalKeyframe, this.speed);
+    }
+    if (onUpdate) {
+      onUpdate(state.value);
+    }
+    if (isAnimationFinished) {
+      this.finish();
+    }
+    return state;
+  }
+  /**
+   * Allows the returned animation to be awaited or promise-chained. Currently
+   * resolves when the animation finishes at all but in a future update could/should
+   * reject if its cancels.
+   */
+  then(resolve, reject) {
+    return this.finished.then(resolve, reject);
+  }
+  get duration() {
+    return millisecondsToSeconds(this.calculatedDuration);
+  }
+  get time() {
+    return millisecondsToSeconds(this.currentTime);
+  }
+  set time(newTime) {
+    newTime = secondsToMilliseconds(newTime);
+    this.currentTime = newTime;
+    if (this.startTime === null || this.holdTime !== null || this.playbackSpeed === 0) {
+      this.holdTime = newTime;
+    } else if (this.driver) {
+      this.startTime = this.driver.now() - newTime / this.playbackSpeed;
+    }
+    this.driver?.start(false);
+  }
+  get speed() {
+    return this.playbackSpeed;
+  }
+  set speed(newSpeed) {
+    this.updateTime(time.now());
+    const hasChanged = this.playbackSpeed !== newSpeed;
+    this.playbackSpeed = newSpeed;
+    if (hasChanged) {
+      this.time = millisecondsToSeconds(this.currentTime);
+    }
+  }
+  play() {
+    if (this.isStopped)
+      return;
+    const { driver = frameloopDriver, startTime } = this.options;
+    if (!this.driver) {
+      this.driver = driver((timestamp) => this.tick(timestamp));
+    }
+    this.options.onPlay?.();
+    const now2 = this.driver.now();
+    if (this.state === "finished") {
+      this.updateFinished();
+      this.startTime = now2;
+    } else if (this.holdTime !== null) {
+      this.startTime = now2 - this.holdTime;
+    } else if (!this.startTime) {
+      this.startTime = startTime ?? now2;
+    }
+    if (this.state === "finished" && this.speed < 0) {
+      this.startTime += this.calculatedDuration;
+    }
+    this.holdTime = null;
+    this.state = "running";
+    this.driver.start();
+  }
+  pause() {
+    this.state = "paused";
+    this.updateTime(time.now());
+    this.holdTime = this.currentTime;
+  }
+  complete() {
+    if (this.state !== "running") {
+      this.play();
+    }
+    this.state = "finished";
+    this.holdTime = null;
+  }
+  finish() {
+    this.notifyFinished();
+    this.teardown();
+    this.state = "finished";
+    this.options.onComplete?.();
+  }
+  cancel() {
+    this.holdTime = null;
+    this.startTime = 0;
+    this.tick(0);
+    this.teardown();
+    this.options.onCancel?.();
+  }
+  teardown() {
+    this.state = "idle";
+    this.stopDriver();
+    this.startTime = this.holdTime = null;
+    activeAnimations.mainThread--;
+  }
+  stopDriver() {
+    if (!this.driver)
+      return;
+    this.driver.stop();
+    this.driver = void 0;
+  }
+  sample(sampleTime) {
+    this.startTime = 0;
+    return this.tick(sampleTime, true);
+  }
+  attachTimeline(timeline) {
+    if (this.options.allowFlatten) {
+      this.options.type = "keyframes";
+      this.options.ease = "linear";
+      this.initAnimation();
+    }
+    this.driver?.stop();
+    return timeline.observe(this);
+  }
+};
+
+// node_modules/motion-dom/dist/es/animation/keyframes/utils/fill-wildcards.mjs
+function fillWildcards(keyframes2) {
+  for (let i = 1; i < keyframes2.length; i++) {
+    keyframes2[i] ?? (keyframes2[i] = keyframes2[i - 1]);
+  }
+}
+
+// node_modules/motion-dom/dist/es/render/dom/parse-transform.mjs
+var radToDeg = (rad) => rad * 180 / Math.PI;
+var rotate = (v) => {
+  const angle = radToDeg(Math.atan2(v[1], v[0]));
+  return rebaseAngle(angle);
+};
+var matrix2dParsers = {
+  x: 4,
+  y: 5,
+  translateX: 4,
+  translateY: 5,
+  scaleX: 0,
+  scaleY: 3,
+  scale: (v) => (Math.abs(v[0]) + Math.abs(v[3])) / 2,
+  rotate,
+  rotateZ: rotate,
+  skewX: (v) => radToDeg(Math.atan(v[1])),
+  skewY: (v) => radToDeg(Math.atan(v[2])),
+  skew: (v) => (Math.abs(v[1]) + Math.abs(v[2])) / 2
+};
+var rebaseAngle = (angle) => {
+  angle = angle % 360;
+  if (angle < 0)
+    angle += 360;
+  return angle;
+};
+var rotateZ = rotate;
+var scaleX = (v) => Math.sqrt(v[0] * v[0] + v[1] * v[1]);
+var scaleY = (v) => Math.sqrt(v[4] * v[4] + v[5] * v[5]);
+var matrix3dParsers = {
+  x: 12,
+  y: 13,
+  z: 14,
+  translateX: 12,
+  translateY: 13,
+  translateZ: 14,
+  scaleX,
+  scaleY,
+  scale: (v) => (scaleX(v) + scaleY(v)) / 2,
+  rotateX: (v) => rebaseAngle(radToDeg(Math.atan2(v[6], v[5]))),
+  rotateY: (v) => rebaseAngle(radToDeg(Math.atan2(-v[2], v[0]))),
+  rotateZ,
+  rotate: rotateZ,
+  skewX: (v) => radToDeg(Math.atan(v[4])),
+  skewY: (v) => radToDeg(Math.atan(v[1])),
+  skew: (v) => (Math.abs(v[1]) + Math.abs(v[4])) / 2
+};
+function defaultTransformValue(name) {
+  return name.includes("scale") ? 1 : 0;
+}
+function parseValueFromTransform(transform, name) {
+  if (!transform || transform === "none") {
+    return defaultTransformValue(name);
+  }
+  const matrix3dMatch = transform.match(/^matrix3d\(([-\d.e\s,]+)\)$/u);
+  let parsers;
+  let match;
+  if (matrix3dMatch) {
+    parsers = matrix3dParsers;
+    match = matrix3dMatch;
+  } else {
+    const matrix2dMatch = transform.match(/^matrix\(([-\d.e\s,]+)\)$/u);
+    parsers = matrix2dParsers;
+    match = matrix2dMatch;
+  }
+  if (!match) {
+    return defaultTransformValue(name);
+  }
+  const valueParser = parsers[name];
+  const values = match[1].split(",").map(convertTransformToNumber);
+  return typeof valueParser === "function" ? valueParser(values) : values[valueParser];
+}
+var readTransformValue = (instance, name) => {
+  const { transform = "none" } = getComputedStyle(instance);
+  return parseValueFromTransform(transform, name);
+};
+function convertTransformToNumber(value) {
+  return parseFloat(value.trim());
+}
+
+// node_modules/motion-dom/dist/es/render/utils/keys-transform.mjs
+var transformPropOrder = [
+  "transformPerspective",
+  "x",
+  "y",
+  "z",
+  "translateX",
+  "translateY",
+  "translateZ",
+  "scale",
+  "scaleX",
+  "scaleY",
+  "rotate",
+  "rotateX",
+  "rotateY",
+  "rotateZ",
+  "skew",
+  "skewX",
+  "skewY"
+];
+var transformProps = /* @__PURE__ */ (() => new Set(transformPropOrder))();
+
+// node_modules/motion-dom/dist/es/animation/keyframes/utils/unit-conversion.mjs
+var isNumOrPxType = (v) => v === number || v === px;
+var transformKeys = /* @__PURE__ */ new Set(["x", "y", "z"]);
+var nonTranslationalTransformKeys = transformPropOrder.filter((key) => !transformKeys.has(key));
+function removeNonTranslationalTransform(visualElement) {
+  const removedTransforms = [];
+  nonTranslationalTransformKeys.forEach((key) => {
+    const value = visualElement.getValue(key);
+    if (value !== void 0) {
+      removedTransforms.push([key, value.get()]);
+      value.set(key.startsWith("scale") ? 1 : 0);
+    }
+  });
+  return removedTransforms;
+}
+var positionalValues = {
+  // Dimensions
+  width: ({ x: x2 }, { paddingLeft = "0", paddingRight = "0" }) => x2.max - x2.min - parseFloat(paddingLeft) - parseFloat(paddingRight),
+  height: ({ y: y2 }, { paddingTop = "0", paddingBottom = "0" }) => y2.max - y2.min - parseFloat(paddingTop) - parseFloat(paddingBottom),
+  top: (_bbox, { top }) => parseFloat(top),
+  left: (_bbox, { left }) => parseFloat(left),
+  bottom: ({ y: y2 }, { top }) => parseFloat(top) + (y2.max - y2.min),
+  right: ({ x: x2 }, { left }) => parseFloat(left) + (x2.max - x2.min),
+  // Transform
+  x: (_bbox, { transform }) => parseValueFromTransform(transform, "x"),
+  y: (_bbox, { transform }) => parseValueFromTransform(transform, "y")
+};
+positionalValues.translateX = positionalValues.x;
+positionalValues.translateY = positionalValues.y;
+
+// node_modules/motion-dom/dist/es/animation/keyframes/KeyframesResolver.mjs
+var toResolve = /* @__PURE__ */ new Set();
+var isScheduled = false;
+var anyNeedsMeasurement = false;
+var isForced = false;
+function measureAllKeyframes() {
+  if (anyNeedsMeasurement) {
+    const resolversToMeasure = Array.from(toResolve).filter((resolver) => resolver.needsMeasurement);
+    const elementsToMeasure = new Set(resolversToMeasure.map((resolver) => resolver.element));
+    const transformsToRestore = /* @__PURE__ */ new Map();
+    elementsToMeasure.forEach((element) => {
+      const removedTransforms = removeNonTranslationalTransform(element);
+      if (!removedTransforms.length)
+        return;
+      transformsToRestore.set(element, removedTransforms);
+      element.render();
+    });
+    resolversToMeasure.forEach((resolver) => resolver.measureInitialState());
+    elementsToMeasure.forEach((element) => {
+      element.render();
+      const restore = transformsToRestore.get(element);
+      if (restore) {
+        restore.forEach(([key, value]) => {
+          element.getValue(key)?.set(value);
+        });
+      }
+    });
+    resolversToMeasure.forEach((resolver) => resolver.measureEndState());
+    resolversToMeasure.forEach((resolver) => {
+      if (resolver.suspendedScrollY !== void 0) {
+        window.scrollTo(0, resolver.suspendedScrollY);
+      }
+    });
+  }
+  anyNeedsMeasurement = false;
+  isScheduled = false;
+  toResolve.forEach((resolver) => resolver.complete(isForced));
+  toResolve.clear();
+}
+function readAllKeyframes() {
+  toResolve.forEach((resolver) => {
+    resolver.readKeyframes();
+    if (resolver.needsMeasurement) {
+      anyNeedsMeasurement = true;
+    }
+  });
+}
+function flushKeyframeResolvers() {
+  isForced = true;
+  readAllKeyframes();
+  measureAllKeyframes();
+  isForced = false;
+}
+var KeyframeResolver = class {
+  constructor(unresolvedKeyframes, onComplete, name, motionValue2, element, isAsync = false) {
+    this.state = "pending";
+    this.isAsync = false;
+    this.needsMeasurement = false;
+    this.unresolvedKeyframes = [...unresolvedKeyframes];
+    this.onComplete = onComplete;
+    this.name = name;
+    this.motionValue = motionValue2;
+    this.element = element;
+    this.isAsync = isAsync;
+  }
+  scheduleResolve() {
+    this.state = "scheduled";
+    if (this.isAsync) {
+      toResolve.add(this);
+      if (!isScheduled) {
+        isScheduled = true;
+        frame.read(readAllKeyframes);
+        frame.resolveKeyframes(measureAllKeyframes);
+      }
+    } else {
+      this.readKeyframes();
+      this.complete();
+    }
+  }
+  readKeyframes() {
+    const { unresolvedKeyframes, name, element, motionValue: motionValue2 } = this;
+    if (unresolvedKeyframes[0] === null) {
+      const currentValue = motionValue2?.get();
+      const finalKeyframe = unresolvedKeyframes[unresolvedKeyframes.length - 1];
+      if (currentValue !== void 0) {
+        unresolvedKeyframes[0] = currentValue;
+      } else if (element && name) {
+        const valueAsRead = element.readValue(name, finalKeyframe);
+        if (valueAsRead !== void 0 && valueAsRead !== null) {
+          unresolvedKeyframes[0] = valueAsRead;
+        }
+      }
+      if (unresolvedKeyframes[0] === void 0) {
+        unresolvedKeyframes[0] = finalKeyframe;
+      }
+      if (motionValue2 && currentValue === void 0) {
+        motionValue2.set(unresolvedKeyframes[0]);
+      }
+    }
+    fillWildcards(unresolvedKeyframes);
+  }
+  setFinalKeyframe() {
+  }
+  measureInitialState() {
+  }
+  renderEndStyles() {
+  }
+  measureEndState() {
+  }
+  complete(isForcedComplete = false) {
+    this.state = "complete";
+    this.onComplete(this.unresolvedKeyframes, this.finalKeyframe, isForcedComplete);
+    toResolve.delete(this);
+  }
+  cancel() {
+    if (this.state === "scheduled") {
+      toResolve.delete(this);
+      this.state = "pending";
+    }
+  }
+  resume() {
+    if (this.state === "pending")
+      this.scheduleResolve();
+  }
+};
+
+// node_modules/motion-dom/dist/es/render/dom/is-css-var.mjs
+var isCSSVar = (name) => name.startsWith("--");
+
+// node_modules/motion-dom/dist/es/render/dom/style-set.mjs
+function setStyle(element, name, value) {
+  isCSSVar(name) ? element.style.setProperty(name, value) : element.style[name] = value;
+}
+
+// node_modules/motion-dom/dist/es/utils/supports/scroll-timeline.mjs
+var supportsScrollTimeline = /* @__PURE__ */ memo(() => window.ScrollTimeline !== void 0);
+
+// node_modules/motion-dom/dist/es/utils/supports/flags.mjs
+var supportsFlags = {};
+
+// node_modules/motion-dom/dist/es/utils/supports/memo.mjs
+function memoSupports(callback, supportsFlag) {
+  const memoized = memo(callback);
+  return () => supportsFlags[supportsFlag] ?? memoized();
+}
+
+// node_modules/motion-dom/dist/es/utils/supports/linear-easing.mjs
+var supportsLinearEasing = /* @__PURE__ */ memoSupports(() => {
+  try {
+    document.createElement("div").animate({ opacity: 0 }, { easing: "linear(0, 1)" });
+  } catch (e) {
+    return false;
+  }
+  return true;
+}, "linearEasing");
+
+// node_modules/motion-dom/dist/es/animation/waapi/easing/cubic-bezier.mjs
+var cubicBezierAsString = ([a2, b, c2, d]) => `cubic-bezier(${a2}, ${b}, ${c2}, ${d})`;
+
+// node_modules/motion-dom/dist/es/animation/waapi/easing/supported.mjs
+var supportedWaapiEasing = {
+  linear: "linear",
+  ease: "ease",
+  easeIn: "ease-in",
+  easeOut: "ease-out",
+  easeInOut: "ease-in-out",
+  circIn: /* @__PURE__ */ cubicBezierAsString([0, 0.65, 0.55, 1]),
+  circOut: /* @__PURE__ */ cubicBezierAsString([0.55, 0, 1, 0.45]),
+  backIn: /* @__PURE__ */ cubicBezierAsString([0.31, 0.01, 0.66, -0.59]),
+  backOut: /* @__PURE__ */ cubicBezierAsString([0.33, 1.53, 0.69, 0.99])
+};
+
+// node_modules/motion-dom/dist/es/animation/waapi/easing/map-easing.mjs
+function mapEasingToNativeEasing(easing, duration) {
+  if (!easing) {
+    return void 0;
+  } else if (typeof easing === "function") {
+    return supportsLinearEasing() ? generateLinearEasing(easing, duration) : "ease-out";
+  } else if (isBezierDefinition(easing)) {
+    return cubicBezierAsString(easing);
+  } else if (Array.isArray(easing)) {
+    return easing.map((segmentEasing) => mapEasingToNativeEasing(segmentEasing, duration) || supportedWaapiEasing.easeOut);
+  } else {
+    return supportedWaapiEasing[easing];
+  }
+}
+
+// node_modules/motion-dom/dist/es/animation/waapi/start-waapi-animation.mjs
+function startWaapiAnimation(element, valueName, keyframes2, { delay: delay2 = 0, duration = 300, repeat = 0, repeatType = "loop", ease: ease2 = "easeOut", times } = {}, pseudoElement = void 0) {
+  const keyframeOptions = {
+    [valueName]: keyframes2
+  };
+  if (times)
+    keyframeOptions.offset = times;
+  const easing = mapEasingToNativeEasing(ease2, duration);
+  if (Array.isArray(easing))
+    keyframeOptions.easing = easing;
+  if (statsBuffer.value) {
+    activeAnimations.waapi++;
+  }
+  const options = {
+    delay: delay2,
+    duration,
+    easing: !Array.isArray(easing) ? easing : "linear",
+    fill: "both",
+    iterations: repeat + 1,
+    direction: repeatType === "reverse" ? "alternate" : "normal"
+  };
+  if (pseudoElement)
+    options.pseudoElement = pseudoElement;
+  const animation = element.animate(keyframeOptions, options);
+  if (statsBuffer.value) {
+    animation.finished.finally(() => {
+      activeAnimations.waapi--;
+    });
+  }
+  return animation;
+}
+
+// node_modules/motion-dom/dist/es/animation/generators/utils/is-generator.mjs
+function isGenerator(type) {
+  return typeof type === "function" && "applyToOptions" in type;
+}
+
+// node_modules/motion-dom/dist/es/animation/waapi/utils/apply-generator.mjs
+function applyGeneratorOptions({ type, ...options }) {
+  if (isGenerator(type) && supportsLinearEasing()) {
+    return type.applyToOptions(options);
+  } else {
+    options.duration ?? (options.duration = 300);
+    options.ease ?? (options.ease = "easeOut");
+  }
+  return options;
+}
+
+// node_modules/motion-dom/dist/es/animation/NativeAnimation.mjs
+var NativeAnimation = class extends WithPromise {
+  constructor(options) {
+    super();
+    this.finishedTime = null;
+    this.isStopped = false;
+    if (!options)
+      return;
+    const { element, name, keyframes: keyframes2, pseudoElement, allowFlatten = false, finalKeyframe, onComplete } = options;
+    this.isPseudoElement = Boolean(pseudoElement);
+    this.allowFlatten = allowFlatten;
+    this.options = options;
+    invariant(typeof options.type !== "string", `Mini animate() doesn't support "type" as a string.`, "mini-spring");
+    const transition = applyGeneratorOptions(options);
+    this.animation = startWaapiAnimation(element, name, keyframes2, transition, pseudoElement);
+    if (transition.autoplay === false) {
+      this.animation.pause();
+    }
+    this.animation.onfinish = () => {
+      this.finishedTime = this.time;
+      if (!pseudoElement) {
+        const keyframe = getFinalKeyframe(keyframes2, this.options, finalKeyframe, this.speed);
+        if (this.updateMotionValue) {
+          this.updateMotionValue(keyframe);
+        } else {
+          setStyle(element, name, keyframe);
+        }
+        this.animation.cancel();
+      }
+      onComplete?.();
+      this.notifyFinished();
+    };
+  }
+  play() {
+    if (this.isStopped)
+      return;
+    this.animation.play();
+    if (this.state === "finished") {
+      this.updateFinished();
+    }
+  }
+  pause() {
+    this.animation.pause();
+  }
+  complete() {
+    this.animation.finish?.();
+  }
+  cancel() {
+    try {
+      this.animation.cancel();
+    } catch (e) {
+    }
+  }
+  stop() {
+    if (this.isStopped)
+      return;
+    this.isStopped = true;
+    const { state } = this;
+    if (state === "idle" || state === "finished") {
+      return;
+    }
+    if (this.updateMotionValue) {
+      this.updateMotionValue();
+    } else {
+      this.commitStyles();
+    }
+    if (!this.isPseudoElement)
+      this.cancel();
+  }
+  /**
+   * WAAPI doesn't natively have any interruption capabilities.
+   *
+   * In this method, we commit styles back to the DOM before cancelling
+   * the animation.
+   *
+   * This is designed to be overridden by NativeAnimationExtended, which
+   * will create a renderless JS animation and sample it twice to calculate
+   * its current value, "previous" value, and therefore allow
+   * Motion to also correctly calculate velocity for any subsequent animation
+   * while deferring the commit until the next animation frame.
+   */
+  commitStyles() {
+    if (!this.isPseudoElement) {
+      this.animation.commitStyles?.();
+    }
+  }
+  get duration() {
+    const duration = this.animation.effect?.getComputedTiming?.().duration || 0;
+    return millisecondsToSeconds(Number(duration));
+  }
+  get time() {
+    return millisecondsToSeconds(Number(this.animation.currentTime) || 0);
+  }
+  set time(newTime) {
+    this.finishedTime = null;
+    this.animation.currentTime = secondsToMilliseconds(newTime);
+  }
+  /**
+   * The playback speed of the animation.
+   * 1 = normal speed, 2 = double speed, 0.5 = half speed.
+   */
+  get speed() {
+    return this.animation.playbackRate;
+  }
+  set speed(newSpeed) {
+    if (newSpeed < 0)
+      this.finishedTime = null;
+    this.animation.playbackRate = newSpeed;
+  }
+  get state() {
+    return this.finishedTime !== null ? "finished" : this.animation.playState;
+  }
+  get startTime() {
+    return Number(this.animation.startTime);
+  }
+  set startTime(newStartTime) {
+    this.animation.startTime = newStartTime;
+  }
+  /**
+   * Attaches a timeline to the animation, for instance the `ScrollTimeline`.
+   */
+  attachTimeline({ timeline, observe }) {
+    if (this.allowFlatten) {
+      this.animation.effect?.updateTiming({ easing: "linear" });
+    }
+    this.animation.onfinish = null;
+    if (timeline && supportsScrollTimeline()) {
+      this.animation.timeline = timeline;
+      return noop;
+    } else {
+      return observe(this);
+    }
+  }
+};
+
+// node_modules/motion-dom/dist/es/animation/waapi/utils/unsupported-easing.mjs
+var unsupportedEasingFunctions = {
+  anticipate,
+  backInOut,
+  circInOut
+};
+function isUnsupportedEase(key) {
+  return key in unsupportedEasingFunctions;
+}
+function replaceStringEasing(transition) {
+  if (typeof transition.ease === "string" && isUnsupportedEase(transition.ease)) {
+    transition.ease = unsupportedEasingFunctions[transition.ease];
+  }
+}
+
+// node_modules/motion-dom/dist/es/animation/NativeAnimationExtended.mjs
+var sampleDelta = 10;
+var NativeAnimationExtended = class extends NativeAnimation {
+  constructor(options) {
+    replaceStringEasing(options);
+    replaceTransitionType(options);
+    super(options);
+    if (options.startTime) {
+      this.startTime = options.startTime;
+    }
+    this.options = options;
+  }
+  /**
+   * WAAPI doesn't natively have any interruption capabilities.
+   *
+   * Rather than read commited styles back out of the DOM, we can
+   * create a renderless JS animation and sample it twice to calculate
+   * its current value, "previous" value, and therefore allow
+   * Motion to calculate velocity for any subsequent animation.
+   */
+  updateMotionValue(value) {
+    const { motionValue: motionValue2, onUpdate, onComplete, element, ...options } = this.options;
+    if (!motionValue2)
+      return;
+    if (value !== void 0) {
+      motionValue2.set(value);
+      return;
+    }
+    const sampleAnimation = new JSAnimation({
+      ...options,
+      autoplay: false
+    });
+    const sampleTime = secondsToMilliseconds(this.finishedTime ?? this.time);
+    motionValue2.setWithVelocity(sampleAnimation.sample(sampleTime - sampleDelta).value, sampleAnimation.sample(sampleTime).value, sampleDelta);
+    sampleAnimation.stop();
+  }
+};
+
+// node_modules/motion-dom/dist/es/animation/utils/is-animatable.mjs
+var isAnimatable = (value, name) => {
+  if (name === "zIndex")
+    return false;
+  if (typeof value === "number" || Array.isArray(value))
+    return true;
+  if (typeof value === "string" && // It's animatable if we have a string
+  (complex.test(value) || value === "0") && // And it contains numbers and/or colors
+  !value.startsWith("url(")) {
+    return true;
+  }
+  return false;
+};
+
+// node_modules/motion-dom/dist/es/animation/utils/can-animate.mjs
+function hasKeyframesChanged(keyframes2) {
+  const current = keyframes2[0];
+  if (keyframes2.length === 1)
+    return true;
+  for (let i = 0; i < keyframes2.length; i++) {
+    if (keyframes2[i] !== current)
+      return true;
+  }
+}
+function canAnimate(keyframes2, name, type, velocity) {
+  const originKeyframe = keyframes2[0];
+  if (originKeyframe === null)
+    return false;
+  if (name === "display" || name === "visibility")
+    return true;
+  const targetKeyframe = keyframes2[keyframes2.length - 1];
+  const isOriginAnimatable = isAnimatable(originKeyframe, name);
+  const isTargetAnimatable = isAnimatable(targetKeyframe, name);
+  warning(isOriginAnimatable === isTargetAnimatable, `You are trying to animate ${name} from "${originKeyframe}" to "${targetKeyframe}". "${isOriginAnimatable ? targetKeyframe : originKeyframe}" is not an animatable value.`, "value-not-animatable");
+  if (!isOriginAnimatable || !isTargetAnimatable) {
+    return false;
+  }
+  return hasKeyframesChanged(keyframes2) || (type === "spring" || isGenerator(type)) && velocity;
+}
+
+// node_modules/motion-dom/dist/es/animation/utils/make-animation-instant.mjs
+function makeAnimationInstant(options) {
+  options.duration = 0;
+  options.type === "keyframes";
+}
+
+// node_modules/motion-dom/dist/es/animation/waapi/supports/waapi.mjs
+var acceleratedValues = /* @__PURE__ */ new Set([
+  "opacity",
+  "clipPath",
+  "filter",
+  "transform"
+  // TODO: Could be re-enabled now we have support for linear() easing
+  // "background-color"
+]);
+var supportsWaapi = /* @__PURE__ */ memo(() => Object.hasOwnProperty.call(Element.prototype, "animate"));
+function supportsBrowserAnimation(options) {
+  const { motionValue: motionValue2, name, repeatDelay, repeatType, damping, type } = options;
+  const subject = motionValue2?.owner?.current;
+  if (!(subject instanceof HTMLElement)) {
+    return false;
+  }
+  const { onUpdate, transformTemplate } = motionValue2.owner.getProps();
+  return supportsWaapi() && name && acceleratedValues.has(name) && (name !== "transform" || !transformTemplate) && /**
+   * If we're outputting values to onUpdate then we can't use WAAPI as there's
+   * no way to read the value from WAAPI every frame.
+   */
+  !onUpdate && !repeatDelay && repeatType !== "mirror" && damping !== 0 && type !== "inertia";
+}
+
+// node_modules/motion-dom/dist/es/animation/AsyncMotionValueAnimation.mjs
+var MAX_RESOLVE_DELAY = 40;
+var AsyncMotionValueAnimation = class extends WithPromise {
+  constructor({ autoplay = true, delay: delay2 = 0, type = "keyframes", repeat = 0, repeatDelay = 0, repeatType = "loop", keyframes: keyframes2, name, motionValue: motionValue2, element, ...options }) {
+    super();
+    this.stop = () => {
+      if (this._animation) {
+        this._animation.stop();
+        this.stopTimeline?.();
+      }
+      this.keyframeResolver?.cancel();
+    };
+    this.createdAt = time.now();
+    const optionsWithDefaults = {
+      autoplay,
+      delay: delay2,
+      type,
+      repeat,
+      repeatDelay,
+      repeatType,
+      name,
+      motionValue: motionValue2,
+      element,
+      ...options
+    };
+    const KeyframeResolver$1 = element?.KeyframeResolver || KeyframeResolver;
+    this.keyframeResolver = new KeyframeResolver$1(keyframes2, (resolvedKeyframes, finalKeyframe, forced) => this.onKeyframesResolved(resolvedKeyframes, finalKeyframe, optionsWithDefaults, !forced), name, motionValue2, element);
+    this.keyframeResolver?.scheduleResolve();
+  }
+  onKeyframesResolved(keyframes2, finalKeyframe, options, sync) {
+    this.keyframeResolver = void 0;
+    const { name, type, velocity, delay: delay2, isHandoff, onUpdate } = options;
+    this.resolvedAt = time.now();
+    if (!canAnimate(keyframes2, name, type, velocity)) {
+      if (MotionGlobalConfig.instantAnimations || !delay2) {
+        onUpdate?.(getFinalKeyframe(keyframes2, options, finalKeyframe));
+      }
+      keyframes2[0] = keyframes2[keyframes2.length - 1];
+      makeAnimationInstant(options);
+      options.repeat = 0;
+    }
+    const startTime = sync ? !this.resolvedAt ? this.createdAt : this.resolvedAt - this.createdAt > MAX_RESOLVE_DELAY ? this.resolvedAt : this.createdAt : void 0;
+    const resolvedOptions = {
+      startTime,
+      finalKeyframe,
+      ...options,
+      keyframes: keyframes2
+    };
+    const animation = !isHandoff && supportsBrowserAnimation(resolvedOptions) ? new NativeAnimationExtended({
+      ...resolvedOptions,
+      element: resolvedOptions.motionValue.owner.current
+    }) : new JSAnimation(resolvedOptions);
+    animation.finished.then(() => this.notifyFinished()).catch(noop);
+    if (this.pendingTimeline) {
+      this.stopTimeline = animation.attachTimeline(this.pendingTimeline);
+      this.pendingTimeline = void 0;
+    }
+    this._animation = animation;
+  }
+  get finished() {
+    if (!this._animation) {
+      return this._finished;
+    } else {
+      return this.animation.finished;
+    }
+  }
+  then(onResolve, _onReject) {
+    return this.finished.finally(onResolve).then(() => {
+    });
+  }
+  get animation() {
+    if (!this._animation) {
+      this.keyframeResolver?.resume();
+      flushKeyframeResolvers();
+    }
+    return this._animation;
+  }
+  get duration() {
+    return this.animation.duration;
+  }
+  get time() {
+    return this.animation.time;
+  }
+  set time(newTime) {
+    this.animation.time = newTime;
+  }
+  get speed() {
+    return this.animation.speed;
+  }
+  get state() {
+    return this.animation.state;
+  }
+  set speed(newSpeed) {
+    this.animation.speed = newSpeed;
+  }
+  get startTime() {
+    return this.animation.startTime;
+  }
+  attachTimeline(timeline) {
+    if (this._animation) {
+      this.stopTimeline = this.animation.attachTimeline(timeline);
+    } else {
+      this.pendingTimeline = timeline;
+    }
+    return () => this.stop();
+  }
+  play() {
+    this.animation.play();
+  }
+  pause() {
+    this.animation.pause();
+  }
+  complete() {
+    this.animation.complete();
+  }
+  cancel() {
+    if (this._animation) {
+      this.animation.cancel();
+    }
+    this.keyframeResolver?.cancel();
+  }
+};
+
+// node_modules/motion-dom/dist/es/animation/utils/css-variables-conversion.mjs
+var splitCSSVariableRegex = (
+  // eslint-disable-next-line redos-detector/no-unsafe-regex -- false positive, as it can match a lot of words
+  /^var\(--(?:([\w-]+)|([\w-]+), ?([a-zA-Z\d ()%#.,-]+))\)/u
+);
+function parseCSSVariable(current) {
+  const match = splitCSSVariableRegex.exec(current);
+  if (!match)
+    return [,];
+  const [, token1, token2, fallback] = match;
+  return [`--${token1 ?? token2}`, fallback];
+}
+var maxDepth = 4;
+function getVariableValue(current, element, depth = 1) {
+  invariant(depth <= maxDepth, `Max CSS variable fallback depth detected in property "${current}". This may indicate a circular fallback dependency.`, "max-css-var-depth");
+  const [token, fallback] = parseCSSVariable(current);
+  if (!token)
+    return;
+  const resolved = window.getComputedStyle(element).getPropertyValue(token);
+  if (resolved) {
+    const trimmed = resolved.trim();
+    return isNumericalString(trimmed) ? parseFloat(trimmed) : trimmed;
+  }
+  return isCSSVariableToken(fallback) ? getVariableValue(fallback, element, depth + 1) : fallback;
+}
+
+// node_modules/motion-dom/dist/es/animation/utils/get-value-transition.mjs
+function getValueTransition(transition, key) {
+  return transition?.[key] ?? transition?.["default"] ?? transition;
+}
+
+// node_modules/motion-dom/dist/es/render/utils/keys-position.mjs
+var positionalKeys = /* @__PURE__ */ new Set([
+  "width",
+  "height",
+  "top",
+  "left",
+  "right",
+  "bottom",
+  ...transformPropOrder
+]);
+
+// node_modules/motion-dom/dist/es/value/types/auto.mjs
+var auto = {
+  test: (v) => v === "auto",
+  parse: (v) => v
+};
+
+// node_modules/motion-dom/dist/es/value/types/test.mjs
+var testValueType = (v) => (type) => type.test(v);
+
+// node_modules/motion-dom/dist/es/value/types/dimensions.mjs
+var dimensionValueTypes = [number, px, percent, degrees, vw, vh, auto];
+var findDimensionValueType = (v) => dimensionValueTypes.find(testValueType(v));
+
+// node_modules/motion-dom/dist/es/animation/keyframes/utils/is-none.mjs
+function isNone(value) {
+  if (typeof value === "number") {
+    return value === 0;
+  } else if (value !== null) {
+    return value === "none" || value === "0" || isZeroValueString(value);
+  } else {
+    return true;
+  }
+}
+
+// node_modules/motion-dom/dist/es/value/types/complex/filter.mjs
+var maxDefaults = /* @__PURE__ */ new Set(["brightness", "contrast", "saturate", "opacity"]);
+function applyDefaultFilter(v) {
+  const [name, value] = v.slice(0, -1).split("(");
+  if (name === "drop-shadow")
+    return v;
+  const [number5] = value.match(floatRegex) || [];
+  if (!number5)
+    return v;
+  const unit2 = value.replace(number5, "");
+  let defaultValue = maxDefaults.has(name) ? 1 : 0;
+  if (number5 !== value)
+    defaultValue *= 100;
+  return name + "(" + defaultValue + unit2 + ")";
+}
+var functionRegex = /\b([a-z-]*)\(.*?\)/gu;
+var filter = {
+  ...complex,
+  getAnimatableNone: (v) => {
+    const functions = v.match(functionRegex);
+    return functions ? functions.map(applyDefaultFilter).join(" ") : v;
+  }
+};
+
+// node_modules/motion-dom/dist/es/value/types/int.mjs
+var int = {
+  ...number,
+  transform: Math.round
+};
+
+// node_modules/motion-dom/dist/es/value/types/maps/transform.mjs
+var transformValueTypes = {
+  rotate: degrees,
+  rotateX: degrees,
+  rotateY: degrees,
+  rotateZ: degrees,
+  scale,
+  scaleX: scale,
+  scaleY: scale,
+  scaleZ: scale,
+  skew: degrees,
+  skewX: degrees,
+  skewY: degrees,
+  distance: px,
+  translateX: px,
+  translateY: px,
+  translateZ: px,
+  x: px,
+  y: px,
+  z: px,
+  perspective: px,
+  transformPerspective: px,
+  opacity: alpha,
+  originX: progressPercentage,
+  originY: progressPercentage,
+  originZ: px
+};
+
+// node_modules/motion-dom/dist/es/value/types/maps/number.mjs
+var numberValueTypes = {
+  // Border props
+  borderWidth: px,
+  borderTopWidth: px,
+  borderRightWidth: px,
+  borderBottomWidth: px,
+  borderLeftWidth: px,
+  borderRadius: px,
+  radius: px,
+  borderTopLeftRadius: px,
+  borderTopRightRadius: px,
+  borderBottomRightRadius: px,
+  borderBottomLeftRadius: px,
+  // Positioning props
+  width: px,
+  maxWidth: px,
+  height: px,
+  maxHeight: px,
+  top: px,
+  right: px,
+  bottom: px,
+  left: px,
+  // Spacing props
+  padding: px,
+  paddingTop: px,
+  paddingRight: px,
+  paddingBottom: px,
+  paddingLeft: px,
+  margin: px,
+  marginTop: px,
+  marginRight: px,
+  marginBottom: px,
+  marginLeft: px,
+  // Misc
+  backgroundPositionX: px,
+  backgroundPositionY: px,
+  ...transformValueTypes,
+  zIndex: int,
+  // SVG
+  fillOpacity: alpha,
+  strokeOpacity: alpha,
+  numOctaves: int
+};
+
+// node_modules/motion-dom/dist/es/value/types/maps/defaults.mjs
+var defaultValueTypes = {
+  ...numberValueTypes,
+  // Color props
+  color,
+  backgroundColor: color,
+  outlineColor: color,
+  fill: color,
+  stroke: color,
+  // Border props
+  borderColor: color,
+  borderTopColor: color,
+  borderRightColor: color,
+  borderBottomColor: color,
+  borderLeftColor: color,
+  filter,
+  WebkitFilter: filter
+};
+var getDefaultValueType = (key) => defaultValueTypes[key];
+
+// node_modules/motion-dom/dist/es/value/types/utils/animatable-none.mjs
+function getAnimatableNone2(key, value) {
+  let defaultValueType = getDefaultValueType(key);
+  if (defaultValueType !== filter)
+    defaultValueType = complex;
+  return defaultValueType.getAnimatableNone ? defaultValueType.getAnimatableNone(value) : void 0;
+}
+
+// node_modules/motion-dom/dist/es/animation/keyframes/utils/make-none-animatable.mjs
+var invalidTemplates = /* @__PURE__ */ new Set(["auto", "none", "0"]);
+function makeNoneKeyframesAnimatable(unresolvedKeyframes, noneKeyframeIndexes, name) {
+  let i = 0;
+  let animatableTemplate = void 0;
+  while (i < unresolvedKeyframes.length && !animatableTemplate) {
+    const keyframe = unresolvedKeyframes[i];
+    if (typeof keyframe === "string" && !invalidTemplates.has(keyframe) && analyseComplexValue(keyframe).values.length) {
+      animatableTemplate = unresolvedKeyframes[i];
+    }
+    i++;
+  }
+  if (animatableTemplate && name) {
+    for (const noneIndex of noneKeyframeIndexes) {
+      unresolvedKeyframes[noneIndex] = getAnimatableNone2(name, animatableTemplate);
+    }
+  }
+}
+
+// node_modules/motion-dom/dist/es/animation/keyframes/DOMKeyframesResolver.mjs
+var DOMKeyframesResolver = class extends KeyframeResolver {
+  constructor(unresolvedKeyframes, onComplete, name, motionValue2, element) {
+    super(unresolvedKeyframes, onComplete, name, motionValue2, element, true);
+  }
+  readKeyframes() {
+    const { unresolvedKeyframes, element, name } = this;
+    if (!element || !element.current)
+      return;
+    super.readKeyframes();
+    for (let i = 0; i < unresolvedKeyframes.length; i++) {
+      let keyframe = unresolvedKeyframes[i];
+      if (typeof keyframe === "string") {
+        keyframe = keyframe.trim();
+        if (isCSSVariableToken(keyframe)) {
+          const resolved = getVariableValue(keyframe, element.current);
+          if (resolved !== void 0) {
+            unresolvedKeyframes[i] = resolved;
+          }
+          if (i === unresolvedKeyframes.length - 1) {
+            this.finalKeyframe = keyframe;
+          }
+        }
+      }
+    }
+    this.resolveNoneKeyframes();
+    if (!positionalKeys.has(name) || unresolvedKeyframes.length !== 2) {
+      return;
+    }
+    const [origin, target] = unresolvedKeyframes;
+    const originType = findDimensionValueType(origin);
+    const targetType = findDimensionValueType(target);
+    if (originType === targetType)
+      return;
+    if (isNumOrPxType(originType) && isNumOrPxType(targetType)) {
+      for (let i = 0; i < unresolvedKeyframes.length; i++) {
+        const value = unresolvedKeyframes[i];
+        if (typeof value === "string") {
+          unresolvedKeyframes[i] = parseFloat(value);
+        }
+      }
+    } else if (positionalValues[name]) {
+      this.needsMeasurement = true;
+    }
+  }
+  resolveNoneKeyframes() {
+    const { unresolvedKeyframes, name } = this;
+    const noneKeyframeIndexes = [];
+    for (let i = 0; i < unresolvedKeyframes.length; i++) {
+      if (unresolvedKeyframes[i] === null || isNone(unresolvedKeyframes[i])) {
+        noneKeyframeIndexes.push(i);
+      }
+    }
+    if (noneKeyframeIndexes.length) {
+      makeNoneKeyframesAnimatable(unresolvedKeyframes, noneKeyframeIndexes, name);
+    }
+  }
+  measureInitialState() {
+    const { element, unresolvedKeyframes, name } = this;
+    if (!element || !element.current)
+      return;
+    if (name === "height") {
+      this.suspendedScrollY = window.pageYOffset;
+    }
+    this.measuredOrigin = positionalValues[name](element.measureViewportBox(), window.getComputedStyle(element.current));
+    unresolvedKeyframes[0] = this.measuredOrigin;
+    const measureKeyframe = unresolvedKeyframes[unresolvedKeyframes.length - 1];
+    if (measureKeyframe !== void 0) {
+      element.getValue(name, measureKeyframe).jump(measureKeyframe, false);
+    }
+  }
+  measureEndState() {
+    const { element, name, unresolvedKeyframes } = this;
+    if (!element || !element.current)
+      return;
+    const value = element.getValue(name);
+    value && value.jump(this.measuredOrigin, false);
+    const finalKeyframeIndex = unresolvedKeyframes.length - 1;
+    const finalKeyframe = unresolvedKeyframes[finalKeyframeIndex];
+    unresolvedKeyframes[finalKeyframeIndex] = positionalValues[name](element.measureViewportBox(), window.getComputedStyle(element.current));
+    if (finalKeyframe !== null && this.finalKeyframe === void 0) {
+      this.finalKeyframe = finalKeyframe;
+    }
+    if (this.removedTransforms?.length) {
+      this.removedTransforms.forEach(([unsetTransformName, unsetTransformValue]) => {
+        element.getValue(unsetTransformName).set(unsetTransformValue);
+      });
+    }
+    this.resolveNoneKeyframes();
+  }
+};
+
+// node_modules/motion-dom/dist/es/utils/resolve-elements.mjs
+function resolveElements(elementOrSelector, scope, selectorCache) {
+  if (elementOrSelector instanceof EventTarget) {
+    return [elementOrSelector];
+  } else if (typeof elementOrSelector === "string") {
+    let root = document;
+    if (scope) {
+      root = scope.current;
+    }
+    const elements = selectorCache?.[elementOrSelector] ?? root.querySelectorAll(elementOrSelector);
+    return elements ? Array.from(elements) : [];
+  }
+  return Array.from(elementOrSelector);
+}
+
+// node_modules/motion-dom/dist/es/value/types/utils/get-as-type.mjs
+var getValueAsType = (value, type) => {
+  return type && typeof value === "number" ? type.transform(value) : value;
+};
+
+// node_modules/motion-dom/dist/es/utils/is-html-element.mjs
+function isHTMLElement(element) {
+  return isObject(element) && "offsetHeight" in element;
+}
+
+// node_modules/motion-dom/dist/es/value/index.mjs
+var MAX_VELOCITY_DELTA = 30;
+var isFloat = (value) => {
+  return !isNaN(parseFloat(value));
+};
+var collectMotionValues = {
+  current: void 0
+};
+var MotionValue = class {
+  /**
+   * @param init - The initiating value
+   * @param config - Optional configuration options
+   *
+   * -  `transformer`: A function to transform incoming values with.
+   */
+  constructor(init, options = {}) {
+    this.canTrackVelocity = null;
+    this.events = {};
+    this.updateAndNotify = (v) => {
+      const currentTime = time.now();
+      if (this.updatedAt !== currentTime) {
+        this.setPrevFrameValue();
+      }
+      this.prev = this.current;
+      this.setCurrent(v);
+      if (this.current !== this.prev) {
+        this.events.change?.notify(this.current);
+        if (this.dependents) {
+          for (const dependent of this.dependents) {
+            dependent.dirty();
+          }
+        }
+      }
+    };
+    this.hasAnimated = false;
+    this.setCurrent(init);
+    this.owner = options.owner;
+  }
+  setCurrent(current) {
+    this.current = current;
+    this.updatedAt = time.now();
+    if (this.canTrackVelocity === null && current !== void 0) {
+      this.canTrackVelocity = isFloat(this.current);
+    }
+  }
+  setPrevFrameValue(prevFrameValue = this.current) {
+    this.prevFrameValue = prevFrameValue;
+    this.prevUpdatedAt = this.updatedAt;
+  }
+  /**
+   * Adds a function that will be notified when the `MotionValue` is updated.
+   *
+   * It returns a function that, when called, will cancel the subscription.
+   *
+   * When calling `onChange` inside a React component, it should be wrapped with the
+   * `useEffect` hook. As it returns an unsubscribe function, this should be returned
+   * from the `useEffect` function to ensure you don't add duplicate subscribers..
+   *
+   * ```jsx
+   * export const MyComponent = () => {
+   *   const x = useMotionValue(0)
+   *   const y = useMotionValue(0)
+   *   const opacity = useMotionValue(1)
+   *
+   *   useEffect(() => {
+   *     function updateOpacity() {
+   *       const maxXY = Math.max(x.get(), y.get())
+   *       const newOpacity = transform(maxXY, [0, 100], [1, 0])
+   *       opacity.set(newOpacity)
+   *     }
+   *
+   *     const unsubscribeX = x.on("change", updateOpacity)
+   *     const unsubscribeY = y.on("change", updateOpacity)
+   *
+   *     return () => {
+   *       unsubscribeX()
+   *       unsubscribeY()
+   *     }
+   *   }, [])
+   *
+   *   return <motion.div style={{ x }} />
+   * }
+   * ```
+   *
+   * @param subscriber - A function that receives the latest value.
+   * @returns A function that, when called, will cancel this subscription.
+   *
+   * @deprecated
+   */
+  onChange(subscription) {
+    if (true) {
+      warnOnce(false, `value.onChange(callback) is deprecated. Switch to value.on("change", callback).`);
+    }
+    return this.on("change", subscription);
+  }
+  on(eventName, callback) {
+    if (!this.events[eventName]) {
+      this.events[eventName] = new SubscriptionManager();
+    }
+    const unsubscribe = this.events[eventName].add(callback);
+    if (eventName === "change") {
+      return () => {
+        unsubscribe();
+        frame.read(() => {
+          if (!this.events.change.getSize()) {
+            this.stop();
+          }
+        });
+      };
+    }
+    return unsubscribe;
+  }
+  clearListeners() {
+    for (const eventManagers in this.events) {
+      this.events[eventManagers].clear();
+    }
+  }
+  /**
+   * Attaches a passive effect to the `MotionValue`.
+   */
+  attach(passiveEffect, stopPassiveEffect) {
+    this.passiveEffect = passiveEffect;
+    this.stopPassiveEffect = stopPassiveEffect;
+  }
+  /**
+   * Sets the state of the `MotionValue`.
+   *
+   * @remarks
+   *
+   * ```jsx
+   * const x = useMotionValue(0)
+   * x.set(10)
+   * ```
+   *
+   * @param latest - Latest value to set.
+   * @param render - Whether to notify render subscribers. Defaults to `true`
+   *
+   * @public
+   */
+  set(v) {
+    if (!this.passiveEffect) {
+      this.updateAndNotify(v);
+    } else {
+      this.passiveEffect(v, this.updateAndNotify);
+    }
+  }
+  setWithVelocity(prev, current, delta) {
+    this.set(current);
+    this.prev = void 0;
+    this.prevFrameValue = prev;
+    this.prevUpdatedAt = this.updatedAt - delta;
+  }
+  /**
+   * Set the state of the `MotionValue`, stopping any active animations,
+   * effects, and resets velocity to `0`.
+   */
+  jump(v, endAnimation = true) {
+    this.updateAndNotify(v);
+    this.prev = v;
+    this.prevUpdatedAt = this.prevFrameValue = void 0;
+    endAnimation && this.stop();
+    if (this.stopPassiveEffect)
+      this.stopPassiveEffect();
+  }
+  dirty() {
+    this.events.change?.notify(this.current);
+  }
+  addDependent(dependent) {
+    if (!this.dependents) {
+      this.dependents = /* @__PURE__ */ new Set();
+    }
+    this.dependents.add(dependent);
+  }
+  removeDependent(dependent) {
+    if (this.dependents) {
+      this.dependents.delete(dependent);
+    }
+  }
+  /**
+   * Returns the latest state of `MotionValue`
+   *
+   * @returns - The latest state of `MotionValue`
+   *
+   * @public
+   */
+  get() {
+    if (collectMotionValues.current) {
+      collectMotionValues.current.push(this);
+    }
+    return this.current;
+  }
+  /**
+   * @public
+   */
+  getPrevious() {
+    return this.prev;
+  }
+  /**
+   * Returns the latest velocity of `MotionValue`
+   *
+   * @returns - The latest velocity of `MotionValue`. Returns `0` if the state is non-numerical.
+   *
+   * @public
+   */
+  getVelocity() {
+    const currentTime = time.now();
+    if (!this.canTrackVelocity || this.prevFrameValue === void 0 || currentTime - this.updatedAt > MAX_VELOCITY_DELTA) {
+      return 0;
+    }
+    const delta = Math.min(this.updatedAt - this.prevUpdatedAt, MAX_VELOCITY_DELTA);
+    return velocityPerSecond(parseFloat(this.current) - parseFloat(this.prevFrameValue), delta);
+  }
+  /**
+   * Registers a new animation to control this `MotionValue`. Only one
+   * animation can drive a `MotionValue` at one time.
+   *
+   * ```jsx
+   * value.start()
+   * ```
+   *
+   * @param animation - A function that starts the provided animation
+   */
+  start(startAnimation) {
+    this.stop();
+    return new Promise((resolve) => {
+      this.hasAnimated = true;
+      this.animation = startAnimation(resolve);
+      if (this.events.animationStart) {
+        this.events.animationStart.notify();
+      }
+    }).then(() => {
+      if (this.events.animationComplete) {
+        this.events.animationComplete.notify();
+      }
+      this.clearAnimation();
+    });
+  }
+  /**
+   * Stop the currently active animation.
+   *
+   * @public
+   */
+  stop() {
+    if (this.animation) {
+      this.animation.stop();
+      if (this.events.animationCancel) {
+        this.events.animationCancel.notify();
+      }
+    }
+    this.clearAnimation();
+  }
+  /**
+   * Returns `true` if this value is currently animating.
+   *
+   * @public
+   */
+  isAnimating() {
+    return !!this.animation;
+  }
+  clearAnimation() {
+    delete this.animation;
+  }
+  /**
+   * Destroy and clean up subscribers to this `MotionValue`.
+   *
+   * The `MotionValue` hooks like `useMotionValue` and `useTransform` automatically
+   * handle the lifecycle of the returned `MotionValue`, so this method is only necessary if you've manually
+   * created a `MotionValue` via the `motionValue` function.
+   *
+   * @public
+   */
+  destroy() {
+    this.dependents?.clear();
+    this.events.destroy?.notify();
+    this.clearListeners();
+    this.stop();
+    if (this.stopPassiveEffect) {
+      this.stopPassiveEffect();
+    }
+  }
+};
+function motionValue(init, options) {
+  return new MotionValue(init, options);
+}
+
+// node_modules/motion-dom/dist/es/frameloop/microtask.mjs
+var { schedule: microtask, cancel: cancelMicrotask } = /* @__PURE__ */ createRenderBatcher(queueMicrotask, false);
+
+// node_modules/motion-dom/dist/es/gestures/drag/state/is-active.mjs
+var isDragging = {
+  x: false,
+  y: false
+};
+function isDragActive() {
+  return isDragging.x || isDragging.y;
+}
+
+// node_modules/motion-dom/dist/es/gestures/drag/state/set-active.mjs
+function setDragLock(axis) {
+  if (axis === "x" || axis === "y") {
+    if (isDragging[axis]) {
+      return null;
+    } else {
+      isDragging[axis] = true;
+      return () => {
+        isDragging[axis] = false;
+      };
+    }
+  } else {
+    if (isDragging.x || isDragging.y) {
+      return null;
+    } else {
+      isDragging.x = isDragging.y = true;
+      return () => {
+        isDragging.x = isDragging.y = false;
+      };
+    }
+  }
+}
+
+// node_modules/motion-dom/dist/es/gestures/utils/setup.mjs
+function setupGesture(elementOrSelector, options) {
+  const elements = resolveElements(elementOrSelector);
+  const gestureAbortController = new AbortController();
+  const eventOptions = {
+    passive: true,
+    ...options,
+    signal: gestureAbortController.signal
+  };
+  const cancel = () => gestureAbortController.abort();
+  return [elements, eventOptions, cancel];
+}
+
+// node_modules/motion-dom/dist/es/gestures/hover.mjs
+function isValidHover(event) {
+  return !(event.pointerType === "touch" || isDragActive());
+}
+function hover(elementOrSelector, onHoverStart, options = {}) {
+  const [elements, eventOptions, cancel] = setupGesture(elementOrSelector, options);
+  const onPointerEnter = (enterEvent) => {
+    if (!isValidHover(enterEvent))
+      return;
+    const { target } = enterEvent;
+    const onHoverEnd = onHoverStart(target, enterEvent);
+    if (typeof onHoverEnd !== "function" || !target)
+      return;
+    const onPointerLeave = (leaveEvent) => {
+      if (!isValidHover(leaveEvent))
+        return;
+      onHoverEnd(leaveEvent);
+      target.removeEventListener("pointerleave", onPointerLeave);
+    };
+    target.addEventListener("pointerleave", onPointerLeave, eventOptions);
+  };
+  elements.forEach((element) => {
+    element.addEventListener("pointerenter", onPointerEnter, eventOptions);
+  });
+  return cancel;
+}
+
+// node_modules/motion-dom/dist/es/gestures/utils/is-node-or-child.mjs
+var isNodeOrChild = (parent, child) => {
+  if (!child) {
+    return false;
+  } else if (parent === child) {
+    return true;
+  } else {
+    return isNodeOrChild(parent, child.parentElement);
+  }
+};
+
+// node_modules/motion-dom/dist/es/gestures/utils/is-primary-pointer.mjs
+var isPrimaryPointer = (event) => {
+  if (event.pointerType === "mouse") {
+    return typeof event.button !== "number" || event.button <= 0;
+  } else {
+    return event.isPrimary !== false;
+  }
+};
+
+// node_modules/motion-dom/dist/es/gestures/press/utils/is-keyboard-accessible.mjs
+var focusableElements = /* @__PURE__ */ new Set([
+  "BUTTON",
+  "INPUT",
+  "SELECT",
+  "TEXTAREA",
+  "A"
+]);
+function isElementKeyboardAccessible(element) {
+  return focusableElements.has(element.tagName) || element.tabIndex !== -1;
+}
+
+// node_modules/motion-dom/dist/es/gestures/press/utils/state.mjs
+var isPressing = /* @__PURE__ */ new WeakSet();
+
+// node_modules/motion-dom/dist/es/gestures/press/utils/keyboard.mjs
+function filterEvents(callback) {
+  return (event) => {
+    if (event.key !== "Enter")
+      return;
+    callback(event);
+  };
+}
+function firePointerEvent(target, type) {
+  target.dispatchEvent(new PointerEvent("pointer" + type, { isPrimary: true, bubbles: true }));
+}
+var enableKeyboardPress = (focusEvent, eventOptions) => {
+  const element = focusEvent.currentTarget;
+  if (!element)
+    return;
+  const handleKeydown = filterEvents(() => {
+    if (isPressing.has(element))
+      return;
+    firePointerEvent(element, "down");
+    const handleKeyup = filterEvents(() => {
+      firePointerEvent(element, "up");
+    });
+    const handleBlur = () => firePointerEvent(element, "cancel");
+    element.addEventListener("keyup", handleKeyup, eventOptions);
+    element.addEventListener("blur", handleBlur, eventOptions);
+  });
+  element.addEventListener("keydown", handleKeydown, eventOptions);
+  element.addEventListener("blur", () => element.removeEventListener("keydown", handleKeydown), eventOptions);
+};
+
+// node_modules/motion-dom/dist/es/gestures/press/index.mjs
+function isValidPressEvent(event) {
+  return isPrimaryPointer(event) && !isDragActive();
+}
+function press(targetOrSelector, onPressStart, options = {}) {
+  const [targets, eventOptions, cancelEvents] = setupGesture(targetOrSelector, options);
+  const startPress = (startEvent) => {
+    const target = startEvent.currentTarget;
+    if (!isValidPressEvent(startEvent))
+      return;
+    isPressing.add(target);
+    const onPressEnd = onPressStart(target, startEvent);
+    const onPointerEnd = (endEvent, success) => {
+      window.removeEventListener("pointerup", onPointerUp);
+      window.removeEventListener("pointercancel", onPointerCancel);
+      if (isPressing.has(target)) {
+        isPressing.delete(target);
+      }
+      if (!isValidPressEvent(endEvent)) {
+        return;
+      }
+      if (typeof onPressEnd === "function") {
+        onPressEnd(endEvent, { success });
+      }
+    };
+    const onPointerUp = (upEvent) => {
+      onPointerEnd(upEvent, target === window || target === document || options.useGlobalTarget || isNodeOrChild(target, upEvent.target));
+    };
+    const onPointerCancel = (cancelEvent) => {
+      onPointerEnd(cancelEvent, false);
+    };
+    window.addEventListener("pointerup", onPointerUp, eventOptions);
+    window.addEventListener("pointercancel", onPointerCancel, eventOptions);
+  };
+  targets.forEach((target) => {
+    const pointerDownTarget = options.useGlobalTarget ? window : target;
+    pointerDownTarget.addEventListener("pointerdown", startPress, eventOptions);
+    if (isHTMLElement(target)) {
+      target.addEventListener("focus", (event) => enableKeyboardPress(event, eventOptions));
+      if (!isElementKeyboardAccessible(target) && !target.hasAttribute("tabindex")) {
+        target.tabIndex = 0;
+      }
+    }
+  });
+  return cancelEvents;
+}
+
+// node_modules/motion-dom/dist/es/utils/is-svg-element.mjs
+function isSVGElement(element) {
+  return isObject(element) && "ownerSVGElement" in element;
+}
+
+// node_modules/motion-dom/dist/es/utils/is-svg-svg-element.mjs
+function isSVGSVGElement(element) {
+  return isSVGElement(element) && element.tagName === "svg";
+}
+
+// node_modules/motion-dom/dist/es/value/utils/is-motion-value.mjs
+var isMotionValue = (value) => Boolean(value && value.getVelocity);
+
+// node_modules/motion-dom/dist/es/value/types/utils/find.mjs
+var valueTypes = [...dimensionValueTypes, color, complex];
+var findValueType = (v) => valueTypes.find(testValueType(v));
+
+// node_modules/framer-motion/dist/es/components/AnimatePresence/PopChild.mjs
+var React = __toESM(require_react(), 1);
+var import_react6 = __toESM(require_react(), 1);
+
+// node_modules/framer-motion/dist/es/context/MotionConfigContext.mjs
+var import_react5 = __toESM(require_react(), 1);
+var MotionConfigContext = (0, import_react5.createContext)({
+  transformPagePoint: (p) => p,
+  isStatic: false,
+  reducedMotion: "never"
+});
+
+// node_modules/framer-motion/dist/es/components/AnimatePresence/PopChild.mjs
+var PopChildMeasure = class extends React.Component {
+  getSnapshotBeforeUpdate(prevProps) {
+    const element = this.props.childRef.current;
+    if (element && prevProps.isPresent && !this.props.isPresent) {
+      const parent = element.offsetParent;
+      const parentWidth = isHTMLElement(parent) ? parent.offsetWidth || 0 : 0;
+      const size = this.props.sizeRef.current;
+      size.height = element.offsetHeight || 0;
+      size.width = element.offsetWidth || 0;
+      size.top = element.offsetTop;
+      size.left = element.offsetLeft;
+      size.right = parentWidth - size.width - size.left;
+    }
+    return null;
+  }
+  /**
+   * Required with getSnapshotBeforeUpdate to stop React complaining.
+   */
+  componentDidUpdate() {
+  }
+  render() {
+    return this.props.children;
+  }
+};
+function PopChild({ children, isPresent, anchorX, root }) {
+  const id3 = (0, import_react6.useId)();
+  const ref = (0, import_react6.useRef)(null);
+  const size = (0, import_react6.useRef)({
+    width: 0,
+    height: 0,
+    top: 0,
+    left: 0,
+    right: 0
+  });
+  const { nonce } = (0, import_react6.useContext)(MotionConfigContext);
+  (0, import_react6.useInsertionEffect)(() => {
+    const { width, height, top, left, right } = size.current;
+    if (isPresent || !ref.current || !width || !height)
+      return;
+    const x2 = anchorX === "left" ? `left: ${left}` : `right: ${right}`;
+    ref.current.dataset.motionPopId = id3;
+    const style = document.createElement("style");
+    if (nonce)
+      style.nonce = nonce;
+    const parent = root ?? document.head;
+    parent.appendChild(style);
+    if (style.sheet) {
+      style.sheet.insertRule(`
+          [data-motion-pop-id="${id3}"] {
+            position: absolute !important;
+            width: ${width}px !important;
+            height: ${height}px !important;
+            ${x2}px !important;
+            top: ${top}px !important;
+          }
+        `);
+    }
+    return () => {
+      if (parent.contains(style)) {
+        parent.removeChild(style);
+      }
+    };
+  }, [isPresent]);
+  return (0, import_jsx_runtime.jsx)(PopChildMeasure, { isPresent, childRef: ref, sizeRef: size, children: React.cloneElement(children, { ref }) });
+}
+
+// node_modules/framer-motion/dist/es/components/AnimatePresence/PresenceChild.mjs
+var PresenceChild = ({ children, initial, isPresent, onExitComplete, custom, presenceAffectsLayout, mode, anchorX, root }) => {
+  const presenceChildren = useConstant(newChildrenMap);
+  const id3 = (0, import_react7.useId)();
+  let isReusedContext = true;
+  let context = (0, import_react7.useMemo)(() => {
+    isReusedContext = false;
+    return {
+      id: id3,
+      initial,
+      isPresent,
+      custom,
+      onExitComplete: (childId) => {
+        presenceChildren.set(childId, true);
+        for (const isComplete of presenceChildren.values()) {
+          if (!isComplete)
+            return;
+        }
+        onExitComplete && onExitComplete();
+      },
+      register: (childId) => {
+        presenceChildren.set(childId, false);
+        return () => presenceChildren.delete(childId);
+      }
+    };
+  }, [isPresent, presenceChildren, onExitComplete]);
+  if (presenceAffectsLayout && isReusedContext) {
+    context = { ...context };
+  }
+  (0, import_react7.useMemo)(() => {
+    presenceChildren.forEach((_, key) => presenceChildren.set(key, false));
+  }, [isPresent]);
+  React2.useEffect(() => {
+    !isPresent && !presenceChildren.size && onExitComplete && onExitComplete();
+  }, [isPresent]);
+  if (mode === "popLayout") {
+    children = (0, import_jsx_runtime2.jsx)(PopChild, { isPresent, anchorX, root, children });
+  }
+  return (0, import_jsx_runtime2.jsx)(PresenceContext.Provider, { value: context, children });
+};
+function newChildrenMap() {
+  return /* @__PURE__ */ new Map();
+}
+
+// node_modules/framer-motion/dist/es/components/AnimatePresence/use-presence.mjs
+var import_react8 = __toESM(require_react(), 1);
+function usePresence(subscribe = true) {
+  const context = (0, import_react8.useContext)(PresenceContext);
+  if (context === null)
+    return [true, null];
+  const { isPresent, onExitComplete, register } = context;
+  const id3 = (0, import_react8.useId)();
+  (0, import_react8.useEffect)(() => {
+    if (subscribe) {
+      return register(id3);
+    }
+  }, [subscribe]);
+  const safeToRemove = (0, import_react8.useCallback)(() => subscribe && onExitComplete && onExitComplete(id3), [id3, onExitComplete, subscribe]);
+  return !isPresent && onExitComplete ? [false, safeToRemove] : [true];
+}
+
+// node_modules/framer-motion/dist/es/components/AnimatePresence/utils.mjs
+var import_react9 = __toESM(require_react(), 1);
+var getChildKey = (child) => child.key || "";
+function onlyElements(children) {
+  const filtered = [];
+  import_react9.Children.forEach(children, (child) => {
+    if ((0, import_react9.isValidElement)(child))
+      filtered.push(child);
+  });
+  return filtered;
+}
+
+// node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs
+var AnimatePresence = ({ children, custom, initial = true, onExitComplete, presenceAffectsLayout = true, mode = "sync", propagate = false, anchorX = "left", root }) => {
+  const [isParentPresent, safeToRemove] = usePresence(propagate);
+  const presentChildren = (0, import_react10.useMemo)(() => onlyElements(children), [children]);
+  const presentKeys = propagate && !isParentPresent ? [] : presentChildren.map(getChildKey);
+  const isInitialRender = (0, import_react10.useRef)(true);
+  const pendingPresentChildren = (0, import_react10.useRef)(presentChildren);
+  const exitComplete = useConstant(() => /* @__PURE__ */ new Map());
+  const [diffedChildren, setDiffedChildren] = (0, import_react10.useState)(presentChildren);
+  const [renderedChildren, setRenderedChildren] = (0, import_react10.useState)(presentChildren);
+  useIsomorphicLayoutEffect(() => {
+    isInitialRender.current = false;
+    pendingPresentChildren.current = presentChildren;
+    for (let i = 0; i < renderedChildren.length; i++) {
+      const key = getChildKey(renderedChildren[i]);
+      if (!presentKeys.includes(key)) {
+        if (exitComplete.get(key) !== true) {
+          exitComplete.set(key, false);
+        }
+      } else {
+        exitComplete.delete(key);
+      }
+    }
+  }, [renderedChildren, presentKeys.length, presentKeys.join("-")]);
+  const exitingChildren = [];
+  if (presentChildren !== diffedChildren) {
+    let nextChildren = [...presentChildren];
+    for (let i = 0; i < renderedChildren.length; i++) {
+      const child = renderedChildren[i];
+      const key = getChildKey(child);
+      if (!presentKeys.includes(key)) {
+        nextChildren.splice(i, 0, child);
+        exitingChildren.push(child);
+      }
+    }
+    if (mode === "wait" && exitingChildren.length) {
+      nextChildren = exitingChildren;
+    }
+    setRenderedChildren(onlyElements(nextChildren));
+    setDiffedChildren(presentChildren);
+    return null;
+  }
+  if (mode === "wait" && renderedChildren.length > 1) {
+    console.warn(`You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour.`);
+  }
+  const { forceRender } = (0, import_react10.useContext)(LayoutGroupContext);
+  return (0, import_jsx_runtime3.jsx)(import_jsx_runtime3.Fragment, { children: renderedChildren.map((child) => {
+    const key = getChildKey(child);
+    const isPresent = propagate && !isParentPresent ? false : presentChildren === renderedChildren || presentKeys.includes(key);
+    const onExit = () => {
+      if (exitComplete.has(key)) {
+        exitComplete.set(key, true);
+      } else {
+        return;
+      }
+      let isEveryExitComplete = true;
+      exitComplete.forEach((isExitComplete) => {
+        if (!isExitComplete)
+          isEveryExitComplete = false;
+      });
+      if (isEveryExitComplete) {
+        forceRender?.();
+        setRenderedChildren(pendingPresentChildren.current);
+        propagate && safeToRemove?.();
+        onExitComplete && onExitComplete();
+      }
+    };
+    return (0, import_jsx_runtime3.jsx)(PresenceChild, { isPresent, initial: !isInitialRender.current || initial ? void 0 : false, custom, presenceAffectsLayout, mode, root, onExitComplete: isPresent ? void 0 : onExit, anchorX, children: child }, key);
+  }) });
+};
+
+// node_modules/framer-motion/dist/es/context/LazyContext.mjs
+var import_react11 = __toESM(require_react(), 1);
+var LazyContext = (0, import_react11.createContext)({ strict: false });
+
+// node_modules/framer-motion/dist/es/motion/features/definitions.mjs
+var featureProps = {
+  animation: [
+    "animate",
+    "variants",
+    "whileHover",
+    "whileTap",
+    "exit",
+    "whileInView",
+    "whileFocus",
+    "whileDrag"
+  ],
+  exit: ["exit"],
+  drag: ["drag", "dragControls"],
+  focus: ["whileFocus"],
+  hover: ["whileHover", "onHoverStart", "onHoverEnd"],
+  tap: ["whileTap", "onTap", "onTapStart", "onTapCancel"],
+  pan: ["onPan", "onPanStart", "onPanSessionStart", "onPanEnd"],
+  inView: ["whileInView", "onViewportEnter", "onViewportLeave"],
+  layout: ["layout", "layoutId"]
+};
+var featureDefinitions = {};
+for (const key in featureProps) {
+  featureDefinitions[key] = {
+    isEnabled: (props) => featureProps[key].some((name) => !!props[name])
+  };
+}
+
+// node_modules/framer-motion/dist/es/motion/features/load-features.mjs
+function loadFeatures(features) {
+  for (const key in features) {
+    featureDefinitions[key] = {
+      ...featureDefinitions[key],
+      ...features[key]
+    };
+  }
+}
+
+// node_modules/framer-motion/dist/es/motion/utils/valid-prop.mjs
+var validMotionProps = /* @__PURE__ */ new Set([
+  "animate",
+  "exit",
+  "variants",
+  "initial",
+  "style",
+  "values",
+  "variants",
+  "transition",
+  "transformTemplate",
+  "custom",
+  "inherit",
+  "onBeforeLayoutMeasure",
+  "onAnimationStart",
+  "onAnimationComplete",
+  "onUpdate",
+  "onDragStart",
+  "onDrag",
+  "onDragEnd",
+  "onMeasureDragConstraints",
+  "onDirectionLock",
+  "onDragTransitionEnd",
+  "_dragX",
+  "_dragY",
+  "onHoverStart",
+  "onHoverEnd",
+  "onViewportEnter",
+  "onViewportLeave",
+  "globalTapTarget",
+  "ignoreStrict",
+  "viewport"
+]);
+function isValidMotionProp(key) {
+  return key.startsWith("while") || key.startsWith("drag") && key !== "draggable" || key.startsWith("layout") || key.startsWith("onTap") || key.startsWith("onPan") || key.startsWith("onLayout") || validMotionProps.has(key);
+}
+
+// node_modules/framer-motion/dist/es/render/dom/utils/filter-props.mjs
+var shouldForward = (key) => !isValidMotionProp(key);
+function loadExternalIsValidProp(isValidProp) {
+  if (typeof isValidProp !== "function")
+    return;
+  shouldForward = (key) => key.startsWith("on") ? !isValidMotionProp(key) : isValidProp(key);
+}
+try {
+  loadExternalIsValidProp(__require("@emotion/is-prop-valid").default);
+} catch {
+}
+function filterProps(props, isDom, forwardMotionProps) {
+  const filteredProps = {};
+  for (const key in props) {
+    if (key === "values" && typeof props.values === "object")
+      continue;
+    if (shouldForward(key) || forwardMotionProps === true && isValidMotionProp(key) || !isDom && !isValidMotionProp(key) || // If trying to use native HTML drag events, forward drag listeners
+    props["draggable"] && key.startsWith("onDrag")) {
+      filteredProps[key] = props[key];
+    }
+  }
+  return filteredProps;
+}
+
+// node_modules/framer-motion/dist/es/motion/index.mjs
+var import_jsx_runtime4 = __toESM(require_jsx_runtime(), 1);
+var import_react21 = __toESM(require_react(), 1);
+
+// node_modules/framer-motion/dist/es/context/MotionContext/index.mjs
+var import_react12 = __toESM(require_react(), 1);
+var MotionContext = /* @__PURE__ */ (0, import_react12.createContext)({});
+
+// node_modules/framer-motion/dist/es/context/MotionContext/create.mjs
+var import_react13 = __toESM(require_react(), 1);
+
+// node_modules/framer-motion/dist/es/animation/utils/is-animation-controls.mjs
+function isAnimationControls(v) {
+  return v !== null && typeof v === "object" && typeof v.start === "function";
+}
+
+// node_modules/framer-motion/dist/es/render/utils/is-variant-label.mjs
+function isVariantLabel(v) {
+  return typeof v === "string" || Array.isArray(v);
+}
+
+// node_modules/framer-motion/dist/es/render/utils/variant-props.mjs
+var variantPriorityOrder = [
+  "animate",
+  "whileInView",
+  "whileFocus",
+  "whileHover",
+  "whileTap",
+  "whileDrag",
+  "exit"
+];
+var variantProps = ["initial", ...variantPriorityOrder];
+
+// node_modules/framer-motion/dist/es/render/utils/is-controlling-variants.mjs
+function isControllingVariants(props) {
+  return isAnimationControls(props.animate) || variantProps.some((name) => isVariantLabel(props[name]));
+}
+function isVariantNode(props) {
+  return Boolean(isControllingVariants(props) || props.variants);
+}
+
+// node_modules/framer-motion/dist/es/context/MotionContext/utils.mjs
+function getCurrentTreeVariants(props, context) {
+  if (isControllingVariants(props)) {
+    const { initial, animate } = props;
+    return {
+      initial: initial === false || isVariantLabel(initial) ? initial : void 0,
+      animate: isVariantLabel(animate) ? animate : void 0
+    };
+  }
+  return props.inherit !== false ? context : {};
+}
+
+// node_modules/framer-motion/dist/es/context/MotionContext/create.mjs
+function useCreateMotionContext(props) {
+  const { initial, animate } = getCurrentTreeVariants(props, (0, import_react13.useContext)(MotionContext));
+  return (0, import_react13.useMemo)(() => ({ initial, animate }), [variantLabelsAsDependency(initial), variantLabelsAsDependency(animate)]);
+}
+function variantLabelsAsDependency(prop) {
+  return Array.isArray(prop) ? prop.join(" ") : prop;
+}
+
+// node_modules/framer-motion/dist/es/render/dom/use-render.mjs
+var import_react16 = __toESM(require_react(), 1);
+
+// node_modules/framer-motion/dist/es/render/html/use-props.mjs
+var import_react14 = __toESM(require_react(), 1);
+
+// node_modules/framer-motion/dist/es/projection/styles/scale-correction.mjs
+var scaleCorrectors = {};
+function addScaleCorrector(correctors) {
+  for (const key in correctors) {
+    scaleCorrectors[key] = correctors[key];
+    if (isCSSVariableName(key)) {
+      scaleCorrectors[key].isCSSVariable = true;
+    }
+  }
+}
+
+// node_modules/framer-motion/dist/es/motion/utils/is-forced-motion-value.mjs
+function isForcedMotionValue(key, { layout: layout2, layoutId }) {
+  return transformProps.has(key) || key.startsWith("origin") || (layout2 || layoutId !== void 0) && (!!scaleCorrectors[key] || key === "opacity");
+}
+
+// node_modules/framer-motion/dist/es/render/html/utils/build-transform.mjs
+var translateAlias = {
+  x: "translateX",
+  y: "translateY",
+  z: "translateZ",
+  transformPerspective: "perspective"
+};
+var numTransforms = transformPropOrder.length;
+function buildTransform(latestValues, transform, transformTemplate) {
+  let transformString = "";
+  let transformIsDefault = true;
+  for (let i = 0; i < numTransforms; i++) {
+    const key = transformPropOrder[i];
+    const value = latestValues[key];
+    if (value === void 0)
+      continue;
+    let valueIsDefault = true;
+    if (typeof value === "number") {
+      valueIsDefault = value === (key.startsWith("scale") ? 1 : 0);
+    } else {
+      valueIsDefault = parseFloat(value) === 0;
+    }
+    if (!valueIsDefault || transformTemplate) {
+      const valueAsType = getValueAsType(value, numberValueTypes[key]);
+      if (!valueIsDefault) {
+        transformIsDefault = false;
+        const transformName = translateAlias[key] || key;
+        transformString += `${transformName}(${valueAsType}) `;
+      }
+      if (transformTemplate) {
+        transform[key] = valueAsType;
+      }
+    }
+  }
+  transformString = transformString.trim();
+  if (transformTemplate) {
+    transformString = transformTemplate(transform, transformIsDefault ? "" : transformString);
+  } else if (transformIsDefault) {
+    transformString = "none";
+  }
+  return transformString;
+}
+
+// node_modules/framer-motion/dist/es/render/html/utils/build-styles.mjs
+function buildHTMLStyles(state, latestValues, transformTemplate) {
+  const { style, vars, transformOrigin } = state;
+  let hasTransform2 = false;
+  let hasTransformOrigin = false;
+  for (const key in latestValues) {
+    const value = latestValues[key];
+    if (transformProps.has(key)) {
+      hasTransform2 = true;
+      continue;
+    } else if (isCSSVariableName(key)) {
+      vars[key] = value;
+      continue;
+    } else {
+      const valueAsType = getValueAsType(value, numberValueTypes[key]);
+      if (key.startsWith("origin")) {
+        hasTransformOrigin = true;
+        transformOrigin[key] = valueAsType;
+      } else {
+        style[key] = valueAsType;
+      }
+    }
+  }
+  if (!latestValues.transform) {
+    if (hasTransform2 || transformTemplate) {
+      style.transform = buildTransform(latestValues, state.transform, transformTemplate);
+    } else if (style.transform) {
+      style.transform = "none";
+    }
+  }
+  if (hasTransformOrigin) {
+    const { originX = "50%", originY = "50%", originZ = 0 } = transformOrigin;
+    style.transformOrigin = `${originX} ${originY} ${originZ}`;
+  }
+}
+
+// node_modules/framer-motion/dist/es/render/html/utils/create-render-state.mjs
+var createHtmlRenderState = () => ({
+  style: {},
+  transform: {},
+  transformOrigin: {},
+  vars: {}
+});
+
+// node_modules/framer-motion/dist/es/render/html/use-props.mjs
+function copyRawValuesOnly(target, source, props) {
+  for (const key in source) {
+    if (!isMotionValue(source[key]) && !isForcedMotionValue(key, props)) {
+      target[key] = source[key];
+    }
+  }
+}
+function useInitialMotionValues({ transformTemplate }, visualState) {
+  return (0, import_react14.useMemo)(() => {
+    const state = createHtmlRenderState();
+    buildHTMLStyles(state, visualState, transformTemplate);
+    return Object.assign({}, state.vars, state.style);
+  }, [visualState]);
+}
+function useStyle(props, visualState) {
+  const styleProp = props.style || {};
+  const style = {};
+  copyRawValuesOnly(style, styleProp, props);
+  Object.assign(style, useInitialMotionValues(props, visualState));
+  return style;
+}
+function useHTMLProps(props, visualState) {
+  const htmlProps = {};
+  const style = useStyle(props, visualState);
+  if (props.drag && props.dragListener !== false) {
+    htmlProps.draggable = false;
+    style.userSelect = style.WebkitUserSelect = style.WebkitTouchCallout = "none";
+    style.touchAction = props.drag === true ? "none" : `pan-${props.drag === "x" ? "y" : "x"}`;
+  }
+  if (props.tabIndex === void 0 && (props.onTap || props.onTapStart || props.whileTap)) {
+    htmlProps.tabIndex = 0;
+  }
+  htmlProps.style = style;
+  return htmlProps;
+}
+
+// node_modules/framer-motion/dist/es/render/svg/use-props.mjs
+var import_react15 = __toESM(require_react(), 1);
+
+// node_modules/framer-motion/dist/es/render/svg/utils/path.mjs
+var dashKeys = {
+  offset: "stroke-dashoffset",
+  array: "stroke-dasharray"
+};
+var camelKeys = {
+  offset: "strokeDashoffset",
+  array: "strokeDasharray"
+};
+function buildSVGPath(attrs, length, spacing = 1, offset = 0, useDashCase = true) {
+  attrs.pathLength = 1;
+  const keys2 = useDashCase ? dashKeys : camelKeys;
+  attrs[keys2.offset] = px.transform(-offset);
+  const pathLength = px.transform(length);
+  const pathSpacing = px.transform(spacing);
+  attrs[keys2.array] = `${pathLength} ${pathSpacing}`;
+}
+
+// node_modules/framer-motion/dist/es/render/svg/utils/build-attrs.mjs
+function buildSVGAttrs(state, {
+  attrX,
+  attrY,
+  attrScale,
+  pathLength,
+  pathSpacing = 1,
+  pathOffset = 0,
+  // This is object creation, which we try to avoid per-frame.
+  ...latest
+}, isSVGTag2, transformTemplate, styleProp) {
+  buildHTMLStyles(state, latest, transformTemplate);
+  if (isSVGTag2) {
+    if (state.style.viewBox) {
+      state.attrs.viewBox = state.style.viewBox;
+    }
+    return;
+  }
+  state.attrs = state.style;
+  state.style = {};
+  const { attrs, style } = state;
+  if (attrs.transform) {
+    style.transform = attrs.transform;
+    delete attrs.transform;
+  }
+  if (style.transform || attrs.transformOrigin) {
+    style.transformOrigin = attrs.transformOrigin ?? "50% 50%";
+    delete attrs.transformOrigin;
+  }
+  if (style.transform) {
+    style.transformBox = styleProp?.transformBox ?? "fill-box";
+    delete attrs.transformBox;
+  }
+  if (attrX !== void 0)
+    attrs.x = attrX;
+  if (attrY !== void 0)
+    attrs.y = attrY;
+  if (attrScale !== void 0)
+    attrs.scale = attrScale;
+  if (pathLength !== void 0) {
+    buildSVGPath(attrs, pathLength, pathSpacing, pathOffset, false);
+  }
+}
+
+// node_modules/framer-motion/dist/es/render/svg/utils/create-render-state.mjs
+var createSvgRenderState = () => ({
+  ...createHtmlRenderState(),
+  attrs: {}
+});
+
+// node_modules/framer-motion/dist/es/render/svg/utils/is-svg-tag.mjs
+var isSVGTag = (tag) => typeof tag === "string" && tag.toLowerCase() === "svg";
+
+// node_modules/framer-motion/dist/es/render/svg/use-props.mjs
+function useSVGProps(props, visualState, _isStatic, Component8) {
+  const visualProps = (0, import_react15.useMemo)(() => {
+    const state = createSvgRenderState();
+    buildSVGAttrs(state, visualState, isSVGTag(Component8), props.transformTemplate, props.style);
+    return {
+      ...state.attrs,
+      style: { ...state.style }
+    };
+  }, [visualState]);
+  if (props.style) {
+    const rawStyles = {};
+    copyRawValuesOnly(rawStyles, props.style, props);
+    visualProps.style = { ...rawStyles, ...visualProps.style };
+  }
+  return visualProps;
+}
+
+// node_modules/framer-motion/dist/es/render/svg/lowercase-elements.mjs
+var lowercaseSVGElements = [
+  "animate",
+  "circle",
+  "defs",
+  "desc",
+  "ellipse",
+  "g",
+  "image",
+  "line",
+  "filter",
+  "marker",
+  "mask",
+  "metadata",
+  "path",
+  "pattern",
+  "polygon",
+  "polyline",
+  "rect",
+  "stop",
+  "switch",
+  "symbol",
+  "svg",
+  "text",
+  "tspan",
+  "use",
+  "view"
+];
+
+// node_modules/framer-motion/dist/es/render/dom/utils/is-svg-component.mjs
+function isSVGComponent(Component8) {
+  if (
+    /**
+     * If it's not a string, it's a custom React component. Currently we only support
+     * HTML custom React components.
+     */
+    typeof Component8 !== "string" || /**
+     * If it contains a dash, the element is a custom HTML webcomponent.
+     */
+    Component8.includes("-")
+  ) {
+    return false;
+  } else if (
+    /**
+     * If it's in our list of lowercase SVG tags, it's an SVG component
+     */
+    lowercaseSVGElements.indexOf(Component8) > -1 || /**
+     * If it contains a capital letter, it's an SVG component
+     */
+    /[A-Z]/u.test(Component8)
+  ) {
+    return true;
+  }
+  return false;
+}
+
+// node_modules/framer-motion/dist/es/render/dom/use-render.mjs
+function useRender(Component8, props, ref, { latestValues }, isStatic, forwardMotionProps = false) {
+  const useVisualProps = isSVGComponent(Component8) ? useSVGProps : useHTMLProps;
+  const visualProps = useVisualProps(props, latestValues, isStatic, Component8);
+  const filteredProps = filterProps(props, typeof Component8 === "string", forwardMotionProps);
+  const elementProps = Component8 !== import_react16.Fragment ? { ...filteredProps, ...visualProps, ref } : {};
+  const { children } = props;
+  const renderedChildren = (0, import_react16.useMemo)(() => isMotionValue(children) ? children.get() : children, [children]);
+  return (0, import_react16.createElement)(Component8, {
+    ...elementProps,
+    children: renderedChildren
+  });
+}
+
+// node_modules/framer-motion/dist/es/motion/utils/use-visual-state.mjs
+var import_react17 = __toESM(require_react(), 1);
+
+// node_modules/framer-motion/dist/es/render/utils/resolve-variants.mjs
+function getValueState(visualElement) {
+  const state = [{}, {}];
+  visualElement?.values.forEach((value, key) => {
+    state[0][key] = value.get();
+    state[1][key] = value.getVelocity();
+  });
+  return state;
+}
+function resolveVariantFromProps(props, definition, custom, visualElement) {
+  if (typeof definition === "function") {
+    const [current, velocity] = getValueState(visualElement);
+    definition = definition(custom !== void 0 ? custom : props.custom, current, velocity);
+  }
+  if (typeof definition === "string") {
+    definition = props.variants && props.variants[definition];
+  }
+  if (typeof definition === "function") {
+    const [current, velocity] = getValueState(visualElement);
+    definition = definition(custom !== void 0 ? custom : props.custom, current, velocity);
+  }
+  return definition;
+}
+
+// node_modules/framer-motion/dist/es/value/utils/resolve-motion-value.mjs
+function resolveMotionValue(value) {
+  return isMotionValue(value) ? value.get() : value;
+}
+
+// node_modules/framer-motion/dist/es/motion/utils/use-visual-state.mjs
+function makeState({ scrapeMotionValuesFromProps: scrapeMotionValuesFromProps3, createRenderState }, props, context, presenceContext) {
+  const state = {
+    latestValues: makeLatestValues(props, context, presenceContext, scrapeMotionValuesFromProps3),
+    renderState: createRenderState()
+  };
+  return state;
+}
+function makeLatestValues(props, context, presenceContext, scrapeMotionValues) {
+  const values = {};
+  const motionValues = scrapeMotionValues(props, {});
+  for (const key in motionValues) {
+    values[key] = resolveMotionValue(motionValues[key]);
+  }
+  let { initial, animate } = props;
+  const isControllingVariants$1 = isControllingVariants(props);
+  const isVariantNode$1 = isVariantNode(props);
+  if (context && isVariantNode$1 && !isControllingVariants$1 && props.inherit !== false) {
+    if (initial === void 0)
+      initial = context.initial;
+    if (animate === void 0)
+      animate = context.animate;
+  }
+  let isInitialAnimationBlocked = presenceContext ? presenceContext.initial === false : false;
+  isInitialAnimationBlocked = isInitialAnimationBlocked || initial === false;
+  const variantToSet = isInitialAnimationBlocked ? animate : initial;
+  if (variantToSet && typeof variantToSet !== "boolean" && !isAnimationControls(variantToSet)) {
+    const list = Array.isArray(variantToSet) ? variantToSet : [variantToSet];
+    for (let i = 0; i < list.length; i++) {
+      const resolved = resolveVariantFromProps(props, list[i]);
+      if (resolved) {
+        const { transitionEnd, transition, ...target } = resolved;
+        for (const key in target) {
+          let valueTarget = target[key];
+          if (Array.isArray(valueTarget)) {
+            const index = isInitialAnimationBlocked ? valueTarget.length - 1 : 0;
+            valueTarget = valueTarget[index];
+          }
+          if (valueTarget !== null) {
+            values[key] = valueTarget;
+          }
+        }
+        for (const key in transitionEnd) {
+          values[key] = transitionEnd[key];
+        }
+      }
+    }
+  }
+  return values;
+}
+var makeUseVisualState = (config) => (props, isStatic) => {
+  const context = (0, import_react17.useContext)(MotionContext);
+  const presenceContext = (0, import_react17.useContext)(PresenceContext);
+  const make = () => makeState(config, props, context, presenceContext);
+  return isStatic ? make() : useConstant(make);
+};
+
+// node_modules/framer-motion/dist/es/render/html/utils/scrape-motion-values.mjs
+function scrapeMotionValuesFromProps(props, prevProps, visualElement) {
+  const { style } = props;
+  const newValues = {};
+  for (const key in style) {
+    if (isMotionValue(style[key]) || prevProps.style && isMotionValue(prevProps.style[key]) || isForcedMotionValue(key, props) || visualElement?.getValue(key)?.liveStyle !== void 0) {
+      newValues[key] = style[key];
+    }
+  }
+  return newValues;
+}
+
+// node_modules/framer-motion/dist/es/render/html/use-html-visual-state.mjs
+var useHTMLVisualState = /* @__PURE__ */ makeUseVisualState({
+  scrapeMotionValuesFromProps,
+  createRenderState: createHtmlRenderState
+});
+
+// node_modules/framer-motion/dist/es/render/svg/utils/scrape-motion-values.mjs
+function scrapeMotionValuesFromProps2(props, prevProps, visualElement) {
+  const newValues = scrapeMotionValuesFromProps(props, prevProps, visualElement);
+  for (const key in props) {
+    if (isMotionValue(props[key]) || isMotionValue(prevProps[key])) {
+      const targetKey = transformPropOrder.indexOf(key) !== -1 ? "attr" + key.charAt(0).toUpperCase() + key.substring(1) : key;
+      newValues[targetKey] = props[key];
+    }
+  }
+  return newValues;
+}
+
+// node_modules/framer-motion/dist/es/render/svg/use-svg-visual-state.mjs
+var useSVGVisualState = /* @__PURE__ */ makeUseVisualState({
+  scrapeMotionValuesFromProps: scrapeMotionValuesFromProps2,
+  createRenderState: createSvgRenderState
+});
+
+// node_modules/framer-motion/dist/es/motion/utils/symbol.mjs
+var motionComponentSymbol = Symbol.for("motionComponentSymbol");
+
+// node_modules/framer-motion/dist/es/motion/utils/use-motion-ref.mjs
+var import_react18 = __toESM(require_react(), 1);
+
+// node_modules/framer-motion/dist/es/utils/is-ref-object.mjs
+function isRefObject(ref) {
+  return ref && typeof ref === "object" && Object.prototype.hasOwnProperty.call(ref, "current");
+}
+
+// node_modules/framer-motion/dist/es/motion/utils/use-motion-ref.mjs
+function useMotionRef(visualState, visualElement, externalRef) {
+  return (0, import_react18.useCallback)(
+    (instance) => {
+      if (instance) {
+        visualState.onMount && visualState.onMount(instance);
+      }
+      if (visualElement) {
+        if (instance) {
+          visualElement.mount(instance);
+        } else {
+          visualElement.unmount();
+        }
+      }
+      if (externalRef) {
+        if (typeof externalRef === "function") {
+          externalRef(instance);
+        } else if (isRefObject(externalRef)) {
+          externalRef.current = instance;
+        }
+      }
+    },
+    /**
+     * Only pass a new ref callback to React if we've received a visual element
+     * factory. Otherwise we'll be mounting/remounting every time externalRef
+     * or other dependencies change.
+     */
+    [visualElement]
+  );
+}
+
+// node_modules/framer-motion/dist/es/motion/utils/use-visual-element.mjs
+var import_react20 = __toESM(require_react(), 1);
+
+// node_modules/framer-motion/dist/es/render/dom/utils/camel-to-dash.mjs
+var camelToDash = (str) => str.replace(/([a-z])([A-Z])/gu, "$1-$2").toLowerCase();
+
+// node_modules/framer-motion/dist/es/animation/optimized-appear/data-id.mjs
+var optimizedAppearDataId = "framerAppearId";
+var optimizedAppearDataAttribute = "data-" + camelToDash(optimizedAppearDataId);
+
+// node_modules/framer-motion/dist/es/context/SwitchLayoutGroupContext.mjs
+var import_react19 = __toESM(require_react(), 1);
+var SwitchLayoutGroupContext = (0, import_react19.createContext)({});
+
+// node_modules/framer-motion/dist/es/motion/utils/use-visual-element.mjs
+function useVisualElement(Component8, visualState, props, createVisualElement, ProjectionNodeConstructor) {
+  const { visualElement: parent } = (0, import_react20.useContext)(MotionContext);
+  const lazyContext = (0, import_react20.useContext)(LazyContext);
+  const presenceContext = (0, import_react20.useContext)(PresenceContext);
+  const reducedMotionConfig = (0, import_react20.useContext)(MotionConfigContext).reducedMotion;
+  const visualElementRef = (0, import_react20.useRef)(null);
+  createVisualElement = createVisualElement || lazyContext.renderer;
+  if (!visualElementRef.current && createVisualElement) {
+    visualElementRef.current = createVisualElement(Component8, {
+      visualState,
+      parent,
+      props,
+      presenceContext,
+      blockInitialAnimation: presenceContext ? presenceContext.initial === false : false,
+      reducedMotionConfig
+    });
+  }
+  const visualElement = visualElementRef.current;
+  const initialLayoutGroupConfig = (0, import_react20.useContext)(SwitchLayoutGroupContext);
+  if (visualElement && !visualElement.projection && ProjectionNodeConstructor && (visualElement.type === "html" || visualElement.type === "svg")) {
+    createProjectionNode(visualElementRef.current, props, ProjectionNodeConstructor, initialLayoutGroupConfig);
+  }
+  const isMounted = (0, import_react20.useRef)(false);
+  (0, import_react20.useInsertionEffect)(() => {
+    if (visualElement && isMounted.current) {
+      visualElement.update(props, presenceContext);
+    }
+  });
+  const optimisedAppearId = props[optimizedAppearDataAttribute];
+  const wantsHandoff = (0, import_react20.useRef)(Boolean(optimisedAppearId) && !window.MotionHandoffIsComplete?.(optimisedAppearId) && window.MotionHasOptimisedAnimation?.(optimisedAppearId));
+  useIsomorphicLayoutEffect(() => {
+    if (!visualElement)
+      return;
+    isMounted.current = true;
+    window.MotionIsMounted = true;
+    visualElement.updateFeatures();
+    visualElement.scheduleRenderMicrotask();
+    if (wantsHandoff.current && visualElement.animationState) {
+      visualElement.animationState.animateChanges();
+    }
+  });
+  (0, import_react20.useEffect)(() => {
+    if (!visualElement)
+      return;
+    if (!wantsHandoff.current && visualElement.animationState) {
+      visualElement.animationState.animateChanges();
+    }
+    if (wantsHandoff.current) {
+      queueMicrotask(() => {
+        window.MotionHandoffMarkAsComplete?.(optimisedAppearId);
+      });
+      wantsHandoff.current = false;
+    }
+    visualElement.enteringChildren = void 0;
+  });
+  return visualElement;
+}
+function createProjectionNode(visualElement, props, ProjectionNodeConstructor, initialPromotionConfig) {
+  const { layoutId, layout: layout2, drag: drag2, dragConstraints, layoutScroll, layoutRoot, layoutCrossfade } = props;
+  visualElement.projection = new ProjectionNodeConstructor(visualElement.latestValues, props["data-framer-portal-id"] ? void 0 : getClosestProjectingNode(visualElement.parent));
+  visualElement.projection.setOptions({
+    layoutId,
+    layout: layout2,
+    alwaysMeasureLayout: Boolean(drag2) || dragConstraints && isRefObject(dragConstraints),
+    visualElement,
+    /**
+     * TODO: Update options in an effect. This could be tricky as it'll be too late
+     * to update by the time layout animations run.
+     * We also need to fix this safeToRemove by linking it up to the one returned by usePresence,
+     * ensuring it gets called if there's no potential layout animations.
+     *
+     */
+    animationType: typeof layout2 === "string" ? layout2 : "both",
+    initialPromotionConfig,
+    crossfade: layoutCrossfade,
+    layoutScroll,
+    layoutRoot
+  });
+}
+function getClosestProjectingNode(visualElement) {
+  if (!visualElement)
+    return void 0;
+  return visualElement.options.allowProjection !== false ? visualElement.projection : getClosestProjectingNode(visualElement.parent);
+}
+
+// node_modules/framer-motion/dist/es/motion/index.mjs
+function createMotionComponent(Component8, { forwardMotionProps = false } = {}, preloadedFeatures, createVisualElement) {
+  preloadedFeatures && loadFeatures(preloadedFeatures);
+  const useVisualState = isSVGComponent(Component8) ? useSVGVisualState : useHTMLVisualState;
+  function MotionDOMComponent(props, externalRef) {
+    let MeasureLayout2;
+    const configAndProps = {
+      ...(0, import_react21.useContext)(MotionConfigContext),
+      ...props,
+      layoutId: useLayoutId(props)
+    };
+    const { isStatic } = configAndProps;
+    const context = useCreateMotionContext(props);
+    const visualState = useVisualState(props, isStatic);
+    if (!isStatic && isBrowser) {
+      useStrictMode(configAndProps, preloadedFeatures);
+      const layoutProjection = getProjectionFunctionality(configAndProps);
+      MeasureLayout2 = layoutProjection.MeasureLayout;
+      context.visualElement = useVisualElement(Component8, visualState, configAndProps, createVisualElement, layoutProjection.ProjectionNode);
+    }
+    return (0, import_jsx_runtime4.jsxs)(MotionContext.Provider, { value: context, children: [MeasureLayout2 && context.visualElement ? (0, import_jsx_runtime4.jsx)(MeasureLayout2, { visualElement: context.visualElement, ...configAndProps }) : null, useRender(Component8, props, useMotionRef(visualState, context.visualElement, externalRef), visualState, isStatic, forwardMotionProps)] });
+  }
+  MotionDOMComponent.displayName = `motion.${typeof Component8 === "string" ? Component8 : `create(${Component8.displayName ?? Component8.name ?? ""})`}`;
+  const ForwardRefMotionComponent = (0, import_react21.forwardRef)(MotionDOMComponent);
+  ForwardRefMotionComponent[motionComponentSymbol] = Component8;
+  return ForwardRefMotionComponent;
+}
+function useLayoutId({ layoutId }) {
+  const layoutGroupId = (0, import_react21.useContext)(LayoutGroupContext).id;
+  return layoutGroupId && layoutId !== void 0 ? layoutGroupId + "-" + layoutId : layoutId;
+}
+function useStrictMode(configAndProps, preloadedFeatures) {
+  const isStrict = (0, import_react21.useContext)(LazyContext).strict;
+  if (preloadedFeatures && isStrict) {
+    const strictMessage = "You have rendered a `motion` component within a `LazyMotion` component. This will break tree shaking. Import and render a `m` component instead.";
+    configAndProps.ignoreStrict ? warning(false, strictMessage, "lazy-strict-mode") : invariant(false, strictMessage, "lazy-strict-mode");
+  }
+}
+function getProjectionFunctionality(props) {
+  const { drag: drag2, layout: layout2 } = featureDefinitions;
+  if (!drag2 && !layout2)
+    return {};
+  const combined = { ...drag2, ...layout2 };
+  return {
+    MeasureLayout: drag2?.isEnabled(props) || layout2?.isEnabled(props) ? combined.MeasureLayout : void 0,
+    ProjectionNode: combined.ProjectionNode
+  };
+}
+
+// node_modules/framer-motion/dist/es/render/components/create-proxy.mjs
+function createMotionProxy(preloadedFeatures, createVisualElement) {
+  if (typeof Proxy === "undefined") {
+    return createMotionComponent;
+  }
+  const componentCache = /* @__PURE__ */ new Map();
+  const factory = (Component8, options) => {
+    return createMotionComponent(Component8, options, preloadedFeatures, createVisualElement);
+  };
+  const deprecatedFactoryFunction = (Component8, options) => {
+    if (true) {
+      warnOnce(false, "motion() is deprecated. Use motion.create() instead.");
+    }
+    return factory(Component8, options);
+  };
+  return new Proxy(deprecatedFactoryFunction, {
+    /**
+     * Called when `motion` is referenced with a prop: `motion.div`, `motion.input` etc.
+     * The prop name is passed through as `key` and we can use that to generate a `motion`
+     * DOM component with that name.
+     */
+    get: (_target, key) => {
+      if (key === "create")
+        return factory;
+      if (!componentCache.has(key)) {
+        componentCache.set(key, createMotionComponent(key, void 0, preloadedFeatures, createVisualElement));
+      }
+      return componentCache.get(key);
+    }
+  });
+}
+
+// node_modules/framer-motion/dist/es/render/dom/create-visual-element.mjs
+var import_react22 = __toESM(require_react(), 1);
+
+// node_modules/framer-motion/dist/es/projection/geometry/conversion.mjs
+function convertBoundingBoxToBox({ top, left, right, bottom }) {
+  return {
+    x: { min: left, max: right },
+    y: { min: top, max: bottom }
+  };
+}
+function convertBoxToBoundingBox({ x: x2, y: y2 }) {
+  return { top: y2.min, right: x2.max, bottom: y2.max, left: x2.min };
+}
+function transformBoxPoints(point4, transformPoint2) {
+  if (!transformPoint2)
+    return point4;
+  const topLeft = transformPoint2({ x: point4.left, y: point4.top });
+  const bottomRight = transformPoint2({ x: point4.right, y: point4.bottom });
+  return {
+    top: topLeft.y,
+    left: topLeft.x,
+    bottom: bottomRight.y,
+    right: bottomRight.x
+  };
+}
+
+// node_modules/framer-motion/dist/es/projection/utils/has-transform.mjs
+function isIdentityScale(scale2) {
+  return scale2 === void 0 || scale2 === 1;
+}
+function hasScale({ scale: scale2, scaleX: scaleX2, scaleY: scaleY2 }) {
+  return !isIdentityScale(scale2) || !isIdentityScale(scaleX2) || !isIdentityScale(scaleY2);
+}
+function hasTransform(values) {
+  return hasScale(values) || has2DTranslate(values) || values.z || values.rotate || values.rotateX || values.rotateY || values.skewX || values.skewY;
+}
+function has2DTranslate(values) {
+  return is2DTranslate(values.x) || is2DTranslate(values.y);
+}
+function is2DTranslate(value) {
+  return value && value !== "0%";
+}
+
+// node_modules/framer-motion/dist/es/projection/geometry/delta-apply.mjs
+function scalePoint(point4, scale2, originPoint) {
+  const distanceFromOrigin = point4 - originPoint;
+  const scaled = scale2 * distanceFromOrigin;
+  return originPoint + scaled;
+}
+function applyPointDelta(point4, translate, scale2, originPoint, boxScale) {
+  if (boxScale !== void 0) {
+    point4 = scalePoint(point4, boxScale, originPoint);
+  }
+  return scalePoint(point4, scale2, originPoint) + translate;
+}
+function applyAxisDelta(axis, translate = 0, scale2 = 1, originPoint, boxScale) {
+  axis.min = applyPointDelta(axis.min, translate, scale2, originPoint, boxScale);
+  axis.max = applyPointDelta(axis.max, translate, scale2, originPoint, boxScale);
+}
+function applyBoxDelta(box, { x: x2, y: y2 }) {
+  applyAxisDelta(box.x, x2.translate, x2.scale, x2.originPoint);
+  applyAxisDelta(box.y, y2.translate, y2.scale, y2.originPoint);
+}
+var TREE_SCALE_SNAP_MIN = 0.999999999999;
+var TREE_SCALE_SNAP_MAX = 1.0000000000001;
+function applyTreeDeltas(box, treeScale, treePath, isSharedTransition = false) {
+  const treeLength = treePath.length;
+  if (!treeLength)
+    return;
+  treeScale.x = treeScale.y = 1;
+  let node;
+  let delta;
+  for (let i = 0; i < treeLength; i++) {
+    node = treePath[i];
+    delta = node.projectionDelta;
+    const { visualElement } = node.options;
+    if (visualElement && visualElement.props.style && visualElement.props.style.display === "contents") {
+      continue;
+    }
+    if (isSharedTransition && node.options.layoutScroll && node.scroll && node !== node.root) {
+      transformBox(box, {
+        x: -node.scroll.offset.x,
+        y: -node.scroll.offset.y
+      });
+    }
+    if (delta) {
+      treeScale.x *= delta.x.scale;
+      treeScale.y *= delta.y.scale;
+      applyBoxDelta(box, delta);
+    }
+    if (isSharedTransition && hasTransform(node.latestValues)) {
+      transformBox(box, node.latestValues);
+    }
+  }
+  if (treeScale.x < TREE_SCALE_SNAP_MAX && treeScale.x > TREE_SCALE_SNAP_MIN) {
+    treeScale.x = 1;
+  }
+  if (treeScale.y < TREE_SCALE_SNAP_MAX && treeScale.y > TREE_SCALE_SNAP_MIN) {
+    treeScale.y = 1;
+  }
+}
+function translateAxis(axis, distance2) {
+  axis.min = axis.min + distance2;
+  axis.max = axis.max + distance2;
+}
+function transformAxis(axis, axisTranslate, axisScale, boxScale, axisOrigin = 0.5) {
+  const originPoint = mixNumber(axis.min, axis.max, axisOrigin);
+  applyAxisDelta(axis, axisTranslate, axisScale, originPoint, boxScale);
+}
+function transformBox(box, transform) {
+  transformAxis(box.x, transform.x, transform.scaleX, transform.scale, transform.originX);
+  transformAxis(box.y, transform.y, transform.scaleY, transform.scale, transform.originY);
+}
+
+// node_modules/framer-motion/dist/es/projection/utils/measure.mjs
+function measureViewportBox(instance, transformPoint2) {
+  return convertBoundingBoxToBox(transformBoxPoints(instance.getBoundingClientRect(), transformPoint2));
+}
+function measurePageBox(element, rootProjectionNode2, transformPagePoint) {
+  const viewportBox = measureViewportBox(element, transformPagePoint);
+  const { scroll } = rootProjectionNode2;
+  if (scroll) {
+    translateAxis(viewportBox.x, scroll.offset.x);
+    translateAxis(viewportBox.y, scroll.offset.y);
+  }
+  return viewportBox;
+}
+
+// node_modules/framer-motion/dist/es/projection/geometry/models.mjs
+var createAxisDelta = () => ({
+  translate: 0,
+  scale: 1,
+  origin: 0,
+  originPoint: 0
+});
+var createDelta = () => ({
+  x: createAxisDelta(),
+  y: createAxisDelta()
+});
+var createAxis = () => ({ min: 0, max: 0 });
+var createBox = () => ({
+  x: createAxis(),
+  y: createAxis()
+});
+
+// node_modules/framer-motion/dist/es/utils/reduced-motion/state.mjs
+var prefersReducedMotion = { current: null };
+var hasReducedMotionListener = { current: false };
+
+// node_modules/framer-motion/dist/es/utils/reduced-motion/index.mjs
+function initPrefersReducedMotion() {
+  hasReducedMotionListener.current = true;
+  if (!isBrowser)
+    return;
+  if (window.matchMedia) {
+    const motionMediaQuery = window.matchMedia("(prefers-reduced-motion)");
+    const setReducedMotionPreferences = () => prefersReducedMotion.current = motionMediaQuery.matches;
+    motionMediaQuery.addEventListener("change", setReducedMotionPreferences);
+    setReducedMotionPreferences();
+  } else {
+    prefersReducedMotion.current = false;
+  }
+}
+
+// node_modules/framer-motion/dist/es/render/store.mjs
+var visualElementStore = /* @__PURE__ */ new WeakMap();
+
+// node_modules/framer-motion/dist/es/render/utils/motion-values.mjs
+function updateMotionValuesFromProps(element, next, prev) {
+  for (const key in next) {
+    const nextValue = next[key];
+    const prevValue = prev[key];
+    if (isMotionValue(nextValue)) {
+      element.addValue(key, nextValue);
+    } else if (isMotionValue(prevValue)) {
+      element.addValue(key, motionValue(nextValue, { owner: element }));
+    } else if (prevValue !== nextValue) {
+      if (element.hasValue(key)) {
+        const existingValue = element.getValue(key);
+        if (existingValue.liveStyle === true) {
+          existingValue.jump(nextValue);
+        } else if (!existingValue.hasAnimated) {
+          existingValue.set(nextValue);
+        }
+      } else {
+        const latestValue = element.getStaticValue(key);
+        element.addValue(key, motionValue(latestValue !== void 0 ? latestValue : nextValue, { owner: element }));
+      }
+    }
+  }
+  for (const key in prev) {
+    if (next[key] === void 0)
+      element.removeValue(key);
+  }
+  return next;
+}
+
+// node_modules/framer-motion/dist/es/render/VisualElement.mjs
+var propEventHandlers = [
+  "AnimationStart",
+  "AnimationComplete",
+  "Update",
+  "BeforeLayoutMeasure",
+  "LayoutMeasure",
+  "LayoutAnimationStart",
+  "LayoutAnimationComplete"
+];
+var VisualElement = class {
+  /**
+   * This method takes React props and returns found MotionValues. For example, HTML
+   * MotionValues will be found within the style prop, whereas for Three.js within attribute arrays.
+   *
+   * This isn't an abstract method as it needs calling in the constructor, but it is
+   * intended to be one.
+   */
+  scrapeMotionValuesFromProps(_props, _prevProps, _visualElement) {
+    return {};
+  }
+  constructor({ parent, props, presenceContext, reducedMotionConfig, blockInitialAnimation, visualState }, options = {}) {
+    this.current = null;
+    this.children = /* @__PURE__ */ new Set();
+    this.isVariantNode = false;
+    this.isControllingVariants = false;
+    this.shouldReduceMotion = null;
+    this.values = /* @__PURE__ */ new Map();
+    this.KeyframeResolver = KeyframeResolver;
+    this.features = {};
+    this.valueSubscriptions = /* @__PURE__ */ new Map();
+    this.prevMotionValues = {};
+    this.events = {};
+    this.propEventSubscriptions = {};
+    this.notifyUpdate = () => this.notify("Update", this.latestValues);
+    this.render = () => {
+      if (!this.current)
+        return;
+      this.triggerBuild();
+      this.renderInstance(this.current, this.renderState, this.props.style, this.projection);
+    };
+    this.renderScheduledAt = 0;
+    this.scheduleRender = () => {
+      const now2 = time.now();
+      if (this.renderScheduledAt < now2) {
+        this.renderScheduledAt = now2;
+        frame.render(this.render, false, true);
+      }
+    };
+    const { latestValues, renderState } = visualState;
+    this.latestValues = latestValues;
+    this.baseTarget = { ...latestValues };
+    this.initialValues = props.initial ? { ...latestValues } : {};
+    this.renderState = renderState;
+    this.parent = parent;
+    this.props = props;
+    this.presenceContext = presenceContext;
+    this.depth = parent ? parent.depth + 1 : 0;
+    this.reducedMotionConfig = reducedMotionConfig;
+    this.options = options;
+    this.blockInitialAnimation = Boolean(blockInitialAnimation);
+    this.isControllingVariants = isControllingVariants(props);
+    this.isVariantNode = isVariantNode(props);
+    if (this.isVariantNode) {
+      this.variantChildren = /* @__PURE__ */ new Set();
+    }
+    this.manuallyAnimateOnMount = Boolean(parent && parent.current);
+    const { willChange, ...initialMotionValues } = this.scrapeMotionValuesFromProps(props, {}, this);
+    for (const key in initialMotionValues) {
+      const value = initialMotionValues[key];
+      if (latestValues[key] !== void 0 && isMotionValue(value)) {
+        value.set(latestValues[key]);
+      }
+    }
+  }
+  mount(instance) {
+    this.current = instance;
+    visualElementStore.set(instance, this);
+    if (this.projection && !this.projection.instance) {
+      this.projection.mount(instance);
+    }
+    if (this.parent && this.isVariantNode && !this.isControllingVariants) {
+      this.removeFromVariantTree = this.parent.addVariantChild(this);
+    }
+    this.values.forEach((value, key) => this.bindToMotionValue(key, value));
+    if (!hasReducedMotionListener.current) {
+      initPrefersReducedMotion();
+    }
+    this.shouldReduceMotion = this.reducedMotionConfig === "never" ? false : this.reducedMotionConfig === "always" ? true : prefersReducedMotion.current;
+    if (true) {
+      warnOnce(this.shouldReduceMotion !== true, "You have Reduced Motion enabled on your device. Animations may not appear as expected.", "reduced-motion-disabled");
+    }
+    this.parent?.addChild(this);
+    this.update(this.props, this.presenceContext);
+  }
+  unmount() {
+    this.projection && this.projection.unmount();
+    cancelFrame(this.notifyUpdate);
+    cancelFrame(this.render);
+    this.valueSubscriptions.forEach((remove) => remove());
+    this.valueSubscriptions.clear();
+    this.removeFromVariantTree && this.removeFromVariantTree();
+    this.parent?.removeChild(this);
+    for (const key in this.events) {
+      this.events[key].clear();
+    }
+    for (const key in this.features) {
+      const feature = this.features[key];
+      if (feature) {
+        feature.unmount();
+        feature.isMounted = false;
+      }
+    }
+    this.current = null;
+  }
+  addChild(child) {
+    this.children.add(child);
+    this.enteringChildren ?? (this.enteringChildren = /* @__PURE__ */ new Set());
+    this.enteringChildren.add(child);
+  }
+  removeChild(child) {
+    this.children.delete(child);
+    this.enteringChildren && this.enteringChildren.delete(child);
+  }
+  bindToMotionValue(key, value) {
+    if (this.valueSubscriptions.has(key)) {
+      this.valueSubscriptions.get(key)();
+    }
+    const valueIsTransform = transformProps.has(key);
+    if (valueIsTransform && this.onBindTransform) {
+      this.onBindTransform();
+    }
+    const removeOnChange = value.on("change", (latestValue) => {
+      this.latestValues[key] = latestValue;
+      this.props.onUpdate && frame.preRender(this.notifyUpdate);
+      if (valueIsTransform && this.projection) {
+        this.projection.isTransformDirty = true;
+      }
+      this.scheduleRender();
+    });
+    let removeSyncCheck;
+    if (window.MotionCheckAppearSync) {
+      removeSyncCheck = window.MotionCheckAppearSync(this, key, value);
+    }
+    this.valueSubscriptions.set(key, () => {
+      removeOnChange();
+      if (removeSyncCheck)
+        removeSyncCheck();
+      if (value.owner)
+        value.stop();
+    });
+  }
+  sortNodePosition(other) {
+    if (!this.current || !this.sortInstanceNodePosition || this.type !== other.type) {
+      return 0;
+    }
+    return this.sortInstanceNodePosition(this.current, other.current);
+  }
+  updateFeatures() {
+    let key = "animation";
+    for (key in featureDefinitions) {
+      const featureDefinition = featureDefinitions[key];
+      if (!featureDefinition)
+        continue;
+      const { isEnabled, Feature: FeatureConstructor } = featureDefinition;
+      if (!this.features[key] && FeatureConstructor && isEnabled(this.props)) {
+        this.features[key] = new FeatureConstructor(this);
+      }
+      if (this.features[key]) {
+        const feature = this.features[key];
+        if (feature.isMounted) {
+          feature.update();
+        } else {
+          feature.mount();
+          feature.isMounted = true;
+        }
+      }
+    }
+  }
+  triggerBuild() {
+    this.build(this.renderState, this.latestValues, this.props);
+  }
+  /**
+   * Measure the current viewport box with or without transforms.
+   * Only measures axis-aligned boxes, rotate and skew must be manually
+   * removed with a re-render to work.
+   */
+  measureViewportBox() {
+    return this.current ? this.measureInstanceViewportBox(this.current, this.props) : createBox();
+  }
+  getStaticValue(key) {
+    return this.latestValues[key];
+  }
+  setStaticValue(key, value) {
+    this.latestValues[key] = value;
+  }
+  /**
+   * Update the provided props. Ensure any newly-added motion values are
+   * added to our map, old ones removed, and listeners updated.
+   */
+  update(props, presenceContext) {
+    if (props.transformTemplate || this.props.transformTemplate) {
+      this.scheduleRender();
+    }
+    this.prevProps = this.props;
+    this.props = props;
+    this.prevPresenceContext = this.presenceContext;
+    this.presenceContext = presenceContext;
+    for (let i = 0; i < propEventHandlers.length; i++) {
+      const key = propEventHandlers[i];
+      if (this.propEventSubscriptions[key]) {
+        this.propEventSubscriptions[key]();
+        delete this.propEventSubscriptions[key];
+      }
+      const listenerName = "on" + key;
+      const listener = props[listenerName];
+      if (listener) {
+        this.propEventSubscriptions[key] = this.on(key, listener);
+      }
+    }
+    this.prevMotionValues = updateMotionValuesFromProps(this, this.scrapeMotionValuesFromProps(props, this.prevProps, this), this.prevMotionValues);
+    if (this.handleChildMotionValue) {
+      this.handleChildMotionValue();
+    }
+  }
+  getProps() {
+    return this.props;
+  }
+  /**
+   * Returns the variant definition with a given name.
+   */
+  getVariant(name) {
+    return this.props.variants ? this.props.variants[name] : void 0;
+  }
+  /**
+   * Returns the defined default transition on this component.
+   */
+  getDefaultTransition() {
+    return this.props.transition;
+  }
+  getTransformPagePoint() {
+    return this.props.transformPagePoint;
+  }
+  getClosestVariantNode() {
+    return this.isVariantNode ? this : this.parent ? this.parent.getClosestVariantNode() : void 0;
+  }
+  /**
+   * Add a child visual element to our set of children.
+   */
+  addVariantChild(child) {
+    const closestVariantNode = this.getClosestVariantNode();
+    if (closestVariantNode) {
+      closestVariantNode.variantChildren && closestVariantNode.variantChildren.add(child);
+      return () => closestVariantNode.variantChildren.delete(child);
+    }
+  }
+  /**
+   * Add a motion value and bind it to this visual element.
+   */
+  addValue(key, value) {
+    const existingValue = this.values.get(key);
+    if (value !== existingValue) {
+      if (existingValue)
+        this.removeValue(key);
+      this.bindToMotionValue(key, value);
+      this.values.set(key, value);
+      this.latestValues[key] = value.get();
+    }
+  }
+  /**
+   * Remove a motion value and unbind any active subscriptions.
+   */
+  removeValue(key) {
+    this.values.delete(key);
+    const unsubscribe = this.valueSubscriptions.get(key);
+    if (unsubscribe) {
+      unsubscribe();
+      this.valueSubscriptions.delete(key);
+    }
+    delete this.latestValues[key];
+    this.removeValueFromRenderState(key, this.renderState);
+  }
+  /**
+   * Check whether we have a motion value for this key
+   */
+  hasValue(key) {
+    return this.values.has(key);
+  }
+  getValue(key, defaultValue) {
+    if (this.props.values && this.props.values[key]) {
+      return this.props.values[key];
+    }
+    let value = this.values.get(key);
+    if (value === void 0 && defaultValue !== void 0) {
+      value = motionValue(defaultValue === null ? void 0 : defaultValue, { owner: this });
+      this.addValue(key, value);
+    }
+    return value;
+  }
+  /**
+   * If we're trying to animate to a previously unencountered value,
+   * we need to check for it in our state and as a last resort read it
+   * directly from the instance (which might have performance implications).
+   */
+  readValue(key, target) {
+    let value = this.latestValues[key] !== void 0 || !this.current ? this.latestValues[key] : this.getBaseTargetFromProps(this.props, key) ?? this.readValueFromInstance(this.current, key, this.options);
+    if (value !== void 0 && value !== null) {
+      if (typeof value === "string" && (isNumericalString(value) || isZeroValueString(value))) {
+        value = parseFloat(value);
+      } else if (!findValueType(value) && complex.test(target)) {
+        value = getAnimatableNone2(key, target);
+      }
+      this.setBaseTarget(key, isMotionValue(value) ? value.get() : value);
+    }
+    return isMotionValue(value) ? value.get() : value;
+  }
+  /**
+   * Set the base target to later animate back to. This is currently
+   * only hydrated on creation and when we first read a value.
+   */
+  setBaseTarget(key, value) {
+    this.baseTarget[key] = value;
+  }
+  /**
+   * Find the base target for a value thats been removed from all animation
+   * props.
+   */
+  getBaseTarget(key) {
+    const { initial } = this.props;
+    let valueFromInitial;
+    if (typeof initial === "string" || typeof initial === "object") {
+      const variant = resolveVariantFromProps(this.props, initial, this.presenceContext?.custom);
+      if (variant) {
+        valueFromInitial = variant[key];
+      }
+    }
+    if (initial && valueFromInitial !== void 0) {
+      return valueFromInitial;
+    }
+    const target = this.getBaseTargetFromProps(this.props, key);
+    if (target !== void 0 && !isMotionValue(target))
+      return target;
+    return this.initialValues[key] !== void 0 && valueFromInitial === void 0 ? void 0 : this.baseTarget[key];
+  }
+  on(eventName, callback) {
+    if (!this.events[eventName]) {
+      this.events[eventName] = new SubscriptionManager();
+    }
+    return this.events[eventName].add(callback);
+  }
+  notify(eventName, ...args) {
+    if (this.events[eventName]) {
+      this.events[eventName].notify(...args);
+    }
+  }
+  scheduleRenderMicrotask() {
+    microtask.render(this.render);
+  }
+};
+
+// node_modules/framer-motion/dist/es/render/dom/DOMVisualElement.mjs
+var DOMVisualElement = class extends VisualElement {
+  constructor() {
+    super(...arguments);
+    this.KeyframeResolver = DOMKeyframesResolver;
+  }
+  sortInstanceNodePosition(a2, b) {
+    return a2.compareDocumentPosition(b) & 2 ? 1 : -1;
+  }
+  getBaseTargetFromProps(props, key) {
+    return props.style ? props.style[key] : void 0;
+  }
+  removeValueFromRenderState(key, { vars, style }) {
+    delete vars[key];
+    delete style[key];
+  }
+  handleChildMotionValue() {
+    if (this.childSubscription) {
+      this.childSubscription();
+      delete this.childSubscription;
+    }
+    const { children } = this.props;
+    if (isMotionValue(children)) {
+      this.childSubscription = children.on("change", (latest) => {
+        if (this.current) {
+          this.current.textContent = `${latest}`;
+        }
+      });
+    }
+  }
+};
+
+// node_modules/framer-motion/dist/es/render/html/utils/render.mjs
+function renderHTML(element, { style, vars }, styleProp, projection) {
+  const elementStyle = element.style;
+  let key;
+  for (key in style) {
+    elementStyle[key] = style[key];
+  }
+  projection?.applyProjectionStyles(elementStyle, styleProp);
+  for (key in vars) {
+    elementStyle.setProperty(key, vars[key]);
+  }
+}
+
+// node_modules/framer-motion/dist/es/render/html/HTMLVisualElement.mjs
+function getComputedStyle2(element) {
+  return window.getComputedStyle(element);
+}
+var HTMLVisualElement = class extends DOMVisualElement {
+  constructor() {
+    super(...arguments);
+    this.type = "html";
+    this.renderInstance = renderHTML;
+  }
+  readValueFromInstance(instance, key) {
+    if (transformProps.has(key)) {
+      return this.projection?.isProjecting ? defaultTransformValue(key) : readTransformValue(instance, key);
+    } else {
+      const computedStyle = getComputedStyle2(instance);
+      const value = (isCSSVariableName(key) ? computedStyle.getPropertyValue(key) : computedStyle[key]) || 0;
+      return typeof value === "string" ? value.trim() : value;
+    }
+  }
+  measureInstanceViewportBox(instance, { transformPagePoint }) {
+    return measureViewportBox(instance, transformPagePoint);
+  }
+  build(renderState, latestValues, props) {
+    buildHTMLStyles(renderState, latestValues, props.transformTemplate);
+  }
+  scrapeMotionValuesFromProps(props, prevProps, visualElement) {
+    return scrapeMotionValuesFromProps(props, prevProps, visualElement);
+  }
+};
+
+// node_modules/framer-motion/dist/es/render/svg/utils/camel-case-attrs.mjs
+var camelCaseAttributes = /* @__PURE__ */ new Set([
+  "baseFrequency",
+  "diffuseConstant",
+  "kernelMatrix",
+  "kernelUnitLength",
+  "keySplines",
+  "keyTimes",
+  "limitingConeAngle",
+  "markerHeight",
+  "markerWidth",
+  "numOctaves",
+  "targetX",
+  "targetY",
+  "surfaceScale",
+  "specularConstant",
+  "specularExponent",
+  "stdDeviation",
+  "tableValues",
+  "viewBox",
+  "gradientTransform",
+  "pathLength",
+  "startOffset",
+  "textLength",
+  "lengthAdjust"
+]);
+
+// node_modules/framer-motion/dist/es/render/svg/utils/render.mjs
+function renderSVG(element, renderState, _styleProp, projection) {
+  renderHTML(element, renderState, void 0, projection);
+  for (const key in renderState.attrs) {
+    element.setAttribute(!camelCaseAttributes.has(key) ? camelToDash(key) : key, renderState.attrs[key]);
+  }
+}
+
+// node_modules/framer-motion/dist/es/render/svg/SVGVisualElement.mjs
+var SVGVisualElement = class extends DOMVisualElement {
+  constructor() {
+    super(...arguments);
+    this.type = "svg";
+    this.isSVGTag = false;
+    this.measureInstanceViewportBox = createBox;
+  }
+  getBaseTargetFromProps(props, key) {
+    return props[key];
+  }
+  readValueFromInstance(instance, key) {
+    if (transformProps.has(key)) {
+      const defaultType = getDefaultValueType(key);
+      return defaultType ? defaultType.default || 0 : 0;
+    }
+    key = !camelCaseAttributes.has(key) ? camelToDash(key) : key;
+    return instance.getAttribute(key);
+  }
+  scrapeMotionValuesFromProps(props, prevProps, visualElement) {
+    return scrapeMotionValuesFromProps2(props, prevProps, visualElement);
+  }
+  build(renderState, latestValues, props) {
+    buildSVGAttrs(renderState, latestValues, this.isSVGTag, props.transformTemplate, props.style);
+  }
+  renderInstance(instance, renderState, styleProp, projection) {
+    renderSVG(instance, renderState, styleProp, projection);
+  }
+  mount(instance) {
+    this.isSVGTag = isSVGTag(instance.tagName);
+    super.mount(instance);
+  }
+};
+
+// node_modules/framer-motion/dist/es/render/dom/create-visual-element.mjs
+var createDomVisualElement = (Component8, options) => {
+  return isSVGComponent(Component8) ? new SVGVisualElement(options) : new HTMLVisualElement(options, {
+    allowProjection: Component8 !== import_react22.Fragment
+  });
+};
+
+// node_modules/framer-motion/dist/es/render/utils/resolve-dynamic-variants.mjs
+function resolveVariant(visualElement, definition, custom) {
+  const props = visualElement.getProps();
+  return resolveVariantFromProps(props, definition, custom !== void 0 ? custom : props.custom, visualElement);
+}
+
+// node_modules/framer-motion/dist/es/animation/utils/is-keyframes-target.mjs
+var isKeyframesTarget = (v) => {
+  return Array.isArray(v);
+};
+
+// node_modules/framer-motion/dist/es/render/utils/setters.mjs
+function setMotionValue(visualElement, key, value) {
+  if (visualElement.hasValue(key)) {
+    visualElement.getValue(key).set(value);
+  } else {
+    visualElement.addValue(key, motionValue(value));
+  }
+}
+function resolveFinalValueInKeyframes(v) {
+  return isKeyframesTarget(v) ? v[v.length - 1] || 0 : v;
+}
+function setTarget(visualElement, definition) {
+  const resolved = resolveVariant(visualElement, definition);
+  let { transitionEnd = {}, transition = {}, ...target } = resolved || {};
+  target = { ...target, ...transitionEnd };
+  for (const key in target) {
+    const value = resolveFinalValueInKeyframes(target[key]);
+    setMotionValue(visualElement, key, value);
+  }
+}
+
+// node_modules/framer-motion/dist/es/value/use-will-change/is.mjs
+function isWillChangeMotionValue(value) {
+  return Boolean(isMotionValue(value) && value.add);
+}
+
+// node_modules/framer-motion/dist/es/value/use-will-change/add-will-change.mjs
+function addValueToWillChange(visualElement, key) {
+  const willChange = visualElement.getValue("willChange");
+  if (isWillChangeMotionValue(willChange)) {
+    return willChange.add(key);
+  } else if (!willChange && MotionGlobalConfig.WillChange) {
+    const newWillChange = new MotionGlobalConfig.WillChange("auto");
+    visualElement.addValue("willChange", newWillChange);
+    newWillChange.add(key);
+  }
+}
+
+// node_modules/framer-motion/dist/es/animation/optimized-appear/get-appear-id.mjs
+function getOptimisedAppearId(visualElement) {
+  return visualElement.props[optimizedAppearDataAttribute];
+}
+
+// node_modules/framer-motion/dist/es/animation/animators/waapi/utils/get-final-keyframe.mjs
+var isNotNull2 = (value) => value !== null;
+function getFinalKeyframe2(keyframes2, { repeat, repeatType = "loop" }, finalKeyframe) {
+  const resolvedKeyframes = keyframes2.filter(isNotNull2);
+  const index = repeat && repeatType !== "loop" && repeat % 2 === 1 ? 0 : resolvedKeyframes.length - 1;
+  return !index || finalKeyframe === void 0 ? resolvedKeyframes[index] : finalKeyframe;
+}
+
+// node_modules/framer-motion/dist/es/animation/utils/default-transitions.mjs
+var underDampedSpring = {
+  type: "spring",
+  stiffness: 500,
+  damping: 25,
+  restSpeed: 10
+};
+var criticallyDampedSpring = (target) => ({
+  type: "spring",
+  stiffness: 550,
+  damping: target === 0 ? 2 * Math.sqrt(550) : 30,
+  restSpeed: 10
+});
+var keyframesTransition = {
+  type: "keyframes",
+  duration: 0.8
+};
+var ease = {
+  type: "keyframes",
+  ease: [0.25, 0.1, 0.35, 1],
+  duration: 0.3
+};
+var getDefaultTransition = (valueKey, { keyframes: keyframes2 }) => {
+  if (keyframes2.length > 2) {
+    return keyframesTransition;
+  } else if (transformProps.has(valueKey)) {
+    return valueKey.startsWith("scale") ? criticallyDampedSpring(keyframes2[1]) : underDampedSpring;
+  }
+  return ease;
+};
+
+// node_modules/framer-motion/dist/es/animation/utils/is-transition-defined.mjs
+function isTransitionDefined({ when, delay: _delay, delayChildren, staggerChildren, staggerDirection, repeat, repeatType, repeatDelay, from, elapsed, ...transition }) {
+  return !!Object.keys(transition).length;
+}
+
+// node_modules/framer-motion/dist/es/animation/interfaces/motion-value.mjs
+var animateMotionValue = (name, value, target, transition = {}, element, isHandoff) => (onComplete) => {
+  const valueTransition = getValueTransition(transition, name) || {};
+  const delay2 = valueTransition.delay || transition.delay || 0;
+  let { elapsed = 0 } = transition;
+  elapsed = elapsed - secondsToMilliseconds(delay2);
+  const options = {
+    keyframes: Array.isArray(target) ? target : [null, target],
+    ease: "easeOut",
+    velocity: value.getVelocity(),
+    ...valueTransition,
+    delay: -elapsed,
+    onUpdate: (v) => {
+      value.set(v);
+      valueTransition.onUpdate && valueTransition.onUpdate(v);
+    },
+    onComplete: () => {
+      onComplete();
+      valueTransition.onComplete && valueTransition.onComplete();
+    },
+    name,
+    motionValue: value,
+    element: isHandoff ? void 0 : element
+  };
+  if (!isTransitionDefined(valueTransition)) {
+    Object.assign(options, getDefaultTransition(name, options));
+  }
+  options.duration && (options.duration = secondsToMilliseconds(options.duration));
+  options.repeatDelay && (options.repeatDelay = secondsToMilliseconds(options.repeatDelay));
+  if (options.from !== void 0) {
+    options.keyframes[0] = options.from;
+  }
+  let shouldSkip = false;
+  if (options.type === false || options.duration === 0 && !options.repeatDelay) {
+    makeAnimationInstant(options);
+    if (options.delay === 0) {
+      shouldSkip = true;
+    }
+  }
+  if (MotionGlobalConfig.instantAnimations || MotionGlobalConfig.skipAnimations) {
+    shouldSkip = true;
+    makeAnimationInstant(options);
+    options.delay = 0;
+  }
+  options.allowFlatten = !valueTransition.type && !valueTransition.ease;
+  if (shouldSkip && !isHandoff && value.get() !== void 0) {
+    const finalKeyframe = getFinalKeyframe2(options.keyframes, valueTransition);
+    if (finalKeyframe !== void 0) {
+      frame.update(() => {
+        options.onUpdate(finalKeyframe);
+        options.onComplete();
+      });
+      return;
+    }
+  }
+  return valueTransition.isSync ? new JSAnimation(options) : new AsyncMotionValueAnimation(options);
+};
+
+// node_modules/framer-motion/dist/es/animation/interfaces/visual-element-target.mjs
+function shouldBlockAnimation({ protectedKeys, needsAnimating }, key) {
+  const shouldBlock = protectedKeys.hasOwnProperty(key) && needsAnimating[key] !== true;
+  needsAnimating[key] = false;
+  return shouldBlock;
+}
+function animateTarget(visualElement, targetAndTransition, { delay: delay2 = 0, transitionOverride, type } = {}) {
+  let { transition = visualElement.getDefaultTransition(), transitionEnd, ...target } = targetAndTransition;
+  if (transitionOverride)
+    transition = transitionOverride;
+  const animations2 = [];
+  const animationTypeState = type && visualElement.animationState && visualElement.animationState.getState()[type];
+  for (const key in target) {
+    const value = visualElement.getValue(key, visualElement.latestValues[key] ?? null);
+    const valueTarget = target[key];
+    if (valueTarget === void 0 || animationTypeState && shouldBlockAnimation(animationTypeState, key)) {
+      continue;
+    }
+    const valueTransition = {
+      delay: delay2,
+      ...getValueTransition(transition || {}, key)
+    };
+    const currentValue = value.get();
+    if (currentValue !== void 0 && !value.isAnimating && !Array.isArray(valueTarget) && valueTarget === currentValue && !valueTransition.velocity) {
+      continue;
+    }
+    let isHandoff = false;
+    if (window.MotionHandoffAnimation) {
+      const appearId = getOptimisedAppearId(visualElement);
+      if (appearId) {
+        const startTime = window.MotionHandoffAnimation(appearId, key, frame);
+        if (startTime !== null) {
+          valueTransition.startTime = startTime;
+          isHandoff = true;
+        }
+      }
+    }
+    addValueToWillChange(visualElement, key);
+    value.start(animateMotionValue(key, value, valueTarget, visualElement.shouldReduceMotion && positionalKeys.has(key) ? { type: false } : valueTransition, visualElement, isHandoff));
+    const animation = value.animation;
+    if (animation) {
+      animations2.push(animation);
+    }
+  }
+  if (transitionEnd) {
+    Promise.all(animations2).then(() => {
+      frame.update(() => {
+        transitionEnd && setTarget(visualElement, transitionEnd);
+      });
+    });
+  }
+  return animations2;
+}
+
+// node_modules/framer-motion/dist/es/animation/utils/calc-child-stagger.mjs
+function calcChildStagger(children, child, delayChildren, staggerChildren = 0, staggerDirection = 1) {
+  const index = Array.from(children).sort((a2, b) => a2.sortNodePosition(b)).indexOf(child);
+  const numChildren = children.size;
+  const maxStaggerDuration = (numChildren - 1) * staggerChildren;
+  const delayIsFunction = typeof delayChildren === "function";
+  return delayIsFunction ? delayChildren(index, numChildren) : staggerDirection === 1 ? index * staggerChildren : maxStaggerDuration - index * staggerChildren;
+}
+
+// node_modules/framer-motion/dist/es/animation/interfaces/visual-element-variant.mjs
+function animateVariant(visualElement, variant, options = {}) {
+  const resolved = resolveVariant(visualElement, variant, options.type === "exit" ? visualElement.presenceContext?.custom : void 0);
+  let { transition = visualElement.getDefaultTransition() || {} } = resolved || {};
+  if (options.transitionOverride) {
+    transition = options.transitionOverride;
+  }
+  const getAnimation = resolved ? () => Promise.all(animateTarget(visualElement, resolved, options)) : () => Promise.resolve();
+  const getChildAnimations = visualElement.variantChildren && visualElement.variantChildren.size ? (forwardDelay = 0) => {
+    const { delayChildren = 0, staggerChildren, staggerDirection } = transition;
+    return animateChildren(visualElement, variant, forwardDelay, delayChildren, staggerChildren, staggerDirection, options);
+  } : () => Promise.resolve();
+  const { when } = transition;
+  if (when) {
+    const [first2, last3] = when === "beforeChildren" ? [getAnimation, getChildAnimations] : [getChildAnimations, getAnimation];
+    return first2().then(() => last3());
+  } else {
+    return Promise.all([getAnimation(), getChildAnimations(options.delay)]);
+  }
+}
+function animateChildren(visualElement, variant, delay2 = 0, delayChildren = 0, staggerChildren = 0, staggerDirection = 1, options) {
+  const animations2 = [];
+  for (const child of visualElement.variantChildren) {
+    child.notify("AnimationStart", variant);
+    animations2.push(animateVariant(child, variant, {
+      ...options,
+      delay: delay2 + (typeof delayChildren === "function" ? 0 : delayChildren) + calcChildStagger(visualElement.variantChildren, child, delayChildren, staggerChildren, staggerDirection)
+    }).then(() => child.notify("AnimationComplete", variant)));
+  }
+  return Promise.all(animations2);
+}
+
+// node_modules/framer-motion/dist/es/animation/interfaces/visual-element.mjs
+function animateVisualElement(visualElement, definition, options = {}) {
+  visualElement.notify("AnimationStart", definition);
+  let animation;
+  if (Array.isArray(definition)) {
+    const animations2 = definition.map((variant) => animateVariant(visualElement, variant, options));
+    animation = Promise.all(animations2);
+  } else if (typeof definition === "string") {
+    animation = animateVariant(visualElement, definition, options);
+  } else {
+    const resolvedDefinition = typeof definition === "function" ? resolveVariant(visualElement, definition, options.custom) : definition;
+    animation = Promise.all(animateTarget(visualElement, resolvedDefinition, options));
+  }
+  return animation.then(() => {
+    visualElement.notify("AnimationComplete", definition);
+  });
+}
+
+// node_modules/framer-motion/dist/es/utils/shallow-compare.mjs
+function shallowCompare(next, prev) {
+  if (!Array.isArray(prev))
+    return false;
+  const prevLength = prev.length;
+  if (prevLength !== next.length)
+    return false;
+  for (let i = 0; i < prevLength; i++) {
+    if (prev[i] !== next[i])
+      return false;
+  }
+  return true;
+}
+
+// node_modules/framer-motion/dist/es/render/utils/get-variant-context.mjs
+var numVariantProps = variantProps.length;
+function getVariantContext(visualElement) {
+  if (!visualElement)
+    return void 0;
+  if (!visualElement.isControllingVariants) {
+    const context2 = visualElement.parent ? getVariantContext(visualElement.parent) || {} : {};
+    if (visualElement.props.initial !== void 0) {
+      context2.initial = visualElement.props.initial;
+    }
+    return context2;
+  }
+  const context = {};
+  for (let i = 0; i < numVariantProps; i++) {
+    const name = variantProps[i];
+    const prop = visualElement.props[name];
+    if (isVariantLabel(prop) || prop === false) {
+      context[name] = prop;
+    }
+  }
+  return context;
+}
+
+// node_modules/framer-motion/dist/es/render/utils/animation-state.mjs
+var reversePriorityOrder = [...variantPriorityOrder].reverse();
+var numAnimationTypes = variantPriorityOrder.length;
+function animateList(visualElement) {
+  return (animations2) => Promise.all(animations2.map(({ animation, options }) => animateVisualElement(visualElement, animation, options)));
+}
+function createAnimationState(visualElement) {
+  let animate = animateList(visualElement);
+  let state = createState();
+  let isInitialRender = true;
+  const buildResolvedTypeValues = (type) => (acc, definition) => {
+    const resolved = resolveVariant(visualElement, definition, type === "exit" ? visualElement.presenceContext?.custom : void 0);
+    if (resolved) {
+      const { transition, transitionEnd, ...target } = resolved;
+      acc = { ...acc, ...target, ...transitionEnd };
+    }
+    return acc;
+  };
+  function setAnimateFunction(makeAnimator) {
+    animate = makeAnimator(visualElement);
+  }
+  function animateChanges(changedActiveType) {
+    const { props } = visualElement;
+    const context = getVariantContext(visualElement.parent) || {};
+    const animations2 = [];
+    const removedKeys = /* @__PURE__ */ new Set();
+    let encounteredKeys = {};
+    let removedVariantIndex = Infinity;
+    for (let i = 0; i < numAnimationTypes; i++) {
+      const type = reversePriorityOrder[i];
+      const typeState = state[type];
+      const prop = props[type] !== void 0 ? props[type] : context[type];
+      const propIsVariant = isVariantLabel(prop);
+      const activeDelta = type === changedActiveType ? typeState.isActive : null;
+      if (activeDelta === false)
+        removedVariantIndex = i;
+      let isInherited = prop === context[type] && prop !== props[type] && propIsVariant;
+      if (isInherited && isInitialRender && visualElement.manuallyAnimateOnMount) {
+        isInherited = false;
+      }
+      typeState.protectedKeys = { ...encounteredKeys };
+      if (
+        // If it isn't active and hasn't *just* been set as inactive
+        !typeState.isActive && activeDelta === null || // If we didn't and don't have any defined prop for this animation type
+        !prop && !typeState.prevProp || // Or if the prop doesn't define an animation
+        isAnimationControls(prop) || typeof prop === "boolean"
+      ) {
+        continue;
+      }
+      const variantDidChange = checkVariantsDidChange(typeState.prevProp, prop);
+      let shouldAnimateType = variantDidChange || // If we're making this variant active, we want to always make it active
+      type === changedActiveType && typeState.isActive && !isInherited && propIsVariant || // If we removed a higher-priority variant (i is in reverse order)
+      i > removedVariantIndex && propIsVariant;
+      let handledRemovedValues = false;
+      const definitionList = Array.isArray(prop) ? prop : [prop];
+      let resolvedValues = definitionList.reduce(buildResolvedTypeValues(type), {});
+      if (activeDelta === false)
+        resolvedValues = {};
+      const { prevResolvedValues = {} } = typeState;
+      const allKeys = {
+        ...prevResolvedValues,
+        ...resolvedValues
+      };
+      const markToAnimate = (key) => {
+        shouldAnimateType = true;
+        if (removedKeys.has(key)) {
+          handledRemovedValues = true;
+          removedKeys.delete(key);
+        }
+        typeState.needsAnimating[key] = true;
+        const motionValue2 = visualElement.getValue(key);
+        if (motionValue2)
+          motionValue2.liveStyle = false;
+      };
+      for (const key in allKeys) {
+        const next = resolvedValues[key];
+        const prev = prevResolvedValues[key];
+        if (encounteredKeys.hasOwnProperty(key))
+          continue;
+        let valueHasChanged = false;
+        if (isKeyframesTarget(next) && isKeyframesTarget(prev)) {
+          valueHasChanged = !shallowCompare(next, prev);
+        } else {
+          valueHasChanged = next !== prev;
+        }
+        if (valueHasChanged) {
+          if (next !== void 0 && next !== null) {
+            markToAnimate(key);
+          } else {
+            removedKeys.add(key);
+          }
+        } else if (next !== void 0 && removedKeys.has(key)) {
+          markToAnimate(key);
+        } else {
+          typeState.protectedKeys[key] = true;
+        }
+      }
+      typeState.prevProp = prop;
+      typeState.prevResolvedValues = resolvedValues;
+      if (typeState.isActive) {
+        encounteredKeys = { ...encounteredKeys, ...resolvedValues };
+      }
+      if (isInitialRender && visualElement.blockInitialAnimation) {
+        shouldAnimateType = false;
+      }
+      const willAnimateViaParent = isInherited && variantDidChange;
+      const needsAnimating = !willAnimateViaParent || handledRemovedValues;
+      if (shouldAnimateType && needsAnimating) {
+        animations2.push(...definitionList.map((animation) => {
+          const options = { type };
+          if (typeof animation === "string" && isInitialRender && !willAnimateViaParent && visualElement.manuallyAnimateOnMount && visualElement.parent) {
+            const { parent } = visualElement;
+            const parentVariant = resolveVariant(parent, animation);
+            if (parent.enteringChildren && parentVariant) {
+              const { delayChildren } = parentVariant.transition || {};
+              options.delay = calcChildStagger(parent.enteringChildren, visualElement, delayChildren);
+            }
+          }
+          return {
+            animation,
+            options
+          };
+        }));
+      }
+    }
+    if (removedKeys.size) {
+      const fallbackAnimation = {};
+      if (typeof props.initial !== "boolean") {
+        const initialTransition = resolveVariant(visualElement, Array.isArray(props.initial) ? props.initial[0] : props.initial);
+        if (initialTransition && initialTransition.transition) {
+          fallbackAnimation.transition = initialTransition.transition;
+        }
+      }
+      removedKeys.forEach((key) => {
+        const fallbackTarget = visualElement.getBaseTarget(key);
+        const motionValue2 = visualElement.getValue(key);
+        if (motionValue2)
+          motionValue2.liveStyle = true;
+        fallbackAnimation[key] = fallbackTarget ?? null;
+      });
+      animations2.push({ animation: fallbackAnimation });
+    }
+    let shouldAnimate = Boolean(animations2.length);
+    if (isInitialRender && (props.initial === false || props.initial === props.animate) && !visualElement.manuallyAnimateOnMount) {
+      shouldAnimate = false;
+    }
+    isInitialRender = false;
+    return shouldAnimate ? animate(animations2) : Promise.resolve();
+  }
+  function setActive(type, isActive) {
+    if (state[type].isActive === isActive)
+      return Promise.resolve();
+    visualElement.variantChildren?.forEach((child) => child.animationState?.setActive(type, isActive));
+    state[type].isActive = isActive;
+    const animations2 = animateChanges(type);
+    for (const key in state) {
+      state[key].protectedKeys = {};
+    }
+    return animations2;
+  }
+  return {
+    animateChanges,
+    setActive,
+    setAnimateFunction,
+    getState: () => state,
+    reset: () => {
+      state = createState();
+      isInitialRender = true;
+    }
+  };
+}
+function checkVariantsDidChange(prev, next) {
+  if (typeof next === "string") {
+    return next !== prev;
+  } else if (Array.isArray(next)) {
+    return !shallowCompare(next, prev);
+  }
+  return false;
+}
+function createTypeState(isActive = false) {
+  return {
+    isActive,
+    protectedKeys: {},
+    needsAnimating: {},
+    prevResolvedValues: {}
+  };
+}
+function createState() {
+  return {
+    animate: createTypeState(true),
+    whileInView: createTypeState(),
+    whileHover: createTypeState(),
+    whileTap: createTypeState(),
+    whileDrag: createTypeState(),
+    whileFocus: createTypeState(),
+    exit: createTypeState()
+  };
+}
+
+// node_modules/framer-motion/dist/es/motion/features/Feature.mjs
+var Feature = class {
+  constructor(node) {
+    this.isMounted = false;
+    this.node = node;
+  }
+  update() {
+  }
+};
+
+// node_modules/framer-motion/dist/es/motion/features/animation/index.mjs
+var AnimationFeature = class extends Feature {
+  /**
+   * We dynamically generate the AnimationState manager as it contains a reference
+   * to the underlying animation library. We only want to load that if we load this,
+   * so people can optionally code split it out using the `m` component.
+   */
+  constructor(node) {
+    super(node);
+    node.animationState || (node.animationState = createAnimationState(node));
+  }
+  updateAnimationControlsSubscription() {
+    const { animate } = this.node.getProps();
+    if (isAnimationControls(animate)) {
+      this.unmountControls = animate.subscribe(this.node);
+    }
+  }
+  /**
+   * Subscribe any provided AnimationControls to the component's VisualElement
+   */
+  mount() {
+    this.updateAnimationControlsSubscription();
+  }
+  update() {
+    const { animate } = this.node.getProps();
+    const { animate: prevAnimate } = this.node.prevProps || {};
+    if (animate !== prevAnimate) {
+      this.updateAnimationControlsSubscription();
+    }
+  }
+  unmount() {
+    this.node.animationState.reset();
+    this.unmountControls?.();
+  }
+};
+
+// node_modules/framer-motion/dist/es/motion/features/animation/exit.mjs
+var id = 0;
+var ExitAnimationFeature = class extends Feature {
+  constructor() {
+    super(...arguments);
+    this.id = id++;
+  }
+  update() {
+    if (!this.node.presenceContext)
+      return;
+    const { isPresent, onExitComplete } = this.node.presenceContext;
+    const { isPresent: prevIsPresent } = this.node.prevPresenceContext || {};
+    if (!this.node.animationState || isPresent === prevIsPresent) {
+      return;
+    }
+    const exitAnimation = this.node.animationState.setActive("exit", !isPresent);
+    if (onExitComplete && !isPresent) {
+      exitAnimation.then(() => {
+        onExitComplete(this.id);
+      });
+    }
+  }
+  mount() {
+    const { register, onExitComplete } = this.node.presenceContext || {};
+    if (onExitComplete) {
+      onExitComplete(this.id);
+    }
+    if (register) {
+      this.unmount = register(this.id);
+    }
+  }
+  unmount() {
+  }
+};
+
+// node_modules/framer-motion/dist/es/motion/features/animations.mjs
+var animations = {
+  animation: {
+    Feature: AnimationFeature
+  },
+  exit: {
+    Feature: ExitAnimationFeature
+  }
+};
+
+// node_modules/framer-motion/dist/es/events/add-dom-event.mjs
+function addDomEvent(target, eventName, handler, options = { passive: true }) {
+  target.addEventListener(eventName, handler, options);
+  return () => target.removeEventListener(eventName, handler);
+}
+
+// node_modules/framer-motion/dist/es/events/event-info.mjs
+function extractEventInfo(event) {
+  return {
+    point: {
+      x: event.pageX,
+      y: event.pageY
+    }
+  };
+}
+var addPointerInfo = (handler) => {
+  return (event) => isPrimaryPointer(event) && handler(event, extractEventInfo(event));
+};
+
+// node_modules/framer-motion/dist/es/events/add-pointer-event.mjs
+function addPointerEvent(target, eventName, handler, options) {
+  return addDomEvent(target, eventName, addPointerInfo(handler), options);
+}
+
+// node_modules/framer-motion/dist/es/projection/geometry/delta-calc.mjs
+var SCALE_PRECISION = 1e-4;
+var SCALE_MIN = 1 - SCALE_PRECISION;
+var SCALE_MAX = 1 + SCALE_PRECISION;
+var TRANSLATE_PRECISION = 0.01;
+var TRANSLATE_MIN = 0 - TRANSLATE_PRECISION;
+var TRANSLATE_MAX = 0 + TRANSLATE_PRECISION;
+function calcLength(axis) {
+  return axis.max - axis.min;
+}
+function isNear(value, target, maxDistance) {
+  return Math.abs(value - target) <= maxDistance;
+}
+function calcAxisDelta(delta, source, target, origin = 0.5) {
+  delta.origin = origin;
+  delta.originPoint = mixNumber(source.min, source.max, delta.origin);
+  delta.scale = calcLength(target) / calcLength(source);
+  delta.translate = mixNumber(target.min, target.max, delta.origin) - delta.originPoint;
+  if (delta.scale >= SCALE_MIN && delta.scale <= SCALE_MAX || isNaN(delta.scale)) {
+    delta.scale = 1;
+  }
+  if (delta.translate >= TRANSLATE_MIN && delta.translate <= TRANSLATE_MAX || isNaN(delta.translate)) {
+    delta.translate = 0;
+  }
+}
+function calcBoxDelta(delta, source, target, origin) {
+  calcAxisDelta(delta.x, source.x, target.x, origin ? origin.originX : void 0);
+  calcAxisDelta(delta.y, source.y, target.y, origin ? origin.originY : void 0);
+}
+function calcRelativeAxis(target, relative, parent) {
+  target.min = parent.min + relative.min;
+  target.max = target.min + calcLength(relative);
+}
+function calcRelativeBox(target, relative, parent) {
+  calcRelativeAxis(target.x, relative.x, parent.x);
+  calcRelativeAxis(target.y, relative.y, parent.y);
+}
+function calcRelativeAxisPosition(target, layout2, parent) {
+  target.min = layout2.min - parent.min;
+  target.max = target.min + calcLength(layout2);
+}
+function calcRelativePosition(target, layout2, parent) {
+  calcRelativeAxisPosition(target.x, layout2.x, parent.x);
+  calcRelativeAxisPosition(target.y, layout2.y, parent.y);
+}
+
+// node_modules/framer-motion/dist/es/projection/utils/each-axis.mjs
+function eachAxis(callback) {
+  return [callback("x"), callback("y")];
+}
+
+// node_modules/framer-motion/dist/es/utils/get-context-window.mjs
+var getContextWindow = ({ current }) => {
+  return current ? current.ownerDocument.defaultView : null;
+};
+
+// node_modules/framer-motion/dist/es/utils/distance.mjs
+var distance = (a2, b) => Math.abs(a2 - b);
+function distance2D(a2, b) {
+  const xDelta = distance(a2.x, b.x);
+  const yDelta = distance(a2.y, b.y);
+  return Math.sqrt(xDelta ** 2 + yDelta ** 2);
+}
+
+// node_modules/framer-motion/dist/es/gestures/pan/PanSession.mjs
+var PanSession = class {
+  constructor(event, handlers, { transformPagePoint, contextWindow = window, dragSnapToOrigin = false, distanceThreshold = 3 } = {}) {
+    this.startEvent = null;
+    this.lastMoveEvent = null;
+    this.lastMoveEventInfo = null;
+    this.handlers = {};
+    this.contextWindow = window;
+    this.updatePoint = () => {
+      if (!(this.lastMoveEvent && this.lastMoveEventInfo))
+        return;
+      const info2 = getPanInfo(this.lastMoveEventInfo, this.history);
+      const isPanStarted = this.startEvent !== null;
+      const isDistancePastThreshold = distance2D(info2.offset, { x: 0, y: 0 }) >= this.distanceThreshold;
+      if (!isPanStarted && !isDistancePastThreshold)
+        return;
+      const { point: point5 } = info2;
+      const { timestamp: timestamp2 } = frameData;
+      this.history.push({ ...point5, timestamp: timestamp2 });
+      const { onStart, onMove } = this.handlers;
+      if (!isPanStarted) {
+        onStart && onStart(this.lastMoveEvent, info2);
+        this.startEvent = this.lastMoveEvent;
+      }
+      onMove && onMove(this.lastMoveEvent, info2);
+    };
+    this.handlePointerMove = (event2, info2) => {
+      this.lastMoveEvent = event2;
+      this.lastMoveEventInfo = transformPoint(info2, this.transformPagePoint);
+      frame.update(this.updatePoint, true);
+    };
+    this.handlePointerUp = (event2, info2) => {
+      this.end();
+      const { onEnd, onSessionEnd, resumeAnimation } = this.handlers;
+      if (this.dragSnapToOrigin)
+        resumeAnimation && resumeAnimation();
+      if (!(this.lastMoveEvent && this.lastMoveEventInfo))
+        return;
+      const panInfo = getPanInfo(event2.type === "pointercancel" ? this.lastMoveEventInfo : transformPoint(info2, this.transformPagePoint), this.history);
+      if (this.startEvent && onEnd) {
+        onEnd(event2, panInfo);
+      }
+      onSessionEnd && onSessionEnd(event2, panInfo);
+    };
+    if (!isPrimaryPointer(event))
+      return;
+    this.dragSnapToOrigin = dragSnapToOrigin;
+    this.handlers = handlers;
+    this.transformPagePoint = transformPagePoint;
+    this.distanceThreshold = distanceThreshold;
+    this.contextWindow = contextWindow || window;
+    const info = extractEventInfo(event);
+    const initialInfo = transformPoint(info, this.transformPagePoint);
+    const { point: point4 } = initialInfo;
+    const { timestamp } = frameData;
+    this.history = [{ ...point4, timestamp }];
+    const { onSessionStart } = handlers;
+    onSessionStart && onSessionStart(event, getPanInfo(initialInfo, this.history));
+    this.removeListeners = pipe(addPointerEvent(this.contextWindow, "pointermove", this.handlePointerMove), addPointerEvent(this.contextWindow, "pointerup", this.handlePointerUp), addPointerEvent(this.contextWindow, "pointercancel", this.handlePointerUp));
+  }
+  updateHandlers(handlers) {
+    this.handlers = handlers;
+  }
+  end() {
+    this.removeListeners && this.removeListeners();
+    cancelFrame(this.updatePoint);
+  }
+};
+function transformPoint(info, transformPagePoint) {
+  return transformPagePoint ? { point: transformPagePoint(info.point) } : info;
+}
+function subtractPoint(a2, b) {
+  return { x: a2.x - b.x, y: a2.y - b.y };
+}
+function getPanInfo({ point: point4 }, history) {
+  return {
+    point: point4,
+    delta: subtractPoint(point4, lastDevicePoint(history)),
+    offset: subtractPoint(point4, startDevicePoint(history)),
+    velocity: getVelocity(history, 0.1)
+  };
+}
+function startDevicePoint(history) {
+  return history[0];
+}
+function lastDevicePoint(history) {
+  return history[history.length - 1];
+}
+function getVelocity(history, timeDelta) {
+  if (history.length < 2) {
+    return { x: 0, y: 0 };
+  }
+  let i = history.length - 1;
+  let timestampedPoint = null;
+  const lastPoint = lastDevicePoint(history);
+  while (i >= 0) {
+    timestampedPoint = history[i];
+    if (lastPoint.timestamp - timestampedPoint.timestamp > secondsToMilliseconds(timeDelta)) {
+      break;
+    }
+    i--;
+  }
+  if (!timestampedPoint) {
+    return { x: 0, y: 0 };
+  }
+  const time3 = millisecondsToSeconds(lastPoint.timestamp - timestampedPoint.timestamp);
+  if (time3 === 0) {
+    return { x: 0, y: 0 };
+  }
+  const currentVelocity = {
+    x: (lastPoint.x - timestampedPoint.x) / time3,
+    y: (lastPoint.y - timestampedPoint.y) / time3
+  };
+  if (currentVelocity.x === Infinity) {
+    currentVelocity.x = 0;
+  }
+  if (currentVelocity.y === Infinity) {
+    currentVelocity.y = 0;
+  }
+  return currentVelocity;
+}
+
+// node_modules/framer-motion/dist/es/gestures/drag/utils/constraints.mjs
+function applyConstraints(point4, { min: min4, max: max4 }, elastic) {
+  if (min4 !== void 0 && point4 < min4) {
+    point4 = elastic ? mixNumber(min4, point4, elastic.min) : Math.max(point4, min4);
+  } else if (max4 !== void 0 && point4 > max4) {
+    point4 = elastic ? mixNumber(max4, point4, elastic.max) : Math.min(point4, max4);
+  }
+  return point4;
+}
+function calcRelativeAxisConstraints(axis, min4, max4) {
+  return {
+    min: min4 !== void 0 ? axis.min + min4 : void 0,
+    max: max4 !== void 0 ? axis.max + max4 - (axis.max - axis.min) : void 0
+  };
+}
+function calcRelativeConstraints(layoutBox, { top, left, bottom, right }) {
+  return {
+    x: calcRelativeAxisConstraints(layoutBox.x, left, right),
+    y: calcRelativeAxisConstraints(layoutBox.y, top, bottom)
+  };
+}
+function calcViewportAxisConstraints(layoutAxis, constraintsAxis) {
+  let min4 = constraintsAxis.min - layoutAxis.min;
+  let max4 = constraintsAxis.max - layoutAxis.max;
+  if (constraintsAxis.max - constraintsAxis.min < layoutAxis.max - layoutAxis.min) {
+    [min4, max4] = [max4, min4];
+  }
+  return { min: min4, max: max4 };
+}
+function calcViewportConstraints(layoutBox, constraintsBox) {
+  return {
+    x: calcViewportAxisConstraints(layoutBox.x, constraintsBox.x),
+    y: calcViewportAxisConstraints(layoutBox.y, constraintsBox.y)
+  };
+}
+function calcOrigin(source, target) {
+  let origin = 0.5;
+  const sourceLength = calcLength(source);
+  const targetLength = calcLength(target);
+  if (targetLength > sourceLength) {
+    origin = progress(target.min, target.max - sourceLength, source.min);
+  } else if (sourceLength > targetLength) {
+    origin = progress(source.min, source.max - targetLength, target.min);
+  }
+  return clamp(0, 1, origin);
+}
+function rebaseAxisConstraints(layout2, constraints) {
+  const relativeConstraints = {};
+  if (constraints.min !== void 0) {
+    relativeConstraints.min = constraints.min - layout2.min;
+  }
+  if (constraints.max !== void 0) {
+    relativeConstraints.max = constraints.max - layout2.min;
+  }
+  return relativeConstraints;
+}
+var defaultElastic = 0.35;
+function resolveDragElastic(dragElastic = defaultElastic) {
+  if (dragElastic === false) {
+    dragElastic = 0;
+  } else if (dragElastic === true) {
+    dragElastic = defaultElastic;
+  }
+  return {
+    x: resolveAxisElastic(dragElastic, "left", "right"),
+    y: resolveAxisElastic(dragElastic, "top", "bottom")
+  };
+}
+function resolveAxisElastic(dragElastic, minLabel, maxLabel) {
+  return {
+    min: resolvePointElastic(dragElastic, minLabel),
+    max: resolvePointElastic(dragElastic, maxLabel)
+  };
+}
+function resolvePointElastic(dragElastic, label) {
+  return typeof dragElastic === "number" ? dragElastic : dragElastic[label] || 0;
+}
+
+// node_modules/framer-motion/dist/es/gestures/drag/VisualElementDragControls.mjs
+var elementDragControls = /* @__PURE__ */ new WeakMap();
+var VisualElementDragControls = class {
+  constructor(visualElement) {
+    this.openDragLock = null;
+    this.isDragging = false;
+    this.currentDirection = null;
+    this.originPoint = { x: 0, y: 0 };
+    this.constraints = false;
+    this.hasMutatedConstraints = false;
+    this.elastic = createBox();
+    this.latestPointerEvent = null;
+    this.latestPanInfo = null;
+    this.visualElement = visualElement;
+  }
+  start(originEvent, { snapToCursor = false, distanceThreshold } = {}) {
+    const { presenceContext } = this.visualElement;
+    if (presenceContext && presenceContext.isPresent === false)
+      return;
+    const onSessionStart = (event) => {
+      const { dragSnapToOrigin: dragSnapToOrigin2 } = this.getProps();
+      dragSnapToOrigin2 ? this.pauseAnimation() : this.stopAnimation();
+      if (snapToCursor) {
+        this.snapToCursor(extractEventInfo(event).point);
+      }
+    };
+    const onStart = (event, info) => {
+      const { drag: drag2, dragPropagation, onDragStart } = this.getProps();
+      if (drag2 && !dragPropagation) {
+        if (this.openDragLock)
+          this.openDragLock();
+        this.openDragLock = setDragLock(drag2);
+        if (!this.openDragLock)
+          return;
+      }
+      this.latestPointerEvent = event;
+      this.latestPanInfo = info;
+      this.isDragging = true;
+      this.currentDirection = null;
+      this.resolveConstraints();
+      if (this.visualElement.projection) {
+        this.visualElement.projection.isAnimationBlocked = true;
+        this.visualElement.projection.target = void 0;
+      }
+      eachAxis((axis) => {
+        let current = this.getAxisMotionValue(axis).get() || 0;
+        if (percent.test(current)) {
+          const { projection } = this.visualElement;
+          if (projection && projection.layout) {
+            const measuredAxis = projection.layout.layoutBox[axis];
+            if (measuredAxis) {
+              const length = calcLength(measuredAxis);
+              current = length * (parseFloat(current) / 100);
+            }
+          }
+        }
+        this.originPoint[axis] = current;
+      });
+      if (onDragStart) {
+        frame.postRender(() => onDragStart(event, info));
+      }
+      addValueToWillChange(this.visualElement, "transform");
+      const { animationState } = this.visualElement;
+      animationState && animationState.setActive("whileDrag", true);
+    };
+    const onMove = (event, info) => {
+      this.latestPointerEvent = event;
+      this.latestPanInfo = info;
+      const { dragPropagation, dragDirectionLock, onDirectionLock, onDrag } = this.getProps();
+      if (!dragPropagation && !this.openDragLock)
+        return;
+      const { offset } = info;
+      if (dragDirectionLock && this.currentDirection === null) {
+        this.currentDirection = getCurrentDirection(offset);
+        if (this.currentDirection !== null) {
+          onDirectionLock && onDirectionLock(this.currentDirection);
+        }
+        return;
+      }
+      this.updateAxis("x", info.point, offset);
+      this.updateAxis("y", info.point, offset);
+      this.visualElement.render();
+      onDrag && onDrag(event, info);
+    };
+    const onSessionEnd = (event, info) => {
+      this.latestPointerEvent = event;
+      this.latestPanInfo = info;
+      this.stop(event, info);
+      this.latestPointerEvent = null;
+      this.latestPanInfo = null;
+    };
+    const resumeAnimation = () => eachAxis((axis) => this.getAnimationState(axis) === "paused" && this.getAxisMotionValue(axis).animation?.play());
+    const { dragSnapToOrigin } = this.getProps();
+    this.panSession = new PanSession(originEvent, {
+      onSessionStart,
+      onStart,
+      onMove,
+      onSessionEnd,
+      resumeAnimation
+    }, {
+      transformPagePoint: this.visualElement.getTransformPagePoint(),
+      dragSnapToOrigin,
+      distanceThreshold,
+      contextWindow: getContextWindow(this.visualElement)
+    });
+  }
+  /**
+   * @internal
+   */
+  stop(event, panInfo) {
+    const finalEvent = event || this.latestPointerEvent;
+    const finalPanInfo = panInfo || this.latestPanInfo;
+    const isDragging2 = this.isDragging;
+    this.cancel();
+    if (!isDragging2 || !finalPanInfo || !finalEvent)
+      return;
+    const { velocity } = finalPanInfo;
+    this.startAnimation(velocity);
+    const { onDragEnd } = this.getProps();
+    if (onDragEnd) {
+      frame.postRender(() => onDragEnd(finalEvent, finalPanInfo));
+    }
+  }
+  /**
+   * @internal
+   */
+  cancel() {
+    this.isDragging = false;
+    const { projection, animationState } = this.visualElement;
+    if (projection) {
+      projection.isAnimationBlocked = false;
+    }
+    this.panSession && this.panSession.end();
+    this.panSession = void 0;
+    const { dragPropagation } = this.getProps();
+    if (!dragPropagation && this.openDragLock) {
+      this.openDragLock();
+      this.openDragLock = null;
+    }
+    animationState && animationState.setActive("whileDrag", false);
+  }
+  updateAxis(axis, _point, offset) {
+    const { drag: drag2 } = this.getProps();
+    if (!offset || !shouldDrag(axis, drag2, this.currentDirection))
+      return;
+    const axisValue = this.getAxisMotionValue(axis);
+    let next = this.originPoint[axis] + offset[axis];
+    if (this.constraints && this.constraints[axis]) {
+      next = applyConstraints(next, this.constraints[axis], this.elastic[axis]);
+    }
+    axisValue.set(next);
+  }
+  resolveConstraints() {
+    const { dragConstraints, dragElastic } = this.getProps();
+    const layout2 = this.visualElement.projection && !this.visualElement.projection.layout ? this.visualElement.projection.measure(false) : this.visualElement.projection?.layout;
+    const prevConstraints = this.constraints;
+    if (dragConstraints && isRefObject(dragConstraints)) {
+      if (!this.constraints) {
+        this.constraints = this.resolveRefConstraints();
+      }
+    } else {
+      if (dragConstraints && layout2) {
+        this.constraints = calcRelativeConstraints(layout2.layoutBox, dragConstraints);
+      } else {
+        this.constraints = false;
+      }
+    }
+    this.elastic = resolveDragElastic(dragElastic);
+    if (prevConstraints !== this.constraints && layout2 && this.constraints && !this.hasMutatedConstraints) {
+      eachAxis((axis) => {
+        if (this.constraints !== false && this.getAxisMotionValue(axis)) {
+          this.constraints[axis] = rebaseAxisConstraints(layout2.layoutBox[axis], this.constraints[axis]);
+        }
+      });
+    }
+  }
+  resolveRefConstraints() {
+    const { dragConstraints: constraints, onMeasureDragConstraints } = this.getProps();
+    if (!constraints || !isRefObject(constraints))
+      return false;
+    const constraintsElement = constraints.current;
+    invariant(constraintsElement !== null, "If `dragConstraints` is set as a React ref, that ref must be passed to another component's `ref` prop.", "drag-constraints-ref");
+    const { projection } = this.visualElement;
+    if (!projection || !projection.layout)
+      return false;
+    const constraintsBox = measurePageBox(constraintsElement, projection.root, this.visualElement.getTransformPagePoint());
+    let measuredConstraints = calcViewportConstraints(projection.layout.layoutBox, constraintsBox);
+    if (onMeasureDragConstraints) {
+      const userConstraints = onMeasureDragConstraints(convertBoxToBoundingBox(measuredConstraints));
+      this.hasMutatedConstraints = !!userConstraints;
+      if (userConstraints) {
+        measuredConstraints = convertBoundingBoxToBox(userConstraints);
+      }
+    }
+    return measuredConstraints;
+  }
+  startAnimation(velocity) {
+    const { drag: drag2, dragMomentum, dragElastic, dragTransition, dragSnapToOrigin, onDragTransitionEnd } = this.getProps();
+    const constraints = this.constraints || {};
+    const momentumAnimations = eachAxis((axis) => {
+      if (!shouldDrag(axis, drag2, this.currentDirection)) {
+        return;
+      }
+      let transition = constraints && constraints[axis] || {};
+      if (dragSnapToOrigin)
+        transition = { min: 0, max: 0 };
+      const bounceStiffness = dragElastic ? 200 : 1e6;
+      const bounceDamping = dragElastic ? 40 : 1e7;
+      const inertia2 = {
+        type: "inertia",
+        velocity: dragMomentum ? velocity[axis] : 0,
+        bounceStiffness,
+        bounceDamping,
+        timeConstant: 750,
+        restDelta: 1,
+        restSpeed: 10,
+        ...dragTransition,
+        ...transition
+      };
+      return this.startAxisValueAnimation(axis, inertia2);
+    });
+    return Promise.all(momentumAnimations).then(onDragTransitionEnd);
+  }
+  startAxisValueAnimation(axis, transition) {
+    const axisValue = this.getAxisMotionValue(axis);
+    addValueToWillChange(this.visualElement, axis);
+    return axisValue.start(animateMotionValue(axis, axisValue, 0, transition, this.visualElement, false));
+  }
+  stopAnimation() {
+    eachAxis((axis) => this.getAxisMotionValue(axis).stop());
+  }
+  pauseAnimation() {
+    eachAxis((axis) => this.getAxisMotionValue(axis).animation?.pause());
+  }
+  getAnimationState(axis) {
+    return this.getAxisMotionValue(axis).animation?.state;
+  }
+  /**
+   * Drag works differently depending on which props are provided.
+   *
+   * - If _dragX and _dragY are provided, we output the gesture delta directly to those motion values.
+   * - Otherwise, we apply the delta to the x/y motion values.
+   */
+  getAxisMotionValue(axis) {
+    const dragKey = `_drag${axis.toUpperCase()}`;
+    const props = this.visualElement.getProps();
+    const externalMotionValue = props[dragKey];
+    return externalMotionValue ? externalMotionValue : this.visualElement.getValue(axis, (props.initial ? props.initial[axis] : void 0) || 0);
+  }
+  snapToCursor(point4) {
+    eachAxis((axis) => {
+      const { drag: drag2 } = this.getProps();
+      if (!shouldDrag(axis, drag2, this.currentDirection))
+        return;
+      const { projection } = this.visualElement;
+      const axisValue = this.getAxisMotionValue(axis);
+      if (projection && projection.layout) {
+        const { min: min4, max: max4 } = projection.layout.layoutBox[axis];
+        axisValue.set(point4[axis] - mixNumber(min4, max4, 0.5));
+      }
+    });
+  }
+  /**
+   * When the viewport resizes we want to check if the measured constraints
+   * have changed and, if so, reposition the element within those new constraints
+   * relative to where it was before the resize.
+   */
+  scalePositionWithinConstraints() {
+    if (!this.visualElement.current)
+      return;
+    const { drag: drag2, dragConstraints } = this.getProps();
+    const { projection } = this.visualElement;
+    if (!isRefObject(dragConstraints) || !projection || !this.constraints)
+      return;
+    this.stopAnimation();
+    const boxProgress = { x: 0, y: 0 };
+    eachAxis((axis) => {
+      const axisValue = this.getAxisMotionValue(axis);
+      if (axisValue && this.constraints !== false) {
+        const latest = axisValue.get();
+        boxProgress[axis] = calcOrigin({ min: latest, max: latest }, this.constraints[axis]);
+      }
+    });
+    const { transformTemplate } = this.visualElement.getProps();
+    this.visualElement.current.style.transform = transformTemplate ? transformTemplate({}, "") : "none";
+    projection.root && projection.root.updateScroll();
+    projection.updateLayout();
+    this.resolveConstraints();
+    eachAxis((axis) => {
+      if (!shouldDrag(axis, drag2, null))
+        return;
+      const axisValue = this.getAxisMotionValue(axis);
+      const { min: min4, max: max4 } = this.constraints[axis];
+      axisValue.set(mixNumber(min4, max4, boxProgress[axis]));
+    });
+  }
+  addListeners() {
+    if (!this.visualElement.current)
+      return;
+    elementDragControls.set(this.visualElement, this);
+    const element = this.visualElement.current;
+    const stopPointerListener = addPointerEvent(element, "pointerdown", (event) => {
+      const { drag: drag2, dragListener = true } = this.getProps();
+      drag2 && dragListener && this.start(event);
+    });
+    const measureDragConstraints = () => {
+      const { dragConstraints } = this.getProps();
+      if (isRefObject(dragConstraints) && dragConstraints.current) {
+        this.constraints = this.resolveRefConstraints();
+      }
+    };
+    const { projection } = this.visualElement;
+    const stopMeasureLayoutListener = projection.addEventListener("measure", measureDragConstraints);
+    if (projection && !projection.layout) {
+      projection.root && projection.root.updateScroll();
+      projection.updateLayout();
+    }
+    frame.read(measureDragConstraints);
+    const stopResizeListener = addDomEvent(window, "resize", () => this.scalePositionWithinConstraints());
+    const stopLayoutUpdateListener = projection.addEventListener("didUpdate", ({ delta, hasLayoutChanged }) => {
+      if (this.isDragging && hasLayoutChanged) {
+        eachAxis((axis) => {
+          const motionValue2 = this.getAxisMotionValue(axis);
+          if (!motionValue2)
+            return;
+          this.originPoint[axis] += delta[axis].translate;
+          motionValue2.set(motionValue2.get() + delta[axis].translate);
+        });
+        this.visualElement.render();
+      }
+    });
+    return () => {
+      stopResizeListener();
+      stopPointerListener();
+      stopMeasureLayoutListener();
+      stopLayoutUpdateListener && stopLayoutUpdateListener();
+    };
+  }
+  getProps() {
+    const props = this.visualElement.getProps();
+    const { drag: drag2 = false, dragDirectionLock = false, dragPropagation = false, dragConstraints = false, dragElastic = defaultElastic, dragMomentum = true } = props;
+    return {
+      ...props,
+      drag: drag2,
+      dragDirectionLock,
+      dragPropagation,
+      dragConstraints,
+      dragElastic,
+      dragMomentum
+    };
+  }
+};
+function shouldDrag(direction, drag2, currentDirection) {
+  return (drag2 === true || drag2 === direction) && (currentDirection === null || currentDirection === direction);
+}
+function getCurrentDirection(offset, lockThreshold = 10) {
+  let direction = null;
+  if (Math.abs(offset.y) > lockThreshold) {
+    direction = "y";
+  } else if (Math.abs(offset.x) > lockThreshold) {
+    direction = "x";
+  }
+  return direction;
+}
+
+// node_modules/framer-motion/dist/es/gestures/drag/index.mjs
+var DragGesture = class extends Feature {
+  constructor(node) {
+    super(node);
+    this.removeGroupControls = noop;
+    this.removeListeners = noop;
+    this.controls = new VisualElementDragControls(node);
+  }
+  mount() {
+    const { dragControls } = this.node.getProps();
+    if (dragControls) {
+      this.removeGroupControls = dragControls.subscribe(this.controls);
+    }
+    this.removeListeners = this.controls.addListeners() || noop;
+  }
+  unmount() {
+    this.removeGroupControls();
+    this.removeListeners();
+  }
+};
+
+// node_modules/framer-motion/dist/es/gestures/pan/index.mjs
+var asyncHandler = (handler) => (event, info) => {
+  if (handler) {
+    frame.postRender(() => handler(event, info));
+  }
+};
+var PanGesture = class extends Feature {
+  constructor() {
+    super(...arguments);
+    this.removePointerDownListener = noop;
+  }
+  onPointerDown(pointerDownEvent) {
+    this.session = new PanSession(pointerDownEvent, this.createPanHandlers(), {
+      transformPagePoint: this.node.getTransformPagePoint(),
+      contextWindow: getContextWindow(this.node)
+    });
+  }
+  createPanHandlers() {
+    const { onPanSessionStart, onPanStart, onPan, onPanEnd } = this.node.getProps();
+    return {
+      onSessionStart: asyncHandler(onPanSessionStart),
+      onStart: asyncHandler(onPanStart),
+      onMove: onPan,
+      onEnd: (event, info) => {
+        delete this.session;
+        if (onPanEnd) {
+          frame.postRender(() => onPanEnd(event, info));
+        }
+      }
+    };
+  }
+  mount() {
+    this.removePointerDownListener = addPointerEvent(this.node.current, "pointerdown", (event) => this.onPointerDown(event));
+  }
+  update() {
+    this.session && this.session.updateHandlers(this.createPanHandlers());
+  }
+  unmount() {
+    this.removePointerDownListener();
+    this.session && this.session.end();
+  }
+};
+
+// node_modules/framer-motion/dist/es/motion/features/layout/MeasureLayout.mjs
+var import_jsx_runtime5 = __toESM(require_jsx_runtime(), 1);
+var import_react23 = __toESM(require_react(), 1);
+
+// node_modules/framer-motion/dist/es/projection/node/state.mjs
+var globalProjectionState = {
+  /**
+   * Global flag as to whether the tree has animated since the last time
+   * we resized the window
+   */
+  hasAnimatedSinceResize: true,
+  /**
+   * We set this to true once, on the first update. Any nodes added to the tree beyond that
+   * update will be given a `data-projection-id` attribute.
+   */
+  hasEverUpdated: false
+};
+
+// node_modules/framer-motion/dist/es/projection/styles/scale-border-radius.mjs
+function pixelsToPercent(pixels, axis) {
+  if (axis.max === axis.min)
+    return 0;
+  return pixels / (axis.max - axis.min) * 100;
+}
+var correctBorderRadius = {
+  correct: (latest, node) => {
+    if (!node.target)
+      return latest;
+    if (typeof latest === "string") {
+      if (px.test(latest)) {
+        latest = parseFloat(latest);
+      } else {
+        return latest;
+      }
+    }
+    const x2 = pixelsToPercent(latest, node.target.x);
+    const y2 = pixelsToPercent(latest, node.target.y);
+    return `${x2}% ${y2}%`;
+  }
+};
+
+// node_modules/framer-motion/dist/es/projection/styles/scale-box-shadow.mjs
+var correctBoxShadow = {
+  correct: (latest, { treeScale, projectionDelta }) => {
+    const original = latest;
+    const shadow = complex.parse(latest);
+    if (shadow.length > 5)
+      return original;
+    const template = complex.createTransformer(latest);
+    const offset = typeof shadow[0] !== "number" ? 1 : 0;
+    const xScale = projectionDelta.x.scale * treeScale.x;
+    const yScale = projectionDelta.y.scale * treeScale.y;
+    shadow[0 + offset] /= xScale;
+    shadow[1 + offset] /= yScale;
+    const averageScale = mixNumber(xScale, yScale, 0.5);
+    if (typeof shadow[2 + offset] === "number")
+      shadow[2 + offset] /= averageScale;
+    if (typeof shadow[3 + offset] === "number")
+      shadow[3 + offset] /= averageScale;
+    return template(shadow);
+  }
+};
+
+// node_modules/framer-motion/dist/es/motion/features/layout/MeasureLayout.mjs
+var hasTakenAnySnapshot = false;
+var MeasureLayoutWithContext = class extends import_react23.Component {
+  /**
+   * This only mounts projection nodes for components that
+   * need measuring, we might want to do it for all components
+   * in order to incorporate transforms
+   */
+  componentDidMount() {
+    const { visualElement, layoutGroup, switchLayoutGroup, layoutId } = this.props;
+    const { projection } = visualElement;
+    addScaleCorrector(defaultScaleCorrectors);
+    if (projection) {
+      if (layoutGroup.group)
+        layoutGroup.group.add(projection);
+      if (switchLayoutGroup && switchLayoutGroup.register && layoutId) {
+        switchLayoutGroup.register(projection);
+      }
+      if (hasTakenAnySnapshot) {
+        projection.root.didUpdate();
+      }
+      projection.addEventListener("animationComplete", () => {
+        this.safeToRemove();
+      });
+      projection.setOptions({
+        ...projection.options,
+        onExitComplete: () => this.safeToRemove()
+      });
+    }
+    globalProjectionState.hasEverUpdated = true;
+  }
+  getSnapshotBeforeUpdate(prevProps) {
+    const { layoutDependency, visualElement, drag: drag2, isPresent } = this.props;
+    const { projection } = visualElement;
+    if (!projection)
+      return null;
+    projection.isPresent = isPresent;
+    hasTakenAnySnapshot = true;
+    if (drag2 || prevProps.layoutDependency !== layoutDependency || layoutDependency === void 0 || prevProps.isPresent !== isPresent) {
+      projection.willUpdate();
+    } else {
+      this.safeToRemove();
+    }
+    if (prevProps.isPresent !== isPresent) {
+      if (isPresent) {
+        projection.promote();
+      } else if (!projection.relegate()) {
+        frame.postRender(() => {
+          const stack = projection.getStack();
+          if (!stack || !stack.members.length) {
+            this.safeToRemove();
+          }
+        });
+      }
+    }
+    return null;
+  }
+  componentDidUpdate() {
+    const { projection } = this.props.visualElement;
+    if (projection) {
+      projection.root.didUpdate();
+      microtask.postRender(() => {
+        if (!projection.currentAnimation && projection.isLead()) {
+          this.safeToRemove();
+        }
+      });
+    }
+  }
+  componentWillUnmount() {
+    const { visualElement, layoutGroup, switchLayoutGroup: promoteContext } = this.props;
+    const { projection } = visualElement;
+    hasTakenAnySnapshot = true;
+    if (projection) {
+      projection.scheduleCheckAfterUnmount();
+      if (layoutGroup && layoutGroup.group)
+        layoutGroup.group.remove(projection);
+      if (promoteContext && promoteContext.deregister)
+        promoteContext.deregister(projection);
+    }
+  }
+  safeToRemove() {
+    const { safeToRemove } = this.props;
+    safeToRemove && safeToRemove();
+  }
+  render() {
+    return null;
+  }
+};
+function MeasureLayout(props) {
+  const [isPresent, safeToRemove] = usePresence();
+  const layoutGroup = (0, import_react23.useContext)(LayoutGroupContext);
+  return (0, import_jsx_runtime5.jsx)(MeasureLayoutWithContext, { ...props, layoutGroup, switchLayoutGroup: (0, import_react23.useContext)(SwitchLayoutGroupContext), isPresent, safeToRemove });
+}
+var defaultScaleCorrectors = {
+  borderRadius: {
+    ...correctBorderRadius,
+    applyTo: [
+      "borderTopLeftRadius",
+      "borderTopRightRadius",
+      "borderBottomLeftRadius",
+      "borderBottomRightRadius"
+    ]
+  },
+  borderTopLeftRadius: correctBorderRadius,
+  borderTopRightRadius: correctBorderRadius,
+  borderBottomLeftRadius: correctBorderRadius,
+  borderBottomRightRadius: correctBorderRadius,
+  boxShadow: correctBoxShadow
+};
+
+// node_modules/framer-motion/dist/es/animation/animate/single-value.mjs
+function animateSingleValue(value, keyframes2, options) {
+  const motionValue$1 = isMotionValue(value) ? value : motionValue(value);
+  motionValue$1.start(animateMotionValue("", motionValue$1, keyframes2, options));
+  return motionValue$1.animation;
+}
+
+// node_modules/framer-motion/dist/es/render/utils/compare-by-depth.mjs
+var compareByDepth = (a2, b) => a2.depth - b.depth;
+
+// node_modules/framer-motion/dist/es/render/utils/flat-tree.mjs
+var FlatTree = class {
+  constructor() {
+    this.children = [];
+    this.isDirty = false;
+  }
+  add(child) {
+    addUniqueItem(this.children, child);
+    this.isDirty = true;
+  }
+  remove(child) {
+    removeItem(this.children, child);
+    this.isDirty = true;
+  }
+  forEach(callback) {
+    this.isDirty && this.children.sort(compareByDepth);
+    this.isDirty = false;
+    this.children.forEach(callback);
+  }
+};
+
+// node_modules/framer-motion/dist/es/utils/delay.mjs
+function delay(callback, timeout) {
+  const start = time.now();
+  const checkElapsed = ({ timestamp }) => {
+    const elapsed = timestamp - start;
+    if (elapsed >= timeout) {
+      cancelFrame(checkElapsed);
+      callback(elapsed - timeout);
+    }
+  };
+  frame.setup(checkElapsed, true);
+  return () => cancelFrame(checkElapsed);
+}
+
+// node_modules/framer-motion/dist/es/projection/animation/mix-values.mjs
+var borders = ["TopLeft", "TopRight", "BottomLeft", "BottomRight"];
+var numBorders = borders.length;
+var asNumber = (value) => typeof value === "string" ? parseFloat(value) : value;
+var isPx = (value) => typeof value === "number" || px.test(value);
+function mixValues(target, follow, lead, progress2, shouldCrossfadeOpacity, isOnlyMember) {
+  if (shouldCrossfadeOpacity) {
+    target.opacity = mixNumber(0, lead.opacity ?? 1, easeCrossfadeIn(progress2));
+    target.opacityExit = mixNumber(follow.opacity ?? 1, 0, easeCrossfadeOut(progress2));
+  } else if (isOnlyMember) {
+    target.opacity = mixNumber(follow.opacity ?? 1, lead.opacity ?? 1, progress2);
+  }
+  for (let i = 0; i < numBorders; i++) {
+    const borderLabel = `border${borders[i]}Radius`;
+    let followRadius = getRadius(follow, borderLabel);
+    let leadRadius = getRadius(lead, borderLabel);
+    if (followRadius === void 0 && leadRadius === void 0)
+      continue;
+    followRadius || (followRadius = 0);
+    leadRadius || (leadRadius = 0);
+    const canMix = followRadius === 0 || leadRadius === 0 || isPx(followRadius) === isPx(leadRadius);
+    if (canMix) {
+      target[borderLabel] = Math.max(mixNumber(asNumber(followRadius), asNumber(leadRadius), progress2), 0);
+      if (percent.test(leadRadius) || percent.test(followRadius)) {
+        target[borderLabel] += "%";
+      }
+    } else {
+      target[borderLabel] = leadRadius;
+    }
+  }
+  if (follow.rotate || lead.rotate) {
+    target.rotate = mixNumber(follow.rotate || 0, lead.rotate || 0, progress2);
+  }
+}
+function getRadius(values, radiusName) {
+  return values[radiusName] !== void 0 ? values[radiusName] : values.borderRadius;
+}
+var easeCrossfadeIn = /* @__PURE__ */ compress(0, 0.5, circOut);
+var easeCrossfadeOut = /* @__PURE__ */ compress(0.5, 0.95, noop);
+function compress(min4, max4, easing) {
+  return (p) => {
+    if (p < min4)
+      return 0;
+    if (p > max4)
+      return 1;
+    return easing(progress(min4, max4, p));
+  };
+}
+
+// node_modules/framer-motion/dist/es/projection/geometry/copy.mjs
+function copyAxisInto(axis, originAxis) {
+  axis.min = originAxis.min;
+  axis.max = originAxis.max;
+}
+function copyBoxInto(box, originBox) {
+  copyAxisInto(box.x, originBox.x);
+  copyAxisInto(box.y, originBox.y);
+}
+function copyAxisDeltaInto(delta, originDelta) {
+  delta.translate = originDelta.translate;
+  delta.scale = originDelta.scale;
+  delta.originPoint = originDelta.originPoint;
+  delta.origin = originDelta.origin;
+}
+
+// node_modules/framer-motion/dist/es/projection/geometry/delta-remove.mjs
+function removePointDelta(point4, translate, scale2, originPoint, boxScale) {
+  point4 -= translate;
+  point4 = scalePoint(point4, 1 / scale2, originPoint);
+  if (boxScale !== void 0) {
+    point4 = scalePoint(point4, 1 / boxScale, originPoint);
+  }
+  return point4;
+}
+function removeAxisDelta(axis, translate = 0, scale2 = 1, origin = 0.5, boxScale, originAxis = axis, sourceAxis = axis) {
+  if (percent.test(translate)) {
+    translate = parseFloat(translate);
+    const relativeProgress = mixNumber(sourceAxis.min, sourceAxis.max, translate / 100);
+    translate = relativeProgress - sourceAxis.min;
+  }
+  if (typeof translate !== "number")
+    return;
+  let originPoint = mixNumber(originAxis.min, originAxis.max, origin);
+  if (axis === originAxis)
+    originPoint -= translate;
+  axis.min = removePointDelta(axis.min, translate, scale2, originPoint, boxScale);
+  axis.max = removePointDelta(axis.max, translate, scale2, originPoint, boxScale);
+}
+function removeAxisTransforms(axis, transforms, [key, scaleKey, originKey], origin, sourceAxis) {
+  removeAxisDelta(axis, transforms[key], transforms[scaleKey], transforms[originKey], transforms.scale, origin, sourceAxis);
+}
+var xKeys = ["x", "scaleX", "originX"];
+var yKeys = ["y", "scaleY", "originY"];
+function removeBoxTransforms(box, transforms, originBox, sourceBox) {
+  removeAxisTransforms(box.x, transforms, xKeys, originBox ? originBox.x : void 0, sourceBox ? sourceBox.x : void 0);
+  removeAxisTransforms(box.y, transforms, yKeys, originBox ? originBox.y : void 0, sourceBox ? sourceBox.y : void 0);
+}
+
+// node_modules/framer-motion/dist/es/projection/geometry/utils.mjs
+function isAxisDeltaZero(delta) {
+  return delta.translate === 0 && delta.scale === 1;
+}
+function isDeltaZero(delta) {
+  return isAxisDeltaZero(delta.x) && isAxisDeltaZero(delta.y);
+}
+function axisEquals(a2, b) {
+  return a2.min === b.min && a2.max === b.max;
+}
+function boxEquals(a2, b) {
+  return axisEquals(a2.x, b.x) && axisEquals(a2.y, b.y);
+}
+function axisEqualsRounded(a2, b) {
+  return Math.round(a2.min) === Math.round(b.min) && Math.round(a2.max) === Math.round(b.max);
+}
+function boxEqualsRounded(a2, b) {
+  return axisEqualsRounded(a2.x, b.x) && axisEqualsRounded(a2.y, b.y);
+}
+function aspectRatio(box) {
+  return calcLength(box.x) / calcLength(box.y);
+}
+function axisDeltaEquals(a2, b) {
+  return a2.translate === b.translate && a2.scale === b.scale && a2.originPoint === b.originPoint;
+}
+
+// node_modules/framer-motion/dist/es/projection/shared/stack.mjs
+var NodeStack = class {
+  constructor() {
+    this.members = [];
+  }
+  add(node) {
+    addUniqueItem(this.members, node);
+    node.scheduleRender();
+  }
+  remove(node) {
+    removeItem(this.members, node);
+    if (node === this.prevLead) {
+      this.prevLead = void 0;
+    }
+    if (node === this.lead) {
+      const prevLead = this.members[this.members.length - 1];
+      if (prevLead) {
+        this.promote(prevLead);
+      }
+    }
+  }
+  relegate(node) {
+    const indexOfNode = this.members.findIndex((member) => node === member);
+    if (indexOfNode === 0)
+      return false;
+    let prevLead;
+    for (let i = indexOfNode; i >= 0; i--) {
+      const member = this.members[i];
+      if (member.isPresent !== false) {
+        prevLead = member;
+        break;
+      }
+    }
+    if (prevLead) {
+      this.promote(prevLead);
+      return true;
+    } else {
+      return false;
+    }
+  }
+  promote(node, preserveFollowOpacity) {
+    const prevLead = this.lead;
+    if (node === prevLead)
+      return;
+    this.prevLead = prevLead;
+    this.lead = node;
+    node.show();
+    if (prevLead) {
+      prevLead.instance && prevLead.scheduleRender();
+      node.scheduleRender();
+      node.resumeFrom = prevLead;
+      if (preserveFollowOpacity) {
+        node.resumeFrom.preserveOpacity = true;
+      }
+      if (prevLead.snapshot) {
+        node.snapshot = prevLead.snapshot;
+        node.snapshot.latestValues = prevLead.animationValues || prevLead.latestValues;
+      }
+      if (node.root && node.root.isUpdating) {
+        node.isLayoutDirty = true;
+      }
+      const { crossfade } = node.options;
+      if (crossfade === false) {
+        prevLead.hide();
+      }
+    }
+  }
+  exitAnimationComplete() {
+    this.members.forEach((node) => {
+      const { options, resumingFrom } = node;
+      options.onExitComplete && options.onExitComplete();
+      if (resumingFrom) {
+        resumingFrom.options.onExitComplete && resumingFrom.options.onExitComplete();
+      }
+    });
+  }
+  scheduleRender() {
+    this.members.forEach((node) => {
+      node.instance && node.scheduleRender(false);
+    });
+  }
+  /**
+   * Clear any leads that have been removed this render to prevent them from being
+   * used in future animations and to prevent memory leaks
+   */
+  removeLeadSnapshot() {
+    if (this.lead && this.lead.snapshot) {
+      this.lead.snapshot = void 0;
+    }
+  }
+};
+
+// node_modules/framer-motion/dist/es/projection/styles/transform.mjs
+function buildProjectionTransform(delta, treeScale, latestTransform) {
+  let transform = "";
+  const xTranslate = delta.x.translate / treeScale.x;
+  const yTranslate = delta.y.translate / treeScale.y;
+  const zTranslate = latestTransform?.z || 0;
+  if (xTranslate || yTranslate || zTranslate) {
+    transform = `translate3d(${xTranslate}px, ${yTranslate}px, ${zTranslate}px) `;
+  }
+  if (treeScale.x !== 1 || treeScale.y !== 1) {
+    transform += `scale(${1 / treeScale.x}, ${1 / treeScale.y}) `;
+  }
+  if (latestTransform) {
+    const { transformPerspective, rotate: rotate2, rotateX, rotateY, skewX, skewY } = latestTransform;
+    if (transformPerspective)
+      transform = `perspective(${transformPerspective}px) ${transform}`;
+    if (rotate2)
+      transform += `rotate(${rotate2}deg) `;
+    if (rotateX)
+      transform += `rotateX(${rotateX}deg) `;
+    if (rotateY)
+      transform += `rotateY(${rotateY}deg) `;
+    if (skewX)
+      transform += `skewX(${skewX}deg) `;
+    if (skewY)
+      transform += `skewY(${skewY}deg) `;
+  }
+  const elementScaleX = delta.x.scale * treeScale.x;
+  const elementScaleY = delta.y.scale * treeScale.y;
+  if (elementScaleX !== 1 || elementScaleY !== 1) {
+    transform += `scale(${elementScaleX}, ${elementScaleY})`;
+  }
+  return transform || "none";
+}
+
+// node_modules/framer-motion/dist/es/projection/node/create-projection-node.mjs
+var metrics = {
+  nodes: 0,
+  calculatedTargetDeltas: 0,
+  calculatedProjections: 0
+};
+var transformAxes = ["", "X", "Y", "Z"];
+var animationTarget = 1e3;
+var id2 = 0;
+function resetDistortingTransform(key, visualElement, values, sharedAnimationValues) {
+  const { latestValues } = visualElement;
+  if (latestValues[key]) {
+    values[key] = latestValues[key];
+    visualElement.setStaticValue(key, 0);
+    if (sharedAnimationValues) {
+      sharedAnimationValues[key] = 0;
+    }
+  }
+}
+function cancelTreeOptimisedTransformAnimations(projectionNode) {
+  projectionNode.hasCheckedOptimisedAppear = true;
+  if (projectionNode.root === projectionNode)
+    return;
+  const { visualElement } = projectionNode.options;
+  if (!visualElement)
+    return;
+  const appearId = getOptimisedAppearId(visualElement);
+  if (window.MotionHasOptimisedAnimation(appearId, "transform")) {
+    const { layout: layout2, layoutId } = projectionNode.options;
+    window.MotionCancelOptimisedAnimation(appearId, "transform", frame, !(layout2 || layoutId));
+  }
+  const { parent } = projectionNode;
+  if (parent && !parent.hasCheckedOptimisedAppear) {
+    cancelTreeOptimisedTransformAnimations(parent);
+  }
+}
+function createProjectionNode2({ attachResizeListener, defaultParent, measureScroll, checkIsScrollRoot, resetTransform }) {
+  return class ProjectionNode {
+    constructor(latestValues = {}, parent = defaultParent?.()) {
+      this.id = id2++;
+      this.animationId = 0;
+      this.animationCommitId = 0;
+      this.children = /* @__PURE__ */ new Set();
+      this.options = {};
+      this.isTreeAnimating = false;
+      this.isAnimationBlocked = false;
+      this.isLayoutDirty = false;
+      this.isProjectionDirty = false;
+      this.isSharedProjectionDirty = false;
+      this.isTransformDirty = false;
+      this.updateManuallyBlocked = false;
+      this.updateBlockedByResize = false;
+      this.isUpdating = false;
+      this.isSVG = false;
+      this.needsReset = false;
+      this.shouldResetTransform = false;
+      this.hasCheckedOptimisedAppear = false;
+      this.treeScale = { x: 1, y: 1 };
+      this.eventHandlers = /* @__PURE__ */ new Map();
+      this.hasTreeAnimated = false;
+      this.updateScheduled = false;
+      this.scheduleUpdate = () => this.update();
+      this.projectionUpdateScheduled = false;
+      this.checkUpdateFailed = () => {
+        if (this.isUpdating) {
+          this.isUpdating = false;
+          this.clearAllSnapshots();
+        }
+      };
+      this.updateProjection = () => {
+        this.projectionUpdateScheduled = false;
+        if (statsBuffer.value) {
+          metrics.nodes = metrics.calculatedTargetDeltas = metrics.calculatedProjections = 0;
+        }
+        this.nodes.forEach(propagateDirtyNodes);
+        this.nodes.forEach(resolveTargetDelta);
+        this.nodes.forEach(calcProjection);
+        this.nodes.forEach(cleanDirtyNodes);
+        if (statsBuffer.addProjectionMetrics) {
+          statsBuffer.addProjectionMetrics(metrics);
+        }
+      };
+      this.resolvedRelativeTargetAt = 0;
+      this.hasProjected = false;
+      this.isVisible = true;
+      this.animationProgress = 0;
+      this.sharedNodes = /* @__PURE__ */ new Map();
+      this.latestValues = latestValues;
+      this.root = parent ? parent.root || parent : this;
+      this.path = parent ? [...parent.path, parent] : [];
+      this.parent = parent;
+      this.depth = parent ? parent.depth + 1 : 0;
+      for (let i = 0; i < this.path.length; i++) {
+        this.path[i].shouldResetTransform = true;
+      }
+      if (this.root === this)
+        this.nodes = new FlatTree();
+    }
+    addEventListener(name, handler) {
+      if (!this.eventHandlers.has(name)) {
+        this.eventHandlers.set(name, new SubscriptionManager());
+      }
+      return this.eventHandlers.get(name).add(handler);
+    }
+    notifyListeners(name, ...args) {
+      const subscriptionManager = this.eventHandlers.get(name);
+      subscriptionManager && subscriptionManager.notify(...args);
+    }
+    hasListeners(name) {
+      return this.eventHandlers.has(name);
+    }
+    /**
+     * Lifecycles
+     */
+    mount(instance) {
+      if (this.instance)
+        return;
+      this.isSVG = isSVGElement(instance) && !isSVGSVGElement(instance);
+      this.instance = instance;
+      const { layoutId, layout: layout2, visualElement } = this.options;
+      if (visualElement && !visualElement.current) {
+        visualElement.mount(instance);
+      }
+      this.root.nodes.add(this);
+      this.parent && this.parent.children.add(this);
+      if (this.root.hasTreeAnimated && (layout2 || layoutId)) {
+        this.isLayoutDirty = true;
+      }
+      if (attachResizeListener) {
+        let cancelDelay;
+        let innerWidth = 0;
+        const resizeUnblockUpdate = () => this.root.updateBlockedByResize = false;
+        frame.read(() => {
+          innerWidth = window.innerWidth;
+        });
+        attachResizeListener(instance, () => {
+          const newInnerWidth = window.innerWidth;
+          if (newInnerWidth === innerWidth)
+            return;
+          innerWidth = newInnerWidth;
+          this.root.updateBlockedByResize = true;
+          cancelDelay && cancelDelay();
+          cancelDelay = delay(resizeUnblockUpdate, 250);
+          if (globalProjectionState.hasAnimatedSinceResize) {
+            globalProjectionState.hasAnimatedSinceResize = false;
+            this.nodes.forEach(finishAnimation);
+          }
+        });
+      }
+      if (layoutId) {
+        this.root.registerSharedNode(layoutId, this);
+      }
+      if (this.options.animate !== false && visualElement && (layoutId || layout2)) {
+        this.addEventListener("didUpdate", ({ delta, hasLayoutChanged, hasRelativeLayoutChanged, layout: newLayout }) => {
+          if (this.isTreeAnimationBlocked()) {
+            this.target = void 0;
+            this.relativeTarget = void 0;
+            return;
+          }
+          const layoutTransition = this.options.transition || visualElement.getDefaultTransition() || defaultLayoutTransition;
+          const { onLayoutAnimationStart, onLayoutAnimationComplete } = visualElement.getProps();
+          const hasTargetChanged = !this.targetLayout || !boxEqualsRounded(this.targetLayout, newLayout);
+          const hasOnlyRelativeTargetChanged = !hasLayoutChanged && hasRelativeLayoutChanged;
+          if (this.options.layoutRoot || this.resumeFrom || hasOnlyRelativeTargetChanged || hasLayoutChanged && (hasTargetChanged || !this.currentAnimation)) {
+            if (this.resumeFrom) {
+              this.resumingFrom = this.resumeFrom;
+              this.resumingFrom.resumingFrom = void 0;
+            }
+            const animationOptions = {
+              ...getValueTransition(layoutTransition, "layout"),
+              onPlay: onLayoutAnimationStart,
+              onComplete: onLayoutAnimationComplete
+            };
+            if (visualElement.shouldReduceMotion || this.options.layoutRoot) {
+              animationOptions.delay = 0;
+              animationOptions.type = false;
+            }
+            this.startAnimation(animationOptions);
+            this.setAnimationOrigin(delta, hasOnlyRelativeTargetChanged);
+          } else {
+            if (!hasLayoutChanged) {
+              finishAnimation(this);
+            }
+            if (this.isLead() && this.options.onExitComplete) {
+              this.options.onExitComplete();
+            }
+          }
+          this.targetLayout = newLayout;
+        });
+      }
+    }
+    unmount() {
+      this.options.layoutId && this.willUpdate();
+      this.root.nodes.remove(this);
+      const stack = this.getStack();
+      stack && stack.remove(this);
+      this.parent && this.parent.children.delete(this);
+      this.instance = void 0;
+      this.eventHandlers.clear();
+      cancelFrame(this.updateProjection);
+    }
+    // only on the root
+    blockUpdate() {
+      this.updateManuallyBlocked = true;
+    }
+    unblockUpdate() {
+      this.updateManuallyBlocked = false;
+    }
+    isUpdateBlocked() {
+      return this.updateManuallyBlocked || this.updateBlockedByResize;
+    }
+    isTreeAnimationBlocked() {
+      return this.isAnimationBlocked || this.parent && this.parent.isTreeAnimationBlocked() || false;
+    }
+    // Note: currently only running on root node
+    startUpdate() {
+      if (this.isUpdateBlocked())
+        return;
+      this.isUpdating = true;
+      this.nodes && this.nodes.forEach(resetSkewAndRotation);
+      this.animationId++;
+    }
+    getTransformTemplate() {
+      const { visualElement } = this.options;
+      return visualElement && visualElement.getProps().transformTemplate;
+    }
+    willUpdate(shouldNotifyListeners = true) {
+      this.root.hasTreeAnimated = true;
+      if (this.root.isUpdateBlocked()) {
+        this.options.onExitComplete && this.options.onExitComplete();
+        return;
+      }
+      if (window.MotionCancelOptimisedAnimation && !this.hasCheckedOptimisedAppear) {
+        cancelTreeOptimisedTransformAnimations(this);
+      }
+      !this.root.isUpdating && this.root.startUpdate();
+      if (this.isLayoutDirty)
+        return;
+      this.isLayoutDirty = true;
+      for (let i = 0; i < this.path.length; i++) {
+        const node = this.path[i];
+        node.shouldResetTransform = true;
+        node.updateScroll("snapshot");
+        if (node.options.layoutRoot) {
+          node.willUpdate(false);
+        }
+      }
+      const { layoutId, layout: layout2 } = this.options;
+      if (layoutId === void 0 && !layout2)
+        return;
+      const transformTemplate = this.getTransformTemplate();
+      this.prevTransformTemplateValue = transformTemplate ? transformTemplate(this.latestValues, "") : void 0;
+      this.updateSnapshot();
+      shouldNotifyListeners && this.notifyListeners("willUpdate");
+    }
+    update() {
+      this.updateScheduled = false;
+      const updateWasBlocked = this.isUpdateBlocked();
+      if (updateWasBlocked) {
+        this.unblockUpdate();
+        this.clearAllSnapshots();
+        this.nodes.forEach(clearMeasurements);
+        return;
+      }
+      if (this.animationId <= this.animationCommitId) {
+        this.nodes.forEach(clearIsLayoutDirty);
+        return;
+      }
+      this.animationCommitId = this.animationId;
+      if (!this.isUpdating) {
+        this.nodes.forEach(clearIsLayoutDirty);
+      } else {
+        this.isUpdating = false;
+        this.nodes.forEach(resetTransformStyle);
+        this.nodes.forEach(updateLayout);
+        this.nodes.forEach(notifyLayoutUpdate);
+      }
+      this.clearAllSnapshots();
+      const now2 = time.now();
+      frameData.delta = clamp(0, 1e3 / 60, now2 - frameData.timestamp);
+      frameData.timestamp = now2;
+      frameData.isProcessing = true;
+      frameSteps.update.process(frameData);
+      frameSteps.preRender.process(frameData);
+      frameSteps.render.process(frameData);
+      frameData.isProcessing = false;
+    }
+    didUpdate() {
+      if (!this.updateScheduled) {
+        this.updateScheduled = true;
+        microtask.read(this.scheduleUpdate);
+      }
+    }
+    clearAllSnapshots() {
+      this.nodes.forEach(clearSnapshot);
+      this.sharedNodes.forEach(removeLeadSnapshots);
+    }
+    scheduleUpdateProjection() {
+      if (!this.projectionUpdateScheduled) {
+        this.projectionUpdateScheduled = true;
+        frame.preRender(this.updateProjection, false, true);
+      }
+    }
+    scheduleCheckAfterUnmount() {
+      frame.postRender(() => {
+        if (this.isLayoutDirty) {
+          this.root.didUpdate();
+        } else {
+          this.root.checkUpdateFailed();
+        }
+      });
+    }
+    /**
+     * Update measurements
+     */
+    updateSnapshot() {
+      if (this.snapshot || !this.instance)
+        return;
+      this.snapshot = this.measure();
+      if (this.snapshot && !calcLength(this.snapshot.measuredBox.x) && !calcLength(this.snapshot.measuredBox.y)) {
+        this.snapshot = void 0;
+      }
+    }
+    updateLayout() {
+      if (!this.instance)
+        return;
+      this.updateScroll();
+      if (!(this.options.alwaysMeasureLayout && this.isLead()) && !this.isLayoutDirty) {
+        return;
+      }
+      if (this.resumeFrom && !this.resumeFrom.instance) {
+        for (let i = 0; i < this.path.length; i++) {
+          const node = this.path[i];
+          node.updateScroll();
+        }
+      }
+      const prevLayout = this.layout;
+      this.layout = this.measure(false);
+      this.layoutCorrected = createBox();
+      this.isLayoutDirty = false;
+      this.projectionDelta = void 0;
+      this.notifyListeners("measure", this.layout.layoutBox);
+      const { visualElement } = this.options;
+      visualElement && visualElement.notify("LayoutMeasure", this.layout.layoutBox, prevLayout ? prevLayout.layoutBox : void 0);
+    }
+    updateScroll(phase = "measure") {
+      let needsMeasurement = Boolean(this.options.layoutScroll && this.instance);
+      if (this.scroll && this.scroll.animationId === this.root.animationId && this.scroll.phase === phase) {
+        needsMeasurement = false;
+      }
+      if (needsMeasurement && this.instance) {
+        const isRoot = checkIsScrollRoot(this.instance);
+        this.scroll = {
+          animationId: this.root.animationId,
+          phase,
+          isRoot,
+          offset: measureScroll(this.instance),
+          wasRoot: this.scroll ? this.scroll.isRoot : isRoot
+        };
+      }
+    }
+    resetTransform() {
+      if (!resetTransform)
+        return;
+      const isResetRequested = this.isLayoutDirty || this.shouldResetTransform || this.options.alwaysMeasureLayout;
+      const hasProjection = this.projectionDelta && !isDeltaZero(this.projectionDelta);
+      const transformTemplate = this.getTransformTemplate();
+      const transformTemplateValue = transformTemplate ? transformTemplate(this.latestValues, "") : void 0;
+      const transformTemplateHasChanged = transformTemplateValue !== this.prevTransformTemplateValue;
+      if (isResetRequested && this.instance && (hasProjection || hasTransform(this.latestValues) || transformTemplateHasChanged)) {
+        resetTransform(this.instance, transformTemplateValue);
+        this.shouldResetTransform = false;
+        this.scheduleRender();
+      }
+    }
+    measure(removeTransform = true) {
+      const pageBox = this.measurePageBox();
+      let layoutBox = this.removeElementScroll(pageBox);
+      if (removeTransform) {
+        layoutBox = this.removeTransform(layoutBox);
+      }
+      roundBox(layoutBox);
+      return {
+        animationId: this.root.animationId,
+        measuredBox: pageBox,
+        layoutBox,
+        latestValues: {},
+        source: this.id
+      };
+    }
+    measurePageBox() {
+      const { visualElement } = this.options;
+      if (!visualElement)
+        return createBox();
+      const box = visualElement.measureViewportBox();
+      const wasInScrollRoot = this.scroll?.wasRoot || this.path.some(checkNodeWasScrollRoot);
+      if (!wasInScrollRoot) {
+        const { scroll } = this.root;
+        if (scroll) {
+          translateAxis(box.x, scroll.offset.x);
+          translateAxis(box.y, scroll.offset.y);
+        }
+      }
+      return box;
+    }
+    removeElementScroll(box) {
+      const boxWithoutScroll = createBox();
+      copyBoxInto(boxWithoutScroll, box);
+      if (this.scroll?.wasRoot) {
+        return boxWithoutScroll;
+      }
+      for (let i = 0; i < this.path.length; i++) {
+        const node = this.path[i];
+        const { scroll, options } = node;
+        if (node !== this.root && scroll && options.layoutScroll) {
+          if (scroll.wasRoot) {
+            copyBoxInto(boxWithoutScroll, box);
+          }
+          translateAxis(boxWithoutScroll.x, scroll.offset.x);
+          translateAxis(boxWithoutScroll.y, scroll.offset.y);
+        }
+      }
+      return boxWithoutScroll;
+    }
+    applyTransform(box, transformOnly = false) {
+      const withTransforms = createBox();
+      copyBoxInto(withTransforms, box);
+      for (let i = 0; i < this.path.length; i++) {
+        const node = this.path[i];
+        if (!transformOnly && node.options.layoutScroll && node.scroll && node !== node.root) {
+          transformBox(withTransforms, {
+            x: -node.scroll.offset.x,
+            y: -node.scroll.offset.y
+          });
+        }
+        if (!hasTransform(node.latestValues))
+          continue;
+        transformBox(withTransforms, node.latestValues);
+      }
+      if (hasTransform(this.latestValues)) {
+        transformBox(withTransforms, this.latestValues);
+      }
+      return withTransforms;
+    }
+    removeTransform(box) {
+      const boxWithoutTransform = createBox();
+      copyBoxInto(boxWithoutTransform, box);
+      for (let i = 0; i < this.path.length; i++) {
+        const node = this.path[i];
+        if (!node.instance)
+          continue;
+        if (!hasTransform(node.latestValues))
+          continue;
+        hasScale(node.latestValues) && node.updateSnapshot();
+        const sourceBox = createBox();
+        const nodeBox = node.measurePageBox();
+        copyBoxInto(sourceBox, nodeBox);
+        removeBoxTransforms(boxWithoutTransform, node.latestValues, node.snapshot ? node.snapshot.layoutBox : void 0, sourceBox);
+      }
+      if (hasTransform(this.latestValues)) {
+        removeBoxTransforms(boxWithoutTransform, this.latestValues);
+      }
+      return boxWithoutTransform;
+    }
+    setTargetDelta(delta) {
+      this.targetDelta = delta;
+      this.root.scheduleUpdateProjection();
+      this.isProjectionDirty = true;
+    }
+    setOptions(options) {
+      this.options = {
+        ...this.options,
+        ...options,
+        crossfade: options.crossfade !== void 0 ? options.crossfade : true
+      };
+    }
+    clearMeasurements() {
+      this.scroll = void 0;
+      this.layout = void 0;
+      this.snapshot = void 0;
+      this.prevTransformTemplateValue = void 0;
+      this.targetDelta = void 0;
+      this.target = void 0;
+      this.isLayoutDirty = false;
+    }
+    forceRelativeParentToResolveTarget() {
+      if (!this.relativeParent)
+        return;
+      if (this.relativeParent.resolvedRelativeTargetAt !== frameData.timestamp) {
+        this.relativeParent.resolveTargetDelta(true);
+      }
+    }
+    resolveTargetDelta(forceRecalculation = false) {
+      const lead = this.getLead();
+      this.isProjectionDirty || (this.isProjectionDirty = lead.isProjectionDirty);
+      this.isTransformDirty || (this.isTransformDirty = lead.isTransformDirty);
+      this.isSharedProjectionDirty || (this.isSharedProjectionDirty = lead.isSharedProjectionDirty);
+      const isShared = Boolean(this.resumingFrom) || this !== lead;
+      const canSkip = !(forceRecalculation || isShared && this.isSharedProjectionDirty || this.isProjectionDirty || this.parent?.isProjectionDirty || this.attemptToResolveRelativeTarget || this.root.updateBlockedByResize);
+      if (canSkip)
+        return;
+      const { layout: layout2, layoutId } = this.options;
+      if (!this.layout || !(layout2 || layoutId))
+        return;
+      this.resolvedRelativeTargetAt = frameData.timestamp;
+      if (!this.targetDelta && !this.relativeTarget) {
+        const relativeParent = this.getClosestProjectingParent();
+        if (relativeParent && relativeParent.layout && this.animationProgress !== 1) {
+          this.relativeParent = relativeParent;
+          this.forceRelativeParentToResolveTarget();
+          this.relativeTarget = createBox();
+          this.relativeTargetOrigin = createBox();
+          calcRelativePosition(this.relativeTargetOrigin, this.layout.layoutBox, relativeParent.layout.layoutBox);
+          copyBoxInto(this.relativeTarget, this.relativeTargetOrigin);
+        } else {
+          this.relativeParent = this.relativeTarget = void 0;
+        }
+      }
+      if (!this.relativeTarget && !this.targetDelta)
+        return;
+      if (!this.target) {
+        this.target = createBox();
+        this.targetWithTransforms = createBox();
+      }
+      if (this.relativeTarget && this.relativeTargetOrigin && this.relativeParent && this.relativeParent.target) {
+        this.forceRelativeParentToResolveTarget();
+        calcRelativeBox(this.target, this.relativeTarget, this.relativeParent.target);
+      } else if (this.targetDelta) {
+        if (Boolean(this.resumingFrom)) {
+          this.target = this.applyTransform(this.layout.layoutBox);
+        } else {
+          copyBoxInto(this.target, this.layout.layoutBox);
+        }
+        applyBoxDelta(this.target, this.targetDelta);
+      } else {
+        copyBoxInto(this.target, this.layout.layoutBox);
+      }
+      if (this.attemptToResolveRelativeTarget) {
+        this.attemptToResolveRelativeTarget = false;
+        const relativeParent = this.getClosestProjectingParent();
+        if (relativeParent && Boolean(relativeParent.resumingFrom) === Boolean(this.resumingFrom) && !relativeParent.options.layoutScroll && relativeParent.target && this.animationProgress !== 1) {
+          this.relativeParent = relativeParent;
+          this.forceRelativeParentToResolveTarget();
+          this.relativeTarget = createBox();
+          this.relativeTargetOrigin = createBox();
+          calcRelativePosition(this.relativeTargetOrigin, this.target, relativeParent.target);
+          copyBoxInto(this.relativeTarget, this.relativeTargetOrigin);
+        } else {
+          this.relativeParent = this.relativeTarget = void 0;
+        }
+      }
+      if (statsBuffer.value) {
+        metrics.calculatedTargetDeltas++;
+      }
+    }
+    getClosestProjectingParent() {
+      if (!this.parent || hasScale(this.parent.latestValues) || has2DTranslate(this.parent.latestValues)) {
+        return void 0;
+      }
+      if (this.parent.isProjecting()) {
+        return this.parent;
+      } else {
+        return this.parent.getClosestProjectingParent();
+      }
+    }
+    isProjecting() {
+      return Boolean((this.relativeTarget || this.targetDelta || this.options.layoutRoot) && this.layout);
+    }
+    calcProjection() {
+      const lead = this.getLead();
+      const isShared = Boolean(this.resumingFrom) || this !== lead;
+      let canSkip = true;
+      if (this.isProjectionDirty || this.parent?.isProjectionDirty) {
+        canSkip = false;
+      }
+      if (isShared && (this.isSharedProjectionDirty || this.isTransformDirty)) {
+        canSkip = false;
+      }
+      if (this.resolvedRelativeTargetAt === frameData.timestamp) {
+        canSkip = false;
+      }
+      if (canSkip)
+        return;
+      const { layout: layout2, layoutId } = this.options;
+      this.isTreeAnimating = Boolean(this.parent && this.parent.isTreeAnimating || this.currentAnimation || this.pendingAnimation);
+      if (!this.isTreeAnimating) {
+        this.targetDelta = this.relativeTarget = void 0;
+      }
+      if (!this.layout || !(layout2 || layoutId))
+        return;
+      copyBoxInto(this.layoutCorrected, this.layout.layoutBox);
+      const prevTreeScaleX = this.treeScale.x;
+      const prevTreeScaleY = this.treeScale.y;
+      applyTreeDeltas(this.layoutCorrected, this.treeScale, this.path, isShared);
+      if (lead.layout && !lead.target && (this.treeScale.x !== 1 || this.treeScale.y !== 1)) {
+        lead.target = lead.layout.layoutBox;
+        lead.targetWithTransforms = createBox();
+      }
+      const { target } = lead;
+      if (!target) {
+        if (this.prevProjectionDelta) {
+          this.createProjectionDeltas();
+          this.scheduleRender();
+        }
+        return;
+      }
+      if (!this.projectionDelta || !this.prevProjectionDelta) {
+        this.createProjectionDeltas();
+      } else {
+        copyAxisDeltaInto(this.prevProjectionDelta.x, this.projectionDelta.x);
+        copyAxisDeltaInto(this.prevProjectionDelta.y, this.projectionDelta.y);
+      }
+      calcBoxDelta(this.projectionDelta, this.layoutCorrected, target, this.latestValues);
+      if (this.treeScale.x !== prevTreeScaleX || this.treeScale.y !== prevTreeScaleY || !axisDeltaEquals(this.projectionDelta.x, this.prevProjectionDelta.x) || !axisDeltaEquals(this.projectionDelta.y, this.prevProjectionDelta.y)) {
+        this.hasProjected = true;
+        this.scheduleRender();
+        this.notifyListeners("projectionUpdate", target);
+      }
+      if (statsBuffer.value) {
+        metrics.calculatedProjections++;
+      }
+    }
+    hide() {
+      this.isVisible = false;
+    }
+    show() {
+      this.isVisible = true;
+    }
+    scheduleRender(notifyAll = true) {
+      this.options.visualElement?.scheduleRender();
+      if (notifyAll) {
+        const stack = this.getStack();
+        stack && stack.scheduleRender();
+      }
+      if (this.resumingFrom && !this.resumingFrom.instance) {
+        this.resumingFrom = void 0;
+      }
+    }
+    createProjectionDeltas() {
+      this.prevProjectionDelta = createDelta();
+      this.projectionDelta = createDelta();
+      this.projectionDeltaWithTransform = createDelta();
+    }
+    setAnimationOrigin(delta, hasOnlyRelativeTargetChanged = false) {
+      const snapshot = this.snapshot;
+      const snapshotLatestValues = snapshot ? snapshot.latestValues : {};
+      const mixedValues = { ...this.latestValues };
+      const targetDelta = createDelta();
+      if (!this.relativeParent || !this.relativeParent.options.layoutRoot) {
+        this.relativeTarget = this.relativeTargetOrigin = void 0;
+      }
+      this.attemptToResolveRelativeTarget = !hasOnlyRelativeTargetChanged;
+      const relativeLayout = createBox();
+      const snapshotSource = snapshot ? snapshot.source : void 0;
+      const layoutSource = this.layout ? this.layout.source : void 0;
+      const isSharedLayoutAnimation = snapshotSource !== layoutSource;
+      const stack = this.getStack();
+      const isOnlyMember = !stack || stack.members.length <= 1;
+      const shouldCrossfadeOpacity = Boolean(isSharedLayoutAnimation && !isOnlyMember && this.options.crossfade === true && !this.path.some(hasOpacityCrossfade));
+      this.animationProgress = 0;
+      let prevRelativeTarget;
+      this.mixTargetDelta = (latest) => {
+        const progress2 = latest / 1e3;
+        mixAxisDelta(targetDelta.x, delta.x, progress2);
+        mixAxisDelta(targetDelta.y, delta.y, progress2);
+        this.setTargetDelta(targetDelta);
+        if (this.relativeTarget && this.relativeTargetOrigin && this.layout && this.relativeParent && this.relativeParent.layout) {
+          calcRelativePosition(relativeLayout, this.layout.layoutBox, this.relativeParent.layout.layoutBox);
+          mixBox(this.relativeTarget, this.relativeTargetOrigin, relativeLayout, progress2);
+          if (prevRelativeTarget && boxEquals(this.relativeTarget, prevRelativeTarget)) {
+            this.isProjectionDirty = false;
+          }
+          if (!prevRelativeTarget)
+            prevRelativeTarget = createBox();
+          copyBoxInto(prevRelativeTarget, this.relativeTarget);
+        }
+        if (isSharedLayoutAnimation) {
+          this.animationValues = mixedValues;
+          mixValues(mixedValues, snapshotLatestValues, this.latestValues, progress2, shouldCrossfadeOpacity, isOnlyMember);
+        }
+        this.root.scheduleUpdateProjection();
+        this.scheduleRender();
+        this.animationProgress = progress2;
+      };
+      this.mixTargetDelta(this.options.layoutRoot ? 1e3 : 0);
+    }
+    startAnimation(options) {
+      this.notifyListeners("animationStart");
+      this.currentAnimation?.stop();
+      this.resumingFrom?.currentAnimation?.stop();
+      if (this.pendingAnimation) {
+        cancelFrame(this.pendingAnimation);
+        this.pendingAnimation = void 0;
+      }
+      this.pendingAnimation = frame.update(() => {
+        globalProjectionState.hasAnimatedSinceResize = true;
+        activeAnimations.layout++;
+        this.motionValue || (this.motionValue = motionValue(0));
+        this.currentAnimation = animateSingleValue(this.motionValue, [0, 1e3], {
+          ...options,
+          velocity: 0,
+          isSync: true,
+          onUpdate: (latest) => {
+            this.mixTargetDelta(latest);
+            options.onUpdate && options.onUpdate(latest);
+          },
+          onStop: () => {
+            activeAnimations.layout--;
+          },
+          onComplete: () => {
+            activeAnimations.layout--;
+            options.onComplete && options.onComplete();
+            this.completeAnimation();
+          }
+        });
+        if (this.resumingFrom) {
+          this.resumingFrom.currentAnimation = this.currentAnimation;
+        }
+        this.pendingAnimation = void 0;
+      });
+    }
+    completeAnimation() {
+      if (this.resumingFrom) {
+        this.resumingFrom.currentAnimation = void 0;
+        this.resumingFrom.preserveOpacity = void 0;
+      }
+      const stack = this.getStack();
+      stack && stack.exitAnimationComplete();
+      this.resumingFrom = this.currentAnimation = this.animationValues = void 0;
+      this.notifyListeners("animationComplete");
+    }
+    finishAnimation() {
+      if (this.currentAnimation) {
+        this.mixTargetDelta && this.mixTargetDelta(animationTarget);
+        this.currentAnimation.stop();
+      }
+      this.completeAnimation();
+    }
+    applyTransformsToTarget() {
+      const lead = this.getLead();
+      let { targetWithTransforms, target, layout: layout2, latestValues } = lead;
+      if (!targetWithTransforms || !target || !layout2)
+        return;
+      if (this !== lead && this.layout && layout2 && shouldAnimatePositionOnly(this.options.animationType, this.layout.layoutBox, layout2.layoutBox)) {
+        target = this.target || createBox();
+        const xLength = calcLength(this.layout.layoutBox.x);
+        target.x.min = lead.target.x.min;
+        target.x.max = target.x.min + xLength;
+        const yLength = calcLength(this.layout.layoutBox.y);
+        target.y.min = lead.target.y.min;
+        target.y.max = target.y.min + yLength;
+      }
+      copyBoxInto(targetWithTransforms, target);
+      transformBox(targetWithTransforms, latestValues);
+      calcBoxDelta(this.projectionDeltaWithTransform, this.layoutCorrected, targetWithTransforms, latestValues);
+    }
+    registerSharedNode(layoutId, node) {
+      if (!this.sharedNodes.has(layoutId)) {
+        this.sharedNodes.set(layoutId, new NodeStack());
+      }
+      const stack = this.sharedNodes.get(layoutId);
+      stack.add(node);
+      const config = node.options.initialPromotionConfig;
+      node.promote({
+        transition: config ? config.transition : void 0,
+        preserveFollowOpacity: config && config.shouldPreserveFollowOpacity ? config.shouldPreserveFollowOpacity(node) : void 0
+      });
+    }
+    isLead() {
+      const stack = this.getStack();
+      return stack ? stack.lead === this : true;
+    }
+    getLead() {
+      const { layoutId } = this.options;
+      return layoutId ? this.getStack()?.lead || this : this;
+    }
+    getPrevLead() {
+      const { layoutId } = this.options;
+      return layoutId ? this.getStack()?.prevLead : void 0;
+    }
+    getStack() {
+      const { layoutId } = this.options;
+      if (layoutId)
+        return this.root.sharedNodes.get(layoutId);
+    }
+    promote({ needsReset, transition, preserveFollowOpacity } = {}) {
+      const stack = this.getStack();
+      if (stack)
+        stack.promote(this, preserveFollowOpacity);
+      if (needsReset) {
+        this.projectionDelta = void 0;
+        this.needsReset = true;
+      }
+      if (transition)
+        this.setOptions({ transition });
+    }
+    relegate() {
+      const stack = this.getStack();
+      if (stack) {
+        return stack.relegate(this);
+      } else {
+        return false;
+      }
+    }
+    resetSkewAndRotation() {
+      const { visualElement } = this.options;
+      if (!visualElement)
+        return;
+      let hasDistortingTransform = false;
+      const { latestValues } = visualElement;
+      if (latestValues.z || latestValues.rotate || latestValues.rotateX || latestValues.rotateY || latestValues.rotateZ || latestValues.skewX || latestValues.skewY) {
+        hasDistortingTransform = true;
+      }
+      if (!hasDistortingTransform)
+        return;
+      const resetValues = {};
+      if (latestValues.z) {
+        resetDistortingTransform("z", visualElement, resetValues, this.animationValues);
+      }
+      for (let i = 0; i < transformAxes.length; i++) {
+        resetDistortingTransform(`rotate${transformAxes[i]}`, visualElement, resetValues, this.animationValues);
+        resetDistortingTransform(`skew${transformAxes[i]}`, visualElement, resetValues, this.animationValues);
+      }
+      visualElement.render();
+      for (const key in resetValues) {
+        visualElement.setStaticValue(key, resetValues[key]);
+        if (this.animationValues) {
+          this.animationValues[key] = resetValues[key];
+        }
+      }
+      visualElement.scheduleRender();
+    }
+    applyProjectionStyles(targetStyle, styleProp) {
+      if (!this.instance || this.isSVG)
+        return;
+      if (!this.isVisible) {
+        targetStyle.visibility = "hidden";
+        return;
+      }
+      const transformTemplate = this.getTransformTemplate();
+      if (this.needsReset) {
+        this.needsReset = false;
+        targetStyle.visibility = "";
+        targetStyle.opacity = "";
+        targetStyle.pointerEvents = resolveMotionValue(styleProp?.pointerEvents) || "";
+        targetStyle.transform = transformTemplate ? transformTemplate(this.latestValues, "") : "none";
+        return;
+      }
+      const lead = this.getLead();
+      if (!this.projectionDelta || !this.layout || !lead.target) {
+        if (this.options.layoutId) {
+          targetStyle.opacity = this.latestValues.opacity !== void 0 ? this.latestValues.opacity : 1;
+          targetStyle.pointerEvents = resolveMotionValue(styleProp?.pointerEvents) || "";
+        }
+        if (this.hasProjected && !hasTransform(this.latestValues)) {
+          targetStyle.transform = transformTemplate ? transformTemplate({}, "") : "none";
+          this.hasProjected = false;
+        }
+        return;
+      }
+      targetStyle.visibility = "";
+      const valuesToRender = lead.animationValues || lead.latestValues;
+      this.applyTransformsToTarget();
+      let transform = buildProjectionTransform(this.projectionDeltaWithTransform, this.treeScale, valuesToRender);
+      if (transformTemplate) {
+        transform = transformTemplate(valuesToRender, transform);
+      }
+      targetStyle.transform = transform;
+      const { x: x2, y: y2 } = this.projectionDelta;
+      targetStyle.transformOrigin = `${x2.origin * 100}% ${y2.origin * 100}% 0`;
+      if (lead.animationValues) {
+        targetStyle.opacity = lead === this ? valuesToRender.opacity ?? this.latestValues.opacity ?? 1 : this.preserveOpacity ? this.latestValues.opacity : valuesToRender.opacityExit;
+      } else {
+        targetStyle.opacity = lead === this ? valuesToRender.opacity !== void 0 ? valuesToRender.opacity : "" : valuesToRender.opacityExit !== void 0 ? valuesToRender.opacityExit : 0;
+      }
+      for (const key in scaleCorrectors) {
+        if (valuesToRender[key] === void 0)
+          continue;
+        const { correct, applyTo, isCSSVariable } = scaleCorrectors[key];
+        const corrected = transform === "none" ? valuesToRender[key] : correct(valuesToRender[key], lead);
+        if (applyTo) {
+          const num = applyTo.length;
+          for (let i = 0; i < num; i++) {
+            targetStyle[applyTo[i]] = corrected;
+          }
+        } else {
+          if (isCSSVariable) {
+            this.options.visualElement.renderState.vars[key] = corrected;
+          } else {
+            targetStyle[key] = corrected;
+          }
+        }
+      }
+      if (this.options.layoutId) {
+        targetStyle.pointerEvents = lead === this ? resolveMotionValue(styleProp?.pointerEvents) || "" : "none";
+      }
+    }
+    clearSnapshot() {
+      this.resumeFrom = this.snapshot = void 0;
+    }
+    // Only run on root
+    resetTree() {
+      this.root.nodes.forEach((node) => node.currentAnimation?.stop());
+      this.root.nodes.forEach(clearMeasurements);
+      this.root.sharedNodes.clear();
+    }
+  };
+}
+function updateLayout(node) {
+  node.updateLayout();
+}
+function notifyLayoutUpdate(node) {
+  const snapshot = node.resumeFrom?.snapshot || node.snapshot;
+  if (node.isLead() && node.layout && snapshot && node.hasListeners("didUpdate")) {
+    const { layoutBox: layout2, measuredBox: measuredLayout } = node.layout;
+    const { animationType } = node.options;
+    const isShared = snapshot.source !== node.layout.source;
+    if (animationType === "size") {
+      eachAxis((axis) => {
+        const axisSnapshot = isShared ? snapshot.measuredBox[axis] : snapshot.layoutBox[axis];
+        const length = calcLength(axisSnapshot);
+        axisSnapshot.min = layout2[axis].min;
+        axisSnapshot.max = axisSnapshot.min + length;
+      });
+    } else if (shouldAnimatePositionOnly(animationType, snapshot.layoutBox, layout2)) {
+      eachAxis((axis) => {
+        const axisSnapshot = isShared ? snapshot.measuredBox[axis] : snapshot.layoutBox[axis];
+        const length = calcLength(layout2[axis]);
+        axisSnapshot.max = axisSnapshot.min + length;
+        if (node.relativeTarget && !node.currentAnimation) {
+          node.isProjectionDirty = true;
+          node.relativeTarget[axis].max = node.relativeTarget[axis].min + length;
+        }
+      });
+    }
+    const layoutDelta = createDelta();
+    calcBoxDelta(layoutDelta, layout2, snapshot.layoutBox);
+    const visualDelta = createDelta();
+    if (isShared) {
+      calcBoxDelta(visualDelta, node.applyTransform(measuredLayout, true), snapshot.measuredBox);
+    } else {
+      calcBoxDelta(visualDelta, layout2, snapshot.layoutBox);
+    }
+    const hasLayoutChanged = !isDeltaZero(layoutDelta);
+    let hasRelativeLayoutChanged = false;
+    if (!node.resumeFrom) {
+      const relativeParent = node.getClosestProjectingParent();
+      if (relativeParent && !relativeParent.resumeFrom) {
+        const { snapshot: parentSnapshot, layout: parentLayout } = relativeParent;
+        if (parentSnapshot && parentLayout) {
+          const relativeSnapshot = createBox();
+          calcRelativePosition(relativeSnapshot, snapshot.layoutBox, parentSnapshot.layoutBox);
+          const relativeLayout = createBox();
+          calcRelativePosition(relativeLayout, layout2, parentLayout.layoutBox);
+          if (!boxEqualsRounded(relativeSnapshot, relativeLayout)) {
+            hasRelativeLayoutChanged = true;
+          }
+          if (relativeParent.options.layoutRoot) {
+            node.relativeTarget = relativeLayout;
+            node.relativeTargetOrigin = relativeSnapshot;
+            node.relativeParent = relativeParent;
+          }
+        }
+      }
+    }
+    node.notifyListeners("didUpdate", {
+      layout: layout2,
+      snapshot,
+      delta: visualDelta,
+      layoutDelta,
+      hasLayoutChanged,
+      hasRelativeLayoutChanged
+    });
+  } else if (node.isLead()) {
+    const { onExitComplete } = node.options;
+    onExitComplete && onExitComplete();
+  }
+  node.options.transition = void 0;
+}
+function propagateDirtyNodes(node) {
+  if (statsBuffer.value) {
+    metrics.nodes++;
+  }
+  if (!node.parent)
+    return;
+  if (!node.isProjecting()) {
+    node.isProjectionDirty = node.parent.isProjectionDirty;
+  }
+  node.isSharedProjectionDirty || (node.isSharedProjectionDirty = Boolean(node.isProjectionDirty || node.parent.isProjectionDirty || node.parent.isSharedProjectionDirty));
+  node.isTransformDirty || (node.isTransformDirty = node.parent.isTransformDirty);
+}
+function cleanDirtyNodes(node) {
+  node.isProjectionDirty = node.isSharedProjectionDirty = node.isTransformDirty = false;
+}
+function clearSnapshot(node) {
+  node.clearSnapshot();
+}
+function clearMeasurements(node) {
+  node.clearMeasurements();
+}
+function clearIsLayoutDirty(node) {
+  node.isLayoutDirty = false;
+}
+function resetTransformStyle(node) {
+  const { visualElement } = node.options;
+  if (visualElement && visualElement.getProps().onBeforeLayoutMeasure) {
+    visualElement.notify("BeforeLayoutMeasure");
+  }
+  node.resetTransform();
+}
+function finishAnimation(node) {
+  node.finishAnimation();
+  node.targetDelta = node.relativeTarget = node.target = void 0;
+  node.isProjectionDirty = true;
+}
+function resolveTargetDelta(node) {
+  node.resolveTargetDelta();
+}
+function calcProjection(node) {
+  node.calcProjection();
+}
+function resetSkewAndRotation(node) {
+  node.resetSkewAndRotation();
+}
+function removeLeadSnapshots(stack) {
+  stack.removeLeadSnapshot();
+}
+function mixAxisDelta(output, delta, p) {
+  output.translate = mixNumber(delta.translate, 0, p);
+  output.scale = mixNumber(delta.scale, 1, p);
+  output.origin = delta.origin;
+  output.originPoint = delta.originPoint;
+}
+function mixAxis(output, from, to, p) {
+  output.min = mixNumber(from.min, to.min, p);
+  output.max = mixNumber(from.max, to.max, p);
+}
+function mixBox(output, from, to, p) {
+  mixAxis(output.x, from.x, to.x, p);
+  mixAxis(output.y, from.y, to.y, p);
+}
+function hasOpacityCrossfade(node) {
+  return node.animationValues && node.animationValues.opacityExit !== void 0;
+}
+var defaultLayoutTransition = {
+  duration: 0.45,
+  ease: [0.4, 0, 0.1, 1]
+};
+var userAgentContains = (string) => typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().includes(string);
+var roundPoint = userAgentContains("applewebkit/") && !userAgentContains("chrome/") ? Math.round : noop;
+function roundAxis(axis) {
+  axis.min = roundPoint(axis.min);
+  axis.max = roundPoint(axis.max);
+}
+function roundBox(box) {
+  roundAxis(box.x);
+  roundAxis(box.y);
+}
+function shouldAnimatePositionOnly(animationType, snapshot, layout2) {
+  return animationType === "position" || animationType === "preserve-aspect" && !isNear(aspectRatio(snapshot), aspectRatio(layout2), 0.2);
+}
+function checkNodeWasScrollRoot(node) {
+  return node !== node.root && node.scroll?.wasRoot;
+}
+
+// node_modules/framer-motion/dist/es/projection/node/DocumentProjectionNode.mjs
+var DocumentProjectionNode = createProjectionNode2({
+  attachResizeListener: (ref, notify) => addDomEvent(ref, "resize", notify),
+  measureScroll: () => ({
+    x: document.documentElement.scrollLeft || document.body.scrollLeft,
+    y: document.documentElement.scrollTop || document.body.scrollTop
+  }),
+  checkIsScrollRoot: () => true
+});
+
+// node_modules/framer-motion/dist/es/projection/node/HTMLProjectionNode.mjs
+var rootProjectionNode = {
+  current: void 0
+};
+var HTMLProjectionNode = createProjectionNode2({
+  measureScroll: (instance) => ({
+    x: instance.scrollLeft,
+    y: instance.scrollTop
+  }),
+  defaultParent: () => {
+    if (!rootProjectionNode.current) {
+      const documentNode = new DocumentProjectionNode({});
+      documentNode.mount(window);
+      documentNode.setOptions({ layoutScroll: true });
+      rootProjectionNode.current = documentNode;
+    }
+    return rootProjectionNode.current;
+  },
+  resetTransform: (instance, value) => {
+    instance.style.transform = value !== void 0 ? value : "none";
+  },
+  checkIsScrollRoot: (instance) => Boolean(window.getComputedStyle(instance).position === "fixed")
+});
+
+// node_modules/framer-motion/dist/es/motion/features/drag.mjs
+var drag = {
+  pan: {
+    Feature: PanGesture
+  },
+  drag: {
+    Feature: DragGesture,
+    ProjectionNode: HTMLProjectionNode,
+    MeasureLayout
+  }
+};
+
+// node_modules/framer-motion/dist/es/gestures/hover.mjs
+function handleHoverEvent(node, event, lifecycle) {
+  const { props } = node;
+  if (node.animationState && props.whileHover) {
+    node.animationState.setActive("whileHover", lifecycle === "Start");
+  }
+  const eventName = "onHover" + lifecycle;
+  const callback = props[eventName];
+  if (callback) {
+    frame.postRender(() => callback(event, extractEventInfo(event)));
+  }
+}
+var HoverGesture = class extends Feature {
+  mount() {
+    const { current } = this.node;
+    if (!current)
+      return;
+    this.unmount = hover(current, (_element, startEvent) => {
+      handleHoverEvent(this.node, startEvent, "Start");
+      return (endEvent) => handleHoverEvent(this.node, endEvent, "End");
+    });
+  }
+  unmount() {
+  }
+};
+
+// node_modules/framer-motion/dist/es/gestures/focus.mjs
+var FocusGesture = class extends Feature {
+  constructor() {
+    super(...arguments);
+    this.isActive = false;
+  }
+  onFocus() {
+    let isFocusVisible = false;
+    try {
+      isFocusVisible = this.node.current.matches(":focus-visible");
+    } catch (e) {
+      isFocusVisible = true;
+    }
+    if (!isFocusVisible || !this.node.animationState)
+      return;
+    this.node.animationState.setActive("whileFocus", true);
+    this.isActive = true;
+  }
+  onBlur() {
+    if (!this.isActive || !this.node.animationState)
+      return;
+    this.node.animationState.setActive("whileFocus", false);
+    this.isActive = false;
+  }
+  mount() {
+    this.unmount = pipe(addDomEvent(this.node.current, "focus", () => this.onFocus()), addDomEvent(this.node.current, "blur", () => this.onBlur()));
+  }
+  unmount() {
+  }
+};
+
+// node_modules/framer-motion/dist/es/gestures/press.mjs
+function handlePressEvent(node, event, lifecycle) {
+  const { props } = node;
+  if (node.current instanceof HTMLButtonElement && node.current.disabled) {
+    return;
+  }
+  if (node.animationState && props.whileTap) {
+    node.animationState.setActive("whileTap", lifecycle === "Start");
+  }
+  const eventName = "onTap" + (lifecycle === "End" ? "" : lifecycle);
+  const callback = props[eventName];
+  if (callback) {
+    frame.postRender(() => callback(event, extractEventInfo(event)));
+  }
+}
+var PressGesture = class extends Feature {
+  mount() {
+    const { current } = this.node;
+    if (!current)
+      return;
+    this.unmount = press(current, (_element, startEvent) => {
+      handlePressEvent(this.node, startEvent, "Start");
+      return (endEvent, { success }) => handlePressEvent(this.node, endEvent, success ? "End" : "Cancel");
+    }, { useGlobalTarget: this.node.props.globalTapTarget });
+  }
+  unmount() {
+  }
+};
+
+// node_modules/framer-motion/dist/es/motion/features/viewport/observers.mjs
+var observerCallbacks = /* @__PURE__ */ new WeakMap();
+var observers = /* @__PURE__ */ new WeakMap();
+var fireObserverCallback = (entry) => {
+  const callback = observerCallbacks.get(entry.target);
+  callback && callback(entry);
+};
+var fireAllObserverCallbacks = (entries) => {
+  entries.forEach(fireObserverCallback);
+};
+function initIntersectionObserver({ root, ...options }) {
+  const lookupRoot = root || document;
+  if (!observers.has(lookupRoot)) {
+    observers.set(lookupRoot, {});
+  }
+  const rootObservers = observers.get(lookupRoot);
+  const key = JSON.stringify(options);
+  if (!rootObservers[key]) {
+    rootObservers[key] = new IntersectionObserver(fireAllObserverCallbacks, { root, ...options });
+  }
+  return rootObservers[key];
+}
+function observeIntersection(element, options, callback) {
+  const rootInteresectionObserver = initIntersectionObserver(options);
+  observerCallbacks.set(element, callback);
+  rootInteresectionObserver.observe(element);
+  return () => {
+    observerCallbacks.delete(element);
+    rootInteresectionObserver.unobserve(element);
+  };
+}
+
+// node_modules/framer-motion/dist/es/motion/features/viewport/index.mjs
+var thresholdNames = {
+  some: 0,
+  all: 1
+};
+var InViewFeature = class extends Feature {
+  constructor() {
+    super(...arguments);
+    this.hasEnteredView = false;
+    this.isInView = false;
+  }
+  startObserver() {
+    this.unmount();
+    const { viewport = {} } = this.node.getProps();
+    const { root, margin: rootMargin, amount = "some", once } = viewport;
+    const options = {
+      root: root ? root.current : void 0,
+      rootMargin,
+      threshold: typeof amount === "number" ? amount : thresholdNames[amount]
+    };
+    const onIntersectionUpdate = (entry) => {
+      const { isIntersecting } = entry;
+      if (this.isInView === isIntersecting)
+        return;
+      this.isInView = isIntersecting;
+      if (once && !isIntersecting && this.hasEnteredView) {
+        return;
+      } else if (isIntersecting) {
+        this.hasEnteredView = true;
+      }
+      if (this.node.animationState) {
+        this.node.animationState.setActive("whileInView", isIntersecting);
+      }
+      const { onViewportEnter, onViewportLeave } = this.node.getProps();
+      const callback = isIntersecting ? onViewportEnter : onViewportLeave;
+      callback && callback(entry);
+    };
+    return observeIntersection(this.node.current, options, onIntersectionUpdate);
+  }
+  mount() {
+    this.startObserver();
+  }
+  update() {
+    if (typeof IntersectionObserver === "undefined")
+      return;
+    const { props, prevProps } = this.node;
+    const hasOptionsChanged = ["amount", "margin", "root"].some(hasViewportOptionChanged(props, prevProps));
+    if (hasOptionsChanged) {
+      this.startObserver();
+    }
+  }
+  unmount() {
+  }
+};
+function hasViewportOptionChanged({ viewport = {} }, { viewport: prevViewport = {} } = {}) {
+  return (name) => viewport[name] !== prevViewport[name];
+}
+
+// node_modules/framer-motion/dist/es/motion/features/gestures.mjs
+var gestureAnimations = {
+  inView: {
+    Feature: InViewFeature
+  },
+  tap: {
+    Feature: PressGesture
+  },
+  focus: {
+    Feature: FocusGesture
+  },
+  hover: {
+    Feature: HoverGesture
+  }
+};
+
+// node_modules/framer-motion/dist/es/motion/features/layout.mjs
+var layout = {
+  layout: {
+    ProjectionNode: HTMLProjectionNode,
+    MeasureLayout
+  }
+};
+
+// node_modules/framer-motion/dist/es/render/components/motion/feature-bundle.mjs
+var featureBundle = {
+  ...animations,
+  ...gestureAnimations,
+  ...drag,
+  ...layout
+};
+
+// node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs
+var motion = /* @__PURE__ */ createMotionProxy(featureBundle, createDomVisualElement);
+
+// node_modules/lucide-react/dist/esm/createLucideIcon.js
+var import_react25 = __toESM(require_react());
+
+// node_modules/lucide-react/dist/esm/shared/src/utils.js
+var toKebabCase = (string) => string.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
+var toCamelCase = (string) => string.replace(
+  /^([A-Z])|[\s-_]+(\w)/g,
+  (match, p1, p2) => p2 ? p2.toUpperCase() : p1.toLowerCase()
+);
+var toPascalCase = (string) => {
+  const camelCase = toCamelCase(string);
+  return camelCase.charAt(0).toUpperCase() + camelCase.slice(1);
+};
+var mergeClasses = (...classes) => classes.filter((className, index, array) => {
+  return Boolean(className) && className.trim() !== "" && array.indexOf(className) === index;
+}).join(" ").trim();
+var hasA11yProp = (props) => {
+  for (const prop in props) {
+    if (prop.startsWith("aria-") || prop === "role" || prop === "title") {
+      return true;
+    }
+  }
+};
+
+// node_modules/lucide-react/dist/esm/Icon.js
+var import_react24 = __toESM(require_react());
+
+// node_modules/lucide-react/dist/esm/defaultAttributes.js
+var defaultAttributes = {
+  xmlns: "http://www.w3.org/2000/svg",
+  width: 24,
+  height: 24,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 2,
+  strokeLinecap: "round",
+  strokeLinejoin: "round"
+};
+
+// node_modules/lucide-react/dist/esm/Icon.js
+var Icon = (0, import_react24.forwardRef)(
+  ({
+    color: color3 = "currentColor",
+    size = 24,
+    strokeWidth = 2,
+    absoluteStrokeWidth,
+    className = "",
+    children,
+    iconNode,
+    ...rest
+  }, ref) => (0, import_react24.createElement)(
+    "svg",
+    {
+      ref,
+      ...defaultAttributes,
+      width: size,
+      height: size,
+      stroke: color3,
+      strokeWidth: absoluteStrokeWidth ? Number(strokeWidth) * 24 / Number(size) : strokeWidth,
+      className: mergeClasses("lucide", className),
+      ...!children && !hasA11yProp(rest) && { "aria-hidden": "true" },
+      ...rest
+    },
+    [
+      ...iconNode.map(([tag, attrs]) => (0, import_react24.createElement)(tag, attrs)),
+      ...Array.isArray(children) ? children : [children]
+    ]
+  )
+);
+
+// node_modules/lucide-react/dist/esm/createLucideIcon.js
+var createLucideIcon = (iconName, iconNode) => {
+  const Component8 = (0, import_react25.forwardRef)(
+    ({ className, ...props }, ref) => (0, import_react25.createElement)(Icon, {
+      ref,
+      iconNode,
+      className: mergeClasses(
+        `lucide-${toKebabCase(toPascalCase(iconName))}`,
+        `lucide-${iconName}`,
+        className
+      ),
+      ...props
+    })
+  );
+  Component8.displayName = toPascalCase(iconName);
+  return Component8;
+};
+
+// node_modules/lucide-react/dist/esm/icons/bell.js
+var __iconNode = [
+  ["path", { d: "M10.268 21a2 2 0 0 0 3.464 0", key: "vwvbt9" }],
+  [
+    "path",
+    {
+      d: "M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326",
+      key: "11g9vi"
+    }
+  ]
+];
+var Bell = createLucideIcon("bell", __iconNode);
+
+// node_modules/lucide-react/dist/esm/icons/chart-column.js
+var __iconNode2 = [
+  ["path", { d: "M3 3v16a2 2 0 0 0 2 2h16", key: "c24i48" }],
+  ["path", { d: "M18 17V9", key: "2bz60n" }],
+  ["path", { d: "M13 17V5", key: "1frdt8" }],
+  ["path", { d: "M8 17v-3", key: "17ska0" }]
+];
+var ChartColumn = createLucideIcon("chart-column", __iconNode2);
+
+// node_modules/lucide-react/dist/esm/icons/chevron-down.js
+var __iconNode3 = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+var ChevronDown = createLucideIcon("chevron-down", __iconNode3);
+
+// node_modules/lucide-react/dist/esm/icons/circle-check.js
+var __iconNode4 = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
+];
+var CircleCheck = createLucideIcon("circle-check", __iconNode4);
+
+// node_modules/lucide-react/dist/esm/icons/clipboard-list.js
+var __iconNode5 = [
+  ["rect", { width: "8", height: "4", x: "8", y: "2", rx: "1", ry: "1", key: "tgr4d6" }],
+  [
+    "path",
+    {
+      d: "M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2",
+      key: "116196"
+    }
+  ],
+  ["path", { d: "M12 11h4", key: "1jrz19" }],
+  ["path", { d: "M12 16h4", key: "n85exb" }],
+  ["path", { d: "M8 11h.01", key: "1dfujw" }],
+  ["path", { d: "M8 16h.01", key: "18s6g9" }]
+];
+var ClipboardList = createLucideIcon("clipboard-list", __iconNode5);
+
+// node_modules/lucide-react/dist/esm/icons/dollar-sign.js
+var __iconNode6 = [
+  ["line", { x1: "12", x2: "12", y1: "2", y2: "22", key: "7eqyqh" }],
+  ["path", { d: "M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6", key: "1b0p4s" }]
+];
+var DollarSign = createLucideIcon("dollar-sign", __iconNode6);
+
+// node_modules/lucide-react/dist/esm/icons/layout-grid.js
+var __iconNode7 = [
+  ["rect", { width: "7", height: "7", x: "3", y: "3", rx: "1", key: "1g98yp" }],
+  ["rect", { width: "7", height: "7", x: "14", y: "3", rx: "1", key: "6d4xhi" }],
+  ["rect", { width: "7", height: "7", x: "14", y: "14", rx: "1", key: "nxv5o0" }],
+  ["rect", { width: "7", height: "7", x: "3", y: "14", rx: "1", key: "1bb6yr" }]
+];
+var LayoutGrid = createLucideIcon("layout-grid", __iconNode7);
+
+// node_modules/lucide-react/dist/esm/icons/log-out.js
+var __iconNode8 = [
+  ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
+  ["path", { d: "M21 12H9", key: "dn1m92" }],
+  ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
+];
+var LogOut = createLucideIcon("log-out", __iconNode8);
+
+// node_modules/lucide-react/dist/esm/icons/moon.js
+var __iconNode9 = [
+  [
+    "path",
+    {
+      d: "M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401",
+      key: "kfwtm"
+    }
+  ]
+];
+var Moon = createLucideIcon("moon", __iconNode9);
+
+// node_modules/lucide-react/dist/esm/icons/package.js
+var __iconNode10 = [
+  [
+    "path",
+    {
+      d: "M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z",
+      key: "1a0edw"
+    }
+  ],
+  ["path", { d: "M12 22V12", key: "d0xqtd" }],
+  ["polyline", { points: "3.29 7 12 12 20.71 7", key: "ousv84" }],
+  ["path", { d: "m7.5 4.27 9 5.15", key: "1c824w" }]
+];
+var Package = createLucideIcon("package", __iconNode10);
+
+// node_modules/lucide-react/dist/esm/icons/search.js
+var __iconNode11 = [
+  ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
+  ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
+];
+var Search = createLucideIcon("search", __iconNode11);
+
+// node_modules/lucide-react/dist/esm/icons/settings.js
+var __iconNode12 = [
+  [
+    "path",
+    {
+      d: "M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915",
+      key: "1i5ecw"
+    }
+  ],
+  ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
+];
+var Settings = createLucideIcon("settings", __iconNode12);
+
+// node_modules/lucide-react/dist/esm/icons/sun.js
+var __iconNode13 = [
+  ["circle", { cx: "12", cy: "12", r: "4", key: "4exip2" }],
+  ["path", { d: "M12 2v2", key: "tus03m" }],
+  ["path", { d: "M12 20v2", key: "1lh1kg" }],
+  ["path", { d: "m4.93 4.93 1.41 1.41", key: "149t6j" }],
+  ["path", { d: "m17.66 17.66 1.41 1.41", key: "ptbguv" }],
+  ["path", { d: "M2 12h2", key: "1t8f8n" }],
+  ["path", { d: "M20 12h2", key: "1q8mjw" }],
+  ["path", { d: "m6.34 17.66-1.41 1.41", key: "1m8zz5" }],
+  ["path", { d: "m19.07 4.93-1.41 1.41", key: "1shlcs" }]
+];
+var Sun = createLucideIcon("sun", __iconNode13);
+
+// node_modules/lucide-react/dist/esm/icons/truck.js
+var __iconNode14 = [
+  ["path", { d: "M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2", key: "wrbu53" }],
+  ["path", { d: "M15 18H9", key: "1lyqi6" }],
+  [
+    "path",
+    {
+      d: "M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14",
+      key: "lysw3i"
+    }
+  ],
+  ["circle", { cx: "17", cy: "18", r: "2", key: "332jqn" }],
+  ["circle", { cx: "7", cy: "18", r: "2", key: "19iecd" }]
+];
+var Truck = createLucideIcon("truck", __iconNode14);
 
 // node_modules/recharts/es6/index.js
 var es6_exports = {};
@@ -30785,7 +39028,7 @@ __export(es6_exports, {
 });
 
 // node_modules/recharts/es6/container/Surface.js
-var import_react3 = __toESM(require_react());
+var import_react28 = __toESM(require_react());
 
 // node_modules/clsx/dist/clsx.mjs
 function r(e) {
@@ -30809,7 +39052,7 @@ var import_isNil2 = __toESM(require_isNil());
 var import_isString2 = __toESM(require_isString());
 var import_isFunction = __toESM(require_isFunction());
 var import_isObject2 = __toESM(require_isObject());
-var import_react2 = __toESM(require_react());
+var import_react27 = __toESM(require_react());
 var import_react_is = __toESM(require_react_is());
 
 // node_modules/recharts/es6/util/DataUtils.js
@@ -30833,7 +39076,7 @@ var isPercent = function isPercent2(value) {
 var isNumber = function isNumber2(value) {
   return (0, import_isNumber.default)(value) && !(0, import_isNaN.default)(value);
 };
-var isNullish = function isNullish2(value) {
+var isNullish2 = function isNullish3(value) {
   return (0, import_isNil.default)(value);
 };
 var isNumOrStr = function isNumOrStr2(value) {
@@ -30841,21 +39084,21 @@ var isNumOrStr = function isNumOrStr2(value) {
 };
 var idCounter = 0;
 var uniqueId = function uniqueId2(prefix2) {
-  var id = ++idCounter;
-  return "".concat(prefix2 || "").concat(id);
+  var id3 = ++idCounter;
+  return "".concat(prefix2 || "").concat(id3);
 };
-var getPercentValue = function getPercentValue2(percent, totalValue) {
+var getPercentValue = function getPercentValue2(percent2, totalValue) {
   var defaultValue = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : 0;
   var validate = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : false;
-  if (!isNumber(percent) && !(0, import_isString.default)(percent)) {
+  if (!isNumber(percent2) && !(0, import_isString.default)(percent2)) {
     return defaultValue;
   }
   var value;
-  if (isPercent(percent)) {
-    var index = percent.indexOf("%");
-    value = totalValue * parseFloat(percent.slice(0, index)) / 100;
+  if (isPercent(percent2)) {
+    var index = percent2.indexOf("%");
+    value = totalValue * parseFloat(percent2.slice(0, index)) / 100;
   } else {
-    value = +percent;
+    value = +percent2;
   }
   if ((0, import_isNaN.default)(value)) {
     value = defaultValue;
@@ -30968,7 +39211,7 @@ function shallowEqual(a2, b) {
 }
 
 // node_modules/recharts/es6/util/types.js
-var import_react = __toESM(require_react());
+var import_react26 = __toESM(require_react());
 var import_isObject = __toESM(require_isObject());
 function _typeof(o) {
   "@babel/helpers - typeof";
@@ -31301,7 +39544,7 @@ var adaptEventHandlers = function adaptEventHandlers2(props, newHandler) {
     return null;
   }
   var inputProps = props;
-  if (/* @__PURE__ */ (0, import_react.isValidElement)(props)) {
+  if (/* @__PURE__ */ (0, import_react26.isValidElement)(props)) {
     inputProps = props.props;
   }
   if (!(0, import_isObject.default)(inputProps)) {
@@ -31407,7 +39650,7 @@ var toArray = function toArray2(children) {
     return lastResult;
   }
   var result = [];
-  import_react2.Children.forEach(children, function(child) {
+  import_react27.Children.forEach(children, function(child) {
     if ((0, import_isNil2.default)(child)) return;
     if ((0, import_react_is.isFragment)(child)) {
       result = result.concat(toArray2(child.props.children));
@@ -31472,12 +39715,12 @@ var filterSvgElements = function filterSvgElements2(children) {
   });
   return svgElements;
 };
-var filterProps = function filterProps2(props, includeEvents, svgElementType) {
+var filterProps2 = function filterProps3(props, includeEvents, svgElementType) {
   if (!props || typeof props === "function" || typeof props === "boolean") {
     return null;
   }
   var inputProps = props;
-  if (/* @__PURE__ */ (0, import_react2.isValidElement)(props)) {
+  if (/* @__PURE__ */ (0, import_react27.isValidElement)(props)) {
     inputProps = props.props;
   }
   if (!(0, import_isObject2.default)(inputProps)) {
@@ -31496,8 +39739,8 @@ var isChildrenEqual = function isChildrenEqual2(nextChildren, prevChildren) {
   if (nextChildren === prevChildren) {
     return true;
   }
-  var count = import_react2.Children.count(nextChildren);
-  if (count !== import_react2.Children.count(prevChildren)) {
+  var count = import_react27.Children.count(nextChildren);
+  if (count !== import_react27.Children.count(prevChildren)) {
     return false;
   }
   if (count === 0) {
@@ -31616,17 +39859,17 @@ function Surface(props) {
     y: 0
   };
   var layerClass = clsx_default("recharts-surface", className);
-  return /* @__PURE__ */ import_react3.default.createElement("svg", _extends({}, filterProps(others, true, "svg"), {
+  return /* @__PURE__ */ import_react28.default.createElement("svg", _extends({}, filterProps2(others, true, "svg"), {
     className: layerClass,
     width,
     height,
     style,
     viewBox: "".concat(svgView.x, " ").concat(svgView.y, " ").concat(svgView.width, " ").concat(svgView.height)
-  }), /* @__PURE__ */ import_react3.default.createElement("title", null, title), /* @__PURE__ */ import_react3.default.createElement("desc", null, desc), children);
+  }), /* @__PURE__ */ import_react28.default.createElement("title", null, title), /* @__PURE__ */ import_react28.default.createElement("desc", null, desc), children);
 }
 
 // node_modules/recharts/es6/container/Layer.js
-var import_react4 = __toESM(require_react());
+var import_react29 = __toESM(require_react());
 var _excluded4 = ["children", "className"];
 function _extends2() {
   _extends2 = Object.assign ? Object.assign.bind() : function(target) {
@@ -31668,21 +39911,21 @@ function _objectWithoutPropertiesLoose3(source, excluded) {
   }
   return target;
 }
-var Layer = /* @__PURE__ */ import_react4.default.forwardRef(function(props, ref) {
+var Layer = /* @__PURE__ */ import_react29.default.forwardRef(function(props, ref) {
   var children = props.children, className = props.className, others = _objectWithoutProperties3(props, _excluded4);
   var layerClass = clsx_default("recharts-layer", className);
-  return /* @__PURE__ */ import_react4.default.createElement("g", _extends2({
+  return /* @__PURE__ */ import_react29.default.createElement("g", _extends2({
     className: layerClass
-  }, filterProps(others, true), {
+  }, filterProps2(others, true), {
     ref
   }), children);
 });
 
 // node_modules/recharts/es6/component/Legend.js
-var import_react7 = __toESM(require_react());
+var import_react32 = __toESM(require_react());
 
 // node_modules/recharts/es6/component/DefaultLegendContent.js
-var import_react6 = __toESM(require_react());
+var import_react31 = __toESM(require_react());
 var import_isFunction2 = __toESM(require_isFunction());
 
 // node_modules/recharts/es6/util/LogUtils.js
@@ -31709,7 +39952,7 @@ var warn = function warn2(condition, format2) {
 };
 
 // node_modules/recharts/es6/shape/Symbols.js
-var import_react5 = __toESM(require_react());
+var import_react30 = __toESM(require_react());
 var import_upperFirst = __toESM(require_upperFirst());
 
 // node_modules/d3-shape/src/constant.js
@@ -32498,9 +40741,9 @@ Natural.prototype = {
       if (n === 2) {
         this._context.lineTo(x2[1], y2[1]);
       } else {
-        var px = controlPoints(x2), py = controlPoints(y2);
+        var px2 = controlPoints(x2), py = controlPoints(y2);
         for (var i0 = 0, i1 = 1; i1 < n; ++i0, ++i1) {
-          this._context.bezierCurveTo(px[0][i0], py[0][i0], px[1][i0], py[1][i0], x2[i1], y2[i1]);
+          this._context.bezierCurveTo(px2[0][i0], py[0][i0], px2[1][i0], py[1][i0], x2[i1], y2[i1]);
         }
       }
     }
@@ -32828,9 +41071,9 @@ var Symbols = function Symbols2(_ref) {
     return symbol();
   };
   var className = props.className, cx = props.cx, cy = props.cy;
-  var filteredProps = filterProps(props, true);
+  var filteredProps = filterProps2(props, true);
   if (cx === +cx && cy === +cy && size === +size) {
-    return /* @__PURE__ */ import_react5.default.createElement("path", _extends3({}, filteredProps, {
+    return /* @__PURE__ */ import_react30.default.createElement("path", _extends3({}, filteredProps, {
       className: clsx_default("recharts-symbols", className),
       transform: "translate(".concat(cx, ", ").concat(cy, ")"),
       d: getPath5()
@@ -32995,12 +41238,12 @@ var DefaultLegendContent = /* @__PURE__ */ function(_PureComponent) {
         var halfSize = SIZE / 2;
         var sixthSize = SIZE / 6;
         var thirdSize = SIZE / 3;
-        var color2 = data.inactive ? inactiveColor : data.color;
+        var color3 = data.inactive ? inactiveColor : data.color;
         if (data.type === "plainline") {
-          return /* @__PURE__ */ import_react6.default.createElement("line", {
+          return /* @__PURE__ */ import_react31.default.createElement("line", {
             strokeWidth: 4,
             fill: "none",
-            stroke: color2,
+            stroke: color3,
             strokeDasharray: data.payload.strokeDasharray,
             x1: 0,
             y1: halfSize,
@@ -33010,29 +41253,29 @@ var DefaultLegendContent = /* @__PURE__ */ function(_PureComponent) {
           });
         }
         if (data.type === "line") {
-          return /* @__PURE__ */ import_react6.default.createElement("path", {
+          return /* @__PURE__ */ import_react31.default.createElement("path", {
             strokeWidth: 4,
             fill: "none",
-            stroke: color2,
+            stroke: color3,
             d: "M0,".concat(halfSize, "h").concat(thirdSize, "\n            A").concat(sixthSize, ",").concat(sixthSize, ",0,1,1,").concat(2 * thirdSize, ",").concat(halfSize, "\n            H").concat(SIZE, "M").concat(2 * thirdSize, ",").concat(halfSize, "\n            A").concat(sixthSize, ",").concat(sixthSize, ",0,1,1,").concat(thirdSize, ",").concat(halfSize),
             className: "recharts-legend-icon"
           });
         }
         if (data.type === "rect") {
-          return /* @__PURE__ */ import_react6.default.createElement("path", {
+          return /* @__PURE__ */ import_react31.default.createElement("path", {
             stroke: "none",
-            fill: color2,
+            fill: color3,
             d: "M0,".concat(SIZE / 8, "h").concat(SIZE, "v").concat(SIZE * 3 / 4, "h").concat(-SIZE, "z"),
             className: "recharts-legend-icon"
           });
         }
-        if (/* @__PURE__ */ import_react6.default.isValidElement(data.legendIcon)) {
+        if (/* @__PURE__ */ import_react31.default.isValidElement(data.legendIcon)) {
           var iconProps = _objectSpread2({}, data);
           delete iconProps.legendIcon;
-          return /* @__PURE__ */ import_react6.default.cloneElement(data.legendIcon, iconProps);
+          return /* @__PURE__ */ import_react31.default.cloneElement(data.legendIcon, iconProps);
         }
-        return /* @__PURE__ */ import_react6.default.createElement(Symbols, {
-          fill: color2,
+        return /* @__PURE__ */ import_react31.default.createElement(Symbols, {
+          fill: color3,
           cx: halfSize,
           cy: halfSize,
           size: SIZE,
@@ -33049,7 +41292,7 @@ var DefaultLegendContent = /* @__PURE__ */ function(_PureComponent) {
     key: "renderItems",
     value: function renderItems() {
       var _this = this;
-      var _this$props = this.props, payload = _this$props.payload, iconSize = _this$props.iconSize, layout = _this$props.layout, formatter = _this$props.formatter, inactiveColor = _this$props.inactiveColor;
+      var _this$props = this.props, payload = _this$props.payload, iconSize = _this$props.iconSize, layout2 = _this$props.layout, formatter = _this$props.formatter, inactiveColor = _this$props.inactiveColor;
       var viewBox = {
         x: 0,
         y: 0,
@@ -33057,7 +41300,7 @@ var DefaultLegendContent = /* @__PURE__ */ function(_PureComponent) {
         height: SIZE
       };
       var itemStyle = {
-        display: layout === "horizontal" ? "inline-block" : "block",
+        display: layout2 === "horizontal" ? "inline-block" : "block",
         marginRight: 10
       };
       var svgStyle = {
@@ -33079,20 +41322,20 @@ var DefaultLegendContent = /* @__PURE__ */ function(_PureComponent) {
           `The name property is also required when using a function for the dataKey of a chart's cartesian components. Ex: <Bar name="Name of my Data"/>`
           // eslint-disable-line max-len
         );
-        var color2 = entry.inactive ? inactiveColor : entry.color;
-        return /* @__PURE__ */ import_react6.default.createElement("li", _extends4({
+        var color3 = entry.inactive ? inactiveColor : entry.color;
+        return /* @__PURE__ */ import_react31.default.createElement("li", _extends4({
           className,
           style: itemStyle,
           key: "legend-item-".concat(i)
-        }, adaptEventsOfChild(_this.props, entry, i)), /* @__PURE__ */ import_react6.default.createElement(Surface, {
+        }, adaptEventsOfChild(_this.props, entry, i)), /* @__PURE__ */ import_react31.default.createElement(Surface, {
           width: iconSize,
           height: iconSize,
           viewBox,
           style: svgStyle
-        }, _this.renderIcon(entry)), /* @__PURE__ */ import_react6.default.createElement("span", {
+        }, _this.renderIcon(entry)), /* @__PURE__ */ import_react31.default.createElement("span", {
           className: "recharts-legend-item-text",
           style: {
-            color: color2
+            color: color3
           }
         }, finalFormatter ? finalFormatter(entryValue, entry, i) : entryValue));
       });
@@ -33100,22 +41343,22 @@ var DefaultLegendContent = /* @__PURE__ */ function(_PureComponent) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props2 = this.props, payload = _this$props2.payload, layout = _this$props2.layout, align = _this$props2.align;
+      var _this$props2 = this.props, payload = _this$props2.payload, layout2 = _this$props2.layout, align = _this$props2.align;
       if (!payload || !payload.length) {
         return null;
       }
       var finalStyle = {
         padding: 0,
         margin: 0,
-        textAlign: layout === "horizontal" ? align : "left"
+        textAlign: layout2 === "horizontal" ? align : "left"
       };
-      return /* @__PURE__ */ import_react6.default.createElement("ul", {
+      return /* @__PURE__ */ import_react31.default.createElement("ul", {
         className: "recharts-default-legend",
         style: finalStyle
       }, this.renderItems());
     }
   }]);
-}(import_react6.PureComponent);
+}(import_react31.PureComponent);
 _defineProperty2(DefaultLegendContent, "displayName", "Legend");
 _defineProperty2(DefaultLegendContent, "defaultProps", {
   iconSize: 14,
@@ -33290,14 +41533,14 @@ function defaultUniqBy(entry) {
   return entry.value;
 }
 function renderContent(content, props) {
-  if (/* @__PURE__ */ import_react7.default.isValidElement(content)) {
-    return /* @__PURE__ */ import_react7.default.cloneElement(content, props);
+  if (/* @__PURE__ */ import_react32.default.isValidElement(content)) {
+    return /* @__PURE__ */ import_react32.default.cloneElement(content, props);
   }
   if (typeof content === "function") {
-    return /* @__PURE__ */ import_react7.default.createElement(content, props);
+    return /* @__PURE__ */ import_react32.default.createElement(content, props);
   }
   var ref = props.ref, otherProps = _objectWithoutProperties5(props, _excluded6);
-  return /* @__PURE__ */ import_react7.default.createElement(DefaultLegendContent, otherProps);
+  return /* @__PURE__ */ import_react32.default.createElement(DefaultLegendContent, otherProps);
 }
 var EPS = 1;
 var Legend = /* @__PURE__ */ function(_PureComponent) {
@@ -33371,10 +41614,10 @@ var Legend = /* @__PURE__ */ function(_PureComponent) {
   }, {
     key: "getDefaultPosition",
     value: function getDefaultPosition(style) {
-      var _this$props = this.props, layout = _this$props.layout, align = _this$props.align, verticalAlign = _this$props.verticalAlign, margin = _this$props.margin, chartWidth = _this$props.chartWidth, chartHeight = _this$props.chartHeight;
+      var _this$props = this.props, layout2 = _this$props.layout, align = _this$props.align, verticalAlign = _this$props.verticalAlign, margin = _this$props.margin, chartWidth = _this$props.chartWidth, chartHeight = _this$props.chartHeight;
       var hPos, vPos;
       if (!style || (style.left === void 0 || style.left === null) && (style.right === void 0 || style.right === null)) {
-        if (align === "center" && layout === "vertical") {
+        if (align === "center" && layout2 === "vertical") {
           var box = this.getBBoxSnapshot();
           hPos = {
             left: ((chartWidth || 0) - box.width) / 2
@@ -33413,7 +41656,7 @@ var Legend = /* @__PURE__ */ function(_PureComponent) {
         width: width || "auto",
         height: height || "auto"
       }, this.getDefaultPosition(wrapperStyle)), wrapperStyle);
-      return /* @__PURE__ */ import_react7.default.createElement("div", {
+      return /* @__PURE__ */ import_react32.default.createElement("div", {
         className: "recharts-legend-wrapper",
         style: outerStyle,
         ref: function ref(node) {
@@ -33426,13 +41669,13 @@ var Legend = /* @__PURE__ */ function(_PureComponent) {
   }], [{
     key: "getWithHeight",
     value: function getWithHeight(item, chartWidth) {
-      var _this$defaultProps$it = _objectSpread3(_objectSpread3({}, this.defaultProps), item.props), layout = _this$defaultProps$it.layout;
-      if (layout === "vertical" && isNumber(item.props.height)) {
+      var _this$defaultProps$it = _objectSpread3(_objectSpread3({}, this.defaultProps), item.props), layout2 = _this$defaultProps$it.layout;
+      if (layout2 === "vertical" && isNumber(item.props.height)) {
         return {
           height: item.props.height
         };
       }
-      if (layout === "horizontal") {
+      if (layout2 === "horizontal") {
         return {
           width: item.props.width || chartWidth
         };
@@ -33440,7 +41683,7 @@ var Legend = /* @__PURE__ */ function(_PureComponent) {
       return null;
     }
   }]);
-}(import_react7.PureComponent);
+}(import_react32.PureComponent);
 _defineProperty3(Legend, "displayName", "Legend");
 _defineProperty3(Legend, "defaultProps", {
   iconSize: 14,
@@ -33450,10 +41693,10 @@ _defineProperty3(Legend, "defaultProps", {
 });
 
 // node_modules/recharts/es6/component/Tooltip.js
-var import_react10 = __toESM(require_react());
+var import_react35 = __toESM(require_react());
 
 // node_modules/recharts/es6/component/DefaultTooltipContent.js
-var import_react8 = __toESM(require_react());
+var import_react33 = __toESM(require_react());
 var import_sortBy = __toESM(require_sortBy());
 var import_isNil3 = __toESM(require_isNil());
 function _typeof6(o) {
@@ -33602,22 +41845,22 @@ var DefaultTooltipContent = function DefaultTooltipContent2(props) {
         }
         return (
           // eslint-disable-next-line react/no-array-index-key
-          /* @__PURE__ */ import_react8.default.createElement("li", {
+          /* @__PURE__ */ import_react33.default.createElement("li", {
             className: "recharts-tooltip-item",
             key: "tooltip-item-".concat(i),
             style: finalItemStyle
-          }, isNumOrStr(finalName) ? /* @__PURE__ */ import_react8.default.createElement("span", {
+          }, isNumOrStr(finalName) ? /* @__PURE__ */ import_react33.default.createElement("span", {
             className: "recharts-tooltip-item-name"
-          }, finalName) : null, isNumOrStr(finalName) ? /* @__PURE__ */ import_react8.default.createElement("span", {
+          }, finalName) : null, isNumOrStr(finalName) ? /* @__PURE__ */ import_react33.default.createElement("span", {
             className: "recharts-tooltip-item-separator"
-          }, separator) : null, /* @__PURE__ */ import_react8.default.createElement("span", {
+          }, separator) : null, /* @__PURE__ */ import_react33.default.createElement("span", {
             className: "recharts-tooltip-item-value"
-          }, finalValue), /* @__PURE__ */ import_react8.default.createElement("span", {
+          }, finalValue), /* @__PURE__ */ import_react33.default.createElement("span", {
             className: "recharts-tooltip-item-unit"
           }, entry.unit || ""))
         );
       });
-      return /* @__PURE__ */ import_react8.default.createElement("ul", {
+      return /* @__PURE__ */ import_react33.default.createElement("ul", {
         className: "recharts-tooltip-item-list",
         style: listStyle
       }, items);
@@ -33645,17 +41888,17 @@ var DefaultTooltipContent = function DefaultTooltipContent2(props) {
     role: "status",
     "aria-live": "assertive"
   } : {};
-  return /* @__PURE__ */ import_react8.default.createElement("div", _extends5({
+  return /* @__PURE__ */ import_react33.default.createElement("div", _extends5({
     className: wrapperCN,
     style: finalStyle
-  }, accessibilityAttributes), /* @__PURE__ */ import_react8.default.createElement("p", {
+  }, accessibilityAttributes), /* @__PURE__ */ import_react33.default.createElement("p", {
     className: labelCN,
     style: finalLabelStyle
-  }, /* @__PURE__ */ import_react8.default.isValidElement(finalLabel) ? finalLabel : "".concat(finalLabel)), renderContent3());
+  }, /* @__PURE__ */ import_react33.default.isValidElement(finalLabel) ? finalLabel : "".concat(finalLabel)), renderContent3());
 };
 
 // node_modules/recharts/es6/component/TooltipBoundingBox.js
-var import_react9 = __toESM(require_react());
+var import_react34 = __toESM(require_react());
 
 // node_modules/recharts/es6/util/tooltip/translate.js
 function _typeof7(o) {
@@ -34002,7 +42245,7 @@ var TooltipBoundingBox = /* @__PURE__ */ function(_PureComponent) {
       return (
         // This element allow listening to the `Escape` key.
         // See https://github.com/recharts/recharts/pull/2925
-        /* @__PURE__ */ import_react9.default.createElement("div", {
+        /* @__PURE__ */ import_react34.default.createElement("div", {
           tabIndex: -1,
           className: cssClasses,
           style: outerStyle,
@@ -34013,7 +42256,7 @@ var TooltipBoundingBox = /* @__PURE__ */ function(_PureComponent) {
       );
     }
   }]);
-}(import_react9.PureComponent);
+}(import_react34.PureComponent);
 
 // node_modules/recharts/es6/util/Global.js
 var parseIsSsrByDefault = function parseIsSsrByDefault2() {
@@ -34163,13 +42406,13 @@ function defaultUniqBy2(entry) {
   return entry.dataKey;
 }
 function renderContent2(content, props) {
-  if (/* @__PURE__ */ import_react10.default.isValidElement(content)) {
-    return /* @__PURE__ */ import_react10.default.cloneElement(content, props);
+  if (/* @__PURE__ */ import_react35.default.isValidElement(content)) {
+    return /* @__PURE__ */ import_react35.default.cloneElement(content, props);
   }
   if (typeof content === "function") {
-    return /* @__PURE__ */ import_react10.default.createElement(content, props);
+    return /* @__PURE__ */ import_react35.default.createElement(content, props);
   }
-  return /* @__PURE__ */ import_react10.default.createElement(DefaultTooltipContent, props);
+  return /* @__PURE__ */ import_react35.default.createElement(DefaultTooltipContent, props);
 }
 var Tooltip = /* @__PURE__ */ function(_PureComponent) {
   function Tooltip2() {
@@ -34189,7 +42432,7 @@ var Tooltip = /* @__PURE__ */ function(_PureComponent) {
         }), payloadUniqBy, defaultUniqBy2);
       }
       var hasPayload = finalPayload.length > 0;
-      return /* @__PURE__ */ import_react10.default.createElement(TooltipBoundingBox, {
+      return /* @__PURE__ */ import_react35.default.createElement(TooltipBoundingBox, {
         allowEscapeViewBox,
         animationDuration,
         animationEasing,
@@ -34208,7 +42451,7 @@ var Tooltip = /* @__PURE__ */ function(_PureComponent) {
       })));
     }
   }]);
-}(import_react10.PureComponent);
+}(import_react35.PureComponent);
 _defineProperty7(Tooltip, "displayName", "Tooltip");
 _defineProperty7(Tooltip, "defaultProps", {
   accessibilityLayer: false,
@@ -34247,7 +42490,7 @@ _defineProperty7(Tooltip, "defaultProps", {
 });
 
 // node_modules/recharts/es6/component/ResponsiveContainer.js
-var import_react11 = __toESM(require_react());
+var import_react36 = __toESM(require_react());
 var import_throttle = __toESM(require_throttle());
 function _typeof10(o) {
   "@babel/helpers - typeof";
@@ -34344,15 +42587,15 @@ function _iterableToArrayLimit2(r2, l) {
 function _arrayWithHoles2(arr) {
   if (Array.isArray(arr)) return arr;
 }
-var ResponsiveContainer = /* @__PURE__ */ (0, import_react11.forwardRef)(function(_ref, ref) {
+var ResponsiveContainer = /* @__PURE__ */ (0, import_react36.forwardRef)(function(_ref, ref) {
   var aspect = _ref.aspect, _ref$initialDimension = _ref.initialDimension, initialDimension = _ref$initialDimension === void 0 ? {
     width: -1,
     height: -1
-  } : _ref$initialDimension, _ref$width = _ref.width, width = _ref$width === void 0 ? "100%" : _ref$width, _ref$height = _ref.height, height = _ref$height === void 0 ? "100%" : _ref$height, _ref$minWidth = _ref.minWidth, minWidth = _ref$minWidth === void 0 ? 0 : _ref$minWidth, minHeight = _ref.minHeight, maxHeight = _ref.maxHeight, children = _ref.children, _ref$debounce = _ref.debounce, debounce = _ref$debounce === void 0 ? 0 : _ref$debounce, id = _ref.id, className = _ref.className, onResize = _ref.onResize, _ref$style = _ref.style, style = _ref$style === void 0 ? {} : _ref$style;
-  var containerRef = (0, import_react11.useRef)(null);
-  var onResizeRef = (0, import_react11.useRef)();
+  } : _ref$initialDimension, _ref$width = _ref.width, width = _ref$width === void 0 ? "100%" : _ref$width, _ref$height = _ref.height, height = _ref$height === void 0 ? "100%" : _ref$height, _ref$minWidth = _ref.minWidth, minWidth = _ref$minWidth === void 0 ? 0 : _ref$minWidth, minHeight = _ref.minHeight, maxHeight = _ref.maxHeight, children = _ref.children, _ref$debounce = _ref.debounce, debounce = _ref$debounce === void 0 ? 0 : _ref$debounce, id3 = _ref.id, className = _ref.className, onResize = _ref.onResize, _ref$style = _ref.style, style = _ref$style === void 0 ? {} : _ref$style;
+  var containerRef = (0, import_react36.useRef)(null);
+  var onResizeRef = (0, import_react36.useRef)();
   onResizeRef.current = onResize;
-  (0, import_react11.useImperativeHandle)(ref, function() {
+  (0, import_react36.useImperativeHandle)(ref, function() {
     return Object.defineProperty(containerRef.current, "current", {
       get: function get10() {
         console.warn("The usage of ref.current.current is deprecated and will no longer be supported.");
@@ -34361,11 +42604,11 @@ var ResponsiveContainer = /* @__PURE__ */ (0, import_react11.forwardRef)(functio
       configurable: true
     });
   });
-  var _useState = (0, import_react11.useState)({
+  var _useState = (0, import_react36.useState)({
     containerWidth: initialDimension.width,
     containerHeight: initialDimension.height
   }), _useState2 = _slicedToArray2(_useState, 2), sizes = _useState2[0], setSizes = _useState2[1];
-  var setContainerSize = (0, import_react11.useCallback)(function(newWidth, newHeight) {
+  var setContainerSize = (0, import_react36.useCallback)(function(newWidth, newHeight) {
     setSizes(function(prevState) {
       var roundedWidth = Math.round(newWidth);
       var roundedHeight = Math.round(newHeight);
@@ -34378,7 +42621,7 @@ var ResponsiveContainer = /* @__PURE__ */ (0, import_react11.forwardRef)(functio
       };
     });
   }, []);
-  (0, import_react11.useEffect)(function() {
+  (0, import_react36.useEffect)(function() {
     var callback = function callback2(entries) {
       var _onResizeRef$current;
       var _entries$0$contentRec = entries[0].contentRect, containerWidth2 = _entries$0$contentRec.width, containerHeight2 = _entries$0$contentRec.height;
@@ -34399,7 +42642,7 @@ var ResponsiveContainer = /* @__PURE__ */ (0, import_react11.forwardRef)(functio
       observer.disconnect();
     };
   }, [setContainerSize, debounce]);
-  var chartContent = (0, import_react11.useMemo)(function() {
+  var chartContent = (0, import_react36.useMemo)(function() {
     var containerWidth = sizes.containerWidth, containerHeight = sizes.containerHeight;
     if (containerWidth < 0 || containerHeight < 0) {
       return null;
@@ -34420,9 +42663,9 @@ var ResponsiveContainer = /* @__PURE__ */ (0, import_react11.forwardRef)(functio
     }
     warn(calculatedWidth > 0 || calculatedHeight > 0, "The width(%s) and height(%s) of chart should be greater than 0,\n       please check the style of container, or the props width(%s) and height(%s),\n       or add a minWidth(%s) or minHeight(%s) or use aspect(%s) to control the\n       height and width.", calculatedWidth, calculatedHeight, width, height, minWidth, minHeight, aspect);
     var isCharts = !Array.isArray(children) && getDisplayName(children.type).endsWith("Chart");
-    return import_react11.default.Children.map(children, function(child) {
-      if (/* @__PURE__ */ import_react11.default.isValidElement(child)) {
-        return /* @__PURE__ */ (0, import_react11.cloneElement)(child, _objectSpread7({
+    return import_react36.default.Children.map(children, function(child) {
+      if (/* @__PURE__ */ import_react36.default.isValidElement(child)) {
+        return /* @__PURE__ */ (0, import_react36.cloneElement)(child, _objectSpread7({
           width: calculatedWidth,
           height: calculatedHeight
         }, isCharts ? {
@@ -34437,8 +42680,8 @@ var ResponsiveContainer = /* @__PURE__ */ (0, import_react11.forwardRef)(functio
       return child;
     });
   }, [aspect, children, height, maxHeight, minHeight, minWidth, sizes, width]);
-  return /* @__PURE__ */ import_react11.default.createElement("div", {
-    id: id ? "".concat(id) : void 0,
+  return /* @__PURE__ */ import_react36.default.createElement("div", {
+    id: id3 ? "".concat(id3) : void 0,
     className: clsx_default("recharts-responsive-container", className),
     style: _objectSpread7(_objectSpread7({}, style), {}, {
       width,
@@ -34458,7 +42701,7 @@ var Cell = function Cell2(_props) {
 Cell.displayName = "Cell";
 
 // node_modules/recharts/es6/component/Text.js
-var import_react12 = __toESM(require_react());
+var import_react37 = __toESM(require_react());
 var import_isNil4 = __toESM(require_isNil());
 
 // node_modules/recharts/es6/util/DOMUtils.js
@@ -35036,7 +43279,7 @@ var getWordsByLines = function getWordsByLines2(_ref4) {
 var DEFAULT_FILL = "#808080";
 var Text = function Text2(_ref5) {
   var _ref5$x = _ref5.x, propsX = _ref5$x === void 0 ? 0 : _ref5$x, _ref5$y = _ref5.y, propsY = _ref5$y === void 0 ? 0 : _ref5$y, _ref5$lineHeight = _ref5.lineHeight, lineHeight = _ref5$lineHeight === void 0 ? "1em" : _ref5$lineHeight, _ref5$capHeight = _ref5.capHeight, capHeight = _ref5$capHeight === void 0 ? "0.71em" : _ref5$capHeight, _ref5$scaleToFit = _ref5.scaleToFit, scaleToFit = _ref5$scaleToFit === void 0 ? false : _ref5$scaleToFit, _ref5$textAnchor = _ref5.textAnchor, textAnchor = _ref5$textAnchor === void 0 ? "start" : _ref5$textAnchor, _ref5$verticalAnchor = _ref5.verticalAnchor, verticalAnchor = _ref5$verticalAnchor === void 0 ? "end" : _ref5$verticalAnchor, _ref5$fill = _ref5.fill, fill = _ref5$fill === void 0 ? DEFAULT_FILL : _ref5$fill, props = _objectWithoutProperties6(_ref5, _excluded7);
-  var wordsByLines = (0, import_react12.useMemo)(function() {
+  var wordsByLines = (0, import_react37.useMemo)(function() {
     return getWordsByLines({
       breakAll: props.breakAll,
       children: props.children,
@@ -35076,7 +43319,7 @@ var Text = function Text2(_ref5) {
   if (transforms.length) {
     textProps.transform = transforms.join(" ");
   }
-  return /* @__PURE__ */ import_react12.default.createElement("text", _extends6({}, filterProps(textProps, true), {
+  return /* @__PURE__ */ import_react37.default.createElement("text", _extends6({}, filterProps2(textProps, true), {
     x: x2,
     y: y2,
     className: clsx_default("recharts-text", className),
@@ -35087,7 +43330,7 @@ var Text = function Text2(_ref5) {
     return (
       // duplicate words will cause duplicate keys
       // eslint-disable-next-line react/no-array-index-key
-      /* @__PURE__ */ import_react12.default.createElement("tspan", {
+      /* @__PURE__ */ import_react37.default.createElement("tspan", {
         x: x2,
         dy: index === 0 ? startDy : lineHeight,
         key: "".concat(words, "-").concat(index)
@@ -35097,14 +43340,14 @@ var Text = function Text2(_ref5) {
 };
 
 // node_modules/recharts/es6/component/Label.js
-var import_react15 = __toESM(require_react());
+var import_react40 = __toESM(require_react());
 var import_isNil7 = __toESM(require_isNil());
 var import_isFunction6 = __toESM(require_isFunction());
 var import_isObject3 = __toESM(require_isObject());
 
 // node_modules/recharts/es6/util/PolarUtils.js
 var import_isNil6 = __toESM(require_isNil());
-var import_react14 = __toESM(require_react());
+var import_react39 = __toESM(require_react());
 var import_isFunction5 = __toESM(require_isFunction());
 
 // node_modules/victory-vendor/es/d3-scale.js
@@ -35135,7 +43378,7 @@ __export(d3_scale_exports, {
   scaleSqrt: () => sqrt2,
   scaleSymlog: () => symlog,
   scaleThreshold: () => threshold,
-  scaleTime: () => time,
+  scaleTime: () => time2,
   scaleUtc: () => utcTime,
   tickFormat: () => tickFormat
 });
@@ -35195,7 +43438,7 @@ function zero() {
 }
 
 // node_modules/d3-array/src/number.js
-function number(x2) {
+function number2(x2) {
   return x2 === null ? NaN : +x2;
 }
 function* numbers(values, valueof) {
@@ -35219,7 +43462,7 @@ function* numbers(values, valueof) {
 var ascendingBisect = bisector(ascending);
 var bisectRight = ascendingBisect.right;
 var bisectLeft = ascendingBisect.left;
-var bisectCenter = bisector(number).center;
+var bisectCenter = bisector(number2).center;
 var bisect_default = bisectRight;
 
 // node_modules/internmap/src/index.js
@@ -35418,7 +43661,7 @@ function quantile(values, p, valueof) {
   var n, i = (n - 1) * p, i0 = Math.floor(i), value0 = max(quickselect(values, i0).subarray(0, i0 + 1)), value1 = min(values.subarray(i0 + 1));
   return value0 + (value1 - value0) * (i - i0);
 }
-function quantileSorted(values, p, valueof = number) {
+function quantileSorted(values, p, valueof = number2) {
   if (!(n = values.length) || isNaN(p = +p)) return;
   if (p <= 0 || n < 2) return +valueof(values[0], 0, values);
   if (p >= 1) return +valueof(values[n - 1], n - 1, values);
@@ -35473,7 +43716,7 @@ function initInterpolator(domain, interpolator) {
 var implicit = Symbol("implicit");
 function ordinal() {
   var index = new InternMap(), domain = [], range6 = [], unknown = implicit;
-  function scale(d) {
+  function scale2(d) {
     let i = index.get(d);
     if (i === void 0) {
       if (unknown !== implicit) return unknown;
@@ -35481,32 +43724,32 @@ function ordinal() {
     }
     return range6[i % range6.length];
   }
-  scale.domain = function(_) {
+  scale2.domain = function(_) {
     if (!arguments.length) return domain.slice();
     domain = [], index = new InternMap();
     for (const value of _) {
       if (index.has(value)) continue;
       index.set(value, domain.push(value) - 1);
     }
-    return scale;
+    return scale2;
   };
-  scale.range = function(_) {
-    return arguments.length ? (range6 = Array.from(_), scale) : range6.slice();
+  scale2.range = function(_) {
+    return arguments.length ? (range6 = Array.from(_), scale2) : range6.slice();
   };
-  scale.unknown = function(_) {
-    return arguments.length ? (unknown = _, scale) : unknown;
+  scale2.unknown = function(_) {
+    return arguments.length ? (unknown = _, scale2) : unknown;
   };
-  scale.copy = function() {
+  scale2.copy = function() {
     return ordinal(domain, range6).unknown(unknown);
   };
-  initRange.apply(scale, arguments);
-  return scale;
+  initRange.apply(scale2, arguments);
+  return scale2;
 }
 
 // node_modules/d3-scale/src/band.js
 function band() {
-  var scale = ordinal().unknown(void 0), domain = scale.domain, ordinalRange = scale.range, r0 = 0, r1 = 1, step, bandwidth, round = false, paddingInner = 0, paddingOuter = 0, align = 0.5;
-  delete scale.unknown;
+  var scale2 = ordinal().unknown(void 0), domain = scale2.domain, ordinalRange = scale2.range, r0 = 0, r1 = 1, step, bandwidth, round = false, paddingInner = 0, paddingOuter = 0, align = 0.5;
+  delete scale2.unknown;
   function rescale() {
     var n = domain().length, reverse3 = r1 < r0, start = reverse3 ? r1 : r0, stop = reverse3 ? r0 : r1;
     step = (stop - start) / Math.max(1, n - paddingInner + paddingOuter * 2);
@@ -35519,50 +43762,50 @@ function band() {
     });
     return ordinalRange(reverse3 ? values.reverse() : values);
   }
-  scale.domain = function(_) {
+  scale2.domain = function(_) {
     return arguments.length ? (domain(_), rescale()) : domain();
   };
-  scale.range = function(_) {
+  scale2.range = function(_) {
     return arguments.length ? ([r0, r1] = _, r0 = +r0, r1 = +r1, rescale()) : [r0, r1];
   };
-  scale.rangeRound = function(_) {
+  scale2.rangeRound = function(_) {
     return [r0, r1] = _, r0 = +r0, r1 = +r1, round = true, rescale();
   };
-  scale.bandwidth = function() {
+  scale2.bandwidth = function() {
     return bandwidth;
   };
-  scale.step = function() {
+  scale2.step = function() {
     return step;
   };
-  scale.round = function(_) {
+  scale2.round = function(_) {
     return arguments.length ? (round = !!_, rescale()) : round;
   };
-  scale.padding = function(_) {
+  scale2.padding = function(_) {
     return arguments.length ? (paddingInner = Math.min(1, paddingOuter = +_), rescale()) : paddingInner;
   };
-  scale.paddingInner = function(_) {
+  scale2.paddingInner = function(_) {
     return arguments.length ? (paddingInner = Math.min(1, _), rescale()) : paddingInner;
   };
-  scale.paddingOuter = function(_) {
+  scale2.paddingOuter = function(_) {
     return arguments.length ? (paddingOuter = +_, rescale()) : paddingOuter;
   };
-  scale.align = function(_) {
+  scale2.align = function(_) {
     return arguments.length ? (align = Math.max(0, Math.min(1, _)), rescale()) : align;
   };
-  scale.copy = function() {
+  scale2.copy = function() {
     return band(domain(), [r0, r1]).round(round).paddingInner(paddingInner).paddingOuter(paddingOuter).align(align);
   };
   return initRange.apply(rescale(), arguments);
 }
-function pointish(scale) {
-  var copy3 = scale.copy;
-  scale.padding = scale.paddingOuter;
-  delete scale.paddingInner;
-  delete scale.paddingOuter;
-  scale.copy = function() {
+function pointish(scale2) {
+  var copy3 = scale2.copy;
+  scale2.padding = scale2.paddingOuter;
+  delete scale2.paddingInner;
+  delete scale2.paddingOuter;
+  scale2.copy = function() {
     return pointish(copy3());
   };
-  return scale;
+  return scale2;
 }
 function point3() {
   return pointish(band.apply(null, arguments).paddingInner(1));
@@ -35744,7 +43987,7 @@ var named = {
   yellow: 16776960,
   yellowgreen: 10145074
 };
-define_default(Color, color, {
+define_default(Color, color2, {
   copy(channels) {
     return Object.assign(new this.constructor(), this, channels);
   },
@@ -35771,20 +44014,20 @@ function color_formatHsl() {
 function color_formatRgb() {
   return this.rgb().formatRgb();
 }
-function color(format2) {
+function color2(format2) {
   var m, l;
   format2 = (format2 + "").trim().toLowerCase();
-  return (m = reHex.exec(format2)) ? (l = m[1].length, m = parseInt(m[1], 16), l === 6 ? rgbn(m) : l === 3 ? new Rgb(m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, (m & 15) << 4 | m & 15, 1) : l === 8 ? rgba(m >> 24 & 255, m >> 16 & 255, m >> 8 & 255, (m & 255) / 255) : l === 4 ? rgba(m >> 12 & 15 | m >> 8 & 240, m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, ((m & 15) << 4 | m & 15) / 255) : null) : (m = reRgbInteger.exec(format2)) ? new Rgb(m[1], m[2], m[3], 1) : (m = reRgbPercent.exec(format2)) ? new Rgb(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, 1) : (m = reRgbaInteger.exec(format2)) ? rgba(m[1], m[2], m[3], m[4]) : (m = reRgbaPercent.exec(format2)) ? rgba(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, m[4]) : (m = reHslPercent.exec(format2)) ? hsla(m[1], m[2] / 100, m[3] / 100, 1) : (m = reHslaPercent.exec(format2)) ? hsla(m[1], m[2] / 100, m[3] / 100, m[4]) : named.hasOwnProperty(format2) ? rgbn(named[format2]) : format2 === "transparent" ? new Rgb(NaN, NaN, NaN, 0) : null;
+  return (m = reHex.exec(format2)) ? (l = m[1].length, m = parseInt(m[1], 16), l === 6 ? rgbn(m) : l === 3 ? new Rgb(m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, (m & 15) << 4 | m & 15, 1) : l === 8 ? rgba2(m >> 24 & 255, m >> 16 & 255, m >> 8 & 255, (m & 255) / 255) : l === 4 ? rgba2(m >> 12 & 15 | m >> 8 & 240, m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, ((m & 15) << 4 | m & 15) / 255) : null) : (m = reRgbInteger.exec(format2)) ? new Rgb(m[1], m[2], m[3], 1) : (m = reRgbPercent.exec(format2)) ? new Rgb(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, 1) : (m = reRgbaInteger.exec(format2)) ? rgba2(m[1], m[2], m[3], m[4]) : (m = reRgbaPercent.exec(format2)) ? rgba2(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, m[4]) : (m = reHslPercent.exec(format2)) ? hsla2(m[1], m[2] / 100, m[3] / 100, 1) : (m = reHslaPercent.exec(format2)) ? hsla2(m[1], m[2] / 100, m[3] / 100, m[4]) : named.hasOwnProperty(format2) ? rgbn(named[format2]) : format2 === "transparent" ? new Rgb(NaN, NaN, NaN, 0) : null;
 }
 function rgbn(n) {
   return new Rgb(n >> 16 & 255, n >> 8 & 255, n & 255, 1);
 }
-function rgba(r2, g, b, a2) {
+function rgba2(r2, g, b, a2) {
   if (a2 <= 0) r2 = g = b = NaN;
   return new Rgb(r2, g, b, a2);
 }
 function rgbConvert(o) {
-  if (!(o instanceof Color)) o = color(o);
+  if (!(o instanceof Color)) o = color2(o);
   if (!o) return new Rgb();
   o = o.rgb();
   return new Rgb(o.r, o.g, o.b, o.opacity);
@@ -35824,10 +44067,10 @@ define_default(Rgb, rgb, extend(Color, {
   toString: rgb_formatRgb
 }));
 function rgb_formatHex() {
-  return `#${hex(this.r)}${hex(this.g)}${hex(this.b)}`;
+  return `#${hex2(this.r)}${hex2(this.g)}${hex2(this.b)}`;
 }
 function rgb_formatHex8() {
-  return `#${hex(this.r)}${hex(this.g)}${hex(this.b)}${hex((isNaN(this.opacity) ? 1 : this.opacity) * 255)}`;
+  return `#${hex2(this.r)}${hex2(this.g)}${hex2(this.b)}${hex2((isNaN(this.opacity) ? 1 : this.opacity) * 255)}`;
 }
 function rgb_formatRgb() {
   const a2 = clampa(this.opacity);
@@ -35839,11 +44082,11 @@ function clampa(opacity) {
 function clampi(value) {
   return Math.max(0, Math.min(255, Math.round(value) || 0));
 }
-function hex(value) {
+function hex2(value) {
   value = clampi(value);
   return (value < 16 ? "0" : "") + value.toString(16);
 }
-function hsla(h, s2, l, a2) {
+function hsla2(h, s2, l, a2) {
   if (a2 <= 0) h = s2 = l = NaN;
   else if (l <= 0 || l >= 1) h = s2 = NaN;
   else if (s2 <= 0) h = NaN;
@@ -35851,7 +44094,7 @@ function hsla(h, s2, l, a2) {
 }
 function hslConvert(o) {
   if (o instanceof Hsl) return new Hsl(o.h, o.s, o.l, o.opacity);
-  if (!(o instanceof Color)) o = color(o);
+  if (!(o instanceof Color)) o = color2(o);
   if (!o) return new Hsl();
   if (o instanceof Hsl) return o;
   o = o.rgb();
@@ -35964,9 +44207,9 @@ function nogamma(a2, b) {
 
 // node_modules/d3-interpolate/src/rgb.js
 var rgb_default = function rgbGamma(y2) {
-  var color2 = gamma(y2);
+  var color3 = gamma(y2);
   function rgb2(start, end) {
-    var r2 = color2((start = rgb(start)).r, (end = rgb(end)).r), g = color2(start.g, end.g), b = color2(start.b, end.b), opacity = nogamma(start.opacity, end.opacity);
+    var r2 = color3((start = rgb(start)).r, (end = rgb(end)).r), g = color3(start.g, end.g), b = color3(start.b, end.b), opacity = nogamma(start.opacity, end.opacity);
     return function(t) {
       start.r = r2(t);
       start.g = g(t);
@@ -35980,22 +44223,22 @@ var rgb_default = function rgbGamma(y2) {
 }(1);
 function rgbSpline(spline) {
   return function(colors) {
-    var n = colors.length, r2 = new Array(n), g = new Array(n), b = new Array(n), i, color2;
+    var n = colors.length, r2 = new Array(n), g = new Array(n), b = new Array(n), i, color3;
     for (i = 0; i < n; ++i) {
-      color2 = rgb(colors[i]);
-      r2[i] = color2.r || 0;
-      g[i] = color2.g || 0;
-      b[i] = color2.b || 0;
+      color3 = rgb(colors[i]);
+      r2[i] = color3.r || 0;
+      g[i] = color3.g || 0;
+      b[i] = color3.b || 0;
     }
     r2 = spline(r2);
     g = spline(g);
     b = spline(b);
-    color2.opacity = 1;
+    color3.opacity = 1;
     return function(t) {
-      color2.r = r2(t);
-      color2.g = g(t);
-      color2.b = b(t);
-      return color2 + "";
+      color3.r = r2(t);
+      color3.g = g(t);
+      color3.b = b(t);
+      return color3 + "";
     };
   };
 }
@@ -36104,7 +44347,7 @@ function string_default(a2, b) {
 // node_modules/d3-interpolate/src/value.js
 function value_default(a2, b) {
   var t = typeof b, c2;
-  return b == null || t === "boolean" ? constant_default2(b) : (t === "number" ? number_default : t === "string" ? (c2 = color(b)) ? (b = c2, rgb_default) : string_default : b instanceof color ? rgb_default : b instanceof Date ? date_default : isNumberArray(b) ? numberArray_default : Array.isArray(b) ? genericArray : typeof b.valueOf !== "function" && typeof b.toString !== "function" || isNaN(b) ? object_default : number_default)(a2, b);
+  return b == null || t === "boolean" ? constant_default2(b) : (t === "number" ? number_default : t === "string" ? (c2 = color2(b)) ? (b = c2, rgb_default) : string_default : b instanceof color2 ? rgb_default : b instanceof Date ? date_default : isNumberArray(b) ? numberArray_default : Array.isArray(b) ? genericArray : typeof b.valueOf !== "function" && typeof b.toString !== "function" || isNaN(b) ? object_default : number_default)(a2, b);
 }
 
 // node_modules/d3-interpolate/src/round.js
@@ -36115,10 +44358,10 @@ function round_default(a2, b) {
 }
 
 // node_modules/d3-interpolate/src/piecewise.js
-function piecewise(interpolate, values) {
-  if (values === void 0) values = interpolate, interpolate = value_default;
+function piecewise(interpolate2, values) {
+  if (values === void 0) values = interpolate2, interpolate2 = value_default;
   var i = 0, n = values.length - 1, v = values[0], I = new Array(n < 0 ? 0 : n);
-  while (i < n) I[i] = interpolate(v, v = values[++i]);
+  while (i < n) I[i] = interpolate2(v, v = values[++i]);
   return function(t) {
     var i2 = Math.max(0, Math.min(n - 1, Math.floor(t *= n)));
     return I[i2](t - i2);
@@ -36133,7 +44376,7 @@ function constants(x2) {
 }
 
 // node_modules/d3-scale/src/number.js
-function number2(x2) {
+function number3(x2) {
   return +x2;
 }
 
@@ -36154,15 +44397,15 @@ function clamper(a2, b) {
     return Math.max(a2, Math.min(b, x2));
   };
 }
-function bimap(domain, range6, interpolate) {
+function bimap(domain, range6, interpolate2) {
   var d0 = domain[0], d1 = domain[1], r0 = range6[0], r1 = range6[1];
-  if (d1 < d0) d0 = normalize(d1, d0), r0 = interpolate(r1, r0);
-  else d0 = normalize(d0, d1), r0 = interpolate(r0, r1);
+  if (d1 < d0) d0 = normalize(d1, d0), r0 = interpolate2(r1, r0);
+  else d0 = normalize(d0, d1), r0 = interpolate2(r0, r1);
   return function(x2) {
     return r0(d0(x2));
   };
 }
-function polymap(domain, range6, interpolate) {
+function polymap(domain, range6, interpolate2) {
   var j = Math.min(domain.length, range6.length) - 1, d = new Array(j), r2 = new Array(j), i = -1;
   if (domain[j] < domain[0]) {
     domain = domain.slice().reverse();
@@ -36170,7 +44413,7 @@ function polymap(domain, range6, interpolate) {
   }
   while (++i < j) {
     d[i] = normalize(domain[i], domain[i + 1]);
-    r2[i] = interpolate(range6[i], range6[i + 1]);
+    r2[i] = interpolate2(range6[i], range6[i + 1]);
   }
   return function(x2) {
     var i2 = bisect_default(domain, x2, 1, j) - 1;
@@ -36181,37 +44424,37 @@ function copy(source, target) {
   return target.domain(source.domain()).range(source.range()).interpolate(source.interpolate()).clamp(source.clamp()).unknown(source.unknown());
 }
 function transformer() {
-  var domain = unit, range6 = unit, interpolate = value_default, transform, untransform, unknown, clamp = identity, piecewise2, output, input;
+  var domain = unit, range6 = unit, interpolate2 = value_default, transform, untransform, unknown, clamp2 = identity, piecewise2, output, input;
   function rescale() {
     var n = Math.min(domain.length, range6.length);
-    if (clamp !== identity) clamp = clamper(domain[0], domain[n - 1]);
+    if (clamp2 !== identity) clamp2 = clamper(domain[0], domain[n - 1]);
     piecewise2 = n > 2 ? polymap : bimap;
     output = input = null;
-    return scale;
+    return scale2;
   }
-  function scale(x2) {
-    return x2 == null || isNaN(x2 = +x2) ? unknown : (output || (output = piecewise2(domain.map(transform), range6, interpolate)))(transform(clamp(x2)));
+  function scale2(x2) {
+    return x2 == null || isNaN(x2 = +x2) ? unknown : (output || (output = piecewise2(domain.map(transform), range6, interpolate2)))(transform(clamp2(x2)));
   }
-  scale.invert = function(y2) {
-    return clamp(untransform((input || (input = piecewise2(range6, domain.map(transform), number_default)))(y2)));
+  scale2.invert = function(y2) {
+    return clamp2(untransform((input || (input = piecewise2(range6, domain.map(transform), number_default)))(y2)));
   };
-  scale.domain = function(_) {
-    return arguments.length ? (domain = Array.from(_, number2), rescale()) : domain.slice();
+  scale2.domain = function(_) {
+    return arguments.length ? (domain = Array.from(_, number3), rescale()) : domain.slice();
   };
-  scale.range = function(_) {
+  scale2.range = function(_) {
     return arguments.length ? (range6 = Array.from(_), rescale()) : range6.slice();
   };
-  scale.rangeRound = function(_) {
-    return range6 = Array.from(_), interpolate = round_default, rescale();
+  scale2.rangeRound = function(_) {
+    return range6 = Array.from(_), interpolate2 = round_default, rescale();
   };
-  scale.clamp = function(_) {
-    return arguments.length ? (clamp = _ ? true : identity, rescale()) : clamp !== identity;
+  scale2.clamp = function(_) {
+    return arguments.length ? (clamp2 = _ ? true : identity, rescale()) : clamp2 !== identity;
   };
-  scale.interpolate = function(_) {
-    return arguments.length ? (interpolate = _, rescale()) : interpolate;
+  scale2.interpolate = function(_) {
+    return arguments.length ? (interpolate2 = _, rescale()) : interpolate2;
   };
-  scale.unknown = function(_) {
-    return arguments.length ? (unknown = _, scale) : unknown;
+  scale2.unknown = function(_) {
+    return arguments.length ? (unknown = _, scale2) : unknown;
   };
   return function(t, u) {
     transform = t, untransform = u;
@@ -36361,14 +44604,14 @@ function identity_default(x2) {
 var map = Array.prototype.map;
 var prefixes = ["y", "z", "a", "f", "p", "n", "\xB5", "m", "", "k", "M", "G", "T", "P", "E", "Z", "Y"];
 function locale_default(locale3) {
-  var group = locale3.grouping === void 0 || locale3.thousands === void 0 ? identity_default : formatGroup_default(map.call(locale3.grouping, Number), locale3.thousands + ""), currencyPrefix = locale3.currency === void 0 ? "" : locale3.currency[0] + "", currencySuffix = locale3.currency === void 0 ? "" : locale3.currency[1] + "", decimal = locale3.decimal === void 0 ? "." : locale3.decimal + "", numerals = locale3.numerals === void 0 ? identity_default : formatNumerals_default(map.call(locale3.numerals, String)), percent = locale3.percent === void 0 ? "%" : locale3.percent + "", minus = locale3.minus === void 0 ? "\u2212" : locale3.minus + "", nan = locale3.nan === void 0 ? "NaN" : locale3.nan + "";
+  var group = locale3.grouping === void 0 || locale3.thousands === void 0 ? identity_default : formatGroup_default(map.call(locale3.grouping, Number), locale3.thousands + ""), currencyPrefix = locale3.currency === void 0 ? "" : locale3.currency[0] + "", currencySuffix = locale3.currency === void 0 ? "" : locale3.currency[1] + "", decimal = locale3.decimal === void 0 ? "." : locale3.decimal + "", numerals = locale3.numerals === void 0 ? identity_default : formatNumerals_default(map.call(locale3.numerals, String)), percent2 = locale3.percent === void 0 ? "%" : locale3.percent + "", minus = locale3.minus === void 0 ? "\u2212" : locale3.minus + "", nan = locale3.nan === void 0 ? "NaN" : locale3.nan + "";
   function newFormat(specifier) {
     specifier = formatSpecifier(specifier);
     var fill = specifier.fill, align = specifier.align, sign2 = specifier.sign, symbol = specifier.symbol, zero3 = specifier.zero, width = specifier.width, comma = specifier.comma, precision = specifier.precision, trim = specifier.trim, type = specifier.type;
     if (type === "n") comma = true, type = "g";
     else if (!formatTypes_default[type]) precision === void 0 && (precision = 12), trim = true, type = "g";
     if (zero3 || fill === "0" && align === "=") zero3 = true, fill = "0", align = "=";
-    var prefix2 = symbol === "$" ? currencyPrefix : symbol === "#" && /[boxX]/.test(type) ? "0" + type.toLowerCase() : "", suffix = symbol === "$" ? currencySuffix : /[%p]/.test(type) ? percent : "";
+    var prefix2 = symbol === "$" ? currencyPrefix : symbol === "#" && /[boxX]/.test(type) ? "0" + type.toLowerCase() : "", suffix = symbol === "$" ? currencySuffix : /[%p]/.test(type) ? percent2 : "";
     var formatType = formatTypes_default[type], maybeSuffix = /[defgprs%]/.test(type);
     precision = precision === void 0 ? 6 : /[gprs]/.test(type) ? Math.max(1, Math.min(21, precision)) : Math.max(0, Math.min(20, precision));
     function format2(value) {
@@ -36491,17 +44734,17 @@ function tickFormat(start, stop, count, specifier) {
 }
 
 // node_modules/d3-scale/src/linear.js
-function linearish(scale) {
-  var domain = scale.domain;
-  scale.ticks = function(count) {
+function linearish(scale2) {
+  var domain = scale2.domain;
+  scale2.ticks = function(count) {
     var d = domain();
     return ticks(d[0], d[d.length - 1], count == null ? 10 : count);
   };
-  scale.tickFormat = function(count, specifier) {
+  scale2.tickFormat = function(count, specifier) {
     var d = domain();
     return tickFormat(d[0], d[d.length - 1], count == null ? 10 : count, specifier);
   };
-  scale.nice = function(count) {
+  scale2.nice = function(count) {
     if (count == null) count = 10;
     var d = domain();
     var i0 = 0;
@@ -36532,37 +44775,37 @@ function linearish(scale) {
       }
       prestep = step;
     }
-    return scale;
+    return scale2;
   };
-  return scale;
+  return scale2;
 }
 function linear2() {
-  var scale = continuous();
-  scale.copy = function() {
-    return copy(scale, linear2());
+  var scale2 = continuous();
+  scale2.copy = function() {
+    return copy(scale2, linear2());
   };
-  initRange.apply(scale, arguments);
-  return linearish(scale);
+  initRange.apply(scale2, arguments);
+  return linearish(scale2);
 }
 
 // node_modules/d3-scale/src/identity.js
 function identity2(domain) {
   var unknown;
-  function scale(x2) {
+  function scale2(x2) {
     return x2 == null || isNaN(x2 = +x2) ? unknown : x2;
   }
-  scale.invert = scale;
-  scale.domain = scale.range = function(_) {
-    return arguments.length ? (domain = Array.from(_, number2), scale) : domain.slice();
+  scale2.invert = scale2;
+  scale2.domain = scale2.range = function(_) {
+    return arguments.length ? (domain = Array.from(_, number3), scale2) : domain.slice();
   };
-  scale.unknown = function(_) {
-    return arguments.length ? (unknown = _, scale) : unknown;
+  scale2.unknown = function(_) {
+    return arguments.length ? (unknown = _, scale2) : unknown;
   };
-  scale.copy = function() {
+  scale2.copy = function() {
     return identity2(domain).unknown(unknown);
   };
-  domain = arguments.length ? Array.from(domain, number2) : [0, 1];
-  return linearish(scale);
+  domain = arguments.length ? Array.from(domain, number3) : [0, 1];
+  return linearish(scale2);
 }
 
 // node_modules/d3-scale/src/nice.js
@@ -36604,8 +44847,8 @@ function reflect(f) {
   return (x2, k2) => -f(-x2, k2);
 }
 function loggish(transform) {
-  const scale = transform(transformLog, transformExp);
-  const domain = scale.domain;
+  const scale2 = transform(transformLog, transformExp);
+  const domain = scale2.domain;
   let base = 10;
   let logs;
   let pows;
@@ -36617,15 +44860,15 @@ function loggish(transform) {
     } else {
       transform(transformLog, transformExp);
     }
-    return scale;
+    return scale2;
   }
-  scale.base = function(_) {
+  scale2.base = function(_) {
     return arguments.length ? (base = +_, rescale()) : base;
   };
-  scale.domain = function(_) {
+  scale2.domain = function(_) {
     return arguments.length ? (domain(_), rescale()) : domain();
   };
-  scale.ticks = (count) => {
+  scale2.ticks = (count) => {
     const d = domain();
     let u = d[0];
     let v = d[d.length - 1];
@@ -36661,7 +44904,7 @@ function loggish(transform) {
     }
     return r2 ? z.reverse() : z;
   };
-  scale.tickFormat = (count, specifier) => {
+  scale2.tickFormat = (count, specifier) => {
     if (count == null) count = 10;
     if (specifier == null) specifier = base === 10 ? "s" : ",";
     if (typeof specifier !== "function") {
@@ -36669,26 +44912,26 @@ function loggish(transform) {
       specifier = format(specifier);
     }
     if (count === Infinity) return specifier;
-    const k2 = Math.max(1, base * count / scale.ticks().length);
+    const k2 = Math.max(1, base * count / scale2.ticks().length);
     return (d) => {
       let i = d / pows(Math.round(logs(d)));
       if (i * base < base - 0.5) i *= base;
       return i <= k2 ? specifier(d) : "";
     };
   };
-  scale.nice = () => {
+  scale2.nice = () => {
     return domain(nice(domain(), {
       floor: (x2) => pows(Math.floor(logs(x2))),
       ceil: (x2) => pows(Math.ceil(logs(x2)))
     }));
   };
-  return scale;
+  return scale2;
 }
 function log() {
-  const scale = loggish(transformer()).domain([1, 10]);
-  scale.copy = () => copy(scale, log()).base(scale.base());
-  initRange.apply(scale, arguments);
-  return scale;
+  const scale2 = loggish(transformer()).domain([1, 10]);
+  scale2.copy = () => copy(scale2, log()).base(scale2.base());
+  initRange.apply(scale2, arguments);
+  return scale2;
 }
 
 // node_modules/d3-scale/src/symlog.js
@@ -36703,18 +44946,18 @@ function transformSymexp(c2) {
   };
 }
 function symlogish(transform) {
-  var c2 = 1, scale = transform(transformSymlog(c2), transformSymexp(c2));
-  scale.constant = function(_) {
+  var c2 = 1, scale2 = transform(transformSymlog(c2), transformSymexp(c2));
+  scale2.constant = function(_) {
     return arguments.length ? transform(transformSymlog(c2 = +_), transformSymexp(c2)) : c2;
   };
-  return linearish(scale);
+  return linearish(scale2);
 }
 function symlog() {
-  var scale = symlogish(transformer());
-  scale.copy = function() {
-    return copy(scale, symlog()).constant(scale.constant());
+  var scale2 = symlogish(transformer());
+  scale2.copy = function() {
+    return copy(scale2, symlog()).constant(scale2.constant());
   };
-  return initRange.apply(scale, arguments);
+  return initRange.apply(scale2, arguments);
 }
 
 // node_modules/d3-scale/src/pow.js
@@ -36730,22 +44973,22 @@ function transformSquare(x2) {
   return x2 < 0 ? -x2 * x2 : x2 * x2;
 }
 function powish(transform) {
-  var scale = transform(identity, identity), exponent = 1;
+  var scale2 = transform(identity, identity), exponent = 1;
   function rescale() {
     return exponent === 1 ? transform(identity, identity) : exponent === 0.5 ? transform(transformSqrt, transformSquare) : transform(transformPow(exponent), transformPow(1 / exponent));
   }
-  scale.exponent = function(_) {
+  scale2.exponent = function(_) {
     return arguments.length ? (exponent = +_, rescale()) : exponent;
   };
-  return linearish(scale);
+  return linearish(scale2);
 }
 function pow() {
-  var scale = powish(transformer());
-  scale.copy = function() {
-    return copy(scale, pow()).exponent(scale.exponent());
+  var scale2 = powish(transformer());
+  scale2.copy = function() {
+    return copy(scale2, pow()).exponent(scale2.exponent());
   };
-  initRange.apply(scale, arguments);
-  return scale;
+  initRange.apply(scale2, arguments);
+  return scale2;
 }
 function sqrt2() {
   return pow.apply(null, arguments).exponent(0.5);
@@ -36760,36 +45003,36 @@ function unsquare(x2) {
 }
 function radial() {
   var squared = continuous(), range6 = [0, 1], round = false, unknown;
-  function scale(x2) {
+  function scale2(x2) {
     var y2 = unsquare(squared(x2));
     return isNaN(y2) ? unknown : round ? Math.round(y2) : y2;
   }
-  scale.invert = function(y2) {
+  scale2.invert = function(y2) {
     return squared.invert(square(y2));
   };
-  scale.domain = function(_) {
-    return arguments.length ? (squared.domain(_), scale) : squared.domain();
+  scale2.domain = function(_) {
+    return arguments.length ? (squared.domain(_), scale2) : squared.domain();
   };
-  scale.range = function(_) {
-    return arguments.length ? (squared.range((range6 = Array.from(_, number2)).map(square)), scale) : range6.slice();
+  scale2.range = function(_) {
+    return arguments.length ? (squared.range((range6 = Array.from(_, number3)).map(square)), scale2) : range6.slice();
   };
-  scale.rangeRound = function(_) {
-    return scale.range(_).round(true);
+  scale2.rangeRound = function(_) {
+    return scale2.range(_).round(true);
   };
-  scale.round = function(_) {
-    return arguments.length ? (round = !!_, scale) : round;
+  scale2.round = function(_) {
+    return arguments.length ? (round = !!_, scale2) : round;
   };
-  scale.clamp = function(_) {
-    return arguments.length ? (squared.clamp(_), scale) : squared.clamp();
+  scale2.clamp = function(_) {
+    return arguments.length ? (squared.clamp(_), scale2) : squared.clamp();
   };
-  scale.unknown = function(_) {
-    return arguments.length ? (unknown = _, scale) : unknown;
+  scale2.unknown = function(_) {
+    return arguments.length ? (unknown = _, scale2) : unknown;
   };
-  scale.copy = function() {
+  scale2.copy = function() {
     return radial(squared.domain(), range6).round(round).clamp(squared.clamp()).unknown(unknown);
   };
-  initRange.apply(scale, arguments);
-  return linearish(scale);
+  initRange.apply(scale2, arguments);
+  return linearish(scale2);
 }
 
 // node_modules/d3-scale/src/quantile.js
@@ -36799,97 +45042,97 @@ function quantile2() {
     var i = 0, n = Math.max(1, range6.length);
     thresholds = new Array(n - 1);
     while (++i < n) thresholds[i - 1] = quantileSorted(domain, i / n);
-    return scale;
+    return scale2;
   }
-  function scale(x2) {
+  function scale2(x2) {
     return x2 == null || isNaN(x2 = +x2) ? unknown : range6[bisect_default(thresholds, x2)];
   }
-  scale.invertExtent = function(y2) {
+  scale2.invertExtent = function(y2) {
     var i = range6.indexOf(y2);
     return i < 0 ? [NaN, NaN] : [
       i > 0 ? thresholds[i - 1] : domain[0],
       i < thresholds.length ? thresholds[i] : domain[domain.length - 1]
     ];
   };
-  scale.domain = function(_) {
+  scale2.domain = function(_) {
     if (!arguments.length) return domain.slice();
     domain = [];
     for (let d of _) if (d != null && !isNaN(d = +d)) domain.push(d);
     domain.sort(ascending);
     return rescale();
   };
-  scale.range = function(_) {
+  scale2.range = function(_) {
     return arguments.length ? (range6 = Array.from(_), rescale()) : range6.slice();
   };
-  scale.unknown = function(_) {
-    return arguments.length ? (unknown = _, scale) : unknown;
+  scale2.unknown = function(_) {
+    return arguments.length ? (unknown = _, scale2) : unknown;
   };
-  scale.quantiles = function() {
+  scale2.quantiles = function() {
     return thresholds.slice();
   };
-  scale.copy = function() {
+  scale2.copy = function() {
     return quantile2().domain(domain).range(range6).unknown(unknown);
   };
-  return initRange.apply(scale, arguments);
+  return initRange.apply(scale2, arguments);
 }
 
 // node_modules/d3-scale/src/quantize.js
 function quantize() {
   var x0 = 0, x1 = 1, n = 1, domain = [0.5], range6 = [0, 1], unknown;
-  function scale(x2) {
+  function scale2(x2) {
     return x2 != null && x2 <= x2 ? range6[bisect_default(domain, x2, 0, n)] : unknown;
   }
   function rescale() {
     var i = -1;
     domain = new Array(n);
     while (++i < n) domain[i] = ((i + 1) * x1 - (i - n) * x0) / (n + 1);
-    return scale;
+    return scale2;
   }
-  scale.domain = function(_) {
+  scale2.domain = function(_) {
     return arguments.length ? ([x0, x1] = _, x0 = +x0, x1 = +x1, rescale()) : [x0, x1];
   };
-  scale.range = function(_) {
+  scale2.range = function(_) {
     return arguments.length ? (n = (range6 = Array.from(_)).length - 1, rescale()) : range6.slice();
   };
-  scale.invertExtent = function(y2) {
+  scale2.invertExtent = function(y2) {
     var i = range6.indexOf(y2);
     return i < 0 ? [NaN, NaN] : i < 1 ? [x0, domain[0]] : i >= n ? [domain[n - 1], x1] : [domain[i - 1], domain[i]];
   };
-  scale.unknown = function(_) {
-    return arguments.length ? (unknown = _, scale) : scale;
+  scale2.unknown = function(_) {
+    return arguments.length ? (unknown = _, scale2) : scale2;
   };
-  scale.thresholds = function() {
+  scale2.thresholds = function() {
     return domain.slice();
   };
-  scale.copy = function() {
+  scale2.copy = function() {
     return quantize().domain([x0, x1]).range(range6).unknown(unknown);
   };
-  return initRange.apply(linearish(scale), arguments);
+  return initRange.apply(linearish(scale2), arguments);
 }
 
 // node_modules/d3-scale/src/threshold.js
 function threshold() {
   var domain = [0.5], range6 = [0, 1], unknown, n = 1;
-  function scale(x2) {
+  function scale2(x2) {
     return x2 != null && x2 <= x2 ? range6[bisect_default(domain, x2, 0, n)] : unknown;
   }
-  scale.domain = function(_) {
-    return arguments.length ? (domain = Array.from(_), n = Math.min(domain.length, range6.length - 1), scale) : domain.slice();
+  scale2.domain = function(_) {
+    return arguments.length ? (domain = Array.from(_), n = Math.min(domain.length, range6.length - 1), scale2) : domain.slice();
   };
-  scale.range = function(_) {
-    return arguments.length ? (range6 = Array.from(_), n = Math.min(domain.length, range6.length - 1), scale) : range6.slice();
+  scale2.range = function(_) {
+    return arguments.length ? (range6 = Array.from(_), n = Math.min(domain.length, range6.length - 1), scale2) : range6.slice();
   };
-  scale.invertExtent = function(y2) {
+  scale2.invertExtent = function(y2) {
     var i = range6.indexOf(y2);
     return [domain[i - 1], domain[i]];
   };
-  scale.unknown = function(_) {
-    return arguments.length ? (unknown = _, scale) : unknown;
+  scale2.unknown = function(_) {
+    return arguments.length ? (unknown = _, scale2) : unknown;
   };
-  scale.copy = function() {
+  scale2.copy = function() {
     return threshold().domain(domain).range(range6).unknown(unknown);
   };
-  return initRange.apply(scale, arguments);
+  return initRange.apply(scale2, arguments);
 }
 
 // node_modules/d3-time/src/interval.js
@@ -36923,17 +45166,17 @@ function timeInterval(floori, offseti, count, field) {
     while (previous < start && start < stop);
     return range6;
   };
-  interval.filter = (test) => {
+  interval.filter = (test2) => {
     return timeInterval((date2) => {
-      if (date2 >= date2) while (floori(date2), !test(date2)) date2.setTime(date2 - 1);
+      if (date2 >= date2) while (floori(date2), !test2(date2)) date2.setTime(date2 - 1);
     }, (date2, step) => {
       if (date2 >= date2) {
         if (step < 0) while (++step <= 0) {
-          while (offseti(date2, -1), !test(date2)) {
+          while (offseti(date2, -1), !test2(date2)) {
           }
         }
         else while (--step >= 0) {
-          while (offseti(date2, 1), !test(date2)) {
+          while (offseti(date2, 1), !test2(date2)) {
           }
         }
       }
@@ -37796,39 +46039,39 @@ function defaultLocale2(definition) {
 function date(t) {
   return new Date(t);
 }
-function number3(t) {
+function number4(t) {
   return t instanceof Date ? +t : +/* @__PURE__ */ new Date(+t);
 }
 function calendar(ticks2, tickInterval, year, month, week, day, hour, minute, second2, format2) {
-  var scale = continuous(), invert = scale.invert, domain = scale.domain;
+  var scale2 = continuous(), invert = scale2.invert, domain = scale2.domain;
   var formatMillisecond = format2(".%L"), formatSecond = format2(":%S"), formatMinute = format2("%I:%M"), formatHour = format2("%I %p"), formatDay = format2("%a %d"), formatWeek = format2("%b %d"), formatMonth = format2("%B"), formatYear2 = format2("%Y");
   function tickFormat2(date2) {
     return (second2(date2) < date2 ? formatMillisecond : minute(date2) < date2 ? formatSecond : hour(date2) < date2 ? formatMinute : day(date2) < date2 ? formatHour : month(date2) < date2 ? week(date2) < date2 ? formatDay : formatWeek : year(date2) < date2 ? formatMonth : formatYear2)(date2);
   }
-  scale.invert = function(y2) {
+  scale2.invert = function(y2) {
     return new Date(invert(y2));
   };
-  scale.domain = function(_) {
-    return arguments.length ? domain(Array.from(_, number3)) : domain().map(date);
+  scale2.domain = function(_) {
+    return arguments.length ? domain(Array.from(_, number4)) : domain().map(date);
   };
-  scale.ticks = function(interval) {
+  scale2.ticks = function(interval) {
     var d = domain();
     return ticks2(d[0], d[d.length - 1], interval == null ? 10 : interval);
   };
-  scale.tickFormat = function(count, specifier) {
+  scale2.tickFormat = function(count, specifier) {
     return specifier == null ? tickFormat2 : format2(specifier);
   };
-  scale.nice = function(interval) {
+  scale2.nice = function(interval) {
     var d = domain();
     if (!interval || typeof interval.range !== "function") interval = tickInterval(d[0], d[d.length - 1], interval == null ? 10 : interval);
-    return interval ? domain(nice(d, interval)) : scale;
+    return interval ? domain(nice(d, interval)) : scale2;
   };
-  scale.copy = function() {
-    return copy(scale, calendar(ticks2, tickInterval, year, month, week, day, hour, minute, second2, format2));
+  scale2.copy = function() {
+    return copy(scale2, calendar(ticks2, tickInterval, year, month, week, day, hour, minute, second2, format2));
   };
-  return scale;
+  return scale2;
 }
-function time() {
+function time2() {
   return initRange.apply(calendar(timeTicks, timeTickInterval, timeYear, timeMonth, timeSunday, timeDay, timeHour, timeMinute, second, timeFormat).domain([new Date(2e3, 0, 1), new Date(2e3, 0, 2)]), arguments);
 }
 
@@ -37839,65 +46082,65 @@ function utcTime() {
 
 // node_modules/d3-scale/src/sequential.js
 function transformer2() {
-  var x0 = 0, x1 = 1, t02, t12, k10, transform, interpolator = identity, clamp = false, unknown;
-  function scale(x2) {
-    return x2 == null || isNaN(x2 = +x2) ? unknown : interpolator(k10 === 0 ? 0.5 : (x2 = (transform(x2) - t02) * k10, clamp ? Math.max(0, Math.min(1, x2)) : x2));
+  var x0 = 0, x1 = 1, t02, t12, k10, transform, interpolator = identity, clamp2 = false, unknown;
+  function scale2(x2) {
+    return x2 == null || isNaN(x2 = +x2) ? unknown : interpolator(k10 === 0 ? 0.5 : (x2 = (transform(x2) - t02) * k10, clamp2 ? Math.max(0, Math.min(1, x2)) : x2));
   }
-  scale.domain = function(_) {
-    return arguments.length ? ([x0, x1] = _, t02 = transform(x0 = +x0), t12 = transform(x1 = +x1), k10 = t02 === t12 ? 0 : 1 / (t12 - t02), scale) : [x0, x1];
+  scale2.domain = function(_) {
+    return arguments.length ? ([x0, x1] = _, t02 = transform(x0 = +x0), t12 = transform(x1 = +x1), k10 = t02 === t12 ? 0 : 1 / (t12 - t02), scale2) : [x0, x1];
   };
-  scale.clamp = function(_) {
-    return arguments.length ? (clamp = !!_, scale) : clamp;
+  scale2.clamp = function(_) {
+    return arguments.length ? (clamp2 = !!_, scale2) : clamp2;
   };
-  scale.interpolator = function(_) {
-    return arguments.length ? (interpolator = _, scale) : interpolator;
+  scale2.interpolator = function(_) {
+    return arguments.length ? (interpolator = _, scale2) : interpolator;
   };
-  function range6(interpolate) {
+  function range6(interpolate2) {
     return function(_) {
       var r0, r1;
-      return arguments.length ? ([r0, r1] = _, interpolator = interpolate(r0, r1), scale) : [interpolator(0), interpolator(1)];
+      return arguments.length ? ([r0, r1] = _, interpolator = interpolate2(r0, r1), scale2) : [interpolator(0), interpolator(1)];
     };
   }
-  scale.range = range6(value_default);
-  scale.rangeRound = range6(round_default);
-  scale.unknown = function(_) {
-    return arguments.length ? (unknown = _, scale) : unknown;
+  scale2.range = range6(value_default);
+  scale2.rangeRound = range6(round_default);
+  scale2.unknown = function(_) {
+    return arguments.length ? (unknown = _, scale2) : unknown;
   };
   return function(t) {
     transform = t, t02 = t(x0), t12 = t(x1), k10 = t02 === t12 ? 0 : 1 / (t12 - t02);
-    return scale;
+    return scale2;
   };
 }
 function copy2(source, target) {
   return target.domain(source.domain()).interpolator(source.interpolator()).clamp(source.clamp()).unknown(source.unknown());
 }
 function sequential() {
-  var scale = linearish(transformer2()(identity));
-  scale.copy = function() {
-    return copy2(scale, sequential());
+  var scale2 = linearish(transformer2()(identity));
+  scale2.copy = function() {
+    return copy2(scale2, sequential());
   };
-  return initInterpolator.apply(scale, arguments);
+  return initInterpolator.apply(scale2, arguments);
 }
 function sequentialLog() {
-  var scale = loggish(transformer2()).domain([1, 10]);
-  scale.copy = function() {
-    return copy2(scale, sequentialLog()).base(scale.base());
+  var scale2 = loggish(transformer2()).domain([1, 10]);
+  scale2.copy = function() {
+    return copy2(scale2, sequentialLog()).base(scale2.base());
   };
-  return initInterpolator.apply(scale, arguments);
+  return initInterpolator.apply(scale2, arguments);
 }
 function sequentialSymlog() {
-  var scale = symlogish(transformer2());
-  scale.copy = function() {
-    return copy2(scale, sequentialSymlog()).constant(scale.constant());
+  var scale2 = symlogish(transformer2());
+  scale2.copy = function() {
+    return copy2(scale2, sequentialSymlog()).constant(scale2.constant());
   };
-  return initInterpolator.apply(scale, arguments);
+  return initInterpolator.apply(scale2, arguments);
 }
 function sequentialPow() {
-  var scale = powish(transformer2());
-  scale.copy = function() {
-    return copy2(scale, sequentialPow()).exponent(scale.exponent());
+  var scale2 = powish(transformer2());
+  scale2.copy = function() {
+    return copy2(scale2, sequentialPow()).exponent(scale2.exponent());
   };
-  return initInterpolator.apply(scale, arguments);
+  return initInterpolator.apply(scale2, arguments);
 }
 function sequentialSqrt() {
   return sequentialPow.apply(null, arguments).exponent(0.5);
@@ -37906,89 +46149,89 @@ function sequentialSqrt() {
 // node_modules/d3-scale/src/sequentialQuantile.js
 function sequentialQuantile() {
   var domain = [], interpolator = identity;
-  function scale(x2) {
+  function scale2(x2) {
     if (x2 != null && !isNaN(x2 = +x2)) return interpolator((bisect_default(domain, x2, 1) - 1) / (domain.length - 1));
   }
-  scale.domain = function(_) {
+  scale2.domain = function(_) {
     if (!arguments.length) return domain.slice();
     domain = [];
     for (let d of _) if (d != null && !isNaN(d = +d)) domain.push(d);
     domain.sort(ascending);
-    return scale;
+    return scale2;
   };
-  scale.interpolator = function(_) {
-    return arguments.length ? (interpolator = _, scale) : interpolator;
+  scale2.interpolator = function(_) {
+    return arguments.length ? (interpolator = _, scale2) : interpolator;
   };
-  scale.range = function() {
+  scale2.range = function() {
     return domain.map((d, i) => interpolator(i / (domain.length - 1)));
   };
-  scale.quantiles = function(n) {
+  scale2.quantiles = function(n) {
     return Array.from({ length: n + 1 }, (_, i) => quantile(domain, i / n));
   };
-  scale.copy = function() {
+  scale2.copy = function() {
     return sequentialQuantile(interpolator).domain(domain);
   };
-  return initInterpolator.apply(scale, arguments);
+  return initInterpolator.apply(scale2, arguments);
 }
 
 // node_modules/d3-scale/src/diverging.js
 function transformer3() {
-  var x0 = 0, x1 = 0.5, x2 = 1, s2 = 1, t02, t12, t2, k10, k21, interpolator = identity, transform, clamp = false, unknown;
-  function scale(x3) {
-    return isNaN(x3 = +x3) ? unknown : (x3 = 0.5 + ((x3 = +transform(x3)) - t12) * (s2 * x3 < s2 * t12 ? k10 : k21), interpolator(clamp ? Math.max(0, Math.min(1, x3)) : x3));
+  var x0 = 0, x1 = 0.5, x2 = 1, s2 = 1, t02, t12, t2, k10, k21, interpolator = identity, transform, clamp2 = false, unknown;
+  function scale2(x3) {
+    return isNaN(x3 = +x3) ? unknown : (x3 = 0.5 + ((x3 = +transform(x3)) - t12) * (s2 * x3 < s2 * t12 ? k10 : k21), interpolator(clamp2 ? Math.max(0, Math.min(1, x3)) : x3));
   }
-  scale.domain = function(_) {
-    return arguments.length ? ([x0, x1, x2] = _, t02 = transform(x0 = +x0), t12 = transform(x1 = +x1), t2 = transform(x2 = +x2), k10 = t02 === t12 ? 0 : 0.5 / (t12 - t02), k21 = t12 === t2 ? 0 : 0.5 / (t2 - t12), s2 = t12 < t02 ? -1 : 1, scale) : [x0, x1, x2];
+  scale2.domain = function(_) {
+    return arguments.length ? ([x0, x1, x2] = _, t02 = transform(x0 = +x0), t12 = transform(x1 = +x1), t2 = transform(x2 = +x2), k10 = t02 === t12 ? 0 : 0.5 / (t12 - t02), k21 = t12 === t2 ? 0 : 0.5 / (t2 - t12), s2 = t12 < t02 ? -1 : 1, scale2) : [x0, x1, x2];
   };
-  scale.clamp = function(_) {
-    return arguments.length ? (clamp = !!_, scale) : clamp;
+  scale2.clamp = function(_) {
+    return arguments.length ? (clamp2 = !!_, scale2) : clamp2;
   };
-  scale.interpolator = function(_) {
-    return arguments.length ? (interpolator = _, scale) : interpolator;
+  scale2.interpolator = function(_) {
+    return arguments.length ? (interpolator = _, scale2) : interpolator;
   };
-  function range6(interpolate) {
+  function range6(interpolate2) {
     return function(_) {
       var r0, r1, r2;
-      return arguments.length ? ([r0, r1, r2] = _, interpolator = piecewise(interpolate, [r0, r1, r2]), scale) : [interpolator(0), interpolator(0.5), interpolator(1)];
+      return arguments.length ? ([r0, r1, r2] = _, interpolator = piecewise(interpolate2, [r0, r1, r2]), scale2) : [interpolator(0), interpolator(0.5), interpolator(1)];
     };
   }
-  scale.range = range6(value_default);
-  scale.rangeRound = range6(round_default);
-  scale.unknown = function(_) {
-    return arguments.length ? (unknown = _, scale) : unknown;
+  scale2.range = range6(value_default);
+  scale2.rangeRound = range6(round_default);
+  scale2.unknown = function(_) {
+    return arguments.length ? (unknown = _, scale2) : unknown;
   };
   return function(t) {
     transform = t, t02 = t(x0), t12 = t(x1), t2 = t(x2), k10 = t02 === t12 ? 0 : 0.5 / (t12 - t02), k21 = t12 === t2 ? 0 : 0.5 / (t2 - t12), s2 = t12 < t02 ? -1 : 1;
-    return scale;
+    return scale2;
   };
 }
 function diverging() {
-  var scale = linearish(transformer3()(identity));
-  scale.copy = function() {
-    return copy2(scale, diverging());
+  var scale2 = linearish(transformer3()(identity));
+  scale2.copy = function() {
+    return copy2(scale2, diverging());
   };
-  return initInterpolator.apply(scale, arguments);
+  return initInterpolator.apply(scale2, arguments);
 }
 function divergingLog() {
-  var scale = loggish(transformer3()).domain([0.1, 1, 10]);
-  scale.copy = function() {
-    return copy2(scale, divergingLog()).base(scale.base());
+  var scale2 = loggish(transformer3()).domain([0.1, 1, 10]);
+  scale2.copy = function() {
+    return copy2(scale2, divergingLog()).base(scale2.base());
   };
-  return initInterpolator.apply(scale, arguments);
+  return initInterpolator.apply(scale2, arguments);
 }
 function divergingSymlog() {
-  var scale = symlogish(transformer3());
-  scale.copy = function() {
-    return copy2(scale, divergingSymlog()).constant(scale.constant());
+  var scale2 = symlogish(transformer3());
+  scale2.copy = function() {
+    return copy2(scale2, divergingSymlog()).constant(scale2.constant());
   };
-  return initInterpolator.apply(scale, arguments);
+  return initInterpolator.apply(scale2, arguments);
 }
 function divergingPow() {
-  var scale = powish(transformer3());
-  scale.copy = function() {
-    return copy2(scale, divergingPow()).exponent(scale.exponent());
+  var scale2 = powish(transformer3());
+  scale2.copy = function() {
+    return copy2(scale2, divergingPow()).exponent(scale2.exponent());
   };
-  return initInterpolator.apply(scale, arguments);
+  return initInterpolator.apply(scale2, arguments);
 }
 function divergingSqrt() {
   return divergingPow.apply(null, arguments).exponent(0.5);
@@ -38381,12 +46624,12 @@ var getTickValues = memoize(getTickValuesFn);
 var getTickValuesFixedDomain = memoize(getTickValuesFixedDomainFn);
 
 // node_modules/recharts/es6/cartesian/ErrorBar.js
-var import_react13 = __toESM(require_react());
+var import_react38 = __toESM(require_react());
 
 // node_modules/tiny-invariant/dist/esm/tiny-invariant.js
 var isProduction = false;
 var prefix = "Invariant failed";
-function invariant(condition, message) {
+function invariant2(condition, message) {
   if (condition) {
     return;
   }
@@ -38591,9 +46834,9 @@ var ErrorBar = /* @__PURE__ */ function(_React$Component) {
   return _createClass6(ErrorBar2, [{
     key: "render",
     value: function render() {
-      var _this$props = this.props, offset = _this$props.offset, layout = _this$props.layout, width = _this$props.width, dataKey = _this$props.dataKey, data = _this$props.data, dataPointFormatter = _this$props.dataPointFormatter, xAxis = _this$props.xAxis, yAxis = _this$props.yAxis, others = _objectWithoutProperties7(_this$props, _excluded8);
-      var svgProps = filterProps(others, false);
-      !!(this.props.direction === "x" && xAxis.type !== "number") ? true ? invariant(false, 'ErrorBar requires Axis type property to be "number".') : invariant(false) : void 0;
+      var _this$props = this.props, offset = _this$props.offset, layout2 = _this$props.layout, width = _this$props.width, dataKey = _this$props.dataKey, data = _this$props.data, dataPointFormatter = _this$props.dataPointFormatter, xAxis = _this$props.xAxis, yAxis = _this$props.yAxis, others = _objectWithoutProperties7(_this$props, _excluded8);
+      var svgProps = filterProps2(others, false);
+      !!(this.props.direction === "x" && xAxis.type !== "number") ? true ? invariant2(false, 'ErrorBar requires Axis type property to be "number".') : invariant2(false) : void 0;
       var errorBars = data.map(function(entry) {
         var _dataPointFormatter = dataPointFormatter(entry, dataKey), x2 = _dataPointFormatter.x, y2 = _dataPointFormatter.y, value = _dataPointFormatter.value, errorVal = _dataPointFormatter.errorVal;
         if (!errorVal) {
@@ -38608,13 +46851,13 @@ var ErrorBar = /* @__PURE__ */ function(_React$Component) {
         } else {
           lowBound = highBound = errorVal;
         }
-        if (layout === "vertical") {
-          var scale = xAxis.scale;
+        if (layout2 === "vertical") {
+          var scale2 = xAxis.scale;
           var yMid = y2 + offset;
           var yMin = yMid + width;
           var yMax = yMid - width;
-          var xMin = scale(value - lowBound);
-          var xMax = scale(value + highBound);
+          var xMin = scale2(value - lowBound);
+          var xMax = scale2(value + highBound);
           lineCoordinates.push({
             x1: xMax,
             y1: yMin,
@@ -38633,7 +46876,7 @@ var ErrorBar = /* @__PURE__ */ function(_React$Component) {
             x2: xMin,
             y2: yMax
           });
-        } else if (layout === "horizontal") {
+        } else if (layout2 === "horizontal") {
           var _scale = yAxis.scale;
           var xMid = x2 + offset;
           var _xMin = xMid - width;
@@ -38659,23 +46902,23 @@ var ErrorBar = /* @__PURE__ */ function(_React$Component) {
             y2: _yMin
           });
         }
-        return /* @__PURE__ */ import_react13.default.createElement(Layer, _extends7({
+        return /* @__PURE__ */ import_react38.default.createElement(Layer, _extends7({
           className: "recharts-errorBar",
           key: "bar-".concat(lineCoordinates.map(function(c2) {
             return "".concat(c2.x1, "-").concat(c2.x2, "-").concat(c2.y1, "-").concat(c2.y2);
           }))
         }, svgProps), lineCoordinates.map(function(coordinates) {
-          return /* @__PURE__ */ import_react13.default.createElement("line", _extends7({}, coordinates, {
+          return /* @__PURE__ */ import_react38.default.createElement("line", _extends7({}, coordinates, {
             key: "line-".concat(coordinates.x1, "-").concat(coordinates.x2, "-").concat(coordinates.y1, "-").concat(coordinates.y2)
           }));
         }));
       });
-      return /* @__PURE__ */ import_react13.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react38.default.createElement(Layer, {
         className: "recharts-errorBars"
       }, errorBars);
     }
   }]);
-}(import_react13.default.Component);
+}(import_react38.default.Component);
 _defineProperty10(ErrorBar, "defaultProps", {
   stroke: "black",
   strokeWidth: 1.5,
@@ -39089,24 +47332,24 @@ var appendOffsetOfLegend = function appendOffsetOfLegend2(offset, _unused, props
   });
   if (legendProps) {
     var _ref4 = legendBox || {}, boxWidth = _ref4.width, boxHeight = _ref4.height;
-    var align = legendProps.align, verticalAlign = legendProps.verticalAlign, layout = legendProps.layout;
-    if ((layout === "vertical" || layout === "horizontal" && verticalAlign === "middle") && align !== "center" && isNumber(offset[align])) {
+    var align = legendProps.align, verticalAlign = legendProps.verticalAlign, layout2 = legendProps.layout;
+    if ((layout2 === "vertical" || layout2 === "horizontal" && verticalAlign === "middle") && align !== "center" && isNumber(offset[align])) {
       return _objectSpread10(_objectSpread10({}, offset), {}, _defineProperty12({}, align, offset[align] + (boxWidth || 0)));
     }
-    if ((layout === "horizontal" || layout === "vertical" && align === "center") && verticalAlign !== "middle" && isNumber(offset[verticalAlign])) {
+    if ((layout2 === "horizontal" || layout2 === "vertical" && align === "center") && verticalAlign !== "middle" && isNumber(offset[verticalAlign])) {
       return _objectSpread10(_objectSpread10({}, offset), {}, _defineProperty12({}, verticalAlign, offset[verticalAlign] + (boxHeight || 0)));
     }
   }
   return offset;
 };
-var isErrorBarRelevantForAxis = function isErrorBarRelevantForAxis2(layout, axisType, direction) {
+var isErrorBarRelevantForAxis = function isErrorBarRelevantForAxis2(layout2, axisType, direction) {
   if ((0, import_isNil5.default)(axisType)) {
     return true;
   }
-  if (layout === "horizontal") {
+  if (layout2 === "horizontal") {
     return axisType === "yAxis";
   }
-  if (layout === "vertical") {
+  if (layout2 === "vertical") {
     return axisType === "xAxis";
   }
   if (direction === "x") {
@@ -39117,10 +47360,10 @@ var isErrorBarRelevantForAxis = function isErrorBarRelevantForAxis2(layout, axis
   }
   return true;
 };
-var getDomainOfErrorBars = function getDomainOfErrorBars2(data, item, dataKey, layout, axisType) {
+var getDomainOfErrorBars = function getDomainOfErrorBars2(data, item, dataKey, layout2, axisType) {
   var children = item.props.children;
   var errorBars = findAllByType(children, ErrorBar).filter(function(errorBarChild) {
-    return isErrorBarRelevantForAxis(layout, axisType, errorBarChild.props.direction);
+    return isErrorBarRelevantForAxis(layout2, axisType, errorBarChild.props.direction);
   });
   if (errorBars && errorBars.length) {
     var keys2 = errorBars.map(function(errorBarChild) {
@@ -39141,9 +47384,9 @@ var getDomainOfErrorBars = function getDomainOfErrorBars2(data, item, dataKey, l
   }
   return null;
 };
-var parseErrorBarsOfAxis = function parseErrorBarsOfAxis2(data, items, dataKey, axisType, layout) {
+var parseErrorBarsOfAxis = function parseErrorBarsOfAxis2(data, items, dataKey, axisType, layout2) {
   var domains = items.map(function(item) {
-    return getDomainOfErrorBars(data, item, dataKey, layout, axisType);
+    return getDomainOfErrorBars(data, item, dataKey, layout2, axisType);
   }).filter(function(entry) {
     return !(0, import_isNil5.default)(entry);
   });
@@ -39154,11 +47397,11 @@ var parseErrorBarsOfAxis = function parseErrorBarsOfAxis2(data, items, dataKey, 
   }
   return null;
 };
-var getDomainOfItemsWithSameAxis = function getDomainOfItemsWithSameAxis2(data, items, type, layout, filterNil) {
+var getDomainOfItemsWithSameAxis = function getDomainOfItemsWithSameAxis2(data, items, type, layout2, filterNil) {
   var domains = items.map(function(item) {
     var dataKey = item.props.dataKey;
     if (type === "number" && dataKey) {
-      return getDomainOfErrorBars(data, item, dataKey, layout) || getDomainOfDataByKey(data, dataKey, type, filterNil);
+      return getDomainOfErrorBars(data, item, dataKey, layout2) || getDomainOfDataByKey(data, dataKey, type, filterNil);
     }
     return getDomainOfDataByKey(data, dataKey, type, filterNil);
   });
@@ -39183,8 +47426,8 @@ var getDomainOfItemsWithSameAxis = function getDomainOfItemsWithSameAxis2(data, 
     return result;
   }, []);
 };
-var isCategoricalAxis = function isCategoricalAxis2(layout, axisType) {
-  return layout === "horizontal" && axisType === "xAxis" || layout === "vertical" && axisType === "yAxis" || layout === "centric" && axisType === "angleAxis" || layout === "radial" && axisType === "radiusAxis";
+var isCategoricalAxis = function isCategoricalAxis2(layout2, axisType) {
+  return layout2 === "horizontal" && axisType === "xAxis" || layout2 === "vertical" && axisType === "yAxis" || layout2 === "centric" && axisType === "angleAxis" || layout2 === "radial" && axisType === "radiusAxis";
 };
 var getCoordinatesOfGrid = function getCoordinatesOfGrid2(ticks2, minValue, maxValue, syncWithTicks) {
   if (syncWithTicks) {
@@ -39212,10 +47455,10 @@ var getCoordinatesOfGrid = function getCoordinatesOfGrid2(ticks2, minValue, maxV
 };
 var getTicksOfAxis = function getTicksOfAxis2(axis, isGrid, isAll) {
   if (!axis) return null;
-  var scale = axis.scale;
+  var scale2 = axis.scale;
   var duplicateDomain = axis.duplicateDomain, type = axis.type, range6 = axis.range;
-  var offsetForBand = axis.realScaleType === "scaleBand" ? scale.bandwidth() / 2 : 2;
-  var offset = (isGrid || isAll) && type === "category" && scale.bandwidth ? scale.bandwidth() / offsetForBand : 0;
+  var offsetForBand = axis.realScaleType === "scaleBand" ? scale2.bandwidth() / 2 : 2;
+  var offset = (isGrid || isAll) && type === "category" && scale2.bandwidth ? scale2.bandwidth() / offsetForBand : 0;
   offset = axis.axisType === "angleAxis" && (range6 === null || range6 === void 0 ? void 0 : range6.length) >= 2 ? mathSign(range6[0] - range6[1]) * 2 * offset : offset;
   if (isGrid && (axis.ticks || axis.niceTicks)) {
     var result = (axis.ticks || axis.niceTicks).map(function(entry) {
@@ -39223,7 +47466,7 @@ var getTicksOfAxis = function getTicksOfAxis2(axis, isGrid, isAll) {
       return {
         // If the scaleContent is not a number, the coordinate will be NaN.
         // That could be the case for example with a PointScale and a string as domain.
-        coordinate: scale(scaleContent) + offset,
+        coordinate: scale2(scaleContent) + offset,
         value: entry,
         offset
       };
@@ -39235,25 +47478,25 @@ var getTicksOfAxis = function getTicksOfAxis2(axis, isGrid, isAll) {
   if (axis.isCategorical && axis.categoricalDomain) {
     return axis.categoricalDomain.map(function(entry, index) {
       return {
-        coordinate: scale(entry) + offset,
+        coordinate: scale2(entry) + offset,
         value: entry,
         index,
         offset
       };
     });
   }
-  if (scale.ticks && !isAll) {
-    return scale.ticks(axis.tickCount).map(function(entry) {
+  if (scale2.ticks && !isAll) {
+    return scale2.ticks(axis.tickCount).map(function(entry) {
       return {
-        coordinate: scale(entry) + offset,
+        coordinate: scale2(entry) + offset,
         value: entry,
         offset
       };
     });
   }
-  return scale.domain().map(function(entry, index) {
+  return scale2.domain().map(function(entry, index) {
     return {
-      coordinate: scale(entry) + offset,
+      coordinate: scale2(entry) + offset,
       value: duplicateDomain ? duplicateDomain[entry] : entry,
       index,
       offset
@@ -39280,15 +47523,15 @@ var combineEventHandlers = function combineEventHandlers2(defaultHandler, childH
   return combineHandler;
 };
 var parseScale = function parseScale2(axis, chartType, hasBar) {
-  var scale = axis.scale, type = axis.type, layout = axis.layout, axisType = axis.axisType;
-  if (scale === "auto") {
-    if (layout === "radial" && axisType === "radiusAxis") {
+  var scale2 = axis.scale, type = axis.type, layout2 = axis.layout, axisType = axis.axisType;
+  if (scale2 === "auto") {
+    if (layout2 === "radial" && axisType === "radiusAxis") {
       return {
         scale: band(),
         realScaleType: "band"
       };
     }
-    if (layout === "radial" && axisType === "angleAxis") {
+    if (layout2 === "radial" && axisType === "angleAxis") {
       return {
         scale: linear2(),
         realScaleType: "linear"
@@ -39311,34 +47554,34 @@ var parseScale = function parseScale2(axis, chartType, hasBar) {
       realScaleType: "linear"
     };
   }
-  if ((0, import_isString3.default)(scale)) {
-    var name = "scale".concat((0, import_upperFirst2.default)(scale));
+  if ((0, import_isString3.default)(scale2)) {
+    var name = "scale".concat((0, import_upperFirst2.default)(scale2));
     return {
       scale: (d3_scale_exports[name] || point3)(),
       realScaleType: d3_scale_exports[name] ? name : "point"
     };
   }
-  return (0, import_isFunction4.default)(scale) ? {
-    scale
+  return (0, import_isFunction4.default)(scale2) ? {
+    scale: scale2
   } : {
     scale: point3(),
     realScaleType: "point"
   };
 };
 var EPS2 = 1e-4;
-var checkDomainOfScale = function checkDomainOfScale2(scale) {
-  var domain = scale.domain();
+var checkDomainOfScale = function checkDomainOfScale2(scale2) {
+  var domain = scale2.domain();
   if (!domain || domain.length <= 2) {
     return;
   }
   var len = domain.length;
-  var range6 = scale.range();
+  var range6 = scale2.range();
   var minValue = Math.min(range6[0], range6[1]) - EPS2;
   var maxValue = Math.max(range6[0], range6[1]) + EPS2;
-  var first2 = scale(domain[0]);
-  var last3 = scale(domain[len - 1]);
+  var first2 = scale2(domain[0]);
+  var last3 = scale2(domain[len - 1]);
   if (first2 < minValue || first2 > maxValue || last3 < minValue || last3 > maxValue) {
-    scale.domain([domain[0], domain[len - 1]]);
+    scale2.domain([domain[0], domain[len - 1]]);
   }
 };
 var findPositionOfBar = function findPositionOfBar2(barPosition, child) {
@@ -39491,25 +47734,25 @@ var getStackGroupsByAxisId = function getStackGroupsByAxisId2(data, _items, nume
     return _objectSpread10(_objectSpread10({}, result), {}, _defineProperty12({}, axisId, group));
   }, axisStackGroupsInitialValue);
 };
-var getTicksOfScale = function getTicksOfScale2(scale, opts) {
+var getTicksOfScale = function getTicksOfScale2(scale2, opts) {
   var realScaleType = opts.realScaleType, type = opts.type, tickCount = opts.tickCount, originalDomain = opts.originalDomain, allowDecimals = opts.allowDecimals;
   var scaleType = realScaleType || opts.scale;
   if (scaleType !== "auto" && scaleType !== "linear") {
     return null;
   }
   if (tickCount && type === "number" && originalDomain && (originalDomain[0] === "auto" || originalDomain[1] === "auto")) {
-    var domain = scale.domain();
+    var domain = scale2.domain();
     if (!domain.length) {
       return null;
     }
     var tickValues = getNiceTickValues(domain, tickCount, allowDecimals);
-    scale.domain([(0, import_min2.default)(tickValues), (0, import_max2.default)(tickValues)]);
+    scale2.domain([(0, import_min2.default)(tickValues), (0, import_max2.default)(tickValues)]);
     return {
       niceTicks: tickValues
     };
   }
   if (tickCount && type === "number") {
-    var _domain = scale.domain();
+    var _domain = scale2.domain();
     var _tickValues = getTickValuesFixedDomain(_domain, tickCount, allowDecimals);
     return {
       niceTicks: _tickValues
@@ -39651,7 +47894,7 @@ var parseDomainOfCategoryAxis = function parseDomainOfCategoryAxis2(specifiedDom
 var getTooltipItem = function getTooltipItem2(graphicalItem, payload) {
   var defaultedProps = graphicalItem.type.defaultProps ? _objectSpread10(_objectSpread10({}, graphicalItem.type.defaultProps), graphicalItem.props) : graphicalItem.props;
   var dataKey = defaultedProps.dataKey, name = defaultedProps.name, unit2 = defaultedProps.unit, formatter = defaultedProps.formatter, tooltipType = defaultedProps.tooltipType, chartType = defaultedProps.chartType, hide = defaultedProps.hide;
-  return _objectSpread10(_objectSpread10({}, filterProps(graphicalItem, false)), {}, {
+  return _objectSpread10(_objectSpread10({}, filterProps2(graphicalItem, false)), {}, {
     dataKey,
     unit: unit2,
     formatter,
@@ -39789,8 +48032,8 @@ var formatAxisMap = function formatAxisMap2(props, axisMap, offset, axisType, ch
   var innerRadius = getPercentValue(props.innerRadius, maxRadius, 0);
   var outerRadius = getPercentValue(props.outerRadius, maxRadius, maxRadius * 0.8);
   var ids = Object.keys(axisMap);
-  return ids.reduce(function(result, id) {
-    var axis = axisMap[id];
+  return ids.reduce(function(result, id3) {
+    var axis = axisMap[id3];
     var domain = axis.domain, reversed = axis.reversed;
     var range6;
     if ((0, import_isNil6.default)(axis.range)) {
@@ -39809,17 +48052,17 @@ var formatAxisMap = function formatAxisMap2(props, axisMap, offset, axisType, ch
       startAngle = _range2[0];
       endAngle = _range2[1];
     }
-    var _parseScale = parseScale(axis, chartName), realScaleType = _parseScale.realScaleType, scale = _parseScale.scale;
-    scale.domain(domain).range(range6);
-    checkDomainOfScale(scale);
-    var ticks2 = getTicksOfScale(scale, _objectSpread11(_objectSpread11({}, axis), {}, {
+    var _parseScale = parseScale(axis, chartName), realScaleType = _parseScale.realScaleType, scale2 = _parseScale.scale;
+    scale2.domain(domain).range(range6);
+    checkDomainOfScale(scale2);
+    var ticks2 = getTicksOfScale(scale2, _objectSpread11(_objectSpread11({}, axis), {}, {
       realScaleType
     }));
     var finalAxis = _objectSpread11(_objectSpread11(_objectSpread11({}, axis), ticks2), {}, {
       range: range6,
       radius: outerRadius,
       realScaleType,
-      scale,
+      scale: scale2,
       cx,
       cy,
       innerRadius,
@@ -39827,7 +48070,7 @@ var formatAxisMap = function formatAxisMap2(props, axisMap, offset, axisType, ch
       startAngle,
       endAngle
     });
-    return _objectSpread11(_objectSpread11({}, result), {}, _defineProperty13({}, id, finalAxis));
+    return _objectSpread11(_objectSpread11({}, result), {}, _defineProperty13({}, id3, finalAxis));
   }, {});
 };
 var distanceBetweenPoints = function distanceBetweenPoints2(point4, anotherPoint) {
@@ -39920,7 +48163,7 @@ var inRangeOfSector = function inRangeOfSector2(_ref5, sector) {
   return null;
 };
 var getTickClassName = function getTickClassName2(tick) {
-  return !/* @__PURE__ */ (0, import_react14.isValidElement)(tick) && !(0, import_isFunction5.default)(tick) && typeof tick !== "boolean" ? tick.className : "";
+  return !/* @__PURE__ */ (0, import_react39.isValidElement)(tick) && !(0, import_isFunction5.default)(tick) && typeof tick !== "boolean" ? tick.className : "";
 };
 
 // node_modules/recharts/es6/component/Label.js
@@ -40076,15 +48319,15 @@ var renderRadialLabel = function renderRadialLabel2(labelProps, label, attrs) {
   var startPoint = polarToCartesian(cx, cy, radius, labelAngle);
   var endPoint = polarToCartesian(cx, cy, radius, labelAngle + (direction ? 1 : -1) * 359);
   var path2 = "M".concat(startPoint.x, ",").concat(startPoint.y, "\n    A").concat(radius, ",").concat(radius, ",0,1,").concat(direction ? 0 : 1, ",\n    ").concat(endPoint.x, ",").concat(endPoint.y);
-  var id = (0, import_isNil7.default)(labelProps.id) ? uniqueId("recharts-radial-line-") : labelProps.id;
-  return /* @__PURE__ */ import_react15.default.createElement("text", _extends8({}, attrs, {
+  var id3 = (0, import_isNil7.default)(labelProps.id) ? uniqueId("recharts-radial-line-") : labelProps.id;
+  return /* @__PURE__ */ import_react40.default.createElement("text", _extends8({}, attrs, {
     dominantBaseline: "central",
     className: clsx_default("recharts-radial-bar-label", className)
-  }), /* @__PURE__ */ import_react15.default.createElement("defs", null, /* @__PURE__ */ import_react15.default.createElement("path", {
-    id,
+  }), /* @__PURE__ */ import_react40.default.createElement("defs", null, /* @__PURE__ */ import_react40.default.createElement("path", {
+    id: id3,
     d: path2
-  })), /* @__PURE__ */ import_react15.default.createElement("textPath", {
-    xlinkHref: "#".concat(id)
+  })), /* @__PURE__ */ import_react40.default.createElement("textPath", {
+    xlinkHref: "#".concat(id3)
   }, label));
 };
 var getAttrsOfPolarLabel = function getAttrsOfPolarLabel2(props) {
@@ -40284,28 +48527,28 @@ function Label(_ref4) {
     offset
   }, restProps);
   var viewBox = props.viewBox, position3 = props.position, value = props.value, children = props.children, content = props.content, _props$className = props.className, className = _props$className === void 0 ? "" : _props$className, textBreakAll = props.textBreakAll;
-  if (!viewBox || (0, import_isNil7.default)(value) && (0, import_isNil7.default)(children) && !/* @__PURE__ */ (0, import_react15.isValidElement)(content) && !(0, import_isFunction6.default)(content)) {
+  if (!viewBox || (0, import_isNil7.default)(value) && (0, import_isNil7.default)(children) && !/* @__PURE__ */ (0, import_react40.isValidElement)(content) && !(0, import_isFunction6.default)(content)) {
     return null;
   }
-  if (/* @__PURE__ */ (0, import_react15.isValidElement)(content)) {
-    return /* @__PURE__ */ (0, import_react15.cloneElement)(content, props);
+  if (/* @__PURE__ */ (0, import_react40.isValidElement)(content)) {
+    return /* @__PURE__ */ (0, import_react40.cloneElement)(content, props);
   }
   var label;
   if ((0, import_isFunction6.default)(content)) {
-    label = /* @__PURE__ */ (0, import_react15.createElement)(content, props);
-    if (/* @__PURE__ */ (0, import_react15.isValidElement)(label)) {
+    label = /* @__PURE__ */ (0, import_react40.createElement)(content, props);
+    if (/* @__PURE__ */ (0, import_react40.isValidElement)(label)) {
       return label;
     }
   } else {
     label = getLabel(props);
   }
   var isPolarLabel = isPolar(viewBox);
-  var attrs = filterProps(props, true);
+  var attrs = filterProps2(props, true);
   if (isPolarLabel && (position3 === "insideStart" || position3 === "insideEnd" || position3 === "end")) {
     return renderRadialLabel(props, label, attrs);
   }
   var positionAttrs = isPolarLabel ? getAttrsOfPolarLabel(props) : getAttrsOfCartesianLabel(props);
-  return /* @__PURE__ */ import_react15.default.createElement(Text, _extends8({
+  return /* @__PURE__ */ import_react40.default.createElement(Text, _extends8({
     className: clsx_default("recharts-label", className)
   }, attrs, positionAttrs, {
     breakAll: textBreakAll
@@ -40364,40 +48607,40 @@ var parseLabel = function parseLabel2(label, viewBox) {
     return null;
   }
   if (label === true) {
-    return /* @__PURE__ */ import_react15.default.createElement(Label, {
+    return /* @__PURE__ */ import_react40.default.createElement(Label, {
       key: "label-implicit",
       viewBox
     });
   }
   if (isNumOrStr(label)) {
-    return /* @__PURE__ */ import_react15.default.createElement(Label, {
+    return /* @__PURE__ */ import_react40.default.createElement(Label, {
       key: "label-implicit",
       viewBox,
       value: label
     });
   }
-  if (/* @__PURE__ */ (0, import_react15.isValidElement)(label)) {
+  if (/* @__PURE__ */ (0, import_react40.isValidElement)(label)) {
     if (label.type === Label) {
-      return /* @__PURE__ */ (0, import_react15.cloneElement)(label, {
+      return /* @__PURE__ */ (0, import_react40.cloneElement)(label, {
         key: "label-implicit",
         viewBox
       });
     }
-    return /* @__PURE__ */ import_react15.default.createElement(Label, {
+    return /* @__PURE__ */ import_react40.default.createElement(Label, {
       key: "label-implicit",
       content: label,
       viewBox
     });
   }
   if ((0, import_isFunction6.default)(label)) {
-    return /* @__PURE__ */ import_react15.default.createElement(Label, {
+    return /* @__PURE__ */ import_react40.default.createElement(Label, {
       key: "label-implicit",
       content: label,
       viewBox
     });
   }
   if ((0, import_isObject3.default)(label)) {
-    return /* @__PURE__ */ import_react15.default.createElement(Label, _extends8({
+    return /* @__PURE__ */ import_react40.default.createElement(Label, _extends8({
       viewBox
     }, label, {
       key: "label-implicit"
@@ -40413,7 +48656,7 @@ var renderCallByParent = function renderCallByParent2(parentProps, viewBox) {
   var children = parentProps.children;
   var parentViewBox = parseViewBox(parentProps);
   var explicitChildren = findAllByType(children, Label).map(function(child, index) {
-    return /* @__PURE__ */ (0, import_react15.cloneElement)(child, {
+    return /* @__PURE__ */ (0, import_react40.cloneElement)(child, {
       viewBox: viewBox || parentViewBox,
       // eslint-disable-next-line react/no-array-index-key
       key: "label-".concat(index)
@@ -40429,7 +48672,7 @@ Label.parseViewBox = parseViewBox;
 Label.renderCallByParent = renderCallByParent;
 
 // node_modules/recharts/es6/component/LabelList.js
-var import_react16 = __toESM(require_react());
+var import_react41 = __toESM(require_react());
 var import_isNil8 = __toESM(require_isNil());
 var import_isObject4 = __toESM(require_isObject());
 var import_isFunction7 = __toESM(require_isFunction());
@@ -40558,18 +48801,18 @@ var defaultAccessor = function defaultAccessor2(entry) {
 };
 function LabelList(_ref) {
   var _ref$valueAccessor = _ref.valueAccessor, valueAccessor = _ref$valueAccessor === void 0 ? defaultAccessor : _ref$valueAccessor, restProps = _objectWithoutProperties9(_ref, _excluded10);
-  var data = restProps.data, dataKey = restProps.dataKey, clockWise = restProps.clockWise, id = restProps.id, textBreakAll = restProps.textBreakAll, others = _objectWithoutProperties9(restProps, _excluded23);
+  var data = restProps.data, dataKey = restProps.dataKey, clockWise = restProps.clockWise, id3 = restProps.id, textBreakAll = restProps.textBreakAll, others = _objectWithoutProperties9(restProps, _excluded23);
   if (!data || !data.length) {
     return null;
   }
-  return /* @__PURE__ */ import_react16.default.createElement(Layer, {
+  return /* @__PURE__ */ import_react41.default.createElement(Layer, {
     className: "recharts-label-list"
   }, data.map(function(entry, index) {
     var value = (0, import_isNil8.default)(dataKey) ? valueAccessor(entry, index) : getValueByDataKey(entry && entry.payload, dataKey);
-    var idProps = (0, import_isNil8.default)(id) ? {} : {
-      id: "".concat(id, "-").concat(index)
+    var idProps = (0, import_isNil8.default)(id3) ? {} : {
+      id: "".concat(id3, "-").concat(index)
     };
-    return /* @__PURE__ */ import_react16.default.createElement(Label, _extends9({}, filterProps(entry, true), others, idProps, {
+    return /* @__PURE__ */ import_react41.default.createElement(Label, _extends9({}, filterProps2(entry, true), others, idProps, {
       parentViewBox: entry.parentViewBox,
       value,
       textBreakAll,
@@ -40587,20 +48830,20 @@ function parseLabelList(label, data) {
     return null;
   }
   if (label === true) {
-    return /* @__PURE__ */ import_react16.default.createElement(LabelList, {
+    return /* @__PURE__ */ import_react41.default.createElement(LabelList, {
       key: "labelList-implicit",
       data
     });
   }
-  if (/* @__PURE__ */ import_react16.default.isValidElement(label) || (0, import_isFunction7.default)(label)) {
-    return /* @__PURE__ */ import_react16.default.createElement(LabelList, {
+  if (/* @__PURE__ */ import_react41.default.isValidElement(label) || (0, import_isFunction7.default)(label)) {
+    return /* @__PURE__ */ import_react41.default.createElement(LabelList, {
       key: "labelList-implicit",
       data,
       content: label
     });
   }
   if ((0, import_isObject4.default)(label)) {
-    return /* @__PURE__ */ import_react16.default.createElement(LabelList, _extends9({
+    return /* @__PURE__ */ import_react41.default.createElement(LabelList, _extends9({
       data
     }, label, {
       key: "labelList-implicit"
@@ -40615,7 +48858,7 @@ function renderCallByParent3(parentProps, data) {
   }
   var children = parentProps.children;
   var explicitChildren = findAllByType(children, LabelList).map(function(child, index) {
-    return /* @__PURE__ */ (0, import_react16.cloneElement)(child, {
+    return /* @__PURE__ */ (0, import_react41.cloneElement)(child, {
       data,
       // eslint-disable-next-line react/no-array-index-key
       key: "labelList-".concat(index)
@@ -40630,7 +48873,7 @@ function renderCallByParent3(parentProps, data) {
 LabelList.renderCallByParent = renderCallByParent3;
 
 // node_modules/recharts/es6/component/Customized.js
-var import_react17 = __toESM(require_react());
+var import_react42 = __toESM(require_react());
 var import_isFunction8 = __toESM(require_isFunction());
 var _excluded11 = ["component"];
 function _typeof19(o) {
@@ -40670,21 +48913,21 @@ function _objectWithoutPropertiesLoose10(source, excluded) {
 function Customized(_ref) {
   var component = _ref.component, props = _objectWithoutProperties10(_ref, _excluded11);
   var child;
-  if (/* @__PURE__ */ (0, import_react17.isValidElement)(component)) {
-    child = /* @__PURE__ */ (0, import_react17.cloneElement)(component, props);
+  if (/* @__PURE__ */ (0, import_react42.isValidElement)(component)) {
+    child = /* @__PURE__ */ (0, import_react42.cloneElement)(component, props);
   } else if ((0, import_isFunction8.default)(component)) {
-    child = /* @__PURE__ */ (0, import_react17.createElement)(component, props);
+    child = /* @__PURE__ */ (0, import_react42.createElement)(component, props);
   } else {
     warn(false, "Customized's props `component` must be React.element or Function, but got %s.", _typeof19(component));
   }
-  return /* @__PURE__ */ import_react17.default.createElement(Layer, {
+  return /* @__PURE__ */ import_react42.default.createElement(Layer, {
     className: "recharts-customized-wrapper"
   }, child);
 }
 Customized.displayName = "Customized";
 
 // node_modules/recharts/es6/shape/Sector.js
-var import_react18 = __toESM(require_react());
+var import_react43 = __toESM(require_react());
 function _typeof20(o) {
   "@babel/helpers - typeof";
   return _typeof20 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o2) {
@@ -40898,7 +49141,7 @@ var Sector = function Sector2(sectorProps) {
       endAngle
     });
   }
-  return /* @__PURE__ */ import_react18.default.createElement("path", _extends10({}, filterProps(props, true), {
+  return /* @__PURE__ */ import_react43.default.createElement("path", _extends10({}, filterProps2(props, true), {
     className: layerClass,
     d: path2,
     role: "img"
@@ -40906,7 +49149,7 @@ var Sector = function Sector2(sectorProps) {
 };
 
 // node_modules/recharts/es6/shape/Curve.js
-var React16 = __toESM(require_react());
+var React18 = __toESM(require_react());
 var import_upperFirst3 = __toESM(require_upperFirst());
 var import_isFunction9 = __toESM(require_isFunction());
 function _typeof21(o) {
@@ -40999,19 +49242,19 @@ var getX = function getX2(p) {
 var getY = function getY2(p) {
   return p.y;
 };
-var getCurveFactory = function getCurveFactory2(type, layout) {
+var getCurveFactory = function getCurveFactory2(type, layout2) {
   if ((0, import_isFunction9.default)(type)) {
     return type;
   }
   var name = "curve".concat((0, import_upperFirst3.default)(type));
-  if ((name === "curveMonotone" || name === "curveBump") && layout) {
-    return CURVE_FACTORIES["".concat(name).concat(layout === "vertical" ? "Y" : "X")];
+  if ((name === "curveMonotone" || name === "curveBump") && layout2) {
+    return CURVE_FACTORIES["".concat(name).concat(layout2 === "vertical" ? "Y" : "X")];
   }
   return CURVE_FACTORIES[name] || linear_default;
 };
 var getPath = function getPath2(_ref) {
-  var _ref$type = _ref.type, type = _ref$type === void 0 ? "linear" : _ref$type, _ref$points = _ref.points, points = _ref$points === void 0 ? [] : _ref$points, baseLine = _ref.baseLine, layout = _ref.layout, _ref$connectNulls = _ref.connectNulls, connectNulls = _ref$connectNulls === void 0 ? false : _ref$connectNulls;
-  var curveFactory = getCurveFactory(type, layout);
+  var _ref$type = _ref.type, type = _ref$type === void 0 ? "linear" : _ref$type, _ref$points = _ref.points, points = _ref$points === void 0 ? [] : _ref$points, baseLine = _ref.baseLine, layout2 = _ref.layout, _ref$connectNulls = _ref.connectNulls, connectNulls = _ref$connectNulls === void 0 ? false : _ref$connectNulls;
+  var curveFactory = getCurveFactory(type, layout2);
   var formatPoints = connectNulls ? points.filter(function(entry) {
     return defined(entry);
   }) : points;
@@ -41025,7 +49268,7 @@ var getPath = function getPath2(_ref) {
         base: formatBaseLine[index]
       });
     });
-    if (layout === "vertical") {
+    if (layout2 === "vertical") {
       lineFunction = area_default().y(getY).x1(getX).x0(function(d) {
         return d.base.x;
       });
@@ -41037,7 +49280,7 @@ var getPath = function getPath2(_ref) {
     lineFunction.defined(defined).curve(curveFactory);
     return lineFunction(areaPoints);
   }
-  if (layout === "vertical" && isNumber(baseLine)) {
+  if (layout2 === "vertical" && isNumber(baseLine)) {
     lineFunction = area_default().y(getY).x1(getX).x0(baseLine);
   } else if (isNumber(baseLine)) {
     lineFunction = area_default().x(getX).y1(getY).y0(baseLine);
@@ -41053,7 +49296,7 @@ var Curve = function Curve2(props) {
     return null;
   }
   var realPath = points && points.length ? getPath(props) : path2;
-  return /* @__PURE__ */ React16.createElement("path", _extends11({}, filterProps(props, false), adaptEventHandlers(props), {
+  return /* @__PURE__ */ React18.createElement("path", _extends11({}, filterProps2(props, false), adaptEventHandlers(props), {
     className: clsx_default("recharts-curve", className),
     d: realPath,
     ref: pathRef
@@ -41061,10 +49304,10 @@ var Curve = function Curve2(props) {
 };
 
 // node_modules/recharts/es6/shape/Rectangle.js
-var import_react20 = __toESM(require_react());
+var import_react45 = __toESM(require_react());
 
 // node_modules/react-smooth/es6/Animate.js
-var import_react19 = __toESM(require_react());
+var import_react44 = __toESM(require_react());
 var import_prop_types = __toESM(require_prop_types());
 
 // node_modules/fast-equals/dist/esm/index.mjs
@@ -41403,10 +49646,10 @@ function createInternalEqualityComparator(compare) {
   };
 }
 function createIsEqual(_a) {
-  var circular = _a.circular, comparator = _a.comparator, createState = _a.createState, equals = _a.equals, strict = _a.strict;
-  if (createState) {
+  var circular = _a.circular, comparator = _a.comparator, createState2 = _a.createState, equals = _a.equals, strict = _a.strict;
+  if (createState2) {
     return function isEqual11(a2, b) {
-      var _a2 = createState(), _b = _a2.cache, cache = _b === void 0 ? circular ? /* @__PURE__ */ new WeakMap() : void 0 : _b, meta = _a2.meta;
+      var _a2 = createState2(), _b = _a2.cache, cache = _b === void 0 ? circular ? /* @__PURE__ */ new WeakMap() : void 0 : _b, meta = _a2.meta;
       return comparator(a2, b, {
         cache,
         equals,
@@ -41470,11 +49713,11 @@ function createCustomEqual(options) {
   if (options === void 0) {
     options = {};
   }
-  var _a = options.circular, circular = _a === void 0 ? false : _a, createCustomInternalComparator = options.createInternalComparator, createState = options.createState, _b = options.strict, strict = _b === void 0 ? false : _b;
+  var _a = options.circular, circular = _a === void 0 ? false : _a, createCustomInternalComparator = options.createInternalComparator, createState2 = options.createState, _b = options.strict, strict = _b === void 0 ? false : _b;
   var config = createEqualityComparatorConfig(options);
   var comparator = createEqualityComparator(config);
   var equals = createCustomInternalComparator ? createCustomInternalComparator(comparator) : createInternalEqualityComparator(comparator);
-  return createIsEqual({ circular, comparator, createState, equals, strict });
+  return createIsEqual({ circular, comparator, createState: createState2, equals, strict });
 }
 
 // node_modules/react-smooth/es6/setRafTimeout.js
@@ -41484,12 +49727,12 @@ function safeRequestAnimationFrame(callback) {
 function setRafTimeout(callback) {
   var timeout = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0;
   var currTime = -1;
-  var shouldUpdate = function shouldUpdate2(now) {
+  var shouldUpdate = function shouldUpdate2(now2) {
     if (currTime < 0) {
-      currTime = now;
+      currTime = now2;
     }
-    if (now - currTime > timeout) {
-      callback(now);
+    if (now2 - currTime > timeout) {
+      callback(now2);
       currTime = -1;
     } else {
       safeRequestAnimationFrame(shouldUpdate2);
@@ -41538,7 +49781,7 @@ function createAnimateManager() {
     return null;
   };
   var shouldStop = false;
-  var setStyle = function setStyle2(_style) {
+  var setStyle2 = function setStyle3(_style) {
     if (shouldStop) {
       return;
     }
@@ -41549,11 +49792,11 @@ function createAnimateManager() {
       var styles = _style;
       var _styles = _toArray(styles), curr = _styles[0], restStyles = _styles.slice(1);
       if (typeof curr === "number") {
-        setRafTimeout(setStyle2.bind(null, restStyles), curr);
+        setRafTimeout(setStyle3.bind(null, restStyles), curr);
         return;
       }
-      setStyle2(curr);
-      setRafTimeout(setStyle2.bind(null, restStyles));
+      setStyle3(curr);
+      setRafTimeout(setStyle3.bind(null, restStyles));
       return;
     }
     if (_typeof22(_style) === "object") {
@@ -41570,7 +49813,7 @@ function createAnimateManager() {
     },
     start: function start(style) {
       shouldStop = false;
-      setStyle(style);
+      setStyle2(style);
     },
     subscribe: function subscribe(_handleChange) {
       handleChange = _handleChange;
@@ -41748,7 +49991,7 @@ var multyTime = function multyTime2(params, t) {
     return pre + curr;
   });
 };
-var cubicBezier = function cubicBezier2(c1, c2) {
+var cubicBezier2 = function cubicBezier3(c1, c2) {
   return function(t) {
     var params = cubicBezierFactor(c1, c2);
     return multyTime(params, t);
@@ -41820,8 +50063,8 @@ var configBezier = function configBezier2() {
   warn3([x1, x2, y1, y2].every(function(num) {
     return typeof num === "number" && num >= 0 && num <= 1;
   }), "[configBezier]: arguments should be x1, y1, x2, y2 of [0, 1] instead received %s", args);
-  var curveX = cubicBezier(x1, x2);
-  var curveY = cubicBezier(y1, y2);
+  var curveX = cubicBezier2(x1, x2);
+  var curveY = cubicBezier2(y1, y2);
   var derCurveX = derivativeCubicBezier(x1, x2);
   var rangeValue = function rangeValue2(value) {
     if (value > 1) {
@@ -42002,7 +50245,7 @@ function _iterableToArrayLimit9(r2, l) {
 function _arrayWithHoles10(arr) {
   if (Array.isArray(arr)) return arr;
 }
-var alpha = function alpha2(begin, end, k2) {
+var alpha2 = function alpha3(begin, end, k2) {
   return begin + (end - begin) * k2;
 };
 var needContinue = function needContinue2(_ref) {
@@ -42024,8 +50267,8 @@ var calStepperVals = function calStepperVals2(easing, preVals, steps) {
     return mapObject(function(key, val) {
       if (needContinue(val)) {
         return _objectSpread17(_objectSpread17({}, val), {}, {
-          velocity: alpha(val.velocity, nextStepVals[key].velocity, steps),
-          from: alpha(val.from, nextStepVals[key].from, steps)
+          velocity: alpha2(val.velocity, nextStepVals[key].velocity, steps),
+          from: alpha2(val.from, nextStepVals[key].from, steps)
         });
       }
       return val;
@@ -42059,33 +50302,33 @@ var configUpdate_default = function(from, to, easing, duration, render) {
   var shouldStopAnimation = function shouldStopAnimation2() {
     return !Object.values(stepperStyle).filter(needContinue).length;
   };
-  var stepperUpdate = function stepperUpdate2(now) {
+  var stepperUpdate = function stepperUpdate2(now2) {
     if (!preTime) {
-      preTime = now;
+      preTime = now2;
     }
-    var deltaTime = now - preTime;
+    var deltaTime = now2 - preTime;
     var steps = deltaTime / easing.dt;
     stepperStyle = calStepperVals(easing, stepperStyle, steps);
     render(_objectSpread17(_objectSpread17(_objectSpread17({}, from), to), getCurrStyle(stepperStyle)));
-    preTime = now;
+    preTime = now2;
     if (!shouldStopAnimation()) {
       cafId = requestAnimationFrame(update);
     }
   };
-  var timingUpdate = function timingUpdate2(now) {
+  var timingUpdate = function timingUpdate2(now2) {
     if (!beginTime) {
-      beginTime = now;
+      beginTime = now2;
     }
-    var t = (now - beginTime) / duration;
+    var t = (now2 - beginTime) / duration;
     var currStyle = mapObject(function(key, val) {
-      return alpha.apply(void 0, _toConsumableArray7(val).concat([easing(t)]));
+      return alpha2.apply(void 0, _toConsumableArray7(val).concat([easing(t)]));
     }, timingStyle);
     render(_objectSpread17(_objectSpread17(_objectSpread17({}, from), to), currStyle));
     if (t < 1) {
       cafId = requestAnimationFrame(update);
     } else {
       var finalStyle = mapObject(function(key, val) {
-        return alpha.apply(void 0, _toConsumableArray7(val).concat([easing(1)]));
+        return alpha2.apply(void 0, _toConsumableArray7(val).concat([easing(1)]));
       }, timingStyle);
       render(_objectSpread17(_objectSpread17(_objectSpread17({}, from), to), finalStyle));
     }
@@ -42480,7 +50723,7 @@ var Animate = /* @__PURE__ */ function(_PureComponent) {
     key: "render",
     value: function render() {
       var _this$props4 = this.props, children = _this$props4.children, begin = _this$props4.begin, duration = _this$props4.duration, attributeName = _this$props4.attributeName, easing = _this$props4.easing, isActive = _this$props4.isActive, steps = _this$props4.steps, from = _this$props4.from, to = _this$props4.to, canBegin = _this$props4.canBegin, onAnimationEnd2 = _this$props4.onAnimationEnd, shouldReAnimate = _this$props4.shouldReAnimate, onAnimationReStart = _this$props4.onAnimationReStart, others = _objectWithoutProperties11(_this$props4, _excluded12);
-      var count = import_react19.Children.count(children);
+      var count = import_react44.Children.count(children);
       var stateStyle = this.state.style;
       if (typeof children === "function") {
         return children(stateStyle);
@@ -42490,22 +50733,22 @@ var Animate = /* @__PURE__ */ function(_PureComponent) {
       }
       var cloneContainer = function cloneContainer2(container) {
         var _container$props = container.props, _container$props$styl = _container$props.style, style = _container$props$styl === void 0 ? {} : _container$props$styl, className = _container$props.className;
-        var res = /* @__PURE__ */ (0, import_react19.cloneElement)(container, _objectSpread18(_objectSpread18({}, others), {}, {
+        var res = /* @__PURE__ */ (0, import_react44.cloneElement)(container, _objectSpread18(_objectSpread18({}, others), {}, {
           style: _objectSpread18(_objectSpread18({}, style), stateStyle),
           className
         }));
         return res;
       };
       if (count === 1) {
-        return cloneContainer(import_react19.Children.only(children));
+        return cloneContainer(import_react44.Children.only(children));
       }
-      return /* @__PURE__ */ import_react19.default.createElement("div", null, import_react19.Children.map(children, function(child) {
+      return /* @__PURE__ */ import_react44.default.createElement("div", null, import_react44.Children.map(children, function(child) {
         return cloneContainer(child);
       }));
     }
   }]);
   return Animate2;
-}(import_react19.PureComponent);
+}(import_react44.PureComponent);
 Animate.displayName = "Animate";
 Animate.defaultProps = {
   begin: 0,
@@ -42702,14 +50945,14 @@ var isInRectangle = function isInRectangle2(point4, rect) {
   if (!point4 || !rect) {
     return false;
   }
-  var px = point4.x, py = point4.y;
+  var px2 = point4.x, py = point4.y;
   var x2 = rect.x, y2 = rect.y, width = rect.width, height = rect.height;
   if (Math.abs(width) > 0 && Math.abs(height) > 0) {
     var minX = Math.min(x2, x2 + width);
     var maxX = Math.max(x2, x2 + width);
     var minY = Math.min(y2, y2 + height);
     var maxY = Math.max(y2, y2 + height);
-    return px >= minX && px <= maxX && py >= minY && py <= maxY;
+    return px2 >= minX && px2 <= maxX && py >= minY && py <= maxY;
   }
   return false;
 };
@@ -42730,9 +50973,9 @@ var defaultProps2 = {
 };
 var Rectangle = function Rectangle2(rectangleProps) {
   var props = _objectSpread19(_objectSpread19({}, defaultProps2), rectangleProps);
-  var pathRef = (0, import_react20.useRef)();
-  var _useState = (0, import_react20.useState)(-1), _useState2 = _slicedToArray10(_useState, 2), totalLength = _useState2[0], setTotalLength = _useState2[1];
-  (0, import_react20.useEffect)(function() {
+  var pathRef = (0, import_react45.useRef)();
+  var _useState = (0, import_react45.useState)(-1), _useState2 = _slicedToArray10(_useState, 2), totalLength = _useState2[0], setTotalLength = _useState2[1];
+  (0, import_react45.useEffect)(function() {
     if (pathRef.current && pathRef.current.getTotalLength) {
       try {
         var pathTotalLength = pathRef.current.getTotalLength();
@@ -42750,12 +50993,12 @@ var Rectangle = function Rectangle2(rectangleProps) {
   }
   var layerClass = clsx_default("recharts-rectangle", className);
   if (!isUpdateAnimationActive) {
-    return /* @__PURE__ */ import_react20.default.createElement("path", _extends12({}, filterProps(props, true), {
+    return /* @__PURE__ */ import_react45.default.createElement("path", _extends12({}, filterProps2(props, true), {
       className: layerClass,
       d: getRectanglePath(x2, y2, width, height, radius)
     }));
   }
-  return /* @__PURE__ */ import_react20.default.createElement(es6_default, {
+  return /* @__PURE__ */ import_react45.default.createElement(es6_default, {
     canBegin: totalLength > 0,
     from: {
       width,
@@ -42774,7 +51017,7 @@ var Rectangle = function Rectangle2(rectangleProps) {
     isActive: isUpdateAnimationActive
   }, function(_ref) {
     var currWidth = _ref.width, currHeight = _ref.height, currX = _ref.x, currY = _ref.y;
-    return /* @__PURE__ */ import_react20.default.createElement(es6_default, {
+    return /* @__PURE__ */ import_react45.default.createElement(es6_default, {
       canBegin: totalLength > 0,
       from: "0px ".concat(totalLength === -1 ? 1 : totalLength, "px"),
       to: "".concat(totalLength, "px 0px"),
@@ -42783,7 +51026,7 @@ var Rectangle = function Rectangle2(rectangleProps) {
       duration: animationDuration,
       isActive: isAnimationActive,
       easing: animationEasing
-    }, /* @__PURE__ */ import_react20.default.createElement("path", _extends12({}, filterProps(props, true), {
+    }, /* @__PURE__ */ import_react45.default.createElement("path", _extends12({}, filterProps2(props, true), {
       className: layerClass,
       d: getRectanglePath(currX, currY, currWidth, currHeight, radius),
       ref: pathRef
@@ -42792,7 +51035,7 @@ var Rectangle = function Rectangle2(rectangleProps) {
 };
 
 // node_modules/recharts/es6/shape/Polygon.js
-var import_react21 = __toESM(require_react());
+var import_react46 = __toESM(require_react());
 var _excluded13 = ["points", "className", "baseLinePoints", "connectNulls"];
 function _extends13() {
   _extends13 = Object.assign ? Object.assign.bind() : function(target) {
@@ -42907,22 +51150,22 @@ var Polygon = function Polygon2(props) {
   if (baseLinePoints && baseLinePoints.length) {
     var hasStroke = others.stroke && others.stroke !== "none";
     var rangePath = getRanglePath(points, baseLinePoints, connectNulls);
-    return /* @__PURE__ */ import_react21.default.createElement("g", {
+    return /* @__PURE__ */ import_react46.default.createElement("g", {
       className: layerClass
-    }, /* @__PURE__ */ import_react21.default.createElement("path", _extends13({}, filterProps(others, true), {
+    }, /* @__PURE__ */ import_react46.default.createElement("path", _extends13({}, filterProps2(others, true), {
       fill: rangePath.slice(-1) === "Z" ? others.fill : "none",
       stroke: "none",
       d: rangePath
-    })), hasStroke ? /* @__PURE__ */ import_react21.default.createElement("path", _extends13({}, filterProps(others, true), {
+    })), hasStroke ? /* @__PURE__ */ import_react46.default.createElement("path", _extends13({}, filterProps2(others, true), {
       fill: "none",
       d: getSinglePolygonPath(points, connectNulls)
-    })) : null, hasStroke ? /* @__PURE__ */ import_react21.default.createElement("path", _extends13({}, filterProps(others, true), {
+    })) : null, hasStroke ? /* @__PURE__ */ import_react46.default.createElement("path", _extends13({}, filterProps2(others, true), {
       fill: "none",
       d: getSinglePolygonPath(baseLinePoints, connectNulls)
     })) : null);
   }
   var singlePath = getSinglePolygonPath(points, connectNulls);
-  return /* @__PURE__ */ import_react21.default.createElement("path", _extends13({}, filterProps(others, true), {
+  return /* @__PURE__ */ import_react46.default.createElement("path", _extends13({}, filterProps2(others, true), {
     fill: singlePath.slice(-1) === "Z" ? others.fill : "none",
     className: layerClass,
     d: singlePath
@@ -42930,7 +51173,7 @@ var Polygon = function Polygon2(props) {
 };
 
 // node_modules/recharts/es6/shape/Dot.js
-var React20 = __toESM(require_react());
+var React22 = __toESM(require_react());
 function _extends14() {
   _extends14 = Object.assign ? Object.assign.bind() : function(target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -42949,7 +51192,7 @@ var Dot = function Dot2(props) {
   var cx = props.cx, cy = props.cy, r2 = props.r, className = props.className;
   var layerClass = clsx_default("recharts-dot", className);
   if (cx === +cx && cy === +cy && r2 === +r2) {
-    return /* @__PURE__ */ React20.createElement("circle", _extends14({}, filterProps(props, false), adaptEventHandlers(props), {
+    return /* @__PURE__ */ React22.createElement("circle", _extends14({}, filterProps2(props, false), adaptEventHandlers(props), {
       className: layerClass,
       cx,
       cy,
@@ -42960,7 +51203,7 @@ var Dot = function Dot2(props) {
 };
 
 // node_modules/recharts/es6/shape/Cross.js
-var import_react22 = __toESM(require_react());
+var import_react47 = __toESM(require_react());
 function _typeof27(o) {
   "@babel/helpers - typeof";
   return _typeof27 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o2) {
@@ -43070,14 +51313,14 @@ var Cross = function Cross2(_ref) {
   if (!isNumber(x2) || !isNumber(y2) || !isNumber(width) || !isNumber(height) || !isNumber(top) || !isNumber(left)) {
     return null;
   }
-  return /* @__PURE__ */ import_react22.default.createElement("path", _extends15({}, filterProps(props, true), {
+  return /* @__PURE__ */ import_react47.default.createElement("path", _extends15({}, filterProps2(props, true), {
     className: clsx_default("recharts-cross", className),
     d: getPath3(x2, y2, width, height, top, left)
   }));
 };
 
 // node_modules/recharts/es6/polar/PolarGrid.js
-var import_react23 = __toESM(require_react());
+var import_react48 = __toESM(require_react());
 var _excluded15 = ["cx", "cy", "innerRadius", "outerRadius", "gridType", "radialLines"];
 function _typeof28(o) {
   "@babel/helpers - typeof";
@@ -43191,13 +51434,13 @@ var PolarAngles = function PolarAngles2(props) {
   }
   var polarAnglesProps = _objectSpread21({
     stroke: "#ccc"
-  }, filterProps(props, false));
-  return /* @__PURE__ */ import_react23.default.createElement("g", {
+  }, filterProps2(props, false));
+  return /* @__PURE__ */ import_react48.default.createElement("g", {
     className: "recharts-polar-grid-angle"
   }, polarAngles.map(function(entry) {
     var start = polarToCartesian(cx, cy, innerRadius, entry);
     var end = polarToCartesian(cx, cy, outerRadius, entry);
-    return /* @__PURE__ */ import_react23.default.createElement("line", _extends16({}, polarAnglesProps, {
+    return /* @__PURE__ */ import_react48.default.createElement("line", _extends16({}, polarAnglesProps, {
       key: "line-".concat(entry),
       x1: start.x,
       y1: start.y,
@@ -43210,10 +51453,10 @@ var ConcentricCircle = function ConcentricCircle2(props) {
   var cx = props.cx, cy = props.cy, radius = props.radius, index = props.index;
   var concentricCircleProps = _objectSpread21(_objectSpread21({
     stroke: "#ccc"
-  }, filterProps(props, false)), {}, {
+  }, filterProps2(props, false)), {}, {
     fill: "none"
   });
-  return /* @__PURE__ */ import_react23.default.createElement("circle", _extends16({}, concentricCircleProps, {
+  return /* @__PURE__ */ import_react48.default.createElement("circle", _extends16({}, concentricCircleProps, {
     className: clsx_default("recharts-polar-grid-concentric-circle", props.className),
     key: "circle-".concat(index),
     cx,
@@ -43225,10 +51468,10 @@ var ConcentricPolygon = function ConcentricPolygon2(props) {
   var radius = props.radius, index = props.index;
   var concentricPolygonProps = _objectSpread21(_objectSpread21({
     stroke: "#ccc"
-  }, filterProps(props, false)), {}, {
+  }, filterProps2(props, false)), {}, {
     fill: "none"
   });
-  return /* @__PURE__ */ import_react23.default.createElement("path", _extends16({}, concentricPolygonProps, {
+  return /* @__PURE__ */ import_react48.default.createElement("path", _extends16({}, concentricPolygonProps, {
     className: clsx_default("recharts-polar-grid-concentric-polygon", props.className),
     key: "path-".concat(index),
     d: getPolygonPath(radius, props.cx, props.cy, props.polarAngles)
@@ -43239,17 +51482,17 @@ var ConcentricPath = function ConcentricPath2(props) {
   if (!polarRadius || !polarRadius.length) {
     return null;
   }
-  return /* @__PURE__ */ import_react23.default.createElement("g", {
+  return /* @__PURE__ */ import_react48.default.createElement("g", {
     className: "recharts-polar-grid-concentric"
   }, polarRadius.map(function(entry, i) {
     var key = i;
-    if (gridType === "circle") return /* @__PURE__ */ import_react23.default.createElement(ConcentricCircle, _extends16({
+    if (gridType === "circle") return /* @__PURE__ */ import_react48.default.createElement(ConcentricCircle, _extends16({
       key
     }, props, {
       radius: entry,
       index: i
     }));
-    return /* @__PURE__ */ import_react23.default.createElement(ConcentricPolygon, _extends16({
+    return /* @__PURE__ */ import_react48.default.createElement(ConcentricPolygon, _extends16({
       key
     }, props, {
       radius: entry,
@@ -43262,16 +51505,16 @@ var PolarGrid = function PolarGrid2(_ref) {
   if (outerRadius <= 0) {
     return null;
   }
-  return /* @__PURE__ */ import_react23.default.createElement("g", {
+  return /* @__PURE__ */ import_react48.default.createElement("g", {
     className: "recharts-polar-grid"
-  }, /* @__PURE__ */ import_react23.default.createElement(PolarAngles, _extends16({
+  }, /* @__PURE__ */ import_react48.default.createElement(PolarAngles, _extends16({
     cx,
     cy,
     innerRadius,
     outerRadius,
     gridType,
     radialLines
-  }, props)), /* @__PURE__ */ import_react23.default.createElement(ConcentricPath, _extends16({
+  }, props)), /* @__PURE__ */ import_react48.default.createElement(ConcentricPath, _extends16({
     cx,
     cy,
     innerRadius,
@@ -43283,7 +51526,7 @@ var PolarGrid = function PolarGrid2(_ref) {
 PolarGrid.displayName = "PolarGrid";
 
 // node_modules/recharts/es6/polar/PolarRadiusAxis.js
-var import_react24 = __toESM(require_react());
+var import_react49 = __toESM(require_react());
 var import_maxBy = __toESM(require_maxBy());
 var import_minBy = __toESM(require_minBy());
 var import_isFunction10 = __toESM(require_isFunction());
@@ -43515,15 +51758,15 @@ var PolarRadiusAxis = /* @__PURE__ */ function(_PureComponent) {
       }, [Infinity, -Infinity]);
       var point0 = polarToCartesian(cx, cy, extent[0], angle);
       var point1 = polarToCartesian(cx, cy, extent[1], angle);
-      var props = _objectSpread22(_objectSpread22(_objectSpread22({}, filterProps(others, false)), {}, {
+      var props = _objectSpread22(_objectSpread22(_objectSpread22({}, filterProps2(others, false)), {}, {
         fill: "none"
-      }, filterProps(axisLine, false)), {}, {
+      }, filterProps2(axisLine, false)), {}, {
         x1: point0.x,
         y1: point0.y,
         x2: point1.x,
         y2: point1.y
       });
-      return /* @__PURE__ */ import_react24.default.createElement("line", _extends17({
+      return /* @__PURE__ */ import_react49.default.createElement("line", _extends17({
         className: "recharts-polar-radius-axis-line"
       }, props));
     }
@@ -43533,8 +51776,8 @@ var PolarRadiusAxis = /* @__PURE__ */ function(_PureComponent) {
       var _this = this;
       var _this$props4 = this.props, ticks2 = _this$props4.ticks, tick = _this$props4.tick, angle = _this$props4.angle, tickFormatter = _this$props4.tickFormatter, stroke = _this$props4.stroke, others = _objectWithoutProperties15(_this$props4, _excluded24);
       var textAnchor = this.getTickTextAnchor();
-      var axisProps = filterProps(others, false);
-      var customTickProps = filterProps(tick, false);
+      var axisProps = filterProps2(others, false);
+      var customTickProps = filterProps2(tick, false);
       var items = ticks2.map(function(entry, i) {
         var coord = _this.getTickValueCoord(entry);
         var tickProps = _objectSpread22(_objectSpread22(_objectSpread22(_objectSpread22({
@@ -43548,12 +51791,12 @@ var PolarRadiusAxis = /* @__PURE__ */ function(_PureComponent) {
         }, coord), {}, {
           payload: entry
         });
-        return /* @__PURE__ */ import_react24.default.createElement(Layer, _extends17({
+        return /* @__PURE__ */ import_react49.default.createElement(Layer, _extends17({
           className: clsx_default("recharts-polar-radius-axis-tick", getTickClassName(tick)),
           key: "tick-".concat(entry.coordinate)
         }, adaptEventsOfChild(_this.props, entry, i)), PolarRadiusAxis2.renderTickItem(tick, tickProps, tickFormatter ? tickFormatter(entry.value, i) : entry.value));
       });
-      return /* @__PURE__ */ import_react24.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react49.default.createElement(Layer, {
         className: "recharts-polar-radius-axis-ticks"
       }, items);
     }
@@ -43564,7 +51807,7 @@ var PolarRadiusAxis = /* @__PURE__ */ function(_PureComponent) {
       if (!ticks2 || !ticks2.length) {
         return null;
       }
-      return /* @__PURE__ */ import_react24.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react49.default.createElement(Layer, {
         className: clsx_default("recharts-polar-radius-axis", this.props.className)
       }, axisLine && this.renderAxisLine(), tick && this.renderTicks(), Label.renderCallByParent(this.props, this.getViewBox()));
     }
@@ -43572,19 +51815,19 @@ var PolarRadiusAxis = /* @__PURE__ */ function(_PureComponent) {
     key: "renderTickItem",
     value: function renderTickItem(option, props, value) {
       var tickItem;
-      if (/* @__PURE__ */ import_react24.default.isValidElement(option)) {
-        tickItem = /* @__PURE__ */ import_react24.default.cloneElement(option, props);
+      if (/* @__PURE__ */ import_react49.default.isValidElement(option)) {
+        tickItem = /* @__PURE__ */ import_react49.default.cloneElement(option, props);
       } else if ((0, import_isFunction10.default)(option)) {
         tickItem = option(props);
       } else {
-        tickItem = /* @__PURE__ */ import_react24.default.createElement(Text, _extends17({}, props, {
+        tickItem = /* @__PURE__ */ import_react49.default.createElement(Text, _extends17({}, props, {
           className: "recharts-polar-radius-axis-tick-value"
         }), value);
       }
       return tickItem;
     }
   }]);
-}(import_react24.PureComponent);
+}(import_react49.PureComponent);
 _defineProperty24(PolarRadiusAxis, "displayName", "PolarRadiusAxis");
 _defineProperty24(PolarRadiusAxis, "axisType", "radiusAxis");
 _defineProperty24(PolarRadiusAxis, "defaultProps", {
@@ -43604,7 +51847,7 @@ _defineProperty24(PolarRadiusAxis, "defaultProps", {
 });
 
 // node_modules/recharts/es6/polar/PolarAngleAxis.js
-var import_react25 = __toESM(require_react());
+var import_react50 = __toESM(require_react());
 var import_isFunction11 = __toESM(require_isFunction());
 function _typeof30(o) {
   "@babel/helpers - typeof";
@@ -43795,11 +52038,11 @@ var PolarAngleAxis = /* @__PURE__ */ function(_PureComponent) {
     key: "renderAxisLine",
     value: function renderAxisLine() {
       var _this$props2 = this.props, cx = _this$props2.cx, cy = _this$props2.cy, radius = _this$props2.radius, axisLine = _this$props2.axisLine, axisLineType = _this$props2.axisLineType;
-      var props = _objectSpread23(_objectSpread23({}, filterProps(this.props, false)), {}, {
+      var props = _objectSpread23(_objectSpread23({}, filterProps2(this.props, false)), {}, {
         fill: "none"
-      }, filterProps(axisLine, false));
+      }, filterProps2(axisLine, false));
       if (axisLineType === "circle") {
-        return /* @__PURE__ */ import_react25.default.createElement(Dot, _extends18({
+        return /* @__PURE__ */ import_react50.default.createElement(Dot, _extends18({
           className: "recharts-polar-angle-axis-line"
         }, props, {
           cx,
@@ -43811,7 +52054,7 @@ var PolarAngleAxis = /* @__PURE__ */ function(_PureComponent) {
       var points = ticks2.map(function(entry) {
         return polarToCartesian(cx, cy, radius, entry.coordinate);
       });
-      return /* @__PURE__ */ import_react25.default.createElement(Polygon, _extends18({
+      return /* @__PURE__ */ import_react50.default.createElement(Polygon, _extends18({
         className: "recharts-polar-angle-axis-line"
       }, props, {
         points
@@ -43822,11 +52065,11 @@ var PolarAngleAxis = /* @__PURE__ */ function(_PureComponent) {
     value: function renderTicks() {
       var _this = this;
       var _this$props3 = this.props, ticks2 = _this$props3.ticks, tick = _this$props3.tick, tickLine = _this$props3.tickLine, tickFormatter = _this$props3.tickFormatter, stroke = _this$props3.stroke;
-      var axisProps = filterProps(this.props, false);
-      var customTickProps = filterProps(tick, false);
+      var axisProps = filterProps2(this.props, false);
+      var customTickProps = filterProps2(tick, false);
       var tickLineProps = _objectSpread23(_objectSpread23({}, axisProps), {}, {
         fill: "none"
-      }, filterProps(tickLine, false));
+      }, filterProps2(tickLine, false));
       var items = ticks2.map(function(entry, i) {
         var lineCoord = _this.getTickLineCoord(entry);
         var textAnchor = _this.getTickTextAnchor(entry);
@@ -43841,14 +52084,14 @@ var PolarAngleAxis = /* @__PURE__ */ function(_PureComponent) {
           x: lineCoord.x2,
           y: lineCoord.y2
         });
-        return /* @__PURE__ */ import_react25.default.createElement(Layer, _extends18({
+        return /* @__PURE__ */ import_react50.default.createElement(Layer, _extends18({
           className: clsx_default("recharts-polar-angle-axis-tick", getTickClassName(tick)),
           key: "tick-".concat(entry.coordinate)
-        }, adaptEventsOfChild(_this.props, entry, i)), tickLine && /* @__PURE__ */ import_react25.default.createElement("line", _extends18({
+        }, adaptEventsOfChild(_this.props, entry, i)), tickLine && /* @__PURE__ */ import_react50.default.createElement("line", _extends18({
           className: "recharts-polar-angle-axis-tick-line"
         }, tickLineProps, lineCoord)), tick && PolarAngleAxis2.renderTickItem(tick, tickProps, tickFormatter ? tickFormatter(entry.value, i) : entry.value));
       });
-      return /* @__PURE__ */ import_react25.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react50.default.createElement(Layer, {
         className: "recharts-polar-angle-axis-ticks"
       }, items);
     }
@@ -43859,7 +52102,7 @@ var PolarAngleAxis = /* @__PURE__ */ function(_PureComponent) {
       if (radius <= 0 || !ticks2 || !ticks2.length) {
         return null;
       }
-      return /* @__PURE__ */ import_react25.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react50.default.createElement(Layer, {
         className: clsx_default("recharts-polar-angle-axis", this.props.className)
       }, axisLine && this.renderAxisLine(), this.renderTicks());
     }
@@ -43867,19 +52110,19 @@ var PolarAngleAxis = /* @__PURE__ */ function(_PureComponent) {
     key: "renderTickItem",
     value: function renderTickItem(option, props, value) {
       var tickItem;
-      if (/* @__PURE__ */ import_react25.default.isValidElement(option)) {
-        tickItem = /* @__PURE__ */ import_react25.default.cloneElement(option, props);
+      if (/* @__PURE__ */ import_react50.default.isValidElement(option)) {
+        tickItem = /* @__PURE__ */ import_react50.default.cloneElement(option, props);
       } else if ((0, import_isFunction11.default)(option)) {
         tickItem = option(props);
       } else {
-        tickItem = /* @__PURE__ */ import_react25.default.createElement(Text, _extends18({}, props, {
+        tickItem = /* @__PURE__ */ import_react50.default.createElement(Text, _extends18({}, props, {
           className: "recharts-polar-angle-axis-tick-value"
         }), value);
       }
       return tickItem;
     }
   }]);
-}(import_react25.PureComponent);
+}(import_react50.PureComponent);
 _defineProperty25(PolarAngleAxis, "displayName", "PolarAngleAxis");
 _defineProperty25(PolarAngleAxis, "axisType", "angleAxis");
 _defineProperty25(PolarAngleAxis, "defaultProps", {
@@ -43898,21 +52141,21 @@ _defineProperty25(PolarAngleAxis, "defaultProps", {
 });
 
 // node_modules/recharts/es6/polar/Pie.js
-var import_react28 = __toESM(require_react());
+var import_react53 = __toESM(require_react());
 var import_get4 = __toESM(require_get());
 var import_isEqual3 = __toESM(require_isEqual());
 var import_isNil9 = __toESM(require_isNil());
 var import_isFunction13 = __toESM(require_isFunction());
 
 // node_modules/recharts/es6/util/ActiveShapeUtils.js
-var import_react27 = __toESM(require_react());
+var import_react52 = __toESM(require_react());
 var import_isFunction12 = __toESM(require_isFunction());
 var import_isPlainObject = __toESM(require_isPlainObject());
 var import_isBoolean = __toESM(require_isBoolean());
 var import_isEqual2 = __toESM(require_isEqual());
 
 // node_modules/recharts/es6/shape/Trapezoid.js
-var import_react26 = __toESM(require_react());
+var import_react51 = __toESM(require_react());
 function _typeof31(o) {
   "@babel/helpers - typeof";
   return _typeof31 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o2) {
@@ -44045,9 +52288,9 @@ var defaultProps3 = {
 };
 var Trapezoid = function Trapezoid2(props) {
   var trapezoidProps = _objectSpread24(_objectSpread24({}, defaultProps3), props);
-  var pathRef = (0, import_react26.useRef)();
-  var _useState = (0, import_react26.useState)(-1), _useState2 = _slicedToArray11(_useState, 2), totalLength = _useState2[0], setTotalLength = _useState2[1];
-  (0, import_react26.useEffect)(function() {
+  var pathRef = (0, import_react51.useRef)();
+  var _useState = (0, import_react51.useState)(-1), _useState2 = _slicedToArray11(_useState, 2), totalLength = _useState2[0], setTotalLength = _useState2[1];
+  (0, import_react51.useEffect)(function() {
     if (pathRef.current && pathRef.current.getTotalLength) {
       try {
         var pathTotalLength = pathRef.current.getTotalLength();
@@ -44065,12 +52308,12 @@ var Trapezoid = function Trapezoid2(props) {
   }
   var layerClass = clsx_default("recharts-trapezoid", className);
   if (!isUpdateAnimationActive) {
-    return /* @__PURE__ */ import_react26.default.createElement("g", null, /* @__PURE__ */ import_react26.default.createElement("path", _extends19({}, filterProps(trapezoidProps, true), {
+    return /* @__PURE__ */ import_react51.default.createElement("g", null, /* @__PURE__ */ import_react51.default.createElement("path", _extends19({}, filterProps2(trapezoidProps, true), {
       className: layerClass,
       d: getTrapezoidPath(x2, y2, upperWidth, lowerWidth, height)
     })));
   }
-  return /* @__PURE__ */ import_react26.default.createElement(es6_default, {
+  return /* @__PURE__ */ import_react51.default.createElement(es6_default, {
     canBegin: totalLength > 0,
     from: {
       upperWidth: 0,
@@ -44091,7 +52334,7 @@ var Trapezoid = function Trapezoid2(props) {
     isActive: isUpdateAnimationActive
   }, function(_ref) {
     var currUpperWidth = _ref.upperWidth, currLowerWidth = _ref.lowerWidth, currHeight = _ref.height, currX = _ref.x, currY = _ref.y;
-    return /* @__PURE__ */ import_react26.default.createElement(es6_default, {
+    return /* @__PURE__ */ import_react51.default.createElement(es6_default, {
       canBegin: totalLength > 0,
       from: "0px ".concat(totalLength === -1 ? 1 : totalLength, "px"),
       to: "".concat(totalLength, "px 0px"),
@@ -44099,7 +52342,7 @@ var Trapezoid = function Trapezoid2(props) {
       begin: animationBegin,
       duration: animationDuration,
       easing: animationEasing
-    }, /* @__PURE__ */ import_react26.default.createElement("path", _extends19({}, filterProps(trapezoidProps, true), {
+    }, /* @__PURE__ */ import_react51.default.createElement("path", _extends19({}, filterProps2(trapezoidProps, true), {
       className: layerClass,
       d: getTrapezoidPath(currX, currY, currUpperWidth, currLowerWidth, currHeight),
       ref: pathRef
@@ -44197,14 +52440,14 @@ function ShapeSelector(_ref) {
   var shapeType = _ref.shapeType, elementProps = _ref.elementProps;
   switch (shapeType) {
     case "rectangle":
-      return /* @__PURE__ */ import_react27.default.createElement(Rectangle, elementProps);
+      return /* @__PURE__ */ import_react52.default.createElement(Rectangle, elementProps);
     case "trapezoid":
-      return /* @__PURE__ */ import_react27.default.createElement(Trapezoid, elementProps);
+      return /* @__PURE__ */ import_react52.default.createElement(Trapezoid, elementProps);
     case "sector":
-      return /* @__PURE__ */ import_react27.default.createElement(Sector, elementProps);
+      return /* @__PURE__ */ import_react52.default.createElement(Sector, elementProps);
     case "symbols":
       if (isSymbolsProps(shapeType, elementProps)) {
-        return /* @__PURE__ */ import_react27.default.createElement(Symbols, elementProps);
+        return /* @__PURE__ */ import_react52.default.createElement(Symbols, elementProps);
       }
       break;
     default:
@@ -44212,7 +52455,7 @@ function ShapeSelector(_ref) {
   }
 }
 function getPropsFromShapeOption(option) {
-  if (/* @__PURE__ */ (0, import_react27.isValidElement)(option)) {
+  if (/* @__PURE__ */ (0, import_react52.isValidElement)(option)) {
     return option.props;
   }
   return option;
@@ -44220,25 +52463,25 @@ function getPropsFromShapeOption(option) {
 function Shape(_ref2) {
   var option = _ref2.option, shapeType = _ref2.shapeType, _ref2$propTransformer = _ref2.propTransformer, propTransformer = _ref2$propTransformer === void 0 ? defaultPropTransformer : _ref2$propTransformer, _ref2$activeClassName = _ref2.activeClassName, activeClassName = _ref2$activeClassName === void 0 ? "recharts-active-shape" : _ref2$activeClassName, isActive = _ref2.isActive, props = _objectWithoutProperties16(_ref2, _excluded17);
   var shape;
-  if (/* @__PURE__ */ (0, import_react27.isValidElement)(option)) {
-    shape = /* @__PURE__ */ (0, import_react27.cloneElement)(option, _objectSpread25(_objectSpread25({}, props), getPropsFromShapeOption(option)));
+  if (/* @__PURE__ */ (0, import_react52.isValidElement)(option)) {
+    shape = /* @__PURE__ */ (0, import_react52.cloneElement)(option, _objectSpread25(_objectSpread25({}, props), getPropsFromShapeOption(option)));
   } else if ((0, import_isFunction12.default)(option)) {
     shape = option(props);
   } else if ((0, import_isPlainObject.default)(option) && !(0, import_isBoolean.default)(option)) {
     var nextProps = propTransformer(option, props);
-    shape = /* @__PURE__ */ import_react27.default.createElement(ShapeSelector, {
+    shape = /* @__PURE__ */ import_react52.default.createElement(ShapeSelector, {
       shapeType,
       elementProps: nextProps
     });
   } else {
     var elementProps = props;
-    shape = /* @__PURE__ */ import_react27.default.createElement(ShapeSelector, {
+    shape = /* @__PURE__ */ import_react52.default.createElement(ShapeSelector, {
       shapeType,
       elementProps
     });
   }
   if (isActive) {
-    return /* @__PURE__ */ import_react27.default.createElement(Layer, {
+    return /* @__PURE__ */ import_react52.default.createElement(Layer, {
       className: activeClassName
     }, shape);
   }
@@ -44518,9 +52761,9 @@ var Pie = /* @__PURE__ */ function(_PureComponent) {
         return null;
       }
       var _this$props = this.props, label = _this$props.label, labelLine = _this$props.labelLine, dataKey = _this$props.dataKey, valueKey = _this$props.valueKey;
-      var pieProps = filterProps(this.props, false);
-      var customLabelProps = filterProps(label, false);
-      var customLabelLineProps = filterProps(labelLine, false);
+      var pieProps = filterProps2(this.props, false);
+      var customLabelProps = filterProps2(label, false);
+      var customLabelLineProps = filterProps2(labelLine, false);
       var offsetRadius = label && label.offsetRadius || 20;
       var labels = sectors.map(function(entry, i) {
         var midAngle = (entry.startAngle + entry.endAngle) / 2;
@@ -44546,12 +52789,12 @@ var Pie = /* @__PURE__ */ function(_PureComponent) {
         }
         return (
           // eslint-disable-next-line react/no-array-index-key
-          /* @__PURE__ */ import_react28.default.createElement(Layer, {
+          /* @__PURE__ */ import_react53.default.createElement(Layer, {
             key: "label-".concat(entry.startAngle, "-").concat(entry.endAngle, "-").concat(entry.midAngle, "-").concat(i)
           }, labelLine && Pie3.renderLabelLineItem(labelLine, lineProps, "line"), Pie3.renderLabelItem(label, labelProps, getValueByDataKey(entry, realDataKey)))
         );
       });
-      return /* @__PURE__ */ import_react28.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react53.default.createElement(Layer, {
         className: "recharts-pie-labels"
       }, labels);
     }
@@ -44569,7 +52812,7 @@ var Pie = /* @__PURE__ */ function(_PureComponent) {
           stroke: blendStroke ? entry.fill : entry.stroke,
           tabIndex: -1
         });
-        return /* @__PURE__ */ import_react28.default.createElement(Layer, _extends20({
+        return /* @__PURE__ */ import_react53.default.createElement(Layer, _extends20({
           ref: function ref(_ref) {
             if (_ref && !_this2.sectorRefs.includes(_ref)) {
               _this2.sectorRefs.push(_ref);
@@ -44580,7 +52823,7 @@ var Pie = /* @__PURE__ */ function(_PureComponent) {
         }, adaptEventsOfChild(_this2.props, entry, i), {
           // eslint-disable-next-line react/no-array-index-key
           key: "sector-".concat(entry === null || entry === void 0 ? void 0 : entry.startAngle, "-").concat(entry === null || entry === void 0 ? void 0 : entry.endAngle, "-").concat(entry.midAngle, "-").concat(i)
-        }), /* @__PURE__ */ import_react28.default.createElement(Shape, _extends20({
+        }), /* @__PURE__ */ import_react53.default.createElement(Shape, _extends20({
           option: sectorOptions,
           isActive,
           shapeType: "sector"
@@ -44593,7 +52836,7 @@ var Pie = /* @__PURE__ */ function(_PureComponent) {
       var _this3 = this;
       var _this$props3 = this.props, sectors = _this$props3.sectors, isAnimationActive = _this$props3.isAnimationActive, animationBegin = _this$props3.animationBegin, animationDuration = _this$props3.animationDuration, animationEasing = _this$props3.animationEasing, animationId = _this$props3.animationId;
       var _this$state = this.state, prevSectors = _this$state.prevSectors, prevIsAnimationActive = _this$state.prevIsAnimationActive;
-      return /* @__PURE__ */ import_react28.default.createElement(es6_default, {
+      return /* @__PURE__ */ import_react53.default.createElement(es6_default, {
         begin: animationBegin,
         duration: animationDuration,
         isActive: isAnimationActive,
@@ -44635,7 +52878,7 @@ var Pie = /* @__PURE__ */ function(_PureComponent) {
             curAngle = _latest.endAngle;
           }
         });
-        return /* @__PURE__ */ import_react28.default.createElement(Layer, null, _this3.renderSectorsStatically(stepData));
+        return /* @__PURE__ */ import_react53.default.createElement(Layer, null, _this3.renderSectorsStatically(stepData));
       });
     }
   }, {
@@ -44701,7 +52944,7 @@ var Pie = /* @__PURE__ */ function(_PureComponent) {
         return null;
       }
       var layerClass = clsx_default("recharts-pie", className);
-      return /* @__PURE__ */ import_react28.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react53.default.createElement(Layer, {
         tabIndex: this.props.rootTabIndex,
         className: layerClass,
         ref: function ref(_ref3) {
@@ -44751,14 +52994,14 @@ var Pie = /* @__PURE__ */ function(_PureComponent) {
   }, {
     key: "renderLabelLineItem",
     value: function renderLabelLineItem(option, props, key) {
-      if (/* @__PURE__ */ import_react28.default.isValidElement(option)) {
-        return /* @__PURE__ */ import_react28.default.cloneElement(option, props);
+      if (/* @__PURE__ */ import_react53.default.isValidElement(option)) {
+        return /* @__PURE__ */ import_react53.default.cloneElement(option, props);
       }
       if ((0, import_isFunction13.default)(option)) {
         return option(props);
       }
       var className = clsx_default("recharts-pie-label-line", typeof option !== "boolean" ? option.className : "");
-      return /* @__PURE__ */ import_react28.default.createElement(Curve, _extends20({}, props, {
+      return /* @__PURE__ */ import_react53.default.createElement(Curve, _extends20({}, props, {
         key,
         type: "linear",
         className
@@ -44767,24 +53010,24 @@ var Pie = /* @__PURE__ */ function(_PureComponent) {
   }, {
     key: "renderLabelItem",
     value: function renderLabelItem(option, props, value) {
-      if (/* @__PURE__ */ import_react28.default.isValidElement(option)) {
-        return /* @__PURE__ */ import_react28.default.cloneElement(option, props);
+      if (/* @__PURE__ */ import_react53.default.isValidElement(option)) {
+        return /* @__PURE__ */ import_react53.default.cloneElement(option, props);
       }
       var label = value;
       if ((0, import_isFunction13.default)(option)) {
         label = option(props);
-        if (/* @__PURE__ */ import_react28.default.isValidElement(label)) {
+        if (/* @__PURE__ */ import_react53.default.isValidElement(label)) {
           return label;
         }
       }
       var className = clsx_default("recharts-pie-label-text", typeof option !== "boolean" && !(0, import_isFunction13.default)(option) ? option.className : "");
-      return /* @__PURE__ */ import_react28.default.createElement(Text, _extends20({}, props, {
+      return /* @__PURE__ */ import_react53.default.createElement(Text, _extends20({}, props, {
         alignmentBaseline: "middle",
         className
       }), label);
     }
   }]);
-}(import_react28.PureComponent);
+}(import_react53.PureComponent);
 _Pie = Pie;
 _defineProperty28(Pie, "displayName", "Pie");
 _defineProperty28(Pie, "defaultProps", {
@@ -44816,7 +53059,7 @@ _defineProperty28(Pie, "parseDeltaAngle", function(startAngle, endAngle) {
 });
 _defineProperty28(Pie, "getRealPieData", function(itemProps) {
   var data = itemProps.data, children = itemProps.children;
-  var presentationProps = filterProps(itemProps, false);
+  var presentationProps = filterProps2(itemProps, false);
   var cells = findAllByType(children, Cell);
   if (data && data.length) {
     return data.map(function(entry, index) {
@@ -44883,14 +53126,14 @@ _defineProperty28(Pie, "getComposedData", function(_ref4) {
     sectors = pieData.map(function(entry, i) {
       var val = getValueByDataKey(entry, realDataKey, 0);
       var name = getValueByDataKey(entry, nameKey, i);
-      var percent = (isNumber(val) ? val : 0) / sum;
+      var percent2 = (isNumber(val) ? val : 0) / sum;
       var tempStartAngle;
       if (i) {
         tempStartAngle = prev.endAngle + mathSign(deltaAngle) * paddingAngle * (val !== 0 ? 1 : 0);
       } else {
         tempStartAngle = startAngle;
       }
-      var tempEndAngle = tempStartAngle + mathSign(deltaAngle) * ((val !== 0 ? minAngle : 0) + percent * realTotalAngle);
+      var tempEndAngle = tempStartAngle + mathSign(deltaAngle) * ((val !== 0 ? minAngle : 0) + percent2 * realTotalAngle);
       var midAngle = (tempStartAngle + tempEndAngle) / 2;
       var middleRadius = (coordinate.innerRadius + coordinate.outerRadius) / 2;
       var tooltipPayload = [{
@@ -44902,7 +53145,7 @@ _defineProperty28(Pie, "getComposedData", function(_ref4) {
       }];
       var tooltipPosition = polarToCartesian(coordinate.cx, coordinate.cy, middleRadius, midAngle);
       prev = _objectSpread26(_objectSpread26(_objectSpread26({
-        percent,
+        percent: percent2,
         cornerRadius,
         name,
         tooltipPayload,
@@ -44926,7 +53169,7 @@ _defineProperty28(Pie, "getComposedData", function(_ref4) {
 });
 
 // node_modules/recharts/es6/polar/Radar.js
-var import_react29 = __toESM(require_react());
+var import_react54 = __toESM(require_react());
 var import_isNil10 = __toESM(require_isNil());
 var import_last2 = __toESM(require_last());
 var import_first = __toESM(require_first());
@@ -45141,8 +53384,8 @@ var Radar = /* @__PURE__ */ function(_PureComponent) {
     key: "renderDots",
     value: function renderDots(points) {
       var _this$props = this.props, dot = _this$props.dot, dataKey = _this$props.dataKey;
-      var baseProps = filterProps(this.props, false);
-      var customDotProps = filterProps(dot, true);
+      var baseProps = filterProps2(this.props, false);
+      var customDotProps = filterProps2(dot, true);
       var dots = points.map(function(entry, i) {
         var dotProps = _objectSpread27(_objectSpread27(_objectSpread27({
           key: "dot-".concat(i),
@@ -45156,7 +53399,7 @@ var Radar = /* @__PURE__ */ function(_PureComponent) {
         });
         return Radar2.renderDotItem(dot, dotProps);
       });
-      return /* @__PURE__ */ import_react29.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react54.default.createElement(Layer, {
         className: "recharts-radar-dots"
       }, dots);
     }
@@ -45165,8 +53408,8 @@ var Radar = /* @__PURE__ */ function(_PureComponent) {
     value: function renderPolygonStatically(points) {
       var _this$props2 = this.props, shape = _this$props2.shape, dot = _this$props2.dot, isRange = _this$props2.isRange, baseLinePoints = _this$props2.baseLinePoints, connectNulls = _this$props2.connectNulls;
       var radar;
-      if (/* @__PURE__ */ import_react29.default.isValidElement(shape)) {
-        radar = /* @__PURE__ */ import_react29.default.cloneElement(shape, _objectSpread27(_objectSpread27({}, this.props), {}, {
+      if (/* @__PURE__ */ import_react54.default.isValidElement(shape)) {
+        radar = /* @__PURE__ */ import_react54.default.cloneElement(shape, _objectSpread27(_objectSpread27({}, this.props), {}, {
           points
         }));
       } else if ((0, import_isFunction14.default)(shape)) {
@@ -45174,7 +53417,7 @@ var Radar = /* @__PURE__ */ function(_PureComponent) {
           points
         }));
       } else {
-        radar = /* @__PURE__ */ import_react29.default.createElement(Polygon, _extends21({}, filterProps(this.props, true), {
+        radar = /* @__PURE__ */ import_react54.default.createElement(Polygon, _extends21({}, filterProps2(this.props, true), {
           onMouseEnter: this.handleMouseEnter,
           onMouseLeave: this.handleMouseLeave,
           points,
@@ -45182,7 +53425,7 @@ var Radar = /* @__PURE__ */ function(_PureComponent) {
           connectNulls
         }));
       }
-      return /* @__PURE__ */ import_react29.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react54.default.createElement(Layer, {
         className: "recharts-radar-polygon"
       }, radar, dot ? this.renderDots(points) : null);
     }
@@ -45192,7 +53435,7 @@ var Radar = /* @__PURE__ */ function(_PureComponent) {
       var _this2 = this;
       var _this$props3 = this.props, points = _this$props3.points, isAnimationActive = _this$props3.isAnimationActive, animationBegin = _this$props3.animationBegin, animationDuration = _this$props3.animationDuration, animationEasing = _this$props3.animationEasing, animationId = _this$props3.animationId;
       var prevPoints = this.state.prevPoints;
-      return /* @__PURE__ */ import_react29.default.createElement(es6_default, {
+      return /* @__PURE__ */ import_react54.default.createElement(es6_default, {
         begin: animationBegin,
         duration: animationDuration,
         isActive: isAnimationActive,
@@ -45248,7 +53491,7 @@ var Radar = /* @__PURE__ */ function(_PureComponent) {
       }
       var isAnimationFinished = this.state.isAnimationFinished;
       var layerClass = clsx_default("recharts-radar", className);
-      return /* @__PURE__ */ import_react29.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react54.default.createElement(Layer, {
         className: layerClass
       }, this.renderPolygon(), (!isAnimationActive || isAnimationFinished) && LabelList.renderCallByParent(this.props, points));
     }
@@ -45273,13 +53516,13 @@ var Radar = /* @__PURE__ */ function(_PureComponent) {
     key: "renderDotItem",
     value: function renderDotItem(option, props) {
       var dotItem;
-      if (/* @__PURE__ */ import_react29.default.isValidElement(option)) {
-        dotItem = /* @__PURE__ */ import_react29.default.cloneElement(option, props);
+      if (/* @__PURE__ */ import_react54.default.isValidElement(option)) {
+        dotItem = /* @__PURE__ */ import_react54.default.cloneElement(option, props);
       } else if ((0, import_isFunction14.default)(option)) {
         dotItem = option(props);
       } else {
         var key = props.key, dotProps = _objectWithoutProperties17(props, _excluded18);
-        dotItem = /* @__PURE__ */ import_react29.default.createElement(Dot, _extends21({}, dotProps, {
+        dotItem = /* @__PURE__ */ import_react54.default.createElement(Dot, _extends21({}, dotProps, {
           key,
           className: clsx_default("recharts-radar-dot", typeof option !== "boolean" ? option.className : "")
         }));
@@ -45287,7 +53530,7 @@ var Radar = /* @__PURE__ */ function(_PureComponent) {
       return dotItem;
     }
   }]);
-}(import_react29.PureComponent);
+}(import_react54.PureComponent);
 _defineProperty29(Radar, "displayName", "Radar");
 _defineProperty29(Radar, "defaultProps", {
   angleAxisId: 0,
@@ -45348,12 +53591,12 @@ _defineProperty29(Radar, "getComposedData", function(_ref2) {
 });
 
 // node_modules/recharts/es6/polar/RadialBar.js
-var import_react31 = __toESM(require_react());
+var import_react56 = __toESM(require_react());
 var import_isEqual5 = __toESM(require_isEqual());
 var import_isFunction15 = __toESM(require_isFunction());
 
 // node_modules/recharts/es6/util/RadialBarUtils.js
-var import_react30 = __toESM(require_react());
+var import_react55 = __toESM(require_react());
 function _typeof35(o) {
   "@babel/helpers - typeof";
   return _typeof35 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o2) {
@@ -45437,7 +53680,7 @@ function typeGuardSectorProps(option, props) {
   });
 }
 function RadialBarSector(props) {
-  return /* @__PURE__ */ import_react30.default.createElement(Shape, _extends22({
+  return /* @__PURE__ */ import_react55.default.createElement(Shape, _extends22({
     shapeType: "sector",
     propTransformer: typeGuardSectorProps
   }, props));
@@ -45651,7 +53894,7 @@ var RadialBar = /* @__PURE__ */ function(_PureComponent) {
     value: function renderSectorsStatically(sectors) {
       var _this2 = this;
       var _this$props2 = this.props, shape = _this$props2.shape, activeShape = _this$props2.activeShape, activeIndex = _this$props2.activeIndex, cornerRadius = _this$props2.cornerRadius, others = _objectWithoutProperties18(_this$props2, _excluded19);
-      var baseProps = filterProps(others, false);
+      var baseProps = filterProps2(others, false);
       return sectors.map(function(entry, i) {
         var isActive = i === activeIndex;
         var props = _objectSpread29(_objectSpread29(_objectSpread29(_objectSpread29({}, baseProps), {}, {
@@ -45663,7 +53906,7 @@ var RadialBar = /* @__PURE__ */ function(_PureComponent) {
           isActive,
           option: isActive ? activeShape : shape
         });
-        return /* @__PURE__ */ import_react31.default.createElement(RadialBarSector, _extends23({}, props, {
+        return /* @__PURE__ */ import_react56.default.createElement(RadialBarSector, _extends23({}, props, {
           key: "sector-".concat(i)
         }));
       });
@@ -45674,7 +53917,7 @@ var RadialBar = /* @__PURE__ */ function(_PureComponent) {
       var _this3 = this;
       var _this$props3 = this.props, data = _this$props3.data, isAnimationActive = _this$props3.isAnimationActive, animationBegin = _this$props3.animationBegin, animationDuration = _this$props3.animationDuration, animationEasing = _this$props3.animationEasing, animationId = _this$props3.animationId;
       var prevData = this.state.prevData;
-      return /* @__PURE__ */ import_react31.default.createElement(es6_default, {
+      return /* @__PURE__ */ import_react56.default.createElement(es6_default, {
         begin: animationBegin,
         duration: animationDuration,
         isActive: isAnimationActive,
@@ -45706,7 +53949,7 @@ var RadialBar = /* @__PURE__ */ function(_PureComponent) {
             endAngle: interpolator(t)
           });
         });
-        return /* @__PURE__ */ import_react31.default.createElement(Layer, null, _this3.renderSectorsStatically(stepData));
+        return /* @__PURE__ */ import_react56.default.createElement(Layer, null, _this3.renderSectorsStatically(stepData));
       });
     }
   }, {
@@ -45724,7 +53967,7 @@ var RadialBar = /* @__PURE__ */ function(_PureComponent) {
     value: function renderBackground(sectors) {
       var _this4 = this;
       var cornerRadius = this.props.cornerRadius;
-      var backgroundProps = filterProps(this.props.background, false);
+      var backgroundProps = filterProps2(this.props.background, false);
       return sectors.map(function(entry, i) {
         var value = entry.value, background = entry.background, rest = _objectWithoutProperties18(entry, _excluded25);
         if (!background) {
@@ -45740,7 +53983,7 @@ var RadialBar = /* @__PURE__ */ function(_PureComponent) {
           option: background,
           isActive: false
         });
-        return /* @__PURE__ */ import_react31.default.createElement(RadialBarSector, _extends23({}, props, {
+        return /* @__PURE__ */ import_react56.default.createElement(RadialBarSector, _extends23({}, props, {
           key: "sector-".concat(i)
         }));
       });
@@ -45754,11 +53997,11 @@ var RadialBar = /* @__PURE__ */ function(_PureComponent) {
       }
       var isAnimationFinished = this.state.isAnimationFinished;
       var layerClass = clsx_default("recharts-area", className);
-      return /* @__PURE__ */ import_react31.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react56.default.createElement(Layer, {
         className: layerClass
-      }, background && /* @__PURE__ */ import_react31.default.createElement(Layer, {
+      }, background && /* @__PURE__ */ import_react56.default.createElement(Layer, {
         className: "recharts-radial-bar-background"
-      }, this.renderBackground(data)), /* @__PURE__ */ import_react31.default.createElement(Layer, {
+      }, this.renderBackground(data)), /* @__PURE__ */ import_react56.default.createElement(Layer, {
         className: "recharts-radial-bar-sectors"
       }, this.renderSectors()), (!isAnimationActive || isAnimationFinished) && LabelList.renderCallByParent(_objectSpread29({}, this.props), data));
     }
@@ -45780,7 +54023,7 @@ var RadialBar = /* @__PURE__ */ function(_PureComponent) {
       return null;
     }
   }]);
-}(import_react31.PureComponent);
+}(import_react56.PureComponent);
 _defineProperty31(RadialBar, "displayName", "RadialBar");
 _defineProperty31(RadialBar, "defaultProps", {
   angleAxisId: 0,
@@ -45803,9 +54046,9 @@ _defineProperty31(RadialBar, "getComposedData", function(_ref2) {
     return null;
   }
   var cx = angleAxis.cx, cy = angleAxis.cy;
-  var layout = props.layout;
+  var layout2 = props.layout;
   var _item$props = item.props, children = _item$props.children, minPointSize = _item$props.minPointSize;
-  var numericAxis = layout === "radial" ? angleAxis : radiusAxis;
+  var numericAxis = layout2 === "radial" ? angleAxis : radiusAxis;
   var stackedDomain = stackedData ? numericAxis.scale.domain() : null;
   var baseValue = getBaseValueOfBar({
     numericAxis
@@ -45821,7 +54064,7 @@ _defineProperty31(RadialBar, "getComposedData", function(_ref2) {
         value = [baseValue, value];
       }
     }
-    if (layout === "radial") {
+    if (layout2 === "radial") {
       innerRadius = getCateCoordinateOfBar({
         axis: radiusAxis,
         ticks: radiusAxisTicks,
@@ -45882,12 +54125,12 @@ _defineProperty31(RadialBar, "getComposedData", function(_ref2) {
   });
   return {
     data: sectors,
-    layout
+    layout: layout2
   };
 });
 
 // node_modules/recharts/es6/cartesian/Brush.js
-var import_react32 = __toESM(require_react());
+var import_react57 = __toESM(require_react());
 var import_isFunction16 = __toESM(require_isFunction());
 var import_range2 = __toESM(require_range());
 
@@ -46100,18 +54343,18 @@ var createScale = function createScale2(_ref) {
     return {};
   }
   var len = data.length;
-  var scale = point3().domain((0, import_range2.default)(0, len)).range([x2, x2 + width - travellerWidth]);
-  var scaleValues = scale.domain().map(function(entry) {
-    return scale(entry);
+  var scale2 = point3().domain((0, import_range2.default)(0, len)).range([x2, x2 + width - travellerWidth]);
+  var scaleValues = scale2.domain().map(function(entry) {
+    return scale2(entry);
   });
   return {
     isTextActive: false,
     isSlideMoving: false,
     isTravellerMoving: false,
     isTravellerFocused: false,
-    startX: scale(startIndex),
-    endX: scale(endIndex),
-    scale,
+    startX: scale2(startIndex),
+    endX: scale2(endIndex),
+    scale: scale2,
     scaleValues
   };
 };
@@ -46256,12 +54499,12 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
     }
   }, {
     key: "handleTravellerDragStart",
-    value: function handleTravellerDragStart(id, e) {
+    value: function handleTravellerDragStart(id3, e) {
       var event = isTouch(e) ? e.changedTouches[0] : e;
       this.setState({
         isSlideMoving: false,
         isTravellerMoving: true,
-        movingTravellerId: id,
+        movingTravellerId: id3,
         brushMoveStartX: event.pageX
       });
       this.attachDragEndListener();
@@ -46302,10 +54545,10 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
     }
   }, {
     key: "handleTravellerMoveKeyboard",
-    value: function handleTravellerMoveKeyboard(direction, id) {
+    value: function handleTravellerMoveKeyboard(direction, id3) {
       var _this2 = this;
       var _this$state3 = this.state, scaleValues = _this$state3.scaleValues, startX = _this$state3.startX, endX = _this$state3.endX;
-      var currentScaleValue = this.state[id];
+      var currentScaleValue = this.state[id3];
       var currentIndex = scaleValues.indexOf(currentScaleValue);
       if (currentIndex === -1) {
         return;
@@ -46315,10 +54558,10 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
         return;
       }
       var newScaleValue = scaleValues[newIndex];
-      if (id === "startX" && newScaleValue >= endX || id === "endX" && newScaleValue <= startX) {
+      if (id3 === "startX" && newScaleValue >= endX || id3 === "endX" && newScaleValue <= startX) {
         return;
       }
-      this.setState(_defineProperty33({}, id, newScaleValue), function() {
+      this.setState(_defineProperty33({}, id3, newScaleValue), function() {
         _this2.props.onChange(_this2.getIndex({
           startX: _this2.state.startX,
           endX: _this2.state.endX
@@ -46329,7 +54572,7 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
     key: "renderBackground",
     value: function renderBackground() {
       var _this$props6 = this.props, x2 = _this$props6.x, y2 = _this$props6.y, width = _this$props6.width, height = _this$props6.height, fill = _this$props6.fill, stroke = _this$props6.stroke;
-      return /* @__PURE__ */ import_react32.default.createElement("rect", {
+      return /* @__PURE__ */ import_react57.default.createElement("rect", {
         stroke,
         fill,
         x: x2,
@@ -46342,11 +54585,11 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
     key: "renderPanorama",
     value: function renderPanorama() {
       var _this$props7 = this.props, x2 = _this$props7.x, y2 = _this$props7.y, width = _this$props7.width, height = _this$props7.height, data = _this$props7.data, children = _this$props7.children, padding = _this$props7.padding;
-      var chartElement = import_react32.Children.only(children);
+      var chartElement = import_react57.Children.only(children);
       if (!chartElement) {
         return null;
       }
-      return /* @__PURE__ */ import_react32.default.cloneElement(chartElement, {
+      return /* @__PURE__ */ import_react57.default.cloneElement(chartElement, {
         x: x2,
         y: y2,
         width,
@@ -46358,18 +54601,18 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
     }
   }, {
     key: "renderTravellerLayer",
-    value: function renderTravellerLayer(travellerX, id) {
+    value: function renderTravellerLayer(travellerX, id3) {
       var _data$startIndex, _data$endIndex, _this3 = this;
       var _this$props8 = this.props, y2 = _this$props8.y, travellerWidth = _this$props8.travellerWidth, height = _this$props8.height, traveller = _this$props8.traveller, ariaLabel = _this$props8.ariaLabel, data = _this$props8.data, startIndex = _this$props8.startIndex, endIndex = _this$props8.endIndex;
       var x2 = Math.max(travellerX, this.props.x);
-      var travellerProps = _objectSpread31(_objectSpread31({}, filterProps(this.props, false)), {}, {
+      var travellerProps = _objectSpread31(_objectSpread31({}, filterProps2(this.props, false)), {}, {
         x: x2,
         y: y2,
         width: travellerWidth,
         height
       });
       var ariaLabelBrush = ariaLabel || "Min value: ".concat((_data$startIndex = data[startIndex]) === null || _data$startIndex === void 0 ? void 0 : _data$startIndex.name, ", Max value: ").concat((_data$endIndex = data[endIndex]) === null || _data$endIndex === void 0 ? void 0 : _data$endIndex.name);
-      return /* @__PURE__ */ import_react32.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react57.default.createElement(Layer, {
         tabIndex: 0,
         role: "slider",
         "aria-label": ariaLabelBrush,
@@ -46377,15 +54620,15 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
         className: "recharts-brush-traveller",
         onMouseEnter: this.handleEnterSlideOrTraveller,
         onMouseLeave: this.handleLeaveSlideOrTraveller,
-        onMouseDown: this.travellerDragStartHandlers[id],
-        onTouchStart: this.travellerDragStartHandlers[id],
+        onMouseDown: this.travellerDragStartHandlers[id3],
+        onTouchStart: this.travellerDragStartHandlers[id3],
         onKeyDown: function onKeyDown(e) {
           if (!["ArrowLeft", "ArrowRight"].includes(e.key)) {
             return;
           }
           e.preventDefault();
           e.stopPropagation();
-          _this3.handleTravellerMoveKeyboard(e.key === "ArrowRight" ? 1 : -1, id);
+          _this3.handleTravellerMoveKeyboard(e.key === "ArrowRight" ? 1 : -1, id3);
         },
         onFocus: function onFocus() {
           _this3.setState({
@@ -46408,7 +54651,7 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
       var _this$props9 = this.props, y2 = _this$props9.y, height = _this$props9.height, stroke = _this$props9.stroke, travellerWidth = _this$props9.travellerWidth;
       var x2 = Math.min(startX, endX) + travellerWidth;
       var width = Math.max(Math.abs(endX - startX) - travellerWidth, 0);
-      return /* @__PURE__ */ import_react32.default.createElement("rect", {
+      return /* @__PURE__ */ import_react57.default.createElement("rect", {
         className: "recharts-brush-slide",
         onMouseEnter: this.handleEnterSlideOrTraveller,
         onMouseLeave: this.handleLeaveSlideOrTraveller,
@@ -46436,14 +54679,14 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
         pointerEvents: "none",
         fill: stroke
       };
-      return /* @__PURE__ */ import_react32.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react57.default.createElement(Layer, {
         className: "recharts-brush-texts"
-      }, /* @__PURE__ */ import_react32.default.createElement(Text, _extends24({
+      }, /* @__PURE__ */ import_react57.default.createElement(Text, _extends24({
         textAnchor: "end",
         verticalAnchor: "middle",
         x: Math.min(startX, endX) - offset,
         y: y2 + height / 2
-      }, attrs), this.getTextOfTick(startIndex)), /* @__PURE__ */ import_react32.default.createElement(Text, _extends24({
+      }, attrs), this.getTextOfTick(startIndex)), /* @__PURE__ */ import_react57.default.createElement(Text, _extends24({
         textAnchor: "start",
         verticalAnchor: "middle",
         x: Math.max(startX, endX) + travellerWidth + offset,
@@ -46459,9 +54702,9 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
         return null;
       }
       var layerClass = clsx_default("recharts-brush", className);
-      var isPanoramic = import_react32.default.Children.count(children) === 1;
+      var isPanoramic = import_react57.default.Children.count(children) === 1;
       var style = generatePrefixStyle("userSelect", "none");
-      return /* @__PURE__ */ import_react32.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react57.default.createElement(Layer, {
         className: layerClass,
         onMouseLeave: this.handleLeaveWrapper,
         onTouchMove: this.handleTouchMove,
@@ -46473,21 +54716,21 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
     value: function renderDefaultTraveller(props) {
       var x2 = props.x, y2 = props.y, width = props.width, height = props.height, stroke = props.stroke;
       var lineY = Math.floor(y2 + height / 2) - 1;
-      return /* @__PURE__ */ import_react32.default.createElement(import_react32.default.Fragment, null, /* @__PURE__ */ import_react32.default.createElement("rect", {
+      return /* @__PURE__ */ import_react57.default.createElement(import_react57.default.Fragment, null, /* @__PURE__ */ import_react57.default.createElement("rect", {
         x: x2,
         y: y2,
         width,
         height,
         fill: stroke,
         stroke: "none"
-      }), /* @__PURE__ */ import_react32.default.createElement("line", {
+      }), /* @__PURE__ */ import_react57.default.createElement("line", {
         x1: x2 + 1,
         y1: lineY,
         x2: x2 + width - 1,
         y2: lineY,
         fill: "none",
         stroke: "#fff"
-      }), /* @__PURE__ */ import_react32.default.createElement("line", {
+      }), /* @__PURE__ */ import_react57.default.createElement("line", {
         x1: x2 + 1,
         y1: lineY + 2,
         x2: x2 + width - 1,
@@ -46500,8 +54743,8 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
     key: "renderTraveller",
     value: function renderTraveller(option, props) {
       var rectangle;
-      if (/* @__PURE__ */ import_react32.default.isValidElement(option)) {
-        rectangle = /* @__PURE__ */ import_react32.default.cloneElement(option, props);
+      if (/* @__PURE__ */ import_react57.default.isValidElement(option)) {
+        rectangle = /* @__PURE__ */ import_react57.default.cloneElement(option, props);
       } else if ((0, import_isFunction16.default)(option)) {
         rectangle = option(props);
       } else {
@@ -46567,7 +54810,7 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
       return x2 >= valueRange[end] ? end : start;
     }
   }]);
-}(import_react32.PureComponent);
+}(import_react57.PureComponent);
 _defineProperty33(Brush, "displayName", "Brush");
 _defineProperty33(Brush, "defaultProps", {
   height: 40,
@@ -46586,7 +54829,7 @@ _defineProperty33(Brush, "defaultProps", {
 });
 
 // node_modules/recharts/es6/cartesian/ReferenceLine.js
-var import_react36 = __toESM(require_react());
+var import_react61 = __toESM(require_react());
 var import_isFunction17 = __toESM(require_isFunction());
 var import_some = __toESM(require_some());
 
@@ -46605,12 +54848,12 @@ var import_mapValues = __toESM(require_mapValues());
 var import_every = __toESM(require_every());
 
 // node_modules/recharts/es6/cartesian/Bar.js
-var import_react34 = __toESM(require_react());
+var import_react59 = __toESM(require_react());
 var import_isEqual6 = __toESM(require_isEqual());
 var import_isNil11 = __toESM(require_isNil());
 
 // node_modules/recharts/es6/util/BarUtils.js
-var import_react33 = __toESM(require_react());
+var import_react58 = __toESM(require_react());
 var _excluded20 = ["x", "y"];
 function _typeof39(o) {
   "@babel/helpers - typeof";
@@ -46726,7 +54969,7 @@ function typeguardBarRectangleProps(_ref, props) {
   });
 }
 function BarRectangle(props) {
-  return /* @__PURE__ */ import_react33.default.createElement(Shape, _extends25({
+  return /* @__PURE__ */ import_react58.default.createElement(Shape, _extends25({
     shapeType: "rectangle",
     propTransformer: typeguardBarRectangleProps,
     activeClassName: "recharts-active-bar"
@@ -46736,11 +54979,11 @@ var minPointSizeCallback = function minPointSizeCallback2(minPointSize) {
   var defaultValue = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0;
   return function(value, index) {
     if (typeof minPointSize === "number") return minPointSize;
-    var isValueNumberOrNil = isNumber(value) || isNullish(value);
+    var isValueNumberOrNil = isNumber(value) || isNullish2(value);
     if (isValueNumberOrNil) {
       return minPointSize(value, index);
     }
-    !isValueNumberOrNil ? true ? invariant(false, "minPointSize callback function received a value with type of ".concat(_typeof39(value), ". Currently only numbers or null/undefined are supported.")) : invariant(false) : void 0;
+    !isValueNumberOrNil ? true ? invariant2(false, "minPointSize callback function received a value with type of ".concat(_typeof39(value), ". Currently only numbers or null/undefined are supported.")) : invariant2(false) : void 0;
     return defaultValue;
   };
 };
@@ -46909,13 +55152,13 @@ function _toPrimitive36(t, r2) {
   return ("string" === r2 ? String : Number)(t);
 }
 var Bar = /* @__PURE__ */ function(_PureComponent) {
-  function Bar2() {
+  function Bar3() {
     var _this;
-    _classCallCheck14(this, Bar2);
+    _classCallCheck14(this, Bar3);
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
-    _this = _callSuper12(this, Bar2, [].concat(args));
+    _this = _callSuper12(this, Bar3, [].concat(args));
     _defineProperty35(_this, "state", {
       isAnimationFinished: false
     });
@@ -46940,13 +55183,13 @@ var Bar = /* @__PURE__ */ function(_PureComponent) {
     });
     return _this;
   }
-  _inherits13(Bar2, _PureComponent);
-  return _createClass14(Bar2, [{
+  _inherits13(Bar3, _PureComponent);
+  return _createClass14(Bar3, [{
     key: "renderRectanglesStatically",
     value: function renderRectanglesStatically(data) {
       var _this2 = this;
       var _this$props = this.props, shape = _this$props.shape, dataKey = _this$props.dataKey, activeIndex = _this$props.activeIndex, activeBar = _this$props.activeBar;
-      var baseProps = filterProps(this.props, false);
+      var baseProps = filterProps2(this.props, false);
       return data && data.map(function(entry, i) {
         var isActive = i === activeIndex;
         var option = isActive ? activeBar : shape;
@@ -46958,22 +55201,22 @@ var Bar = /* @__PURE__ */ function(_PureComponent) {
           onAnimationStart: _this2.handleAnimationStart,
           onAnimationEnd: _this2.handleAnimationEnd
         });
-        return /* @__PURE__ */ import_react34.default.createElement(Layer, _extends26({
+        return /* @__PURE__ */ import_react59.default.createElement(Layer, _extends26({
           className: "recharts-bar-rectangle"
         }, adaptEventsOfChild(_this2.props, entry, i), {
           // https://github.com/recharts/recharts/issues/5415
           // eslint-disable-next-line react/no-array-index-key
           key: "rectangle-".concat(entry === null || entry === void 0 ? void 0 : entry.x, "-").concat(entry === null || entry === void 0 ? void 0 : entry.y, "-").concat(entry === null || entry === void 0 ? void 0 : entry.value, "-").concat(i)
-        }), /* @__PURE__ */ import_react34.default.createElement(BarRectangle, props));
+        }), /* @__PURE__ */ import_react59.default.createElement(BarRectangle, props));
       });
     }
   }, {
     key: "renderRectanglesWithAnimation",
     value: function renderRectanglesWithAnimation() {
       var _this3 = this;
-      var _this$props2 = this.props, data = _this$props2.data, layout = _this$props2.layout, isAnimationActive = _this$props2.isAnimationActive, animationBegin = _this$props2.animationBegin, animationDuration = _this$props2.animationDuration, animationEasing = _this$props2.animationEasing, animationId = _this$props2.animationId;
+      var _this$props2 = this.props, data = _this$props2.data, layout2 = _this$props2.layout, isAnimationActive = _this$props2.isAnimationActive, animationBegin = _this$props2.animationBegin, animationDuration = _this$props2.animationDuration, animationEasing = _this$props2.animationEasing, animationId = _this$props2.animationId;
       var prevData = this.state.prevData;
-      return /* @__PURE__ */ import_react34.default.createElement(es6_default, {
+      return /* @__PURE__ */ import_react59.default.createElement(es6_default, {
         begin: animationBegin,
         duration: animationDuration,
         isActive: isAnimationActive,
@@ -47003,7 +55246,7 @@ var Bar = /* @__PURE__ */ function(_PureComponent) {
               height: interpolatorHeight(t)
             });
           }
-          if (layout === "horizontal") {
+          if (layout2 === "horizontal") {
             var _interpolatorHeight = interpolateNumber(0, entry.height);
             var h = _interpolatorHeight(t);
             return _objectSpread33(_objectSpread33({}, entry), {}, {
@@ -47017,7 +55260,7 @@ var Bar = /* @__PURE__ */ function(_PureComponent) {
             width: w
           });
         });
-        return /* @__PURE__ */ import_react34.default.createElement(Layer, null, _this3.renderRectanglesStatically(stepData));
+        return /* @__PURE__ */ import_react59.default.createElement(Layer, null, _this3.renderRectanglesStatically(stepData));
       });
     }
   }, {
@@ -47035,7 +55278,7 @@ var Bar = /* @__PURE__ */ function(_PureComponent) {
     value: function renderBackground() {
       var _this4 = this;
       var _this$props4 = this.props, data = _this$props4.data, dataKey = _this$props4.dataKey, activeIndex = _this$props4.activeIndex;
-      var backgroundProps = filterProps(this.props.background, false);
+      var backgroundProps = filterProps2(this.props.background, false);
       return data.map(function(entry, i) {
         var value = entry.value, background = entry.background, rest = _objectWithoutProperties20(entry, _excluded21);
         if (!background) {
@@ -47050,7 +55293,7 @@ var Bar = /* @__PURE__ */ function(_PureComponent) {
           index: i,
           className: "recharts-bar-background-rectangle"
         });
-        return /* @__PURE__ */ import_react34.default.createElement(BarRectangle, _extends26({
+        return /* @__PURE__ */ import_react59.default.createElement(BarRectangle, _extends26({
           key: "background-bar-".concat(i),
           option: _this4.props.background,
           isActive: i === activeIndex
@@ -47063,12 +55306,12 @@ var Bar = /* @__PURE__ */ function(_PureComponent) {
       if (this.props.isAnimationActive && !this.state.isAnimationFinished) {
         return null;
       }
-      var _this$props5 = this.props, data = _this$props5.data, xAxis = _this$props5.xAxis, yAxis = _this$props5.yAxis, layout = _this$props5.layout, children = _this$props5.children;
+      var _this$props5 = this.props, data = _this$props5.data, xAxis = _this$props5.xAxis, yAxis = _this$props5.yAxis, layout2 = _this$props5.layout, children = _this$props5.children;
       var errorBarItems = findAllByType(children, ErrorBar);
       if (!errorBarItems) {
         return null;
       }
-      var offset = layout === "vertical" ? data[0].height / 2 : data[0].width / 2;
+      var offset = layout2 === "vertical" ? data[0].height / 2 : data[0].width / 2;
       var dataPointFormatter = function dataPointFormatter2(dataPoint, dataKey) {
         var value = Array.isArray(dataPoint.value) ? dataPoint.value[1] : dataPoint.value;
         return {
@@ -47081,13 +55324,13 @@ var Bar = /* @__PURE__ */ function(_PureComponent) {
       var errorBarProps = {
         clipPath: needClip ? "url(#clipPath-".concat(clipPathId, ")") : null
       };
-      return /* @__PURE__ */ import_react34.default.createElement(Layer, errorBarProps, errorBarItems.map(function(item) {
-        return /* @__PURE__ */ import_react34.default.cloneElement(item, {
+      return /* @__PURE__ */ import_react59.default.createElement(Layer, errorBarProps, errorBarItems.map(function(item) {
+        return /* @__PURE__ */ import_react59.default.cloneElement(item, {
           key: "error-bar-".concat(clipPathId, "-").concat(item.props.dataKey),
           data,
           xAxis,
           yAxis,
-          layout,
+          layout: layout2,
           offset,
           dataPointFormatter
         });
@@ -47096,7 +55339,7 @@ var Bar = /* @__PURE__ */ function(_PureComponent) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props6 = this.props, hide = _this$props6.hide, data = _this$props6.data, className = _this$props6.className, xAxis = _this$props6.xAxis, yAxis = _this$props6.yAxis, left = _this$props6.left, top = _this$props6.top, width = _this$props6.width, height = _this$props6.height, isAnimationActive = _this$props6.isAnimationActive, background = _this$props6.background, id = _this$props6.id;
+      var _this$props6 = this.props, hide = _this$props6.hide, data = _this$props6.data, className = _this$props6.className, xAxis = _this$props6.xAxis, yAxis = _this$props6.yAxis, left = _this$props6.left, top = _this$props6.top, width = _this$props6.width, height = _this$props6.height, isAnimationActive = _this$props6.isAnimationActive, background = _this$props6.background, id3 = _this$props6.id;
       if (hide || !data || !data.length) {
         return null;
       }
@@ -47105,17 +55348,17 @@ var Bar = /* @__PURE__ */ function(_PureComponent) {
       var needClipX = xAxis && xAxis.allowDataOverflow;
       var needClipY = yAxis && yAxis.allowDataOverflow;
       var needClip = needClipX || needClipY;
-      var clipPathId = (0, import_isNil11.default)(id) ? this.id : id;
-      return /* @__PURE__ */ import_react34.default.createElement(Layer, {
+      var clipPathId = (0, import_isNil11.default)(id3) ? this.id : id3;
+      return /* @__PURE__ */ import_react59.default.createElement(Layer, {
         className: layerClass
-      }, needClipX || needClipY ? /* @__PURE__ */ import_react34.default.createElement("defs", null, /* @__PURE__ */ import_react34.default.createElement("clipPath", {
+      }, needClipX || needClipY ? /* @__PURE__ */ import_react59.default.createElement("defs", null, /* @__PURE__ */ import_react59.default.createElement("clipPath", {
         id: "clipPath-".concat(clipPathId)
-      }, /* @__PURE__ */ import_react34.default.createElement("rect", {
+      }, /* @__PURE__ */ import_react59.default.createElement("rect", {
         x: needClipX ? left : left - width / 2,
         y: needClipY ? top : top - height / 2,
         width: needClipX ? width : width * 2,
         height: needClipY ? height : height * 2
-      }))) : null, /* @__PURE__ */ import_react34.default.createElement(Layer, {
+      }))) : null, /* @__PURE__ */ import_react59.default.createElement(Layer, {
         className: "recharts-bar-rectangles",
         clipPath: needClip ? "url(#clipPath-".concat(clipPathId, ")") : null
       }, background ? this.renderBackground() : null, this.renderRectangles()), this.renderErrorBar(needClip, clipPathId), (!isAnimationActive || isAnimationFinished) && LabelList.renderCallByParent(this.props, data));
@@ -47138,7 +55381,7 @@ var Bar = /* @__PURE__ */ function(_PureComponent) {
       return null;
     }
   }]);
-}(import_react34.PureComponent);
+}(import_react59.PureComponent);
 _Bar = Bar;
 _defineProperty35(Bar, "displayName", "Bar");
 _defineProperty35(Bar, "defaultProps", {
@@ -47161,11 +55404,11 @@ _defineProperty35(Bar, "getComposedData", function(_ref2) {
   if (!pos) {
     return null;
   }
-  var layout = props.layout;
+  var layout2 = props.layout;
   var itemDefaultProps = item.type.defaultProps;
   var itemProps = itemDefaultProps !== void 0 ? _objectSpread33(_objectSpread33({}, itemDefaultProps), item.props) : item.props;
   var dataKey = itemProps.dataKey, children = itemProps.children, minPointSizeProp = itemProps.minPointSize;
-  var numericAxis = layout === "horizontal" ? yAxis : xAxis;
+  var numericAxis = layout2 === "horizontal" ? yAxis : xAxis;
   var stackedDomain = stackedData ? numericAxis.scale.domain() : null;
   var baseValue = getBaseValueOfBar({
     numericAxis
@@ -47182,7 +55425,7 @@ _defineProperty35(Bar, "getComposedData", function(_ref2) {
       }
     }
     var minPointSize = minPointSizeCallback(minPointSizeProp, _Bar.defaultProps.minPointSize)(value[1], index);
-    if (layout === "horizontal") {
+    if (layout2 === "horizontal") {
       var _ref4;
       var _ref3 = [yAxis.scale(value[0]), yAxis.scale(value[1])], baseValueScale = _ref3[0], currentValueScale = _ref3[1];
       x2 = getCateCoordinateOfBar({
@@ -47250,7 +55493,7 @@ _defineProperty35(Bar, "getComposedData", function(_ref2) {
   });
   return _objectSpread33({
     data: rects,
-    layout
+    layout: layout2
   }, offset);
 });
 
@@ -47328,7 +55571,7 @@ function _toPrimitive37(t, r2) {
   return ("string" === r2 ? String : Number)(t);
 }
 var formatAxisMap3 = function formatAxisMap4(props, axisMap, offset, axisType, chartName) {
-  var width = props.width, height = props.height, layout = props.layout, children = props.children;
+  var width = props.width, height = props.height, layout2 = props.layout, children = props.children;
   var ids = Object.keys(axisMap);
   var steps = {
     left: offset.left,
@@ -47341,8 +55584,8 @@ var formatAxisMap3 = function formatAxisMap4(props, axisMap, offset, axisType, c
     bottomMirror: height - offset.bottom
   };
   var hasBar = !!findChildByType(children, Bar);
-  return ids.reduce(function(result, id) {
-    var axis = axisMap[id];
+  return ids.reduce(function(result, id3) {
+    var axis = axisMap[id3];
     var orientation = axis.orientation, domain = axis.domain, _axis$padding = axis.padding, padding = _axis$padding === void 0 ? {} : _axis$padding, mirror = axis.mirror, reversed = axis.reversed;
     var offsetKey = "".concat(orientation).concat(mirror ? "Mirror" : "");
     var calculatedPadding, range6, x2, y2, needSpace;
@@ -47371,17 +55614,17 @@ var formatAxisMap3 = function formatAxisMap4(props, axisMap, offset, axisType, c
     if (axisType === "xAxis") {
       range6 = [offset.left + (padding.left || 0) + (calculatedPadding || 0), offset.left + offset.width - (padding.right || 0) - (calculatedPadding || 0)];
     } else if (axisType === "yAxis") {
-      range6 = layout === "horizontal" ? [offset.top + offset.height - (padding.bottom || 0), offset.top + (padding.top || 0)] : [offset.top + (padding.top || 0) + (calculatedPadding || 0), offset.top + offset.height - (padding.bottom || 0) - (calculatedPadding || 0)];
+      range6 = layout2 === "horizontal" ? [offset.top + offset.height - (padding.bottom || 0), offset.top + (padding.top || 0)] : [offset.top + (padding.top || 0) + (calculatedPadding || 0), offset.top + offset.height - (padding.bottom || 0) - (calculatedPadding || 0)];
     } else {
       range6 = axis.range;
     }
     if (reversed) {
       range6 = [range6[1], range6[0]];
     }
-    var _parseScale = parseScale(axis, chartName, hasBar), scale = _parseScale.scale, realScaleType = _parseScale.realScaleType;
-    scale.domain(domain).range(range6);
-    checkDomainOfScale(scale);
-    var ticks2 = getTicksOfScale(scale, _objectSpread34(_objectSpread34({}, axis), {}, {
+    var _parseScale = parseScale(axis, chartName, hasBar), scale2 = _parseScale.scale, realScaleType = _parseScale.realScaleType;
+    scale2.domain(domain).range(range6);
+    checkDomainOfScale(scale2);
+    var ticks2 = getTicksOfScale(scale2, _objectSpread34(_objectSpread34({}, axis), {}, {
       realScaleType
     }));
     if (axisType === "xAxis") {
@@ -47397,7 +55640,7 @@ var formatAxisMap3 = function formatAxisMap4(props, axisMap, offset, axisType, c
       realScaleType,
       x: x2,
       y: y2,
-      scale,
+      scale: scale2,
       width: axisType === "xAxis" ? offset.width : axis.width,
       height: axisType === "yAxis" ? offset.height : axis.height
     });
@@ -47407,7 +55650,7 @@ var formatAxisMap3 = function formatAxisMap4(props, axisMap, offset, axisType, c
     } else if (!axis.hide) {
       steps[offsetKey] += (needSpace ? -1 : 1) * finalAxis.width;
     }
-    return _objectSpread34(_objectSpread34({}, result), {}, _defineProperty36({}, id, finalAxis));
+    return _objectSpread34(_objectSpread34({}, result), {}, _defineProperty36({}, id3, finalAxis));
   }, {});
 };
 var rectWithPoints = function rectWithPoints2(_ref, _ref2) {
@@ -47431,9 +55674,9 @@ var rectWithCoords = function rectWithCoords2(_ref3) {
   });
 };
 var ScaleHelper = /* @__PURE__ */ function() {
-  function ScaleHelper2(scale) {
+  function ScaleHelper2(scale2) {
     _classCallCheck15(this, ScaleHelper2);
-    this.scale = scale;
+    this.scale = scale2;
   }
   return _createClass15(ScaleHelper2, [{
     key: "domain",
@@ -47542,8 +55785,8 @@ var getAngledRectangleWidth = function getAngledRectangleWidth2(_ref6) {
 };
 
 // node_modules/recharts/es6/context/chartLayoutContext.js
-var import_react35 = __toESM(require_react());
-var import_find = __toESM(require_find());
+var import_react60 = __toESM(require_react());
+var import_find3 = __toESM(require_find());
 var import_every2 = __toESM(require_every());
 
 // node_modules/recharts/es6/util/calculateViewBox.js
@@ -47568,34 +55811,34 @@ function _typeof42(o) {
     return o2 && "function" == typeof Symbol && o2.constructor === Symbol && o2 !== Symbol.prototype ? "symbol" : typeof o2;
   }, _typeof42(o);
 }
-var XAxisContext = /* @__PURE__ */ (0, import_react35.createContext)(void 0);
-var YAxisContext = /* @__PURE__ */ (0, import_react35.createContext)(void 0);
-var ViewBoxContext = /* @__PURE__ */ (0, import_react35.createContext)(void 0);
-var OffsetContext = /* @__PURE__ */ (0, import_react35.createContext)({});
-var ClipPathIdContext = /* @__PURE__ */ (0, import_react35.createContext)(void 0);
-var ChartHeightContext = /* @__PURE__ */ (0, import_react35.createContext)(0);
-var ChartWidthContext = /* @__PURE__ */ (0, import_react35.createContext)(0);
+var XAxisContext = /* @__PURE__ */ (0, import_react60.createContext)(void 0);
+var YAxisContext = /* @__PURE__ */ (0, import_react60.createContext)(void 0);
+var ViewBoxContext = /* @__PURE__ */ (0, import_react60.createContext)(void 0);
+var OffsetContext = /* @__PURE__ */ (0, import_react60.createContext)({});
+var ClipPathIdContext = /* @__PURE__ */ (0, import_react60.createContext)(void 0);
+var ChartHeightContext = /* @__PURE__ */ (0, import_react60.createContext)(0);
+var ChartWidthContext = /* @__PURE__ */ (0, import_react60.createContext)(0);
 var ChartLayoutContextProvider = function ChartLayoutContextProvider2(props) {
   var _props$state = props.state, xAxisMap = _props$state.xAxisMap, yAxisMap = _props$state.yAxisMap, offset = _props$state.offset, clipPathId = props.clipPathId, children = props.children, width = props.width, height = props.height;
   var viewBox = calculateViewBox(offset);
-  return /* @__PURE__ */ import_react35.default.createElement(XAxisContext.Provider, {
+  return /* @__PURE__ */ import_react60.default.createElement(XAxisContext.Provider, {
     value: xAxisMap
-  }, /* @__PURE__ */ import_react35.default.createElement(YAxisContext.Provider, {
+  }, /* @__PURE__ */ import_react60.default.createElement(YAxisContext.Provider, {
     value: yAxisMap
-  }, /* @__PURE__ */ import_react35.default.createElement(OffsetContext.Provider, {
+  }, /* @__PURE__ */ import_react60.default.createElement(OffsetContext.Provider, {
     value: offset
-  }, /* @__PURE__ */ import_react35.default.createElement(ViewBoxContext.Provider, {
+  }, /* @__PURE__ */ import_react60.default.createElement(ViewBoxContext.Provider, {
     value: viewBox
-  }, /* @__PURE__ */ import_react35.default.createElement(ClipPathIdContext.Provider, {
+  }, /* @__PURE__ */ import_react60.default.createElement(ClipPathIdContext.Provider, {
     value: clipPathId
-  }, /* @__PURE__ */ import_react35.default.createElement(ChartHeightContext.Provider, {
+  }, /* @__PURE__ */ import_react60.default.createElement(ChartHeightContext.Provider, {
     value: height
-  }, /* @__PURE__ */ import_react35.default.createElement(ChartWidthContext.Provider, {
+  }, /* @__PURE__ */ import_react60.default.createElement(ChartWidthContext.Provider, {
     value: width
   }, children)))))));
 };
 var useClipPathId = function useClipPathId2() {
-  return (0, import_react35.useContext)(ClipPathIdContext);
+  return (0, import_react60.useContext)(ClipPathIdContext);
 };
 function getKeysForDebug(object) {
   var keys2 = Object.keys(object);
@@ -47605,42 +55848,42 @@ function getKeysForDebug(object) {
   return "Available ids are: ".concat(keys2, ".");
 }
 var useXAxisOrThrow = function useXAxisOrThrow2(xAxisId) {
-  var xAxisMap = (0, import_react35.useContext)(XAxisContext);
-  !(xAxisMap != null) ? true ? invariant(false, "Could not find Recharts context; are you sure this is rendered inside a Recharts wrapper component?") : invariant(false) : void 0;
+  var xAxisMap = (0, import_react60.useContext)(XAxisContext);
+  !(xAxisMap != null) ? true ? invariant2(false, "Could not find Recharts context; are you sure this is rendered inside a Recharts wrapper component?") : invariant2(false) : void 0;
   var xAxis = xAxisMap[xAxisId];
-  !(xAxis != null) ? true ? invariant(false, 'Could not find xAxis by id "'.concat(xAxisId, '" [').concat(_typeof42(xAxisId), "]. ").concat(getKeysForDebug(xAxisMap))) : invariant(false) : void 0;
+  !(xAxis != null) ? true ? invariant2(false, 'Could not find xAxis by id "'.concat(xAxisId, '" [').concat(_typeof42(xAxisId), "]. ").concat(getKeysForDebug(xAxisMap))) : invariant2(false) : void 0;
   return xAxis;
 };
 var useArbitraryXAxis = function useArbitraryXAxis2() {
-  var xAxisMap = (0, import_react35.useContext)(XAxisContext);
+  var xAxisMap = (0, import_react60.useContext)(XAxisContext);
   return getAnyElementOfObject(xAxisMap);
 };
 var useYAxisWithFiniteDomainOrRandom = function useYAxisWithFiniteDomainOrRandom2() {
-  var yAxisMap = (0, import_react35.useContext)(YAxisContext);
-  var yAxisWithFiniteDomain = (0, import_find.default)(yAxisMap, function(axis) {
+  var yAxisMap = (0, import_react60.useContext)(YAxisContext);
+  var yAxisWithFiniteDomain = (0, import_find3.default)(yAxisMap, function(axis) {
     return (0, import_every2.default)(axis.domain, Number.isFinite);
   });
   return yAxisWithFiniteDomain || getAnyElementOfObject(yAxisMap);
 };
 var useYAxisOrThrow = function useYAxisOrThrow2(yAxisId) {
-  var yAxisMap = (0, import_react35.useContext)(YAxisContext);
-  !(yAxisMap != null) ? true ? invariant(false, "Could not find Recharts context; are you sure this is rendered inside a Recharts wrapper component?") : invariant(false) : void 0;
+  var yAxisMap = (0, import_react60.useContext)(YAxisContext);
+  !(yAxisMap != null) ? true ? invariant2(false, "Could not find Recharts context; are you sure this is rendered inside a Recharts wrapper component?") : invariant2(false) : void 0;
   var yAxis = yAxisMap[yAxisId];
-  !(yAxis != null) ? true ? invariant(false, 'Could not find yAxis by id "'.concat(yAxisId, '" [').concat(_typeof42(yAxisId), "]. ").concat(getKeysForDebug(yAxisMap))) : invariant(false) : void 0;
+  !(yAxis != null) ? true ? invariant2(false, 'Could not find yAxis by id "'.concat(yAxisId, '" [').concat(_typeof42(yAxisId), "]. ").concat(getKeysForDebug(yAxisMap))) : invariant2(false) : void 0;
   return yAxis;
 };
 var useViewBox = function useViewBox2() {
-  var viewBox = (0, import_react35.useContext)(ViewBoxContext);
+  var viewBox = (0, import_react60.useContext)(ViewBoxContext);
   return viewBox;
 };
 var useOffset = function useOffset2() {
-  return (0, import_react35.useContext)(OffsetContext);
+  return (0, import_react60.useContext)(OffsetContext);
 };
 var useChartWidth = function useChartWidth2() {
-  return (0, import_react35.useContext)(ChartWidthContext);
+  return (0, import_react60.useContext)(ChartWidthContext);
 };
 var useChartHeight = function useChartHeight2() {
-  return (0, import_react35.useContext)(ChartHeightContext);
+  return (0, import_react60.useContext)(ChartHeightContext);
 };
 
 // node_modules/recharts/es6/cartesian/ReferenceLine.js
@@ -47823,12 +56066,12 @@ function _extends27() {
 }
 var renderLine = function renderLine2(option, props) {
   var line;
-  if (/* @__PURE__ */ import_react36.default.isValidElement(option)) {
-    line = /* @__PURE__ */ import_react36.default.cloneElement(option, props);
+  if (/* @__PURE__ */ import_react61.default.isValidElement(option)) {
+    line = /* @__PURE__ */ import_react61.default.cloneElement(option, props);
   } else if ((0, import_isFunction17.default)(option)) {
     line = option(props);
   } else {
-    line = /* @__PURE__ */ import_react36.default.createElement("line", _extends27({}, props, {
+    line = /* @__PURE__ */ import_react61.default.createElement("line", _extends27({}, props, {
       className: "recharts-reference-line-line"
     }));
   }
@@ -47911,13 +56154,13 @@ function ReferenceLineImpl(props) {
   var clipPath = ifOverflowMatches(props, "hidden") ? "url(#".concat(clipPathId, ")") : void 0;
   var lineProps = _objectSpread35(_objectSpread35({
     clipPath
-  }, filterProps(props, true)), {}, {
+  }, filterProps2(props, true)), {}, {
     x1,
     y1,
     x2,
     y2
   });
-  return /* @__PURE__ */ import_react36.default.createElement(Layer, {
+  return /* @__PURE__ */ import_react61.default.createElement(Layer, {
     className: clsx_default("recharts-reference-line", className)
   }, renderLine(shape, lineProps), Label.renderCallByParent(props, rectWithCoords({
     x1,
@@ -47935,10 +56178,10 @@ var ReferenceLine = /* @__PURE__ */ function(_React$Component) {
   return _createClass16(ReferenceLine2, [{
     key: "render",
     value: function render() {
-      return /* @__PURE__ */ import_react36.default.createElement(ReferenceLineImpl, this.props);
+      return /* @__PURE__ */ import_react61.default.createElement(ReferenceLineImpl, this.props);
     }
   }]);
-}(import_react36.default.Component);
+}(import_react61.default.Component);
 _defineProperty37(ReferenceLine, "displayName", "ReferenceLine");
 _defineProperty37(ReferenceLine, "defaultProps", {
   isFront: false,
@@ -47953,7 +56196,7 @@ _defineProperty37(ReferenceLine, "defaultProps", {
 });
 
 // node_modules/recharts/es6/cartesian/ReferenceDot.js
-var import_react37 = __toESM(require_react());
+var import_react62 = __toESM(require_react());
 var import_isFunction18 = __toESM(require_isFunction());
 function _extends28() {
   _extends28 = Object.assign ? Object.assign.bind() : function(target) {
@@ -48131,11 +56374,11 @@ var ReferenceDot = /* @__PURE__ */ function(_React$Component) {
       var clipPath = ifOverflowMatches(this.props, "hidden") ? "url(#".concat(clipPathId, ")") : void 0;
       var dotProps = _objectSpread36(_objectSpread36({
         clipPath
-      }, filterProps(this.props, true)), {}, {
+      }, filterProps2(this.props, true)), {}, {
         cx,
         cy
       });
-      return /* @__PURE__ */ import_react37.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react62.default.createElement(Layer, {
         className: clsx_default("recharts-reference-dot", className)
       }, ReferenceDot2.renderDot(shape, dotProps), Label.renderCallByParent(this.props, {
         x: cx - r2,
@@ -48145,7 +56388,7 @@ var ReferenceDot = /* @__PURE__ */ function(_React$Component) {
       }));
     }
   }]);
-}(import_react37.default.Component);
+}(import_react62.default.Component);
 _defineProperty38(ReferenceDot, "displayName", "ReferenceDot");
 _defineProperty38(ReferenceDot, "defaultProps", {
   isFront: false,
@@ -48160,12 +56403,12 @@ _defineProperty38(ReferenceDot, "defaultProps", {
 });
 _defineProperty38(ReferenceDot, "renderDot", function(option, props) {
   var dot;
-  if (/* @__PURE__ */ import_react37.default.isValidElement(option)) {
-    dot = /* @__PURE__ */ import_react37.default.cloneElement(option, props);
+  if (/* @__PURE__ */ import_react62.default.isValidElement(option)) {
+    dot = /* @__PURE__ */ import_react62.default.cloneElement(option, props);
   } else if ((0, import_isFunction18.default)(option)) {
     dot = option(props);
   } else {
-    dot = /* @__PURE__ */ import_react37.default.createElement(Dot, _extends28({}, props, {
+    dot = /* @__PURE__ */ import_react62.default.createElement(Dot, _extends28({}, props, {
       cx: props.cx,
       cy: props.cy,
       className: "recharts-reference-dot-dot"
@@ -48175,7 +56418,7 @@ _defineProperty38(ReferenceDot, "renderDot", function(option, props) {
 });
 
 // node_modules/recharts/es6/cartesian/ReferenceArea.js
-var import_react38 = __toESM(require_react());
+var import_react63 = __toESM(require_react());
 var import_isFunction19 = __toESM(require_isFunction());
 function _extends29() {
   _extends29 = Object.assign ? Object.assign.bind() : function(target) {
@@ -48363,14 +56606,14 @@ var ReferenceArea = /* @__PURE__ */ function(_React$Component) {
         return null;
       }
       var clipPath = ifOverflowMatches(this.props, "hidden") ? "url(#".concat(clipPathId, ")") : void 0;
-      return /* @__PURE__ */ import_react38.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react63.default.createElement(Layer, {
         className: clsx_default("recharts-reference-area", className)
       }, ReferenceArea2.renderRect(shape, _objectSpread37(_objectSpread37({
         clipPath
-      }, filterProps(this.props, true)), rect)), Label.renderCallByParent(this.props, rect));
+      }, filterProps2(this.props, true)), rect)), Label.renderCallByParent(this.props, rect));
     }
   }]);
-}(import_react38.default.Component);
+}(import_react63.default.Component);
 _defineProperty39(ReferenceArea, "displayName", "ReferenceArea");
 _defineProperty39(ReferenceArea, "defaultProps", {
   isFront: false,
@@ -48385,12 +56628,12 @@ _defineProperty39(ReferenceArea, "defaultProps", {
 });
 _defineProperty39(ReferenceArea, "renderRect", function(option, props) {
   var rect;
-  if (/* @__PURE__ */ import_react38.default.isValidElement(option)) {
-    rect = /* @__PURE__ */ import_react38.default.cloneElement(option, props);
+  if (/* @__PURE__ */ import_react63.default.isValidElement(option)) {
+    rect = /* @__PURE__ */ import_react63.default.cloneElement(option, props);
   } else if ((0, import_isFunction19.default)(option)) {
     rect = option(props);
   } else {
-    rect = /* @__PURE__ */ import_react38.default.createElement(Rectangle, _extends29({}, props, {
+    rect = /* @__PURE__ */ import_react63.default.createElement(Rectangle, _extends29({}, props, {
       className: "recharts-reference-area-rect"
     }));
   }
@@ -48398,7 +56641,7 @@ _defineProperty39(ReferenceArea, "renderRect", function(option, props) {
 });
 
 // node_modules/recharts/es6/cartesian/CartesianAxis.js
-var import_react39 = __toESM(require_react());
+var import_react64 = __toESM(require_react());
 var import_isFunction21 = __toESM(require_isFunction());
 var import_get5 = __toESM(require_get());
 
@@ -48978,7 +57221,7 @@ var CartesianAxis = /* @__PURE__ */ function(_Component) {
     key: "renderAxisLine",
     value: function renderAxisLine() {
       var _this$props5 = this.props, x2 = _this$props5.x, y2 = _this$props5.y, width = _this$props5.width, height = _this$props5.height, orientation = _this$props5.orientation, mirror = _this$props5.mirror, axisLine = _this$props5.axisLine;
-      var props = _objectSpread39(_objectSpread39(_objectSpread39({}, filterProps(this.props, false)), filterProps(axisLine, false)), {}, {
+      var props = _objectSpread39(_objectSpread39(_objectSpread39({}, filterProps2(this.props, false)), filterProps2(axisLine, false)), {}, {
         fill: "none"
       });
       if (orientation === "top" || orientation === "bottom") {
@@ -48998,7 +57241,7 @@ var CartesianAxis = /* @__PURE__ */ function(_Component) {
           y2: y2 + height
         });
       }
-      return /* @__PURE__ */ import_react39.default.createElement("line", _extends30({}, props, {
+      return /* @__PURE__ */ import_react64.default.createElement("line", _extends30({}, props, {
         className: clsx_default("recharts-cartesian-axis-line", (0, import_get5.default)(axisLine, "className"))
       }));
     }
@@ -49020,11 +57263,11 @@ var CartesianAxis = /* @__PURE__ */ function(_Component) {
         }), fontSize, letterSpacing);
         var textAnchor = this.getTickTextAnchor();
         var verticalAnchor = this.getTickVerticalAnchor();
-        var axisProps = filterProps(this.props, false);
-        var customTickProps = filterProps(tick, false);
+        var axisProps = filterProps2(this.props, false);
+        var customTickProps = filterProps2(tick, false);
         var tickLineProps = _objectSpread39(_objectSpread39({}, axisProps), {}, {
           fill: "none"
-        }, filterProps(tickLine, false));
+        }, filterProps2(tickLine, false));
         var items = finalTicks.map(function(entry, i) {
           var _this2$getTickLineCoo = _this2.getTickLineCoord(entry), lineCoord = _this2$getTickLineCoo.line, tickCoord = _this2$getTickLineCoo.tick;
           var tickProps = _objectSpread39(_objectSpread39(_objectSpread39(_objectSpread39({
@@ -49039,14 +57282,14 @@ var CartesianAxis = /* @__PURE__ */ function(_Component) {
             visibleTicksCount: finalTicks.length,
             tickFormatter
           });
-          return /* @__PURE__ */ import_react39.default.createElement(Layer, _extends30({
+          return /* @__PURE__ */ import_react64.default.createElement(Layer, _extends30({
             className: "recharts-cartesian-axis-tick",
             key: "tick-".concat(entry.value, "-").concat(entry.coordinate, "-").concat(entry.tickCoord)
-          }, adaptEventsOfChild(_this2.props, entry, i)), tickLine && /* @__PURE__ */ import_react39.default.createElement("line", _extends30({}, tickLineProps, lineCoord, {
+          }, adaptEventsOfChild(_this2.props, entry, i)), tickLine && /* @__PURE__ */ import_react64.default.createElement("line", _extends30({}, tickLineProps, lineCoord, {
             className: clsx_default("recharts-cartesian-axis-tick-line", (0, import_get5.default)(tickLine, "className"))
           })), tick && CartesianAxis2.renderTickItem(tick, tickProps, "".concat((0, import_isFunction21.default)(tickFormatter) ? tickFormatter(entry.value, i) : entry.value).concat(unit2 || "")));
         });
-        return /* @__PURE__ */ import_react39.default.createElement("g", {
+        return /* @__PURE__ */ import_react64.default.createElement("g", {
           className: "recharts-cartesian-axis-ticks"
         }, items);
       }
@@ -49067,7 +57310,7 @@ var CartesianAxis = /* @__PURE__ */ function(_Component) {
       if (width <= 0 || height <= 0 || !finalTicks || !finalTicks.length) {
         return null;
       }
-      return /* @__PURE__ */ import_react39.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react64.default.createElement(Layer, {
         className: clsx_default("recharts-cartesian-axis", className),
         ref: function ref(_ref2) {
           _this3.layerReference = _ref2;
@@ -49079,8 +57322,8 @@ var CartesianAxis = /* @__PURE__ */ function(_Component) {
     value: function renderTickItem(option, props, value) {
       var tickItem;
       var combinedClassName = clsx_default(props.className, "recharts-cartesian-axis-tick-value");
-      if (/* @__PURE__ */ import_react39.default.isValidElement(option)) {
-        tickItem = /* @__PURE__ */ import_react39.default.cloneElement(option, _objectSpread39(_objectSpread39({}, props), {}, {
+      if (/* @__PURE__ */ import_react64.default.isValidElement(option)) {
+        tickItem = /* @__PURE__ */ import_react64.default.cloneElement(option, _objectSpread39(_objectSpread39({}, props), {}, {
           className: combinedClassName
         }));
       } else if ((0, import_isFunction21.default)(option)) {
@@ -49088,14 +57331,14 @@ var CartesianAxis = /* @__PURE__ */ function(_Component) {
           className: combinedClassName
         }));
       } else {
-        tickItem = /* @__PURE__ */ import_react39.default.createElement(Text, _extends30({}, props, {
+        tickItem = /* @__PURE__ */ import_react64.default.createElement(Text, _extends30({}, props, {
           className: "recharts-cartesian-axis-tick-value"
         }), value);
       }
       return tickItem;
     }
   }]);
-}(import_react39.Component);
+}(import_react64.Component);
 _defineProperty41(CartesianAxis, "displayName", "CartesianAxis");
 _defineProperty41(CartesianAxis, "defaultProps", {
   x: 0,
@@ -49125,7 +57368,7 @@ _defineProperty41(CartesianAxis, "defaultProps", {
 });
 
 // node_modules/recharts/es6/cartesian/CartesianGrid.js
-var import_react40 = __toESM(require_react());
+var import_react65 = __toESM(require_react());
 var import_isFunction22 = __toESM(require_isFunction());
 var _excluded28 = ["x1", "y1", "x2", "y2", "key"];
 var _excluded29 = ["offset"];
@@ -49227,7 +57470,7 @@ var Background = function Background2(props) {
     return null;
   }
   var fillOpacity = props.fillOpacity, x2 = props.x, y2 = props.y, width = props.width, height = props.height, ry = props.ry;
-  return /* @__PURE__ */ import_react40.default.createElement("rect", {
+  return /* @__PURE__ */ import_react65.default.createElement("rect", {
     x: x2,
     y: y2,
     ry,
@@ -49241,14 +57484,14 @@ var Background = function Background2(props) {
 };
 function renderLineItem(option, props) {
   var lineItem;
-  if (/* @__PURE__ */ import_react40.default.isValidElement(option)) {
-    lineItem = /* @__PURE__ */ import_react40.default.cloneElement(option, props);
+  if (/* @__PURE__ */ import_react65.default.isValidElement(option)) {
+    lineItem = /* @__PURE__ */ import_react65.default.cloneElement(option, props);
   } else if ((0, import_isFunction22.default)(option)) {
     lineItem = option(props);
   } else {
     var x1 = props.x1, y1 = props.y1, x2 = props.x2, y2 = props.y2, key = props.key, others = _objectWithoutProperties22(props, _excluded28);
-    var _filterProps = filterProps(others, false), __ = _filterProps.offset, restOfFilteredProps = _objectWithoutProperties22(_filterProps, _excluded29);
-    lineItem = /* @__PURE__ */ import_react40.default.createElement("line", _extends31({}, restOfFilteredProps, {
+    var _filterProps = filterProps2(others, false), __ = _filterProps.offset, restOfFilteredProps = _objectWithoutProperties22(_filterProps, _excluded29);
+    lineItem = /* @__PURE__ */ import_react65.default.createElement("line", _extends31({}, restOfFilteredProps, {
       x1,
       y1,
       x2,
@@ -49275,7 +57518,7 @@ function HorizontalGridLines(props) {
     });
     return renderLineItem(horizontal, lineItemProps);
   });
-  return /* @__PURE__ */ import_react40.default.createElement("g", {
+  return /* @__PURE__ */ import_react65.default.createElement("g", {
     className: "recharts-cartesian-grid-horizontal"
   }, items);
 }
@@ -49295,7 +57538,7 @@ function VerticalGridLines(props) {
     });
     return renderLineItem(vertical, lineItemProps);
   });
-  return /* @__PURE__ */ import_react40.default.createElement("g", {
+  return /* @__PURE__ */ import_react65.default.createElement("g", {
     className: "recharts-cartesian-grid-vertical"
   }, items);
 }
@@ -49319,7 +57562,7 @@ function HorizontalStripes(props) {
       return null;
     }
     var colorIndex = i % horizontalFill.length;
-    return /* @__PURE__ */ import_react40.default.createElement("rect", {
+    return /* @__PURE__ */ import_react65.default.createElement("rect", {
       key: "react-".concat(i),
       y: entry,
       x: x2,
@@ -49331,7 +57574,7 @@ function HorizontalStripes(props) {
       className: "recharts-cartesian-grid-bg"
     });
   });
-  return /* @__PURE__ */ import_react40.default.createElement("g", {
+  return /* @__PURE__ */ import_react65.default.createElement("g", {
     className: "recharts-cartesian-gridstripes-horizontal"
   }, items);
 }
@@ -49355,7 +57598,7 @@ function VerticalStripes(props) {
       return null;
     }
     var colorIndex = i % verticalFill.length;
-    return /* @__PURE__ */ import_react40.default.createElement("rect", {
+    return /* @__PURE__ */ import_react65.default.createElement("rect", {
       key: "react-".concat(i),
       x: entry,
       y: y2,
@@ -49367,7 +57610,7 @@ function VerticalStripes(props) {
       className: "recharts-cartesian-grid-bg"
     });
   });
-  return /* @__PURE__ */ import_react40.default.createElement("g", {
+  return /* @__PURE__ */ import_react65.default.createElement("g", {
     className: "recharts-cartesian-gridstripes-vertical"
   }, items);
 }
@@ -49464,9 +57707,9 @@ function CartesianGrid(props) {
       verticalPoints = _generatorResult;
     }
   }
-  return /* @__PURE__ */ import_react40.default.createElement("g", {
+  return /* @__PURE__ */ import_react65.default.createElement("g", {
     className: "recharts-cartesian-grid"
-  }, /* @__PURE__ */ import_react40.default.createElement(Background, {
+  }, /* @__PURE__ */ import_react65.default.createElement(Background, {
     fill: propsIncludingDefaults.fill,
     fillOpacity: propsIncludingDefaults.fillOpacity,
     x: propsIncludingDefaults.x,
@@ -49474,26 +57717,26 @@ function CartesianGrid(props) {
     width: propsIncludingDefaults.width,
     height: propsIncludingDefaults.height,
     ry: propsIncludingDefaults.ry
-  }), /* @__PURE__ */ import_react40.default.createElement(HorizontalGridLines, _extends31({}, propsIncludingDefaults, {
+  }), /* @__PURE__ */ import_react65.default.createElement(HorizontalGridLines, _extends31({}, propsIncludingDefaults, {
     offset,
     horizontalPoints,
     xAxis,
     yAxis
-  })), /* @__PURE__ */ import_react40.default.createElement(VerticalGridLines, _extends31({}, propsIncludingDefaults, {
+  })), /* @__PURE__ */ import_react65.default.createElement(VerticalGridLines, _extends31({}, propsIncludingDefaults, {
     offset,
     verticalPoints,
     xAxis,
     yAxis
-  })), /* @__PURE__ */ import_react40.default.createElement(HorizontalStripes, _extends31({}, propsIncludingDefaults, {
+  })), /* @__PURE__ */ import_react65.default.createElement(HorizontalStripes, _extends31({}, propsIncludingDefaults, {
     horizontalPoints
-  })), /* @__PURE__ */ import_react40.default.createElement(VerticalStripes, _extends31({}, propsIncludingDefaults, {
+  })), /* @__PURE__ */ import_react65.default.createElement(VerticalStripes, _extends31({}, propsIncludingDefaults, {
     verticalPoints
   })));
 }
 CartesianGrid.displayName = "CartesianGrid";
 
 // node_modules/recharts/es6/cartesian/Line.js
-var import_react41 = __toESM(require_react());
+var import_react66 = __toESM(require_react());
 var import_isFunction23 = __toESM(require_isFunction());
 var import_isNil12 = __toESM(require_isNil());
 var import_isEqual7 = __toESM(require_isEqual());
@@ -49784,7 +58027,7 @@ var Line = /* @__PURE__ */ function(_PureComponent) {
       if (this.props.isAnimationActive && !this.state.isAnimationFinished) {
         return null;
       }
-      var _this$props = this.props, points = _this$props.points, xAxis = _this$props.xAxis, yAxis = _this$props.yAxis, layout = _this$props.layout, children = _this$props.children;
+      var _this$props = this.props, points = _this$props.points, xAxis = _this$props.xAxis, yAxis = _this$props.yAxis, layout2 = _this$props.layout, children = _this$props.children;
       var errorBarItems = findAllByType(children, ErrorBar);
       if (!errorBarItems) {
         return null;
@@ -49800,13 +58043,13 @@ var Line = /* @__PURE__ */ function(_PureComponent) {
       var errorBarProps = {
         clipPath: needClip ? "url(#clipPath-".concat(clipPathId, ")") : null
       };
-      return /* @__PURE__ */ import_react41.default.createElement(Layer, errorBarProps, errorBarItems.map(function(item) {
-        return /* @__PURE__ */ import_react41.default.cloneElement(item, {
+      return /* @__PURE__ */ import_react66.default.createElement(Layer, errorBarProps, errorBarItems.map(function(item) {
+        return /* @__PURE__ */ import_react66.default.cloneElement(item, {
           key: "bar-".concat(item.props.dataKey),
           data: points,
           xAxis,
           yAxis,
-          layout,
+          layout: layout2,
           dataPointFormatter
         });
       }));
@@ -49819,8 +58062,8 @@ var Line = /* @__PURE__ */ function(_PureComponent) {
         return null;
       }
       var _this$props2 = this.props, dot = _this$props2.dot, points = _this$props2.points, dataKey = _this$props2.dataKey;
-      var lineProps = filterProps(this.props, false);
-      var customDotProps = filterProps(dot, true);
+      var lineProps = filterProps2(this.props, false);
+      var customDotProps = filterProps2(dot, true);
       var dots = points.map(function(entry, i) {
         var dotProps = _objectSpread41(_objectSpread41(_objectSpread41({
           key: "dot-".concat(i),
@@ -49839,7 +58082,7 @@ var Line = /* @__PURE__ */ function(_PureComponent) {
       var dotsProps = {
         clipPath: needClip ? "url(#clipPath-".concat(clipDot ? "" : "dots-").concat(clipPathId, ")") : null
       };
-      return /* @__PURE__ */ import_react41.default.createElement(Layer, _extends32({
+      return /* @__PURE__ */ import_react66.default.createElement(Layer, _extends32({
         className: "recharts-line-dots",
         key: "dots"
       }, dotsProps), dots);
@@ -49847,18 +58090,18 @@ var Line = /* @__PURE__ */ function(_PureComponent) {
   }, {
     key: "renderCurveStatically",
     value: function renderCurveStatically(points, needClip, clipPathId, props) {
-      var _this$props3 = this.props, type = _this$props3.type, layout = _this$props3.layout, connectNulls = _this$props3.connectNulls, ref = _this$props3.ref, others = _objectWithoutProperties23(_this$props3, _excluded30);
-      var curveProps = _objectSpread41(_objectSpread41(_objectSpread41({}, filterProps(others, true)), {}, {
+      var _this$props3 = this.props, type = _this$props3.type, layout2 = _this$props3.layout, connectNulls = _this$props3.connectNulls, ref = _this$props3.ref, others = _objectWithoutProperties23(_this$props3, _excluded30);
+      var curveProps = _objectSpread41(_objectSpread41(_objectSpread41({}, filterProps2(others, true)), {}, {
         fill: "none",
         className: "recharts-line-curve",
         clipPath: needClip ? "url(#clipPath-".concat(clipPathId, ")") : null,
         points
       }, props), {}, {
         type,
-        layout,
+        layout: layout2,
         connectNulls
       });
-      return /* @__PURE__ */ import_react41.default.createElement(Curve, _extends32({}, curveProps, {
+      return /* @__PURE__ */ import_react66.default.createElement(Curve, _extends32({}, curveProps, {
         pathRef: this.pathRef
       }));
     }
@@ -49868,7 +58111,7 @@ var Line = /* @__PURE__ */ function(_PureComponent) {
       var _this2 = this;
       var _this$props4 = this.props, points = _this$props4.points, strokeDasharray = _this$props4.strokeDasharray, isAnimationActive = _this$props4.isAnimationActive, animationBegin = _this$props4.animationBegin, animationDuration = _this$props4.animationDuration, animationEasing = _this$props4.animationEasing, animationId = _this$props4.animationId, animateNewValues = _this$props4.animateNewValues, width = _this$props4.width, height = _this$props4.height;
       var _this$state = this.state, prevPoints = _this$state.prevPoints, totalLength = _this$state.totalLength;
-      return /* @__PURE__ */ import_react41.default.createElement(es6_default, {
+      return /* @__PURE__ */ import_react66.default.createElement(es6_default, {
         begin: animationBegin,
         duration: animationDuration,
         isActive: isAnimationActive,
@@ -49942,7 +58185,7 @@ var Line = /* @__PURE__ */ function(_PureComponent) {
     key: "render",
     value: function render() {
       var _filterProps;
-      var _this$props6 = this.props, hide = _this$props6.hide, dot = _this$props6.dot, points = _this$props6.points, className = _this$props6.className, xAxis = _this$props6.xAxis, yAxis = _this$props6.yAxis, top = _this$props6.top, left = _this$props6.left, width = _this$props6.width, height = _this$props6.height, isAnimationActive = _this$props6.isAnimationActive, id = _this$props6.id;
+      var _this$props6 = this.props, hide = _this$props6.hide, dot = _this$props6.dot, points = _this$props6.points, className = _this$props6.className, xAxis = _this$props6.xAxis, yAxis = _this$props6.yAxis, top = _this$props6.top, left = _this$props6.left, width = _this$props6.width, height = _this$props6.height, isAnimationActive = _this$props6.isAnimationActive, id3 = _this$props6.id;
       if (hide || !points || !points.length) {
         return null;
       }
@@ -49952,25 +58195,25 @@ var Line = /* @__PURE__ */ function(_PureComponent) {
       var needClipX = xAxis && xAxis.allowDataOverflow;
       var needClipY = yAxis && yAxis.allowDataOverflow;
       var needClip = needClipX || needClipY;
-      var clipPathId = (0, import_isNil12.default)(id) ? this.id : id;
-      var _ref2 = (_filterProps = filterProps(dot, false)) !== null && _filterProps !== void 0 ? _filterProps : {
+      var clipPathId = (0, import_isNil12.default)(id3) ? this.id : id3;
+      var _ref2 = (_filterProps = filterProps2(dot, false)) !== null && _filterProps !== void 0 ? _filterProps : {
         r: 3,
         strokeWidth: 2
       }, _ref2$r = _ref2.r, r2 = _ref2$r === void 0 ? 3 : _ref2$r, _ref2$strokeWidth = _ref2.strokeWidth, strokeWidth = _ref2$strokeWidth === void 0 ? 2 : _ref2$strokeWidth;
       var _ref3 = hasClipDot(dot) ? dot : {}, _ref3$clipDot = _ref3.clipDot, clipDot = _ref3$clipDot === void 0 ? true : _ref3$clipDot;
       var dotSize = r2 * 2 + strokeWidth;
-      return /* @__PURE__ */ import_react41.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react66.default.createElement(Layer, {
         className: layerClass
-      }, needClipX || needClipY ? /* @__PURE__ */ import_react41.default.createElement("defs", null, /* @__PURE__ */ import_react41.default.createElement("clipPath", {
+      }, needClipX || needClipY ? /* @__PURE__ */ import_react66.default.createElement("defs", null, /* @__PURE__ */ import_react66.default.createElement("clipPath", {
         id: "clipPath-".concat(clipPathId)
-      }, /* @__PURE__ */ import_react41.default.createElement("rect", {
+      }, /* @__PURE__ */ import_react66.default.createElement("rect", {
         x: needClipX ? left : left - width / 2,
         y: needClipY ? top : top - height / 2,
         width: needClipX ? width : width * 2,
         height: needClipY ? height : height * 2
-      })), !clipDot && /* @__PURE__ */ import_react41.default.createElement("clipPath", {
+      })), !clipDot && /* @__PURE__ */ import_react66.default.createElement("clipPath", {
         id: "clipPath-dots-".concat(clipPathId)
-      }, /* @__PURE__ */ import_react41.default.createElement("rect", {
+      }, /* @__PURE__ */ import_react66.default.createElement("rect", {
         x: left - dotSize / 2,
         y: top - dotSize / 2,
         width: width + dotSize,
@@ -50008,14 +58251,14 @@ var Line = /* @__PURE__ */ function(_PureComponent) {
     key: "renderDotItem",
     value: function renderDotItem(option, props) {
       var dotItem;
-      if (/* @__PURE__ */ import_react41.default.isValidElement(option)) {
-        dotItem = /* @__PURE__ */ import_react41.default.cloneElement(option, props);
+      if (/* @__PURE__ */ import_react66.default.isValidElement(option)) {
+        dotItem = /* @__PURE__ */ import_react66.default.cloneElement(option, props);
       } else if ((0, import_isFunction23.default)(option)) {
         dotItem = option(props);
       } else {
         var key = props.key, dotProps = _objectWithoutProperties23(props, _excluded210);
         var className = clsx_default("recharts-line-dot", typeof option !== "boolean" ? option.className : "");
-        dotItem = /* @__PURE__ */ import_react41.default.createElement(Dot, _extends32({
+        dotItem = /* @__PURE__ */ import_react66.default.createElement(Dot, _extends32({
           key
         }, dotProps, {
           className
@@ -50024,7 +58267,7 @@ var Line = /* @__PURE__ */ function(_PureComponent) {
       return dotItem;
     }
   }]);
-}(import_react41.PureComponent);
+}(import_react66.PureComponent);
 _defineProperty43(Line, "displayName", "Line");
 _defineProperty43(Line, "defaultProps", {
   xAxisId: 0,
@@ -50047,10 +58290,10 @@ _defineProperty43(Line, "defaultProps", {
 });
 _defineProperty43(Line, "getComposedData", function(_ref4) {
   var props = _ref4.props, xAxis = _ref4.xAxis, yAxis = _ref4.yAxis, xAxisTicks = _ref4.xAxisTicks, yAxisTicks = _ref4.yAxisTicks, dataKey = _ref4.dataKey, bandSize = _ref4.bandSize, displayedData = _ref4.displayedData, offset = _ref4.offset;
-  var layout = props.layout;
+  var layout2 = props.layout;
   var points = displayedData.map(function(entry, index) {
     var value = getValueByDataKey(entry, dataKey);
-    if (layout === "horizontal") {
+    if (layout2 === "horizontal") {
       return {
         x: getCateCoordinateOfLine({
           axis: xAxis,
@@ -50079,12 +58322,12 @@ _defineProperty43(Line, "getComposedData", function(_ref4) {
   });
   return _objectSpread41({
     points,
-    layout
+    layout: layout2
   }, offset);
 });
 
 // node_modules/recharts/es6/cartesian/Area.js
-var import_react42 = __toESM(require_react());
+var import_react67 = __toESM(require_react());
 var import_isFunction24 = __toESM(require_isFunction());
 var import_max3 = __toESM(require_max());
 var import_isNil13 = __toESM(require_isNil());
@@ -50295,8 +58538,8 @@ var Area = /* @__PURE__ */ function(_PureComponent) {
         return null;
       }
       var _this$props = this.props, dot = _this$props.dot, points = _this$props.points, dataKey = _this$props.dataKey;
-      var areaProps = filterProps(this.props, false);
-      var customDotProps = filterProps(dot, true);
+      var areaProps = filterProps2(this.props, false);
+      var customDotProps = filterProps2(dot, true);
       var dots = points.map(function(entry, i) {
         var dotProps = _objectSpread42(_objectSpread42(_objectSpread42({
           key: "dot-".concat(i),
@@ -50315,17 +58558,17 @@ var Area = /* @__PURE__ */ function(_PureComponent) {
       var dotsProps = {
         clipPath: needClip ? "url(#clipPath-".concat(clipDot ? "" : "dots-").concat(clipPathId, ")") : null
       };
-      return /* @__PURE__ */ import_react42.default.createElement(Layer, _extends33({
+      return /* @__PURE__ */ import_react67.default.createElement(Layer, _extends33({
         className: "recharts-area-dots"
       }, dotsProps), dots);
     }
   }, {
     key: "renderHorizontalRect",
-    value: function renderHorizontalRect(alpha3) {
+    value: function renderHorizontalRect(alpha4) {
       var _this$props2 = this.props, baseLine = _this$props2.baseLine, points = _this$props2.points, strokeWidth = _this$props2.strokeWidth;
       var startX = points[0].x;
       var endX = points[points.length - 1].x;
-      var width = alpha3 * Math.abs(startX - endX);
+      var width = alpha4 * Math.abs(startX - endX);
       var maxY = (0, import_max3.default)(points.map(function(entry) {
         return entry.y || 0;
       }));
@@ -50337,7 +58580,7 @@ var Area = /* @__PURE__ */ function(_PureComponent) {
         })), maxY);
       }
       if (isNumber(maxY)) {
-        return /* @__PURE__ */ import_react42.default.createElement("rect", {
+        return /* @__PURE__ */ import_react67.default.createElement("rect", {
           x: startX < endX ? startX : startX - width,
           y: 0,
           width,
@@ -50348,11 +58591,11 @@ var Area = /* @__PURE__ */ function(_PureComponent) {
     }
   }, {
     key: "renderVerticalRect",
-    value: function renderVerticalRect(alpha3) {
+    value: function renderVerticalRect(alpha4) {
       var _this$props3 = this.props, baseLine = _this$props3.baseLine, points = _this$props3.points, strokeWidth = _this$props3.strokeWidth;
       var startY = points[0].y;
       var endY = points[points.length - 1].y;
-      var height = alpha3 * Math.abs(startY - endY);
+      var height = alpha4 * Math.abs(startY - endY);
       var maxX = (0, import_max3.default)(points.map(function(entry) {
         return entry.x || 0;
       }));
@@ -50364,7 +58607,7 @@ var Area = /* @__PURE__ */ function(_PureComponent) {
         })), maxX);
       }
       if (isNumber(maxX)) {
-        return /* @__PURE__ */ import_react42.default.createElement("rect", {
+        return /* @__PURE__ */ import_react67.default.createElement("rect", {
           x: 0,
           y: startY < endY ? startY : startY - height,
           width: maxX + (strokeWidth ? parseInt("".concat(strokeWidth), 10) : 1),
@@ -50375,37 +58618,37 @@ var Area = /* @__PURE__ */ function(_PureComponent) {
     }
   }, {
     key: "renderClipRect",
-    value: function renderClipRect(alpha3) {
-      var layout = this.props.layout;
-      if (layout === "vertical") {
-        return this.renderVerticalRect(alpha3);
+    value: function renderClipRect(alpha4) {
+      var layout2 = this.props.layout;
+      if (layout2 === "vertical") {
+        return this.renderVerticalRect(alpha4);
       }
-      return this.renderHorizontalRect(alpha3);
+      return this.renderHorizontalRect(alpha4);
     }
   }, {
     key: "renderAreaStatically",
     value: function renderAreaStatically(points, baseLine, needClip, clipPathId) {
-      var _this$props4 = this.props, layout = _this$props4.layout, type = _this$props4.type, stroke = _this$props4.stroke, connectNulls = _this$props4.connectNulls, isRange = _this$props4.isRange, ref = _this$props4.ref, others = _objectWithoutProperties24(_this$props4, _excluded31);
-      return /* @__PURE__ */ import_react42.default.createElement(Layer, {
+      var _this$props4 = this.props, layout2 = _this$props4.layout, type = _this$props4.type, stroke = _this$props4.stroke, connectNulls = _this$props4.connectNulls, isRange = _this$props4.isRange, ref = _this$props4.ref, others = _objectWithoutProperties24(_this$props4, _excluded31);
+      return /* @__PURE__ */ import_react67.default.createElement(Layer, {
         clipPath: needClip ? "url(#clipPath-".concat(clipPathId, ")") : null
-      }, /* @__PURE__ */ import_react42.default.createElement(Curve, _extends33({}, filterProps(others, true), {
+      }, /* @__PURE__ */ import_react67.default.createElement(Curve, _extends33({}, filterProps2(others, true), {
         points,
         connectNulls,
         type,
         baseLine,
-        layout,
+        layout: layout2,
         stroke: "none",
         className: "recharts-area-area"
-      })), stroke !== "none" && /* @__PURE__ */ import_react42.default.createElement(Curve, _extends33({}, filterProps(this.props, false), {
+      })), stroke !== "none" && /* @__PURE__ */ import_react67.default.createElement(Curve, _extends33({}, filterProps2(this.props, false), {
         className: "recharts-area-curve",
-        layout,
+        layout: layout2,
         type,
         connectNulls,
         fill: "none",
         points
-      })), stroke !== "none" && isRange && /* @__PURE__ */ import_react42.default.createElement(Curve, _extends33({}, filterProps(this.props, false), {
+      })), stroke !== "none" && isRange && /* @__PURE__ */ import_react67.default.createElement(Curve, _extends33({}, filterProps2(this.props, false), {
         className: "recharts-area-curve",
-        layout,
+        layout: layout2,
         type,
         connectNulls,
         fill: "none",
@@ -50418,7 +58661,7 @@ var Area = /* @__PURE__ */ function(_PureComponent) {
       var _this2 = this;
       var _this$props5 = this.props, points = _this$props5.points, baseLine = _this$props5.baseLine, isAnimationActive = _this$props5.isAnimationActive, animationBegin = _this$props5.animationBegin, animationDuration = _this$props5.animationDuration, animationEasing = _this$props5.animationEasing, animationId = _this$props5.animationId;
       var _this$state = this.state, prevPoints = _this$state.prevPoints, prevBaseLine = _this$state.prevBaseLine;
-      return /* @__PURE__ */ import_react42.default.createElement(es6_default, {
+      return /* @__PURE__ */ import_react67.default.createElement(es6_default, {
         begin: animationBegin,
         duration: animationDuration,
         isActive: isAnimationActive,
@@ -50473,9 +58716,9 @@ var Area = /* @__PURE__ */ function(_PureComponent) {
           }
           return _this2.renderAreaStatically(stepPoints, stepBaseLine, needClip, clipPathId);
         }
-        return /* @__PURE__ */ import_react42.default.createElement(Layer, null, /* @__PURE__ */ import_react42.default.createElement("defs", null, /* @__PURE__ */ import_react42.default.createElement("clipPath", {
+        return /* @__PURE__ */ import_react67.default.createElement(Layer, null, /* @__PURE__ */ import_react67.default.createElement("defs", null, /* @__PURE__ */ import_react67.default.createElement("clipPath", {
           id: "animationClipPath-".concat(clipPathId)
-        }, _this2.renderClipRect(t))), /* @__PURE__ */ import_react42.default.createElement(Layer, {
+        }, _this2.renderClipRect(t))), /* @__PURE__ */ import_react67.default.createElement(Layer, {
           clipPath: "url(#animationClipPath-".concat(clipPathId, ")")
         }, _this2.renderAreaStatically(points, baseLine, needClip, clipPathId)));
       });
@@ -50494,7 +58737,7 @@ var Area = /* @__PURE__ */ function(_PureComponent) {
     key: "render",
     value: function render() {
       var _filterProps;
-      var _this$props7 = this.props, hide = _this$props7.hide, dot = _this$props7.dot, points = _this$props7.points, className = _this$props7.className, top = _this$props7.top, left = _this$props7.left, xAxis = _this$props7.xAxis, yAxis = _this$props7.yAxis, width = _this$props7.width, height = _this$props7.height, isAnimationActive = _this$props7.isAnimationActive, id = _this$props7.id;
+      var _this$props7 = this.props, hide = _this$props7.hide, dot = _this$props7.dot, points = _this$props7.points, className = _this$props7.className, top = _this$props7.top, left = _this$props7.left, xAxis = _this$props7.xAxis, yAxis = _this$props7.yAxis, width = _this$props7.width, height = _this$props7.height, isAnimationActive = _this$props7.isAnimationActive, id3 = _this$props7.id;
       if (hide || !points || !points.length) {
         return null;
       }
@@ -50504,25 +58747,25 @@ var Area = /* @__PURE__ */ function(_PureComponent) {
       var needClipX = xAxis && xAxis.allowDataOverflow;
       var needClipY = yAxis && yAxis.allowDataOverflow;
       var needClip = needClipX || needClipY;
-      var clipPathId = (0, import_isNil13.default)(id) ? this.id : id;
-      var _ref2 = (_filterProps = filterProps(dot, false)) !== null && _filterProps !== void 0 ? _filterProps : {
+      var clipPathId = (0, import_isNil13.default)(id3) ? this.id : id3;
+      var _ref2 = (_filterProps = filterProps2(dot, false)) !== null && _filterProps !== void 0 ? _filterProps : {
         r: 3,
         strokeWidth: 2
       }, _ref2$r = _ref2.r, r2 = _ref2$r === void 0 ? 3 : _ref2$r, _ref2$strokeWidth = _ref2.strokeWidth, strokeWidth = _ref2$strokeWidth === void 0 ? 2 : _ref2$strokeWidth;
       var _ref3 = hasClipDot(dot) ? dot : {}, _ref3$clipDot = _ref3.clipDot, clipDot = _ref3$clipDot === void 0 ? true : _ref3$clipDot;
       var dotSize = r2 * 2 + strokeWidth;
-      return /* @__PURE__ */ import_react42.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react67.default.createElement(Layer, {
         className: layerClass
-      }, needClipX || needClipY ? /* @__PURE__ */ import_react42.default.createElement("defs", null, /* @__PURE__ */ import_react42.default.createElement("clipPath", {
+      }, needClipX || needClipY ? /* @__PURE__ */ import_react67.default.createElement("defs", null, /* @__PURE__ */ import_react67.default.createElement("clipPath", {
         id: "clipPath-".concat(clipPathId)
-      }, /* @__PURE__ */ import_react42.default.createElement("rect", {
+      }, /* @__PURE__ */ import_react67.default.createElement("rect", {
         x: needClipX ? left : left - width / 2,
         y: needClipY ? top : top - height / 2,
         width: needClipX ? width : width * 2,
         height: needClipY ? height : height * 2
-      })), !clipDot && /* @__PURE__ */ import_react42.default.createElement("clipPath", {
+      })), !clipDot && /* @__PURE__ */ import_react67.default.createElement("clipPath", {
         id: "clipPath-dots-".concat(clipPathId)
-      }, /* @__PURE__ */ import_react42.default.createElement("rect", {
+      }, /* @__PURE__ */ import_react67.default.createElement("rect", {
         x: left - dotSize / 2,
         y: top - dotSize / 2,
         width: width + dotSize,
@@ -50550,7 +58793,7 @@ var Area = /* @__PURE__ */ function(_PureComponent) {
       return null;
     }
   }]);
-}(import_react42.PureComponent);
+}(import_react67.PureComponent);
 _Area = Area;
 _defineProperty44(Area, "displayName", "Area");
 _defineProperty44(Area, "defaultProps", {
@@ -50572,13 +58815,13 @@ _defineProperty44(Area, "defaultProps", {
   animationEasing: "ease"
 });
 _defineProperty44(Area, "getBaseValue", function(props, item, xAxis, yAxis) {
-  var layout = props.layout, chartBaseValue = props.baseValue;
+  var layout2 = props.layout, chartBaseValue = props.baseValue;
   var itemBaseValue = item.props.baseValue;
   var baseValue = itemBaseValue !== null && itemBaseValue !== void 0 ? itemBaseValue : chartBaseValue;
   if (isNumber(baseValue) && typeof baseValue === "number") {
     return baseValue;
   }
-  var numericAxis = layout === "horizontal" ? yAxis : xAxis;
+  var numericAxis = layout2 === "horizontal" ? yAxis : xAxis;
   var domain = numericAxis.scale.domain();
   if (numericAxis.type === "number") {
     var domainMax = Math.max(domain[0], domain[1]);
@@ -50601,10 +58844,10 @@ _defineProperty44(Area, "getBaseValue", function(props, item, xAxis, yAxis) {
 });
 _defineProperty44(Area, "getComposedData", function(_ref4) {
   var props = _ref4.props, item = _ref4.item, xAxis = _ref4.xAxis, yAxis = _ref4.yAxis, xAxisTicks = _ref4.xAxisTicks, yAxisTicks = _ref4.yAxisTicks, bandSize = _ref4.bandSize, dataKey = _ref4.dataKey, stackedData = _ref4.stackedData, dataStartIndex = _ref4.dataStartIndex, displayedData = _ref4.displayedData, offset = _ref4.offset;
-  var layout = props.layout;
+  var layout2 = props.layout;
   var hasStack = stackedData && stackedData.length;
   var baseValue = _Area.getBaseValue(props, item, xAxis, yAxis);
-  var isHorizontalLayout = layout === "horizontal";
+  var isHorizontalLayout = layout2 === "horizontal";
   var isRange = false;
   var points = displayedData.map(function(entry, index) {
     var value;
@@ -50667,20 +58910,20 @@ _defineProperty44(Area, "getComposedData", function(_ref4) {
   return _objectSpread42({
     points,
     baseLine,
-    layout,
+    layout: layout2,
     isRange
   }, offset);
 });
 _defineProperty44(Area, "renderDotItem", function(option, props) {
   var dotItem;
-  if (/* @__PURE__ */ import_react42.default.isValidElement(option)) {
-    dotItem = /* @__PURE__ */ import_react42.default.cloneElement(option, props);
+  if (/* @__PURE__ */ import_react67.default.isValidElement(option)) {
+    dotItem = /* @__PURE__ */ import_react67.default.cloneElement(option, props);
   } else if ((0, import_isFunction24.default)(option)) {
     dotItem = option(props);
   } else {
     var className = clsx_default("recharts-area-dot", typeof option !== "boolean" ? option.className : "");
     var key = props.key, rest = _objectWithoutProperties24(props, _excluded211);
-    dotItem = /* @__PURE__ */ import_react42.default.createElement(Dot, _extends33({}, rest, {
+    dotItem = /* @__PURE__ */ import_react67.default.createElement(Dot, _extends33({}, rest, {
       key,
       className
     }));
@@ -50689,13 +58932,13 @@ _defineProperty44(Area, "renderDotItem", function(option, props) {
 });
 
 // node_modules/recharts/es6/cartesian/Scatter.js
-var import_react43 = __toESM(require_react());
+var import_react68 = __toESM(require_react());
 var import_isNil14 = __toESM(require_isNil());
 var import_isEqual9 = __toESM(require_isEqual());
 var import_isFunction25 = __toESM(require_isFunction());
 
 // node_modules/recharts/es6/cartesian/ZAxis.js
-var React42 = __toESM(require_react());
+var React44 = __toESM(require_react());
 function _typeof51(o) {
   "@babel/helpers - typeof";
   return _typeof51 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o2) {
@@ -50807,7 +59050,7 @@ var ZAxis = /* @__PURE__ */ function(_React$Component) {
       return null;
     }
   }]);
-}(React42.Component);
+}(React44.Component);
 _defineProperty45(ZAxis, "displayName", "ZAxis");
 _defineProperty45(ZAxis, "defaultProps", {
   zAxisId: 0,
@@ -50817,7 +59060,7 @@ _defineProperty45(ZAxis, "defaultProps", {
 });
 
 // node_modules/recharts/es6/util/ScatterUtils.js
-var React43 = __toESM(require_react());
+var React45 = __toESM(require_react());
 var _excluded33 = ["option", "isActive"];
 function _extends34() {
   _extends34 = Object.assign ? Object.assign.bind() : function(target) {
@@ -50862,15 +59105,15 @@ function _objectWithoutPropertiesLoose25(source, excluded) {
 function ScatterSymbol(_ref) {
   var option = _ref.option, isActive = _ref.isActive, props = _objectWithoutProperties25(_ref, _excluded33);
   if (typeof option === "string") {
-    return /* @__PURE__ */ React43.createElement(Shape, _extends34({
-      option: /* @__PURE__ */ React43.createElement(Symbols, _extends34({
+    return /* @__PURE__ */ React45.createElement(Shape, _extends34({
+      option: /* @__PURE__ */ React45.createElement(Symbols, _extends34({
         type: option
       }, props)),
       isActive,
       shapeType: "symbols"
     }, props));
   }
-  return /* @__PURE__ */ React43.createElement(Shape, _extends34({
+  return /* @__PURE__ */ React45.createElement(Shape, _extends34({
     option,
     isActive,
     shapeType: "symbols"
@@ -51043,17 +59286,17 @@ var Scatter = /* @__PURE__ */ function(_PureComponent) {
     value: function renderSymbolsStatically(points) {
       var _this2 = this;
       var _this$props = this.props, shape = _this$props.shape, activeShape = _this$props.activeShape, activeIndex = _this$props.activeIndex;
-      var baseProps = filterProps(this.props, false);
+      var baseProps = filterProps2(this.props, false);
       return points.map(function(entry, i) {
         var isActive = activeIndex === i;
         var option = isActive ? activeShape : shape;
         var props = _objectSpread43(_objectSpread43({}, baseProps), entry);
-        return /* @__PURE__ */ import_react43.default.createElement(Layer, _extends35({
+        return /* @__PURE__ */ import_react68.default.createElement(Layer, _extends35({
           className: "recharts-scatter-symbol",
           key: "symbol-".concat(entry === null || entry === void 0 ? void 0 : entry.cx, "-").concat(entry === null || entry === void 0 ? void 0 : entry.cy, "-").concat(entry === null || entry === void 0 ? void 0 : entry.size, "-").concat(i)
         }, adaptEventsOfChild(_this2.props, entry, i), {
           role: "img"
-        }), /* @__PURE__ */ import_react43.default.createElement(ScatterSymbol, _extends35({
+        }), /* @__PURE__ */ import_react68.default.createElement(ScatterSymbol, _extends35({
           option,
           isActive,
           key: "symbol-".concat(i)
@@ -51066,7 +59309,7 @@ var Scatter = /* @__PURE__ */ function(_PureComponent) {
       var _this3 = this;
       var _this$props2 = this.props, points = _this$props2.points, isAnimationActive = _this$props2.isAnimationActive, animationBegin = _this$props2.animationBegin, animationDuration = _this$props2.animationDuration, animationEasing = _this$props2.animationEasing, animationId = _this$props2.animationId;
       var prevPoints = this.state.prevPoints;
-      return /* @__PURE__ */ import_react43.default.createElement(es6_default, {
+      return /* @__PURE__ */ import_react68.default.createElement(es6_default, {
         begin: animationBegin,
         duration: animationDuration,
         isActive: isAnimationActive,
@@ -51099,7 +59342,7 @@ var Scatter = /* @__PURE__ */ function(_PureComponent) {
             size: interpolator(t)
           });
         });
-        return /* @__PURE__ */ import_react43.default.createElement(Layer, null, _this3.renderSymbolsStatically(stepData));
+        return /* @__PURE__ */ import_react68.default.createElement(Layer, null, _this3.renderSymbolsStatically(stepData));
       });
     }
   }, {
@@ -51126,7 +59369,7 @@ var Scatter = /* @__PURE__ */ function(_PureComponent) {
       }
       return errorBarItems.map(function(item, i) {
         var _item$props = item.props, direction = _item$props.direction, errorDataKey = _item$props.dataKey;
-        return /* @__PURE__ */ import_react43.default.cloneElement(item, {
+        return /* @__PURE__ */ import_react68.default.cloneElement(item, {
           key: "".concat(direction, "-").concat(errorDataKey, "-").concat(points[i]),
           data: points,
           xAxis,
@@ -51147,8 +59390,8 @@ var Scatter = /* @__PURE__ */ function(_PureComponent) {
     key: "renderLine",
     value: function renderLine3() {
       var _this$props5 = this.props, points = _this$props5.points, line = _this$props5.line, lineType = _this$props5.lineType, lineJointType = _this$props5.lineJointType;
-      var scatterProps = filterProps(this.props, false);
-      var customLineProps = filterProps(line, false);
+      var scatterProps = filterProps2(this.props, false);
+      var customLineProps = filterProps2(line, false);
       var linePoints, lineItem;
       if (lineType === "joint") {
         linePoints = points.map(function(entry) {
@@ -51176,16 +59419,16 @@ var Scatter = /* @__PURE__ */ function(_PureComponent) {
       }, customLineProps), {}, {
         points: linePoints
       });
-      if (/* @__PURE__ */ import_react43.default.isValidElement(line)) {
-        lineItem = /* @__PURE__ */ import_react43.default.cloneElement(line, lineProps);
+      if (/* @__PURE__ */ import_react68.default.isValidElement(line)) {
+        lineItem = /* @__PURE__ */ import_react68.default.cloneElement(line, lineProps);
       } else if ((0, import_isFunction25.default)(line)) {
         lineItem = line(lineProps);
       } else {
-        lineItem = /* @__PURE__ */ import_react43.default.createElement(Curve, _extends35({}, lineProps, {
+        lineItem = /* @__PURE__ */ import_react68.default.createElement(Curve, _extends35({}, lineProps, {
           type: lineJointType
         }));
       }
-      return /* @__PURE__ */ import_react43.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react68.default.createElement(Layer, {
         className: "recharts-scatter-line",
         key: "recharts-scatter-line"
       }, lineItem);
@@ -51193,7 +59436,7 @@ var Scatter = /* @__PURE__ */ function(_PureComponent) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props6 = this.props, hide = _this$props6.hide, points = _this$props6.points, line = _this$props6.line, className = _this$props6.className, xAxis = _this$props6.xAxis, yAxis = _this$props6.yAxis, left = _this$props6.left, top = _this$props6.top, width = _this$props6.width, height = _this$props6.height, id = _this$props6.id, isAnimationActive = _this$props6.isAnimationActive;
+      var _this$props6 = this.props, hide = _this$props6.hide, points = _this$props6.points, line = _this$props6.line, className = _this$props6.className, xAxis = _this$props6.xAxis, yAxis = _this$props6.yAxis, left = _this$props6.left, top = _this$props6.top, width = _this$props6.width, height = _this$props6.height, id3 = _this$props6.id, isAnimationActive = _this$props6.isAnimationActive;
       if (hide || !points || !points.length) {
         return null;
       }
@@ -51202,18 +59445,18 @@ var Scatter = /* @__PURE__ */ function(_PureComponent) {
       var needClipX = xAxis && xAxis.allowDataOverflow;
       var needClipY = yAxis && yAxis.allowDataOverflow;
       var needClip = needClipX || needClipY;
-      var clipPathId = (0, import_isNil14.default)(id) ? this.id : id;
-      return /* @__PURE__ */ import_react43.default.createElement(Layer, {
+      var clipPathId = (0, import_isNil14.default)(id3) ? this.id : id3;
+      return /* @__PURE__ */ import_react68.default.createElement(Layer, {
         className: layerClass,
         clipPath: needClip ? "url(#clipPath-".concat(clipPathId, ")") : null
-      }, needClipX || needClipY ? /* @__PURE__ */ import_react43.default.createElement("defs", null, /* @__PURE__ */ import_react43.default.createElement("clipPath", {
+      }, needClipX || needClipY ? /* @__PURE__ */ import_react68.default.createElement("defs", null, /* @__PURE__ */ import_react68.default.createElement("clipPath", {
         id: "clipPath-".concat(clipPathId)
-      }, /* @__PURE__ */ import_react43.default.createElement("rect", {
+      }, /* @__PURE__ */ import_react68.default.createElement("rect", {
         x: needClipX ? left : left - width / 2,
         y: needClipY ? top : top - height / 2,
         width: needClipX ? width : width * 2,
         height: needClipY ? height : height * 2
-      }))) : null, line && this.renderLine(), this.renderErrorBar(), /* @__PURE__ */ import_react43.default.createElement(Layer, {
+      }))) : null, line && this.renderLine(), this.renderErrorBar(), /* @__PURE__ */ import_react68.default.createElement(Layer, {
         key: "recharts-scatter-symbols"
       }, this.renderSymbols()), (!isAnimationActive || isAnimationFinished) && LabelList.renderCallByParent(this.props, points));
     }
@@ -51235,7 +59478,7 @@ var Scatter = /* @__PURE__ */ function(_PureComponent) {
       return null;
     }
   }]);
-}(import_react43.PureComponent);
+}(import_react68.PureComponent);
 _Scatter = Scatter;
 _defineProperty46(Scatter, "displayName", "Scatter");
 _defineProperty46(Scatter, "defaultProps", {
@@ -51341,7 +59584,7 @@ _defineProperty46(Scatter, "getComposedData", function(_ref2) {
 });
 
 // node_modules/recharts/es6/cartesian/XAxis.js
-var React45 = __toESM(require_react());
+var React47 = __toESM(require_react());
 function _typeof53(o) {
   "@babel/helpers - typeof";
   return _typeof53 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o2) {
@@ -51465,7 +59708,7 @@ function XAxisImpl(_ref) {
   }
   return (
     // @ts-expect-error the axisOptions type is not exactly what CartesianAxis is expecting.
-    /* @__PURE__ */ React45.createElement(CartesianAxis, _extends36({}, axisOptions, {
+    /* @__PURE__ */ React47.createElement(CartesianAxis, _extends36({}, axisOptions, {
       className: clsx_default("recharts-".concat(axisOptions.axisType, " ").concat(axisOptions.axisType), axisOptions.className),
       viewBox: {
         x: 0,
@@ -51488,10 +59731,10 @@ var XAxis = /* @__PURE__ */ function(_React$Component) {
   return _createClass24(XAxis3, [{
     key: "render",
     value: function render() {
-      return /* @__PURE__ */ React45.createElement(XAxisImpl, this.props);
+      return /* @__PURE__ */ React47.createElement(XAxisImpl, this.props);
     }
   }]);
-}(React45.Component);
+}(React47.Component);
 _defineProperty47(XAxis, "displayName", "XAxis");
 _defineProperty47(XAxis, "defaultProps", {
   allowDecimals: true,
@@ -51514,7 +59757,7 @@ _defineProperty47(XAxis, "defaultProps", {
 });
 
 // node_modules/recharts/es6/cartesian/YAxis.js
-var React46 = __toESM(require_react());
+var React48 = __toESM(require_react());
 function _typeof54(o) {
   "@babel/helpers - typeof";
   return _typeof54 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o2) {
@@ -51638,7 +59881,7 @@ var YAxisImpl = function YAxisImpl2(_ref) {
   }
   return (
     // @ts-expect-error the axisOptions type is not exactly what CartesianAxis is expecting.
-    /* @__PURE__ */ React46.createElement(CartesianAxis, _extends37({}, axisOptions, {
+    /* @__PURE__ */ React48.createElement(CartesianAxis, _extends37({}, axisOptions, {
       className: clsx_default("recharts-".concat(axisOptions.axisType, " ").concat(axisOptions.axisType), axisOptions.className),
       viewBox: {
         x: 0,
@@ -51661,10 +59904,10 @@ var YAxis = /* @__PURE__ */ function(_React$Component) {
   return _createClass25(YAxis3, [{
     key: "render",
     value: function render() {
-      return /* @__PURE__ */ React46.createElement(YAxisImpl, this.props);
+      return /* @__PURE__ */ React48.createElement(YAxisImpl, this.props);
     }
   }]);
-}(React46.Component);
+}(React48.Component);
 _defineProperty48(YAxis, "displayName", "YAxis");
 _defineProperty48(YAxis, "defaultProps", {
   allowDuplicatedCategory: true,
@@ -51687,7 +59930,7 @@ _defineProperty48(YAxis, "defaultProps", {
 });
 
 // node_modules/recharts/es6/chart/generateCategoricalChart.js
-var import_react45 = __toESM(require_react());
+var import_react70 = __toESM(require_react());
 var import_isNil15 = __toESM(require_isNil());
 var import_isFunction26 = __toESM(require_isFunction());
 var import_range3 = __toESM(require_range());
@@ -51829,10 +60072,10 @@ var AccessibilityManager = /* @__PURE__ */ function() {
     key: "setDetails",
     value: function setDetails(_ref) {
       var _ref2;
-      var _ref$coordinateList = _ref.coordinateList, coordinateList = _ref$coordinateList === void 0 ? null : _ref$coordinateList, _ref$container = _ref.container, container = _ref$container === void 0 ? null : _ref$container, _ref$layout = _ref.layout, layout = _ref$layout === void 0 ? null : _ref$layout, _ref$offset = _ref.offset, offset = _ref$offset === void 0 ? null : _ref$offset, _ref$mouseHandlerCall = _ref.mouseHandlerCallback, mouseHandlerCallback = _ref$mouseHandlerCall === void 0 ? null : _ref$mouseHandlerCall;
+      var _ref$coordinateList = _ref.coordinateList, coordinateList = _ref$coordinateList === void 0 ? null : _ref$coordinateList, _ref$container = _ref.container, container = _ref$container === void 0 ? null : _ref$container, _ref$layout = _ref.layout, layout2 = _ref$layout === void 0 ? null : _ref$layout, _ref$offset = _ref.offset, offset = _ref$offset === void 0 ? null : _ref$offset, _ref$mouseHandlerCall = _ref.mouseHandlerCallback, mouseHandlerCallback = _ref$mouseHandlerCall === void 0 ? null : _ref$mouseHandlerCall;
       this.coordinateList = (_ref2 = coordinateList !== null && coordinateList !== void 0 ? coordinateList : this.coordinateList) !== null && _ref2 !== void 0 ? _ref2 : [];
       this.container = container !== null && container !== void 0 ? container : this.container;
-      this.layout = layout !== null && layout !== void 0 ? layout : this.layout;
+      this.layout = layout2 !== null && layout2 !== void 0 ? layout2 : this.layout;
       this.offset = offset !== null && offset !== void 0 ? offset : this.offset;
       this.mouseHandlerCallback = mouseHandlerCallback !== null && mouseHandlerCallback !== void 0 ? mouseHandlerCallback : this.mouseHandlerCallback;
       this.activeIndex = Math.min(Math.max(this.activeIndex, 0), this.coordinateList.length - 1);
@@ -51912,18 +60155,18 @@ function isDomainSpecifiedByUser(domain, allowDataOverflow, axisType) {
 }
 
 // node_modules/recharts/es6/component/Cursor.js
-var import_react44 = __toESM(require_react());
+var import_react69 = __toESM(require_react());
 
 // node_modules/recharts/es6/util/cursor/getCursorRectangle.js
-function getCursorRectangle(layout, activeCoordinate, offset, tooltipAxisBandSize) {
+function getCursorRectangle(layout2, activeCoordinate, offset, tooltipAxisBandSize) {
   var halfSize = tooltipAxisBandSize / 2;
   return {
     stroke: "none",
     fill: "#ccc",
-    x: layout === "horizontal" ? activeCoordinate.x - halfSize : offset.left + 0.5,
-    y: layout === "horizontal" ? offset.top + 0.5 : activeCoordinate.y - halfSize,
-    width: layout === "horizontal" ? tooltipAxisBandSize : offset.width - 1,
-    height: layout === "horizontal" ? offset.height - 1 : tooltipAxisBandSize
+    x: layout2 === "horizontal" ? activeCoordinate.x - halfSize : offset.left + 0.5,
+    y: layout2 === "horizontal" ? offset.top + 0.5 : activeCoordinate.y - halfSize,
+    width: layout2 === "horizontal" ? tooltipAxisBandSize : offset.width - 1,
+    height: layout2 === "horizontal" ? offset.height - 1 : tooltipAxisBandSize
   };
 }
 
@@ -51943,20 +60186,20 @@ function getRadialCursorPoints(activeCoordinate) {
 }
 
 // node_modules/recharts/es6/util/cursor/getCursorPoints.js
-function getCursorPoints(layout, activeCoordinate, offset) {
+function getCursorPoints(layout2, activeCoordinate, offset) {
   var x1, y1, x2, y2;
-  if (layout === "horizontal") {
+  if (layout2 === "horizontal") {
     x1 = activeCoordinate.x;
     x2 = x1;
     y1 = offset.top;
     y2 = offset.top + offset.height;
-  } else if (layout === "vertical") {
+  } else if (layout2 === "vertical") {
     y1 = activeCoordinate.y;
     y2 = y1;
     x1 = offset.left;
     x2 = offset.left + offset.width;
   } else if (activeCoordinate.cx != null && activeCoordinate.cy != null) {
-    if (layout === "centric") {
+    if (layout2 === "centric") {
       var cx = activeCoordinate.cx, cy = activeCoordinate.cy, innerRadius = activeCoordinate.innerRadius, outerRadius = activeCoordinate.outerRadius, angle = activeCoordinate.angle;
       var innerPoint = polarToCartesian(cx, cy, innerRadius, angle);
       var outerPoint = polarToCartesian(cx, cy, outerRadius, angle);
@@ -52032,7 +60275,7 @@ function _toPrimitive51(t, r2) {
 }
 function Cursor(props) {
   var _element$props$cursor, _defaultProps;
-  var element = props.element, tooltipEventType = props.tooltipEventType, isActive = props.isActive, activeCoordinate = props.activeCoordinate, activePayload = props.activePayload, offset = props.offset, activeTooltipIndex = props.activeTooltipIndex, tooltipAxisBandSize = props.tooltipAxisBandSize, layout = props.layout, chartName = props.chartName;
+  var element = props.element, tooltipEventType = props.tooltipEventType, isActive = props.isActive, activeCoordinate = props.activeCoordinate, activePayload = props.activePayload, offset = props.offset, activeTooltipIndex = props.activeTooltipIndex, tooltipAxisBandSize = props.tooltipAxisBandSize, layout2 = props.layout, chartName = props.chartName;
   var elementPropsCursor = (_element$props$cursor = element.props.cursor) !== null && _element$props$cursor !== void 0 ? _element$props$cursor : (_defaultProps = element.type.defaultProps) === null || _defaultProps === void 0 ? void 0 : _defaultProps.cursor;
   if (!element || !elementPropsCursor || !isActive || !activeCoordinate || chartName !== "ScatterChart" && tooltipEventType !== "axis") {
     return null;
@@ -52043,9 +60286,9 @@ function Cursor(props) {
     restProps = activeCoordinate;
     cursorComp = Cross;
   } else if (chartName === "BarChart") {
-    restProps = getCursorRectangle(layout, activeCoordinate, offset, tooltipAxisBandSize);
+    restProps = getCursorRectangle(layout2, activeCoordinate, offset, tooltipAxisBandSize);
     cursorComp = Rectangle;
-  } else if (layout === "radial") {
+  } else if (layout2 === "radial") {
     var _getRadialCursorPoint = getRadialCursorPoints(activeCoordinate), cx = _getRadialCursorPoint.cx, cy = _getRadialCursorPoint.cy, radius = _getRadialCursorPoint.radius, startAngle = _getRadialCursorPoint.startAngle, endAngle = _getRadialCursorPoint.endAngle;
     restProps = {
       cx,
@@ -52058,19 +60301,19 @@ function Cursor(props) {
     cursorComp = Sector;
   } else {
     restProps = {
-      points: getCursorPoints(layout, activeCoordinate, offset)
+      points: getCursorPoints(layout2, activeCoordinate, offset)
     };
     cursorComp = Curve;
   }
   var cursorProps = _objectSpread44(_objectSpread44(_objectSpread44(_objectSpread44({
     stroke: "#ccc",
     pointerEvents: "none"
-  }, offset), restProps), filterProps(elementPropsCursor, false)), {}, {
+  }, offset), restProps), filterProps2(elementPropsCursor, false)), {}, {
     payload: activePayload,
     payloadIndex: activeTooltipIndex,
     className: clsx_default("recharts-tooltip-cursor", elementPropsCursor.className)
   });
-  return /* @__PURE__ */ (0, import_react44.isValidElement)(elementPropsCursor) ? /* @__PURE__ */ (0, import_react44.cloneElement)(elementPropsCursor, cursorProps) : /* @__PURE__ */ (0, import_react44.createElement)(cursorComp, cursorProps);
+  return /* @__PURE__ */ (0, import_react69.isValidElement)(elementPropsCursor) ? /* @__PURE__ */ (0, import_react69.cloneElement)(elementPropsCursor, cursorProps) : /* @__PURE__ */ (0, import_react69.createElement)(cursorComp, cursorProps);
 }
 
 // node_modules/recharts/es6/chart/generateCategoricalChart.js
@@ -52306,36 +60549,36 @@ var originCoordinate = {
 function renderAsIs(element) {
   return element;
 }
-var calculateTooltipPos = function calculateTooltipPos2(rangeObj, layout) {
-  if (layout === "horizontal") {
+var calculateTooltipPos = function calculateTooltipPos2(rangeObj, layout2) {
+  if (layout2 === "horizontal") {
     return rangeObj.x;
   }
-  if (layout === "vertical") {
+  if (layout2 === "vertical") {
     return rangeObj.y;
   }
-  if (layout === "centric") {
+  if (layout2 === "centric") {
     return rangeObj.angle;
   }
   return rangeObj.radius;
 };
-var getActiveCoordinate = function getActiveCoordinate2(layout, tooltipTicks, activeIndex, rangeObj) {
+var getActiveCoordinate = function getActiveCoordinate2(layout2, tooltipTicks, activeIndex, rangeObj) {
   var entry = tooltipTicks.find(function(tick) {
     return tick && tick.index === activeIndex;
   });
   if (entry) {
-    if (layout === "horizontal") {
+    if (layout2 === "horizontal") {
       return {
         x: entry.coordinate,
         y: rangeObj.y
       };
     }
-    if (layout === "vertical") {
+    if (layout2 === "vertical") {
       return {
         x: rangeObj.x,
         y: entry.coordinate
       };
     }
-    if (layout === "centric") {
+    if (layout2 === "centric") {
       var _angle = entry.coordinate;
       var _radius = rangeObj.radius;
       return _objectSpread45(_objectSpread45(_objectSpread45({}, rangeObj), polarToCartesian(rangeObj.cx, rangeObj.cy, _radius, _angle)), {}, {
@@ -52399,18 +60642,18 @@ var getTooltipContent = function getTooltipContent2(state, chartData, activeInde
     return [].concat(_toConsumableArray12(result), [getTooltipItem(child, payload)]);
   }, []);
 };
-var getTooltipData = function getTooltipData2(state, chartData, layout, rangeObj) {
+var getTooltipData = function getTooltipData2(state, chartData, layout2, rangeObj) {
   var rangeData = rangeObj || {
     x: state.chartX,
     y: state.chartY
   };
-  var pos = calculateTooltipPos(rangeData, layout);
+  var pos = calculateTooltipPos(rangeData, layout2);
   var ticks2 = state.orderedTooltipTicks, axis = state.tooltipAxis, tooltipTicks = state.tooltipTicks;
   var activeIndex = calculateActiveTickIndex(pos, ticks2, tooltipTicks, axis);
   if (activeIndex >= 0 && tooltipTicks) {
     var activeLabel = tooltipTicks[activeIndex] && tooltipTicks[activeIndex].value;
     var activePayload = getTooltipContent(state, chartData, activeIndex, activeLabel);
-    var activeCoordinate = getActiveCoordinate(layout, ticks2, activeIndex, rangeData);
+    var activeCoordinate = getActiveCoordinate(layout2, ticks2, activeIndex, rangeData);
     return {
       activeTooltipIndex: activeIndex,
       activeLabel,
@@ -52422,12 +60665,12 @@ var getTooltipData = function getTooltipData2(state, chartData, layout, rangeObj
 };
 var getAxisMapByAxes = function getAxisMapByAxes2(props, _ref2) {
   var axes = _ref2.axes, graphicalItems = _ref2.graphicalItems, axisType = _ref2.axisType, axisIdKey = _ref2.axisIdKey, stackGroups = _ref2.stackGroups, dataStartIndex = _ref2.dataStartIndex, dataEndIndex = _ref2.dataEndIndex;
-  var layout = props.layout, children = props.children, stackOffset = props.stackOffset;
-  var isCategorical = isCategoricalAxis(layout, axisType);
+  var layout2 = props.layout, children = props.children, stackOffset = props.stackOffset;
+  var isCategorical = isCategoricalAxis(layout2, axisType);
   return axes.reduce(function(result, child) {
     var _childProps$domain2;
     var childProps = child.type.defaultProps !== void 0 ? _objectSpread45(_objectSpread45({}, child.type.defaultProps), child.props) : child.props;
-    var type = childProps.type, dataKey = childProps.dataKey, allowDataOverflow = childProps.allowDataOverflow, allowDuplicatedCategory = childProps.allowDuplicatedCategory, scale = childProps.scale, ticks2 = childProps.ticks, includeHidden = childProps.includeHidden;
+    var type = childProps.type, dataKey = childProps.dataKey, allowDataOverflow = childProps.allowDataOverflow, allowDuplicatedCategory = childProps.allowDuplicatedCategory, scale2 = childProps.scale, ticks2 = childProps.ticks, includeHidden = childProps.includeHidden;
     var axisId = childProps[axisIdKey];
     if (result[axisId]) {
       return result;
@@ -52445,7 +60688,7 @@ var getAxisMapByAxes = function getAxisMapByAxes2(props, _ref2) {
     var domain, duplicateDomain, categoricalDomain;
     if (isDomainSpecifiedByUser(childProps.domain, allowDataOverflow, type)) {
       domain = parseSpecifiedDomain(childProps.domain, null, allowDataOverflow);
-      if (isCategorical && (type === "number" || scale !== "auto")) {
+      if (isCategorical && (type === "number" || scale2 !== "auto")) {
         categoricalDomain = getDomainOfDataByKey(displayedData, dataKey, "category");
       }
     }
@@ -52481,12 +60724,12 @@ var getAxisMapByAxes = function getAxisMapByAxes2(props, _ref2) {
             var itemAxisId = axisIdKey in item.props ? item.props[axisIdKey] : (_defaultProps2 = item.type.defaultProps) === null || _defaultProps2 === void 0 ? void 0 : _defaultProps2[axisIdKey];
             var itemHide = "hide" in item.props ? item.props.hide : (_defaultProps3 = item.type.defaultProps) === null || _defaultProps3 === void 0 ? void 0 : _defaultProps3.hide;
             return itemAxisId === axisId && (includeHidden || !itemHide);
-          }), dataKey, axisType, layout);
+          }), dataKey, axisType, layout2);
           if (errorBarsDomain) {
             domain = errorBarsDomain;
           }
         }
-        if (isCategorical && (type === "number" || scale !== "auto")) {
+        if (isCategorical && (type === "number" || scale2 !== "auto")) {
           categoricalDomain = getDomainOfDataByKey(displayedData, dataKey, "category");
         }
       } else if (isCategorical) {
@@ -52498,7 +60741,7 @@ var getAxisMapByAxes = function getAxisMapByAxes2(props, _ref2) {
           var itemAxisId = axisIdKey in item.props ? item.props[axisIdKey] : item.type.defaultProps[axisIdKey];
           var itemHide = "hide" in item.props ? item.props.hide : item.type.defaultProps.hide;
           return itemAxisId === axisId && (includeHidden || !itemHide);
-        }), type, layout, true);
+        }), type, layout2, true);
       }
       if (type === "number") {
         domain = detectReferenceElementsDomain(children, domain, axisId, axisType, ticks2);
@@ -52522,20 +60765,20 @@ var getAxisMapByAxes = function getAxisMapByAxes2(props, _ref2) {
       duplicateDomain,
       originalDomain: (_childProps$domain2 = childProps.domain) !== null && _childProps$domain2 !== void 0 ? _childProps$domain2 : defaultDomain,
       isCategorical,
-      layout
+      layout: layout2
     })));
   }, {});
 };
 var getAxisMapByItems = function getAxisMapByItems2(props, _ref3) {
   var graphicalItems = _ref3.graphicalItems, Axis = _ref3.Axis, axisType = _ref3.axisType, axisIdKey = _ref3.axisIdKey, stackGroups = _ref3.stackGroups, dataStartIndex = _ref3.dataStartIndex, dataEndIndex = _ref3.dataEndIndex;
-  var layout = props.layout, children = props.children;
+  var layout2 = props.layout, children = props.children;
   var displayedData = getDisplayedData(props.data, {
     graphicalItems,
     dataStartIndex,
     dataEndIndex
   });
   var len = displayedData.length;
-  var isCategorical = isCategoricalAxis(layout, axisType);
+  var isCategorical = isCategoricalAxis(layout2, axisType);
   var index = -1;
   return graphicalItems.reduce(function(result, child) {
     var childProps = child.type.defaultProps !== void 0 ? _objectSpread45(_objectSpread45({}, child.type.defaultProps), child.props) : child.props;
@@ -52555,7 +60798,7 @@ var getAxisMapByItems = function getAxisMapByItems2(props, _ref3) {
           var itemAxisId = axisIdKey in item.props ? item.props[axisIdKey] : (_defaultProps4 = item.type.defaultProps) === null || _defaultProps4 === void 0 ? void 0 : _defaultProps4[axisIdKey];
           var itemHide = "hide" in item.props ? item.props.hide : (_defaultProps5 = item.type.defaultProps) === null || _defaultProps5 === void 0 ? void 0 : _defaultProps5.hide;
           return itemAxisId === axisId && !itemHide;
-        }), "number", layout), Axis.defaultProps.allowDataOverflow);
+        }), "number", layout2), Axis.defaultProps.allowDataOverflow);
         domain = detectReferenceElementsDomain(children, domain, axisId, axisType);
       }
       return _objectSpread45(_objectSpread45({}, result), {}, _defineProperty51({}, axisId, _objectSpread45(_objectSpread45({
@@ -52566,7 +60809,7 @@ var getAxisMapByItems = function getAxisMapByItems2(props, _ref3) {
         domain,
         originalDomain,
         isCategorical,
-        layout
+        layout: layout2
         // specify scale when no Axis
         // scale: isCategorical ? 'band' : 'linear',
       })));
@@ -52649,20 +60892,20 @@ var hasGraphicalBarItem = function hasGraphicalBarItem2(graphicalItems) {
     return name && name.indexOf("Bar") >= 0;
   });
 };
-var getAxisNameByLayout = function getAxisNameByLayout2(layout) {
-  if (layout === "horizontal") {
+var getAxisNameByLayout = function getAxisNameByLayout2(layout2) {
+  if (layout2 === "horizontal") {
     return {
       numericAxisName: "yAxis",
       cateAxisName: "xAxis"
     };
   }
-  if (layout === "vertical") {
+  if (layout2 === "vertical") {
     return {
       numericAxisName: "xAxis",
       cateAxisName: "yAxis"
     };
   }
-  if (layout === "centric") {
+  if (layout2 === "centric") {
     return {
       numericAxisName: "radiusAxis",
       cateAxisName: "angleAxis"
@@ -52679,8 +60922,8 @@ var calculateOffset = function calculateOffset2(_ref5, prevLegendBBox) {
   var margin = props.margin || {};
   var brushItem = findChildByType(children, Brush);
   var legendItem = findChildByType(children, Legend);
-  var offsetH = Object.keys(yAxisMap).reduce(function(result, id) {
-    var entry = yAxisMap[id];
+  var offsetH = Object.keys(yAxisMap).reduce(function(result, id3) {
+    var entry = yAxisMap[id3];
     var orientation = entry.orientation;
     if (!entry.mirror && !entry.hide) {
       return _objectSpread45(_objectSpread45({}, result), {}, _defineProperty51({}, orientation, result[orientation] + entry.width));
@@ -52690,8 +60933,8 @@ var calculateOffset = function calculateOffset2(_ref5, prevLegendBBox) {
     left: margin.left || 0,
     right: margin.right || 0
   });
-  var offsetV = Object.keys(xAxisMap).reduce(function(result, id) {
-    var entry = xAxisMap[id];
+  var offsetV = Object.keys(xAxisMap).reduce(function(result, id3) {
+    var entry = xAxisMap[id3];
     var orientation = entry.orientation;
     if (!entry.mirror && !entry.hide) {
       return _objectSpread45(_objectSpread45({}, result), {}, _defineProperty51({}, orientation, (0, import_get6.default)(result, "".concat(orientation)) + entry.height));
@@ -52732,8 +60975,8 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
   var chartName = _ref6.chartName, GraphicalChild = _ref6.GraphicalChild, _ref6$defaultTooltipE = _ref6.defaultTooltipEventType, defaultTooltipEventType = _ref6$defaultTooltipE === void 0 ? "axis" : _ref6$defaultTooltipE, _ref6$validateTooltip = _ref6.validateTooltipEventTypes, validateTooltipEventTypes = _ref6$validateTooltip === void 0 ? ["axis"] : _ref6$validateTooltip, axisComponents = _ref6.axisComponents, legendContent = _ref6.legendContent, formatAxisMap5 = _ref6.formatAxisMap, defaultProps5 = _ref6.defaultProps;
   var getFormatItems = function getFormatItems2(props, currentState) {
     var graphicalItems = currentState.graphicalItems, stackGroups = currentState.stackGroups, offset = currentState.offset, updateId = currentState.updateId, dataStartIndex = currentState.dataStartIndex, dataEndIndex = currentState.dataEndIndex;
-    var barSize = props.barSize, layout = props.layout, barGap = props.barGap, barCategoryGap = props.barCategoryGap, globalMaxBarSize = props.maxBarSize;
-    var _getAxisNameByLayout = getAxisNameByLayout(layout), numericAxisName = _getAxisNameByLayout.numericAxisName, cateAxisName = _getAxisNameByLayout.cateAxisName;
+    var barSize = props.barSize, layout2 = props.layout, barGap = props.barGap, barCategoryGap = props.barCategoryGap, globalMaxBarSize = props.maxBarSize;
+    var _getAxisNameByLayout = getAxisNameByLayout(layout2), numericAxisName = _getAxisNameByLayout.numericAxisName, cateAxisName = _getAxisNameByLayout.cateAxisName;
     var hasBar = hasGraphicalBarItem(graphicalItems);
     var formattedItems = [];
     graphicalItems.forEach(function(item, index) {
@@ -52750,12 +60993,12 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
       var axisObj = axisComponents.reduce(function(result, entry) {
         var _item$type$displayNam, _item$type;
         var axisMap = currentState["".concat(entry.axisType, "Map")];
-        var id = itemProps["".concat(entry.axisType, "Id")];
-        !(axisMap && axisMap[id] || entry.axisType === "zAxis") ? true ? invariant(false, "Specifying a(n) ".concat(entry.axisType, "Id requires a corresponding ").concat(
+        var id3 = itemProps["".concat(entry.axisType, "Id")];
+        !(axisMap && axisMap[id3] || entry.axisType === "zAxis") ? true ? invariant2(false, "Specifying a(n) ".concat(entry.axisType, "Id requires a corresponding ").concat(
           entry.axisType,
           "Id on the targeted graphical component "
-        ).concat((_item$type$displayNam = item === null || item === void 0 || (_item$type = item.type) === null || _item$type === void 0 ? void 0 : _item$type.displayName) !== null && _item$type$displayNam !== void 0 ? _item$type$displayNam : "")) : invariant(false) : void 0;
-        var axis = axisMap[id];
+        ).concat((_item$type$displayNam = item === null || item === void 0 || (_item$type = item.type) === null || _item$type === void 0 ? void 0 : _item$type.displayName) !== null && _item$type$displayNam !== void 0 ? _item$type$displayNam : "")) : invariant2(false) : void 0;
+        var axis = axisMap[id3];
         return _objectSpread45(_objectSpread45({}, result), {}, _defineProperty51(_defineProperty51({}, entry.axisType, axis), "".concat(entry.axisType, "Ticks"), getTicksOfAxis(axis)));
       }, axisObjInitialValue);
       var cateAxis = axisObj[cateAxisName];
@@ -52802,7 +61045,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
             barPosition,
             offset,
             stackedData,
-            layout,
+            layout: layout2,
             dataStartIndex,
             dataEndIndex
           }))), {}, _defineProperty51(_defineProperty51(_defineProperty51({
@@ -52822,8 +61065,8 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
     })) {
       return null;
     }
-    var children = props.children, layout = props.layout, stackOffset = props.stackOffset, data = props.data, reverseStackOrder = props.reverseStackOrder;
-    var _getAxisNameByLayout2 = getAxisNameByLayout(layout), numericAxisName = _getAxisNameByLayout2.numericAxisName, cateAxisName = _getAxisNameByLayout2.cateAxisName;
+    var children = props.children, layout2 = props.layout, stackOffset = props.stackOffset, data = props.data, reverseStackOrder = props.reverseStackOrder;
+    var _getAxisNameByLayout2 = getAxisNameByLayout(layout2), numericAxisName = _getAxisNameByLayout2.numericAxisName, cateAxisName = _getAxisNameByLayout2.cateAxisName;
     var graphicalItems = findAllByType(children, GraphicalChild);
     var stackGroups = getStackGroupsByAxisId(data, graphicalItems, "".concat(numericAxisName, "Id"), "".concat(cateAxisName, "Id"), stackOffset, reverseStackOrder);
     var axisObj = axisComponents.reduce(function(result, entry) {
@@ -53052,7 +61295,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         }
       });
       _defineProperty51(_this, "applySyncEvent", function(data) {
-        var _this$props = _this.props, layout = _this$props.layout, syncMethod = _this$props.syncMethod;
+        var _this$props = _this.props, layout2 = _this$props.layout, syncMethod = _this$props.syncMethod;
         var updateId = _this.state.updateId;
         var dataStartIndex = data.dataStartIndex, dataEndIndex = data.dataEndIndex;
         if (data.dataStartIndex !== void 0 || data.dataEndIndex !== void 0) {
@@ -53092,8 +61335,8 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
           var activeLabel = tooltipTicks[activeTooltipIndex] && tooltipTicks[activeTooltipIndex].value;
           var activePayload = getTooltipContent(_this.state, _this.props.data, activeTooltipIndex);
           var activeCoordinate = tooltipTicks[activeTooltipIndex] ? {
-            x: layout === "horizontal" ? tooltipTicks[activeTooltipIndex].coordinate : validateChartX,
-            y: layout === "horizontal" ? validateChartY : tooltipTicks[activeTooltipIndex].coordinate
+            x: layout2 === "horizontal" ? tooltipTicks[activeTooltipIndex].coordinate : validateChartX,
+            y: layout2 === "horizontal" ? validateChartY : tooltipTicks[activeTooltipIndex].coordinate
           } : originCoordinate;
           _this.setState(_objectSpread45(_objectSpread45({}, data), {}, {
             activeLabel,
@@ -53110,9 +61353,9 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         var _this$state3 = _this.state, isTooltipActive = _this$state3.isTooltipActive, activeCoordinate = _this$state3.activeCoordinate, activePayload = _this$state3.activePayload, offset = _this$state3.offset, activeTooltipIndex = _this$state3.activeTooltipIndex, tooltipAxisBandSize = _this$state3.tooltipAxisBandSize;
         var tooltipEventType = _this.getTooltipEventType();
         var isActive = (_element$props$active = element.props.active) !== null && _element$props$active !== void 0 ? _element$props$active : isTooltipActive;
-        var layout = _this.props.layout;
+        var layout2 = _this.props.layout;
         var key = element.key || "_recharts-cursor";
-        return /* @__PURE__ */ import_react45.default.createElement(Cursor, {
+        return /* @__PURE__ */ import_react70.default.createElement(Cursor, {
           key,
           activeCoordinate,
           activePayload,
@@ -53120,7 +61363,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
           chartName,
           element,
           isActive,
-          layout,
+          layout: layout2,
           offset,
           tooltipAxisBandSize,
           tooltipEventType
@@ -53132,7 +61375,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         var elementDefaultProps = element.type.defaultProps;
         var elementProps = elementDefaultProps !== void 0 ? _objectSpread45(_objectSpread45({}, elementDefaultProps), element.props) : element.props;
         var axisOption = axisMap && axisMap[elementProps["".concat(axisType, "Id")]];
-        return /* @__PURE__ */ (0, import_react45.cloneElement)(element, _objectSpread45(_objectSpread45({}, axisOption), {}, {
+        return /* @__PURE__ */ (0, import_react70.cloneElement)(element, _objectSpread45(_objectSpread45({}, axisOption), {}, {
           className: clsx_default(axisType, axisOption.className),
           key: element.key || "".concat(displayName, "-").concat(index),
           ticks: getTicksOfAxis(axisOption, true)
@@ -53144,7 +61387,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         var radiusAxis = getAnyElementOfObject(radiusAxisMap);
         var angleAxis = getAnyElementOfObject(angleAxisMap);
         var cx = angleAxis.cx, cy = angleAxis.cy, innerRadius = angleAxis.innerRadius, outerRadius = angleAxis.outerRadius;
-        return /* @__PURE__ */ (0, import_react45.cloneElement)(element, {
+        return /* @__PURE__ */ (0, import_react70.cloneElement)(element, {
           polarAngles: Array.isArray(polarAngles) ? polarAngles : getTicksOfAxis(angleAxis, true).map(function(entry) {
             return entry.coordinate;
           }),
@@ -53174,7 +61417,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
           return null;
         }
         var item = props.item, otherProps = _objectWithoutProperties26(props, _excluded34);
-        return /* @__PURE__ */ (0, import_react45.cloneElement)(item, _objectSpread45(_objectSpread45({}, otherProps), {}, {
+        return /* @__PURE__ */ (0, import_react70.cloneElement)(item, _objectSpread45(_objectSpread45({}, otherProps), {}, {
           chartWidth: width,
           chartHeight: height,
           margin,
@@ -53190,7 +61433,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         }
         var _this$state5 = _this.state, isTooltipActive = _this$state5.isTooltipActive, activeCoordinate = _this$state5.activeCoordinate, activePayload = _this$state5.activePayload, activeLabel = _this$state5.activeLabel, offset = _this$state5.offset;
         var isActive = (_tooltipItem$props$ac = tooltipItem.props.active) !== null && _tooltipItem$props$ac !== void 0 ? _tooltipItem$props$ac : isTooltipActive;
-        return /* @__PURE__ */ (0, import_react45.cloneElement)(tooltipItem, {
+        return /* @__PURE__ */ (0, import_react70.cloneElement)(tooltipItem, {
           viewBox: _objectSpread45(_objectSpread45({}, offset), {}, {
             x: offset.left,
             y: offset.top
@@ -53205,7 +61448,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
       _defineProperty51(_this, "renderBrush", function(element) {
         var _this$props4 = _this.props, margin = _this$props4.margin, data = _this$props4.data;
         var _this$state6 = _this.state, offset = _this$state6.offset, dataStartIndex = _this$state6.dataStartIndex, dataEndIndex = _this$state6.dataEndIndex, updateId = _this$state6.updateId;
-        return /* @__PURE__ */ (0, import_react45.cloneElement)(element, {
+        return /* @__PURE__ */ (0, import_react70.cloneElement)(element, {
           key: element.key || "_recharts-brush",
           onChange: combineEventHandlers(_this.handleBrushChange, element.props.onChange),
           data,
@@ -53225,7 +61468,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         var _this$state7 = _this.state, xAxisMap = _this$state7.xAxisMap, yAxisMap = _this$state7.yAxisMap, offset = _this$state7.offset;
         var elementDefaultProps = element.type.defaultProps || {};
         var _element$props2 = element.props, _element$props2$xAxis = _element$props2.xAxisId, xAxisId = _element$props2$xAxis === void 0 ? elementDefaultProps.xAxisId : _element$props2$xAxis, _element$props2$yAxis = _element$props2.yAxisId, yAxisId = _element$props2$yAxis === void 0 ? elementDefaultProps.yAxisId : _element$props2$yAxis;
-        return /* @__PURE__ */ (0, import_react45.cloneElement)(element, {
+        return /* @__PURE__ */ (0, import_react70.cloneElement)(element, {
           key: element.key || "".concat(displayName, "-").concat(index),
           xAxis: xAxisMap[xAxisId],
           yAxis: yAxisMap[yAxisId],
@@ -53255,7 +61498,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
           stroke: "#fff",
           payload: activePoint.payload,
           value: activePoint.value
-        }, filterProps(activeDot, false)), adaptEventHandlers(activeDot));
+        }, filterProps2(activeDot, false)), adaptEventHandlers(activeDot));
         result.push(CategoricalChartWrapper2.renderActiveDot(activeDot, dotProps, "".concat(key, "-activePoint-").concat(childIndex)));
         if (basePoint) {
           result.push(CategoricalChartWrapper2.renderActiveDot(activeDot, _objectSpread45(_objectSpread45({}, dotProps), {}, {
@@ -53291,7 +61534,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
             onMouseEnter: combineEventHandlers(_this.handleItemMouseEnter, element.props.onMouseEnter)
           };
         }
-        var graphicalItem = /* @__PURE__ */ (0, import_react45.cloneElement)(element, _objectSpread45(_objectSpread45({}, item.props), itemEvents));
+        var graphicalItem = /* @__PURE__ */ (0, import_react70.cloneElement)(element, _objectSpread45(_objectSpread45({}, item.props), itemEvents));
         function findWithPayload(entry) {
           return typeof tooltipAxis.dataKey === "function" ? tooltipAxis.dataKey(entry.payload) : null;
         }
@@ -53308,7 +61551,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
             }
             if (activeShape || activeBar) {
               var activeIndex = element.props.activeIndex !== void 0 ? element.props.activeIndex : activeTooltipIndex;
-              return [/* @__PURE__ */ (0, import_react45.cloneElement)(element, _objectSpread45(_objectSpread45(_objectSpread45({}, item.props), itemEvents), {}, {
+              return [/* @__PURE__ */ (0, import_react70.cloneElement)(element, _objectSpread45(_objectSpread45(_objectSpread45({}, item.props), itemEvents), {}, {
                 activeIndex
               })), null, null];
             }
@@ -53329,7 +61572,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
             var elementProps = _objectSpread45(_objectSpread45(_objectSpread45({}, item.props), itemEvents), {}, {
               activeIndex: childIndex
             });
-            return [/* @__PURE__ */ (0, import_react45.cloneElement)(xyItem, elementProps), null, null];
+            return [/* @__PURE__ */ (0, import_react70.cloneElement)(xyItem, elementProps), null, null];
           }
         }
         if (isRange) {
@@ -53338,7 +61581,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         return [graphicalItem, null];
       });
       _defineProperty51(_this, "renderCustomized", function(element, displayName, index) {
-        return /* @__PURE__ */ (0, import_react45.cloneElement)(element, _objectSpread45(_objectSpread45({
+        return /* @__PURE__ */ (0, import_react70.cloneElement)(element, _objectSpread45(_objectSpread45({
           key: "recharts-customized-".concat(index)
         }, _this.props), _this.state));
       });
@@ -53434,7 +61677,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
     }, {
       key: "displayDefaultTooltip",
       value: function displayDefaultTooltip() {
-        var _this$props5 = this.props, children = _this$props5.children, data = _this$props5.data, height = _this$props5.height, layout = _this$props5.layout;
+        var _this$props5 = this.props, children = _this$props5.children, data = _this$props5.data, height = _this$props5.height, layout2 = _this$props5.layout;
         var tooltipElem = findChildByType(children, Tooltip);
         if (!tooltipElem) {
           return;
@@ -53447,7 +61690,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         var activePayload = getTooltipContent(this.state, data, defaultIndex, activeLabel);
         var independentAxisCoord = this.state.tooltipTicks[defaultIndex].coordinate;
         var dependentAxisCoord = (this.state.offset.top + height) / 2;
-        var isHorizontal = layout === "horizontal";
+        var isHorizontal = layout2 === "horizontal";
         var activeCoordinate = isHorizontal ? {
           x: independentAxisCoord,
           y: dependentAxisCoord
@@ -53542,8 +61785,8 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
           chartX: Math.round(event.pageX - containerOffset.left),
           chartY: Math.round(event.pageY - containerOffset.top)
         };
-        var scale = boundingRect.width / element.offsetWidth || 1;
-        var rangeObj = this.inRange(e.chartX, e.chartY, scale);
+        var scale2 = boundingRect.width / element.offsetWidth || 1;
+        var rangeObj = this.inRange(e.chartX, e.chartY, scale2);
         if (!rangeObj) {
           return null;
         }
@@ -53568,10 +61811,10 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
     }, {
       key: "inRange",
       value: function inRange(x2, y2) {
-        var scale = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : 1;
-        var layout = this.props.layout;
-        var scaledX = x2 / scale, scaledY = y2 / scale;
-        if (layout === "horizontal" || layout === "vertical") {
+        var scale2 = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : 1;
+        var layout2 = this.props.layout;
+        var scaledX = x2 / scale2, scaledY = y2 / scale2;
+        if (layout2 === "horizontal" || layout2 === "vertical") {
           var offset = this.state.offset;
           var isInRange = scaledX >= offset.left && scaledX <= offset.left + offset.width && scaledY >= offset.top && scaledY <= offset.top + offset.height;
           return isInRange ? {
@@ -53644,9 +61887,9 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
       value: function renderClipPath() {
         var clipPathId = this.clipPathId;
         var _this$state$offset = this.state.offset, left = _this$state$offset.left, top = _this$state$offset.top, height = _this$state$offset.height, width = _this$state$offset.width;
-        return /* @__PURE__ */ import_react45.default.createElement("defs", null, /* @__PURE__ */ import_react45.default.createElement("clipPath", {
+        return /* @__PURE__ */ import_react70.default.createElement("defs", null, /* @__PURE__ */ import_react70.default.createElement("clipPath", {
           id: clipPathId
-        }, /* @__PURE__ */ import_react45.default.createElement("rect", {
+        }, /* @__PURE__ */ import_react70.default.createElement("rect", {
           x: left,
           y: top,
           height,
@@ -53739,14 +61982,14 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
           return null;
         }
         var _this$props6 = this.props, children = _this$props6.children, className = _this$props6.className, width = _this$props6.width, height = _this$props6.height, style = _this$props6.style, compact = _this$props6.compact, title = _this$props6.title, desc = _this$props6.desc, others = _objectWithoutProperties26(_this$props6, _excluded212);
-        var attrs = filterProps(others, false);
+        var attrs = filterProps2(others, false);
         if (compact) {
-          return /* @__PURE__ */ import_react45.default.createElement(ChartLayoutContextProvider, {
+          return /* @__PURE__ */ import_react70.default.createElement(ChartLayoutContextProvider, {
             state: this.state,
             width: this.props.width,
             height: this.props.height,
             clipPathId: this.clipPathId
-          }, /* @__PURE__ */ import_react45.default.createElement(Surface, _extends38({}, attrs, {
+          }, /* @__PURE__ */ import_react70.default.createElement(Surface, _extends38({}, attrs, {
             width,
             height,
             title,
@@ -53765,12 +62008,12 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
           };
         }
         var events = this.parseEventsOfWrapper();
-        return /* @__PURE__ */ import_react45.default.createElement(ChartLayoutContextProvider, {
+        return /* @__PURE__ */ import_react70.default.createElement(ChartLayoutContextProvider, {
           state: this.state,
           width: this.props.width,
           height: this.props.height,
           clipPathId: this.clipPathId
-        }, /* @__PURE__ */ import_react45.default.createElement("div", _extends38({
+        }, /* @__PURE__ */ import_react70.default.createElement("div", _extends38({
           className: clsx_default("recharts-wrapper", className),
           style: _objectSpread45({
             position: "relative",
@@ -53782,7 +62025,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
           ref: function ref(node) {
             _this3.container = node;
           }
-        }), /* @__PURE__ */ import_react45.default.createElement(Surface, _extends38({}, attrs, {
+        }), /* @__PURE__ */ import_react70.default.createElement(Surface, _extends38({}, attrs, {
           width,
           height,
           title,
@@ -53791,7 +62034,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         }), this.renderClipPath(), renderByOrder(children, this.renderMap)), this.renderLegend(), this.renderTooltip()));
       }
     }]);
-  }(import_react45.Component);
+  }(import_react70.Component);
   _defineProperty51(CategoricalChartWrapper, "displayName", chartName);
   _defineProperty51(CategoricalChartWrapper, "defaultProps", _objectSpread45({
     layout: "horizontal",
@@ -53808,7 +62051,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
     syncMethod: "index"
   }, defaultProps5));
   _defineProperty51(CategoricalChartWrapper, "getDerivedStateFromProps", function(nextProps, prevState) {
-    var dataKey = nextProps.dataKey, data = nextProps.data, children = nextProps.children, width = nextProps.width, height = nextProps.height, layout = nextProps.layout, stackOffset = nextProps.stackOffset, margin = nextProps.margin;
+    var dataKey = nextProps.dataKey, data = nextProps.data, children = nextProps.children, width = nextProps.width, height = nextProps.height, layout2 = nextProps.layout, stackOffset = nextProps.stackOffset, margin = nextProps.margin;
     var dataStartIndex = prevState.dataStartIndex, dataEndIndex = prevState.dataEndIndex;
     if (prevState.updateId === void 0) {
       var defaultState2 = createDefaultState(nextProps);
@@ -53823,13 +62066,13 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         prevData: data,
         prevWidth: width,
         prevHeight: height,
-        prevLayout: layout,
+        prevLayout: layout2,
         prevStackOffset: stackOffset,
         prevMargin: margin,
         prevChildren: children
       });
     }
-    if (dataKey !== prevState.prevDataKey || data !== prevState.prevData || width !== prevState.prevWidth || height !== prevState.prevHeight || layout !== prevState.prevLayout || stackOffset !== prevState.prevStackOffset || !shallowEqual(margin, prevState.prevMargin)) {
+    if (dataKey !== prevState.prevDataKey || data !== prevState.prevData || width !== prevState.prevWidth || height !== prevState.prevHeight || layout2 !== prevState.prevLayout || stackOffset !== prevState.prevStackOffset || !shallowEqual(margin, prevState.prevMargin)) {
       var _defaultState = createDefaultState(nextProps);
       var keepFromPrevState = {
         // (chartX, chartY) are (0,0) in default state, but we want to keep the last mouse position to avoid
@@ -53840,7 +62083,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         // the case, the tooltip disappears and immediately re-appears, causing a flickering effect
         isTooltipActive: prevState.isTooltipActive
       };
-      var updatesToState = _objectSpread45(_objectSpread45({}, getTooltipData(prevState, data, layout)), {}, {
+      var updatesToState = _objectSpread45(_objectSpread45({}, getTooltipData(prevState, data, layout2)), {}, {
         updateId: prevState.updateId + 1
       });
       var newState = _objectSpread45(_objectSpread45(_objectSpread45({}, _defaultState), keepFromPrevState), updatesToState);
@@ -53851,7 +62094,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         prevData: data,
         prevWidth: width,
         prevHeight: height,
-        prevLayout: layout,
+        prevLayout: layout2,
         prevStackOffset: stackOffset,
         prevMargin: margin,
         prevChildren: children
@@ -53883,20 +62126,20 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
   });
   _defineProperty51(CategoricalChartWrapper, "renderActiveDot", function(option, props, key) {
     var dot;
-    if (/* @__PURE__ */ (0, import_react45.isValidElement)(option)) {
-      dot = /* @__PURE__ */ (0, import_react45.cloneElement)(option, props);
+    if (/* @__PURE__ */ (0, import_react70.isValidElement)(option)) {
+      dot = /* @__PURE__ */ (0, import_react70.cloneElement)(option, props);
     } else if ((0, import_isFunction26.default)(option)) {
       dot = option(props);
     } else {
-      dot = /* @__PURE__ */ import_react45.default.createElement(Dot, props);
+      dot = /* @__PURE__ */ import_react70.default.createElement(Dot, props);
     }
-    return /* @__PURE__ */ import_react45.default.createElement(Layer, {
+    return /* @__PURE__ */ import_react70.default.createElement(Layer, {
       className: "recharts-active-dot",
       key
     }, dot);
   });
-  var CategoricalChart = /* @__PURE__ */ (0, import_react45.forwardRef)(function CategoricalChart2(props, ref) {
-    return /* @__PURE__ */ import_react45.default.createElement(CategoricalChartWrapper, _extends38({}, props, {
+  var CategoricalChart = /* @__PURE__ */ (0, import_react70.forwardRef)(function CategoricalChart2(props, ref) {
+    return /* @__PURE__ */ import_react70.default.createElement(CategoricalChartWrapper, _extends38({}, props, {
       ref
     }));
   });
@@ -53965,7 +62208,7 @@ var import_isNaN4 = __toESM(require_isNaN());
 var import_isFunction27 = __toESM(require_isFunction());
 var import_omit = __toESM(require_omit());
 var import_get7 = __toESM(require_get());
-var import_react46 = __toESM(require_react());
+var import_react71 = __toESM(require_react());
 
 // node_modules/recharts/es6/util/Constants.js
 var COLOR_PANEL = ["#1890FF", "#66B5FF", "#41D9C7", "#2FC25B", "#6EDB8F", "#9AE65C", "#FACC14", "#E6965C", "#57AD71", "#223273", "#738AE6", "#7564CC", "#8543E0", "#A877ED", "#5C8EE6", "#13C2C2", "#70E0E0", "#5CA3E6", "#3436C7", "#8082FF", "#DD81E6", "#F04864", "#FA7D92", "#D598D9"];
@@ -54174,7 +62417,7 @@ var getAreaOfChildren = function getAreaOfChildren2(children, areaValueRatio) {
     });
   });
 };
-var getWorstScore = function getWorstScore2(row, parentSize, aspectRatio) {
+var getWorstScore = function getWorstScore2(row, parentSize, aspectRatio2) {
   var parentArea = parentSize * parentSize;
   var rowArea = row.area * row.area;
   var _row$reduce = row.reduce(function(result, child) {
@@ -54186,7 +62429,7 @@ var getWorstScore = function getWorstScore2(row, parentSize, aspectRatio) {
     min: Infinity,
     max: 0
   }), min4 = _row$reduce.min, max4 = _row$reduce.max;
-  return rowArea ? Math.max(parentArea * max4 * aspectRatio / rowArea, rowArea / (parentArea * min4 * aspectRatio)) : Infinity;
+  return rowArea ? Math.max(parentArea * max4 * aspectRatio2 / rowArea, rowArea / (parentArea * min4 * aspectRatio2)) : Infinity;
 };
 var horizontalPosition = function horizontalPosition2(row, parentSize, parentRect, isFlush) {
   var rowHeight = parentSize ? Math.round(row.area / parentSize) : 0;
@@ -54238,7 +62481,7 @@ var position = function position2(row, parentSize, parentRect, isFlush) {
   }
   return verticalPosition(row, parentSize, parentRect, isFlush);
 };
-var squarify = function squarify2(node, aspectRatio) {
+var squarify = function squarify2(node, aspectRatio2) {
   var children = node.children;
   if (children && children.length) {
     var rect = filterRect(node);
@@ -54252,7 +62495,7 @@ var squarify = function squarify2(node, aspectRatio) {
     while (tempChildren.length > 0) {
       row.push(child = tempChildren[0]);
       row.area += child.area;
-      score = getWorstScore(row, size, aspectRatio);
+      score = getWorstScore(row, size, aspectRatio2);
       if (score <= best) {
         tempChildren.shift();
         best = score;
@@ -54270,7 +62513,7 @@ var squarify = function squarify2(node, aspectRatio) {
     }
     return _objectSpread46(_objectSpread46({}, node), {}, {
       children: scaleChildren.map(function(c2) {
-        return squarify2(c2, aspectRatio);
+        return squarify2(c2, aspectRatio2);
       })
     });
   }
@@ -54357,7 +62600,7 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
     value: function handleClick(node) {
       var _this$props3 = this.props, onClick = _this$props3.onClick, type = _this$props3.type;
       if (type === "nest" && node.children) {
-        var _this$props4 = this.props, width = _this$props4.width, height = _this$props4.height, dataKey = _this$props4.dataKey, aspectRatio = _this$props4.aspectRatio;
+        var _this$props4 = this.props, width = _this$props4.width, height = _this$props4.height, dataKey = _this$props4.dataKey, aspectRatio2 = _this$props4.aspectRatio;
         var root = computeNode({
           depth: 0,
           node: _objectSpread46(_objectSpread46({}, node), {}, {
@@ -54369,7 +62612,7 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
           index: 0,
           valueKey: dataKey
         });
-        var formatRoot = squarify(root, aspectRatio);
+        var formatRoot = squarify(root, aspectRatio2);
         var nestIndex = this.state.nestIndex;
         nestIndex.push(node);
         this.setState({
@@ -54386,7 +62629,7 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
     key: "handleNestIndex",
     value: function handleNestIndex(node, i) {
       var nestIndex = this.state.nestIndex;
-      var _this$props5 = this.props, width = _this$props5.width, height = _this$props5.height, dataKey = _this$props5.dataKey, aspectRatio = _this$props5.aspectRatio;
+      var _this$props5 = this.props, width = _this$props5.width, height = _this$props5.height, dataKey = _this$props5.dataKey, aspectRatio2 = _this$props5.aspectRatio;
       var root = computeNode({
         depth: 0,
         node: _objectSpread46(_objectSpread46({}, node), {}, {
@@ -54398,7 +62641,7 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
         index: 0,
         valueKey: dataKey
       });
-      var formatRoot = squarify(root, aspectRatio);
+      var formatRoot = squarify(root, aspectRatio2);
       nestIndex = nestIndex.slice(0, i + 1);
       this.setState({
         formatRoot,
@@ -54423,7 +62666,7 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
         };
       }
       if (!isAnimationActive) {
-        return /* @__PURE__ */ import_react46.default.createElement(Layer, event, this.constructor.renderContentItem(content, _objectSpread46(_objectSpread46({}, nodeProps), {}, {
+        return /* @__PURE__ */ import_react71.default.createElement(Layer, event, this.constructor.renderContentItem(content, _objectSpread46(_objectSpread46({}, nodeProps), {}, {
           isAnimationActive: false,
           isUpdateAnimationActive: false,
           width,
@@ -54432,7 +62675,7 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
           y: y2
         }), type, colorPanel));
       }
-      return /* @__PURE__ */ import_react46.default.createElement(es6_default, {
+      return /* @__PURE__ */ import_react71.default.createElement(es6_default, {
         begin: animationBegin,
         duration: animationDuration,
         isActive: isAnimationActive,
@@ -54454,7 +62697,7 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
         onAnimationEnd: this.handleAnimationEnd
       }, function(_ref2) {
         var currX = _ref2.x, currY = _ref2.y, currWidth = _ref2.width, currHeight = _ref2.height;
-        return /* @__PURE__ */ import_react46.default.createElement(es6_default, {
+        return /* @__PURE__ */ import_react71.default.createElement(es6_default, {
           from: "translate(".concat(translateX, "px, ").concat(translateX, "px)"),
           to: "translate(0, 0)",
           attributeName: "transform",
@@ -54462,7 +62705,7 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
           easing: animationEasing,
           isActive: isAnimationActive,
           duration: animationDuration
-        }, /* @__PURE__ */ import_react46.default.createElement(Layer, event, function() {
+        }, /* @__PURE__ */ import_react71.default.createElement(Layer, event, function() {
           if (depth > 2 && !isAnimationFinished) {
             return null;
           }
@@ -54482,7 +62725,7 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
     value: function renderNode(root, node) {
       var _this3 = this;
       var _this$props7 = this.props, content = _this$props7.content, type = _this$props7.type;
-      var nodeProps = _objectSpread46(_objectSpread46(_objectSpread46({}, filterProps(this.props, false)), node), {}, {
+      var nodeProps = _objectSpread46(_objectSpread46(_objectSpread46({}, filterProps2(this.props, false)), node), {}, {
         root
       });
       var isLeaf = !node.children || !node.children.length;
@@ -54493,7 +62736,7 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
       if (!isCurrentRootChild.length && root.depth && type === "nest") {
         return null;
       }
-      return /* @__PURE__ */ import_react46.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react71.default.createElement(Layer, {
         key: "recharts-treemap-node-".concat(nodeProps.x, "-").concat(nodeProps.y, "-").concat(nodeProps.name),
         className: "recharts-treemap-depth-".concat(node.depth)
       }, this.renderItem(content, nodeProps, isLeaf), node.children && node.children.length ? node.children.map(function(child) {
@@ -54534,7 +62777,7 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
         name: getValueByDataKey(activeNode, nameKey, ""),
         value: getValueByDataKey(activeNode, NODE_VALUE_KEY)
       }] : [];
-      return /* @__PURE__ */ import_react46.default.cloneElement(tooltipItem, {
+      return /* @__PURE__ */ import_react71.default.cloneElement(tooltipItem, {
         viewBox,
         active: isTooltipActive,
         coordinate,
@@ -54549,7 +62792,7 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
       var _this4 = this;
       var _this$props10 = this.props, nameKey = _this$props10.nameKey, nestIndexContent = _this$props10.nestIndexContent;
       var nestIndex = this.state.nestIndex;
-      return /* @__PURE__ */ import_react46.default.createElement("div", {
+      return /* @__PURE__ */ import_react71.default.createElement("div", {
         className: "recharts-treemap-nest-index-wrapper",
         style: {
           marginTop: "8px",
@@ -54558,8 +62801,8 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
       }, nestIndex.map(function(item, i) {
         var name = (0, import_get7.default)(item, nameKey, "root");
         var content = null;
-        if (/* @__PURE__ */ import_react46.default.isValidElement(nestIndexContent)) {
-          content = /* @__PURE__ */ import_react46.default.cloneElement(nestIndexContent, item, i);
+        if (/* @__PURE__ */ import_react71.default.isValidElement(nestIndexContent)) {
+          content = /* @__PURE__ */ import_react71.default.cloneElement(nestIndexContent, item, i);
         }
         if ((0, import_isFunction27.default)(nestIndexContent)) {
           content = nestIndexContent(item, i);
@@ -54568,7 +62811,7 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
         }
         return (
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-          /* @__PURE__ */ import_react46.default.createElement("div", {
+          /* @__PURE__ */ import_react71.default.createElement("div", {
             onClick: _this4.handleNestIndex.bind(_this4, item, i),
             key: "nest-index-".concat(uniqueId()),
             className: "recharts-treemap-nest-index-box",
@@ -54591,8 +62834,8 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
         return null;
       }
       var _this$props11 = this.props, width = _this$props11.width, height = _this$props11.height, className = _this$props11.className, style = _this$props11.style, children = _this$props11.children, type = _this$props11.type, others = _objectWithoutProperties27(_this$props11, _excluded35);
-      var attrs = filterProps(others, false);
-      return /* @__PURE__ */ import_react46.default.createElement("div", {
+      var attrs = filterProps2(others, false);
+      return /* @__PURE__ */ import_react71.default.createElement("div", {
         className: clsx_default("recharts-wrapper", className),
         style: _objectSpread46(_objectSpread46({}, style), {}, {
           position: "relative",
@@ -54601,7 +62844,7 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
           height
         }),
         role: "region"
-      }, /* @__PURE__ */ import_react46.default.createElement(Surface, _extends39({}, attrs, {
+      }, /* @__PURE__ */ import_react71.default.createElement(Surface, _extends39({}, attrs, {
         width,
         height: type === "nest" ? height - 30 : height
       }), this.renderAllNodes(), filterSvgElements(children)), this.renderTooltip(), type === "nest" && this.renderNestIndex());
@@ -54640,8 +62883,8 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
   }, {
     key: "renderContentItem",
     value: function renderContentItem(content, nodeProps, type, colorPanel) {
-      if (/* @__PURE__ */ import_react46.default.isValidElement(content)) {
-        return /* @__PURE__ */ import_react46.default.cloneElement(content, nodeProps);
+      if (/* @__PURE__ */ import_react71.default.isValidElement(content)) {
+        return /* @__PURE__ */ import_react71.default.cloneElement(content, nodeProps);
       }
       if ((0, import_isFunction27.default)(content)) {
         return content(nodeProps);
@@ -54649,7 +62892,7 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
       var x2 = nodeProps.x, y2 = nodeProps.y, width = nodeProps.width, height = nodeProps.height, index = nodeProps.index;
       var arrow = null;
       if (width > 10 && height > 10 && nodeProps.children && type === "nest") {
-        arrow = /* @__PURE__ */ import_react46.default.createElement(Polygon, {
+        arrow = /* @__PURE__ */ import_react71.default.createElement(Polygon, {
           points: [{
             x: x2 + 2,
             y: y2 + height / 2
@@ -54665,14 +62908,14 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
       var text = null;
       var nameSize = getStringSize(nodeProps.name);
       if (width > 20 && height > 20 && nameSize.width < width && nameSize.height < height) {
-        text = /* @__PURE__ */ import_react46.default.createElement("text", {
+        text = /* @__PURE__ */ import_react71.default.createElement("text", {
           x: x2 + 8,
           y: y2 + height / 2 + 7,
           fontSize: 14
         }, nodeProps.name);
       }
       var colors = colorPanel || COLOR_PANEL;
-      return /* @__PURE__ */ import_react46.default.createElement("g", null, /* @__PURE__ */ import_react46.default.createElement(Rectangle, _extends39({
+      return /* @__PURE__ */ import_react71.default.createElement("g", null, /* @__PURE__ */ import_react71.default.createElement(Rectangle, _extends39({
         fill: nodeProps.depth < 2 ? colors[index % colors.length] : "rgba(255,255,255,0)",
         stroke: "#fff"
       }, (0, import_omit.default)(nodeProps, "children"), {
@@ -54680,7 +62923,7 @@ var Treemap = /* @__PURE__ */ function(_PureComponent) {
       })), arrow, text);
     }
   }]);
-}(import_react46.PureComponent);
+}(import_react71.PureComponent);
 _defineProperty52(Treemap, "displayName", "Treemap");
 _defineProperty52(Treemap, "defaultProps", {
   aspectRatio: 0.5 * (1 + Math.sqrt(5)),
@@ -54694,7 +62937,7 @@ _defineProperty52(Treemap, "defaultProps", {
 });
 
 // node_modules/recharts/es6/chart/Sankey.js
-var import_react47 = __toESM(require_react());
+var import_react72 = __toESM(require_react());
 var import_maxBy2 = __toESM(require_maxBy());
 var import_min3 = __toESM(require_min());
 var import_get8 = __toESM(require_get());
@@ -54880,39 +63123,39 @@ var getValue = function getValue2(entry) {
   return entry && entry.value || 0;
 };
 var getSumOfIds = function getSumOfIds2(links, ids) {
-  return ids.reduce(function(result, id) {
-    return result + getValue(links[id]);
+  return ids.reduce(function(result, id3) {
+    return result + getValue(links[id3]);
   }, 0);
 };
 var getSumWithWeightedSource = function getSumWithWeightedSource2(tree, links, ids) {
-  return ids.reduce(function(result, id) {
-    var link = links[id];
+  return ids.reduce(function(result, id3) {
+    var link = links[id3];
     var sourceNode = tree[link.source];
-    return result + centerY(sourceNode) * getValue(links[id]);
+    return result + centerY(sourceNode) * getValue(links[id3]);
   }, 0);
 };
 var getSumWithWeightedTarget = function getSumWithWeightedTarget2(tree, links, ids) {
-  return ids.reduce(function(result, id) {
-    var link = links[id];
+  return ids.reduce(function(result, id3) {
+    var link = links[id3];
     var targetNode = tree[link.target];
-    return result + centerY(targetNode) * getValue(links[id]);
+    return result + centerY(targetNode) * getValue(links[id3]);
   }, 0);
 };
 var ascendingY = function ascendingY2(a2, b) {
   return a2.y - b.y;
 };
-var searchTargetsAndSources = function searchTargetsAndSources2(links, id) {
+var searchTargetsAndSources = function searchTargetsAndSources2(links, id3) {
   var sourceNodes = [];
   var sourceLinks = [];
   var targetNodes = [];
   var targetLinks = [];
   for (var i = 0, len = links.length; i < len; i++) {
     var link = links[i];
-    if (link.source === id) {
+    if (link.source === id3) {
       targetNodes.push(link.target);
       targetLinks.push(i);
     }
-    if (link.target === id) {
+    if (link.target === id3) {
       sourceNodes.push(link.source);
       sourceLinks.push(i);
     }
@@ -54949,15 +63192,15 @@ var getNodesTree = function getNodesTree2(_ref, width, nodeWidth) {
       updateDepthOfTargets(tree, node);
     }
   }
-  var maxDepth = (0, import_maxBy2.default)(tree, function(entry) {
+  var maxDepth2 = (0, import_maxBy2.default)(tree, function(entry) {
     return entry.depth;
   }).depth;
-  if (maxDepth >= 1) {
-    var childWidth = (width - nodeWidth) / maxDepth;
+  if (maxDepth2 >= 1) {
+    var childWidth = (width - nodeWidth) / maxDepth2;
     for (var _i = 0, _len = tree.length; _i < _len; _i++) {
       var _node = tree[_i];
       if (!_node.targetNodes.length) {
-        _node.depth = maxDepth;
+        _node.depth = maxDepth2;
       }
       _node.x = _node.depth * childWidth;
       _node.dx = nodeWidth;
@@ -54965,7 +63208,7 @@ var getNodesTree = function getNodesTree2(_ref, width, nodeWidth) {
   }
   return {
     tree,
-    maxDepth
+    maxDepth: maxDepth2
   };
 };
 var getDepthTree = function getDepthTree2(tree) {
@@ -54983,7 +63226,7 @@ var updateYOfTree = function updateYOfTree2(depthTree, height, nodePadding, link
   var yRatio = (0, import_min3.default)(depthTree.map(function(nodes) {
     return (height - (nodes.length - 1) * nodePadding) / (0, import_sumBy.default)(nodes, getValue);
   }));
-  for (var d = 0, maxDepth = depthTree.length; d < maxDepth; d++) {
+  for (var d = 0, maxDepth2 = depthTree.length; d < maxDepth2; d++) {
     for (var i = 0, len = depthTree[d].length; i < len; i++) {
       var node = depthTree[d][i];
       node.y = i;
@@ -55026,8 +63269,8 @@ var resolveCollisions = function resolveCollisions2(depthTree, height, nodePaddi
     }
   }
 };
-var relaxLeftToRight = function relaxLeftToRight2(tree, depthTree, links, alpha3) {
-  for (var i = 0, maxDepth = depthTree.length; i < maxDepth; i++) {
+var relaxLeftToRight = function relaxLeftToRight2(tree, depthTree, links, alpha4) {
+  for (var i = 0, maxDepth2 = depthTree.length; i < maxDepth2; i++) {
     var nodes = depthTree[i];
     for (var j = 0, len = nodes.length; j < len; j++) {
       var node = nodes[j];
@@ -55035,12 +63278,12 @@ var relaxLeftToRight = function relaxLeftToRight2(tree, depthTree, links, alpha3
         var sourceSum = getSumOfIds(links, node.sourceLinks);
         var weightedSum = getSumWithWeightedSource(tree, links, node.sourceLinks);
         var y2 = weightedSum / sourceSum;
-        node.y += (y2 - centerY(node)) * alpha3;
+        node.y += (y2 - centerY(node)) * alpha4;
       }
     }
   }
 };
-var relaxRightToLeft = function relaxRightToLeft2(tree, depthTree, links, alpha3) {
+var relaxRightToLeft = function relaxRightToLeft2(tree, depthTree, links, alpha4) {
   for (var i = depthTree.length - 1; i >= 0; i--) {
     var nodes = depthTree[i];
     for (var j = 0, len = nodes.length; j < len; j++) {
@@ -55049,7 +63292,7 @@ var relaxRightToLeft = function relaxRightToLeft2(tree, depthTree, links, alpha3
         var targetSum = getSumOfIds(links, node.targetLinks);
         var weightedSum = getSumWithWeightedTarget(tree, links, node.targetLinks);
         var y2 = weightedSum / targetSum;
-        node.y += (y2 - centerY(node)) * alpha3;
+        node.y += (y2 - centerY(node)) * alpha4;
       }
     }
   }
@@ -55088,11 +63331,11 @@ var computeData = function computeData2(_ref2) {
   var depthTree = getDepthTree(tree);
   var newLinks = updateYOfTree(depthTree, height, nodePadding, links);
   resolveCollisions(depthTree, height, nodePadding, sort);
-  var alpha3 = 1;
+  var alpha4 = 1;
   for (var i = 1; i <= iterations; i++) {
-    relaxRightToLeft(tree, depthTree, newLinks, alpha3 *= 0.99);
+    relaxRightToLeft(tree, depthTree, newLinks, alpha4 *= 0.99);
     resolveCollisions(depthTree, height, nodePadding, sort);
-    relaxLeftToRight(tree, depthTree, newLinks, alpha3);
+    relaxLeftToRight(tree, depthTree, newLinks, alpha4);
     resolveCollisions(depthTree, height, nodePadding, sort);
   }
   updateYOfLinks(tree, newLinks);
@@ -55232,7 +63475,7 @@ var Sankey = /* @__PURE__ */ function(_PureComponent) {
       var _this$props4 = this.props, linkCurvature = _this$props4.linkCurvature, linkContent = _this$props4.link, margin = _this$props4.margin;
       var top = (0, import_get8.default)(margin, "top") || 0;
       var left = (0, import_get8.default)(margin, "left") || 0;
-      return /* @__PURE__ */ import_react47.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react72.default.createElement(Layer, {
         className: "recharts-sankey-links",
         key: "recharts-sankey-links"
       }, links.map(function(link, i) {
@@ -55261,13 +63504,13 @@ var Sankey = /* @__PURE__ */ function(_PureComponent) {
             source,
             target
           })
-        }, filterProps(linkContent, false));
+        }, filterProps2(linkContent, false));
         var events = {
           onMouseEnter: _this2.handleMouseEnter.bind(_this2, linkProps, "link"),
           onMouseLeave: _this2.handleMouseLeave.bind(_this2, linkProps, "link"),
           onClick: _this2.handleClick.bind(_this2, linkProps, "link")
         };
-        return /* @__PURE__ */ import_react47.default.createElement(Layer, _extends40({
+        return /* @__PURE__ */ import_react72.default.createElement(Layer, _extends40({
           key: "link-".concat(link.source, "-").concat(link.target, "-").concat(link.value)
         }, events), _this2.constructor.renderLinkItem(linkContent, linkProps));
       }));
@@ -55279,12 +63522,12 @@ var Sankey = /* @__PURE__ */ function(_PureComponent) {
       var _this$props5 = this.props, nodeContent = _this$props5.node, margin = _this$props5.margin;
       var top = (0, import_get8.default)(margin, "top") || 0;
       var left = (0, import_get8.default)(margin, "left") || 0;
-      return /* @__PURE__ */ import_react47.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react72.default.createElement(Layer, {
         className: "recharts-sankey-nodes",
         key: "recharts-sankey-nodes"
       }, nodes.map(function(node, i) {
         var x2 = node.x, y2 = node.y, dx = node.dx, dy = node.dy;
-        var nodeProps = _objectSpread47(_objectSpread47({}, filterProps(nodeContent, false)), {}, {
+        var nodeProps = _objectSpread47(_objectSpread47({}, filterProps2(nodeContent, false)), {}, {
           x: x2 + left,
           y: y2 + top,
           width: dx,
@@ -55297,7 +63540,7 @@ var Sankey = /* @__PURE__ */ function(_PureComponent) {
           onMouseLeave: _this3.handleMouseLeave.bind(_this3, nodeProps, "node"),
           onClick: _this3.handleClick.bind(_this3, nodeProps, "node")
         };
-        return /* @__PURE__ */ import_react47.default.createElement(Layer, _extends40({
+        return /* @__PURE__ */ import_react72.default.createElement(Layer, _extends40({
           key: "node-".concat(node.x, "-").concat(node.y, "-").concat(node.value)
         }, events), _this3.constructor.renderNodeItem(nodeContent, nodeProps));
       }));
@@ -55319,7 +63562,7 @@ var Sankey = /* @__PURE__ */ function(_PureComponent) {
       };
       var coordinate = activeElement ? getCoordinateOfTooltip(activeElement, activeElementType) : defaultCoordinateOfTooltip;
       var payload = activeElement ? getPayloadOfTooltip(activeElement, activeElementType, nameKey) : [];
-      return /* @__PURE__ */ import_react47.default.cloneElement(tooltipItem, {
+      return /* @__PURE__ */ import_react72.default.cloneElement(tooltipItem, {
         viewBox,
         active: isTooltipActive,
         coordinate,
@@ -55335,8 +63578,8 @@ var Sankey = /* @__PURE__ */ function(_PureComponent) {
       }
       var _this$props7 = this.props, width = _this$props7.width, height = _this$props7.height, className = _this$props7.className, style = _this$props7.style, children = _this$props7.children, others = _objectWithoutProperties28(_this$props7, _excluded36);
       var _this$state2 = this.state, links = _this$state2.links, nodes = _this$state2.nodes;
-      var attrs = filterProps(others, false);
-      return /* @__PURE__ */ import_react47.default.createElement("div", {
+      var attrs = filterProps2(others, false);
+      return /* @__PURE__ */ import_react72.default.createElement("div", {
         className: clsx_default("recharts-wrapper", className),
         style: _objectSpread47(_objectSpread47({}, style), {}, {
           position: "relative",
@@ -55345,7 +63588,7 @@ var Sankey = /* @__PURE__ */ function(_PureComponent) {
           height
         }),
         role: "region"
-      }, /* @__PURE__ */ import_react47.default.createElement(Surface, _extends40({}, attrs, {
+      }, /* @__PURE__ */ import_react72.default.createElement(Surface, _extends40({}, attrs, {
         width,
         height
       }), filterSvgElements(children), this.renderLinks(links, nodes), this.renderNodes(nodes)), this.renderTooltip());
@@ -55384,41 +63627,41 @@ var Sankey = /* @__PURE__ */ function(_PureComponent) {
   }, {
     key: "renderLinkItem",
     value: function renderLinkItem(option, props) {
-      if (/* @__PURE__ */ import_react47.default.isValidElement(option)) {
-        return /* @__PURE__ */ import_react47.default.cloneElement(option, props);
+      if (/* @__PURE__ */ import_react72.default.isValidElement(option)) {
+        return /* @__PURE__ */ import_react72.default.cloneElement(option, props);
       }
       if ((0, import_isFunction28.default)(option)) {
         return option(props);
       }
       var sourceX = props.sourceX, sourceY = props.sourceY, sourceControlX = props.sourceControlX, targetX = props.targetX, targetY = props.targetY, targetControlX = props.targetControlX, linkWidth = props.linkWidth, others = _objectWithoutProperties28(props, _excluded213);
-      return /* @__PURE__ */ import_react47.default.createElement("path", _extends40({
+      return /* @__PURE__ */ import_react72.default.createElement("path", _extends40({
         className: "recharts-sankey-link",
         d: "\n          M".concat(sourceX, ",").concat(sourceY, "\n          C").concat(sourceControlX, ",").concat(sourceY, " ").concat(targetControlX, ",").concat(targetY, " ").concat(targetX, ",").concat(targetY, "\n        "),
         fill: "none",
         stroke: "#333",
         strokeWidth: linkWidth,
         strokeOpacity: "0.2"
-      }, filterProps(others, false)));
+      }, filterProps2(others, false)));
     }
   }, {
     key: "renderNodeItem",
     value: function renderNodeItem(option, props) {
-      if (/* @__PURE__ */ import_react47.default.isValidElement(option)) {
-        return /* @__PURE__ */ import_react47.default.cloneElement(option, props);
+      if (/* @__PURE__ */ import_react72.default.isValidElement(option)) {
+        return /* @__PURE__ */ import_react72.default.cloneElement(option, props);
       }
       if ((0, import_isFunction28.default)(option)) {
         return option(props);
       }
-      return /* @__PURE__ */ import_react47.default.createElement(Rectangle, _extends40({
+      return /* @__PURE__ */ import_react72.default.createElement(Rectangle, _extends40({
         className: "recharts-sankey-node",
         fill: "#0088fe",
         fillOpacity: "0.8"
-      }, filterProps(props, false), {
+      }, filterProps2(props, false), {
         role: "img"
       }));
     }
   }]);
-}(import_react47.PureComponent);
+}(import_react72.PureComponent);
 _defineProperty53(Sankey, "displayName", "Sankey");
 _defineProperty53(Sankey, "defaultProps", {
   nameKey: "name",
@@ -55536,7 +63779,7 @@ var ComposedChart = generateCategoricalChart({
 });
 
 // node_modules/recharts/es6/chart/SunburstChart.js
-var import_react48 = __toESM(require_react());
+var import_react73 = __toESM(require_react());
 function _extends41() {
   _extends41 = Object.assign ? Object.assign.bind() : function(target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -55623,8 +63866,8 @@ function getMaxDepthOf(node) {
 }
 var SunburstChart = function SunburstChart2(_ref) {
   var className = _ref.className, data = _ref.data, children = _ref.children, width = _ref.width, height = _ref.height, _ref$padding = _ref.padding, padding = _ref$padding === void 0 ? 2 : _ref$padding, _ref$dataKey = _ref.dataKey, dataKey = _ref$dataKey === void 0 ? "value" : _ref$dataKey, _ref$ringPadding = _ref.ringPadding, ringPadding = _ref$ringPadding === void 0 ? 2 : _ref$ringPadding, _ref$innerRadius = _ref.innerRadius, innerRadius = _ref$innerRadius === void 0 ? 50 : _ref$innerRadius, _ref$fill = _ref.fill, fill = _ref$fill === void 0 ? "#333" : _ref$fill, _ref$stroke = _ref.stroke, stroke = _ref$stroke === void 0 ? "#FFF" : _ref$stroke, _ref$textOptions = _ref.textOptions, textOptions = _ref$textOptions === void 0 ? defaultTextProps : _ref$textOptions, _ref$outerRadius = _ref.outerRadius, outerRadius = _ref$outerRadius === void 0 ? Math.min(width, height) / 2 : _ref$outerRadius, _ref$cx = _ref.cx, cx = _ref$cx === void 0 ? width / 2 : _ref$cx, _ref$cy = _ref.cy, cy = _ref$cy === void 0 ? height / 2 : _ref$cy, _ref$startAngle = _ref.startAngle, startAngle = _ref$startAngle === void 0 ? 0 : _ref$startAngle, _ref$endAngle = _ref.endAngle, endAngle = _ref$endAngle === void 0 ? 360 : _ref$endAngle, onClick = _ref.onClick, onMouseEnter = _ref.onMouseEnter, onMouseLeave = _ref.onMouseLeave;
-  var _useState = (0, import_react48.useState)(false), _useState2 = _slicedToArray14(_useState, 2), isTooltipActive = _useState2[0], setIsTooltipActive = _useState2[1];
-  var _useState3 = (0, import_react48.useState)(null), _useState4 = _slicedToArray14(_useState3, 2), activeNode = _useState4[0], setActiveNode = _useState4[1];
+  var _useState = (0, import_react73.useState)(false), _useState2 = _slicedToArray14(_useState, 2), isTooltipActive = _useState2[0], setIsTooltipActive = _useState2[1];
+  var _useState3 = (0, import_react73.useState)(null), _useState4 = _slicedToArray14(_useState3, 2), activeNode = _useState4[0], setActiveNode = _useState4[1];
   var rScale = linear2([0, data[dataKey]], [0, endAngle]);
   var treeDepth = getMaxDepthOf(data);
   var thickness = (outerRadius - innerRadius) / treeDepth;
@@ -55656,10 +63899,10 @@ var SunburstChart = function SunburstChart2(_ref) {
       currentAngle += arcLength;
       sectors.push(
         // TODO: Missing key warning. Can we use `key={d.name}`?
-        /* @__PURE__ */ import_react48.default.createElement("g", {
+        /* @__PURE__ */ import_react73.default.createElement("g", {
           "aria-label": d.name,
           tabIndex: 0
-        }, /* @__PURE__ */ import_react48.default.createElement(Sector, {
+        }, /* @__PURE__ */ import_react73.default.createElement(Sector, {
           onClick: function onClick2() {
             return handleClick(d);
           },
@@ -55678,7 +63921,7 @@ var SunburstChart = function SunburstChart2(_ref) {
           outerRadius: innerR + radius,
           cx,
           cy
-        }), /* @__PURE__ */ import_react48.default.createElement(Text, _extends41({}, textOptions, {
+        }), /* @__PURE__ */ import_react73.default.createElement(Text, _extends41({}, textOptions, {
           alignmentBaseline: "middle",
           textAnchor: "middle",
           x: textX + cx,
@@ -55713,14 +63956,14 @@ var SunburstChart = function SunburstChart2(_ref) {
       width,
       height
     };
-    return /* @__PURE__ */ import_react48.default.cloneElement(tooltipComponent, {
+    return /* @__PURE__ */ import_react73.default.cloneElement(tooltipComponent, {
       viewBox,
       coordinate: positions.get(activeNode.name),
       payload: [activeNode],
       active: isTooltipActive
     });
   }
-  return /* @__PURE__ */ import_react48.default.createElement("div", {
+  return /* @__PURE__ */ import_react73.default.createElement("div", {
     className: clsx_default("recharts-wrapper", className),
     style: {
       position: "relative",
@@ -55728,16 +63971,16 @@ var SunburstChart = function SunburstChart2(_ref) {
       height
     },
     role: "region"
-  }, /* @__PURE__ */ import_react48.default.createElement(Surface, {
+  }, /* @__PURE__ */ import_react73.default.createElement(Surface, {
     width,
     height
-  }, children, /* @__PURE__ */ import_react48.default.createElement(Layer, {
+  }, children, /* @__PURE__ */ import_react73.default.createElement(Layer, {
     className: layerClass
   }, sectors)), renderTooltip());
 };
 
 // node_modules/recharts/es6/numberAxis/Funnel.js
-var import_react50 = __toESM(require_react());
+var import_react75 = __toESM(require_react());
 var import_isFunction29 = __toESM(require_isFunction());
 var import_isNumber2 = __toESM(require_isNumber());
 var import_isString4 = __toESM(require_isString());
@@ -55745,7 +63988,7 @@ var import_omit2 = __toESM(require_omit());
 var import_isEqual10 = __toESM(require_isEqual());
 
 // node_modules/recharts/es6/util/FunnelUtils.js
-var import_react49 = __toESM(require_react());
+var import_react74 = __toESM(require_react());
 function _typeof60(o) {
   "@babel/helpers - typeof";
   return _typeof60 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o2) {
@@ -55826,7 +64069,7 @@ function typeGuardTrapezoidProps(option, props) {
   });
 }
 function FunnelTrapezoid(props) {
-  return /* @__PURE__ */ import_react49.default.createElement(Shape, _extends42({
+  return /* @__PURE__ */ import_react74.default.createElement(Shape, _extends42({
     shapeType: "trapezoid",
     propTransformer: typeGuardTrapezoidProps
   }, props));
@@ -56063,12 +64306,12 @@ var Funnel = /* @__PURE__ */ function(_PureComponent) {
           isActive: _this2.isActiveIndex(i),
           stroke: entry.stroke
         });
-        return /* @__PURE__ */ import_react50.default.createElement(Layer, _extends43({
+        return /* @__PURE__ */ import_react75.default.createElement(Layer, _extends43({
           className: "recharts-funnel-trapezoid"
         }, adaptEventsOfChild(_this2.props, entry, i), {
           key: "trapezoid-".concat(entry === null || entry === void 0 ? void 0 : entry.x, "-").concat(entry === null || entry === void 0 ? void 0 : entry.y, "-").concat(entry === null || entry === void 0 ? void 0 : entry.name, "-").concat(entry === null || entry === void 0 ? void 0 : entry.value),
           role: "img"
-        }), /* @__PURE__ */ import_react50.default.createElement(FunnelTrapezoid, _extends43({
+        }), /* @__PURE__ */ import_react75.default.createElement(FunnelTrapezoid, _extends43({
           option: trapezoidOptions
         }, trapezoidProps)));
       });
@@ -56079,7 +64322,7 @@ var Funnel = /* @__PURE__ */ function(_PureComponent) {
       var _this3 = this;
       var _this$props2 = this.props, trapezoids = _this$props2.trapezoids, isAnimationActive = _this$props2.isAnimationActive, animationBegin = _this$props2.animationBegin, animationDuration = _this$props2.animationDuration, animationEasing = _this$props2.animationEasing, animationId = _this$props2.animationId;
       var prevTrapezoids = this.state.prevTrapezoids;
-      return /* @__PURE__ */ import_react50.default.createElement(es6_default, {
+      return /* @__PURE__ */ import_react75.default.createElement(es6_default, {
         begin: animationBegin,
         duration: animationDuration,
         isActive: isAnimationActive,
@@ -56124,7 +64367,7 @@ var Funnel = /* @__PURE__ */ function(_PureComponent) {
             height: interpolatorHeight(t)
           });
         });
-        return /* @__PURE__ */ import_react50.default.createElement(Layer, null, _this3.renderTrapezoidsStatically(stepData));
+        return /* @__PURE__ */ import_react75.default.createElement(Layer, null, _this3.renderTrapezoidsStatically(stepData));
       });
     }
   }, {
@@ -56146,7 +64389,7 @@ var Funnel = /* @__PURE__ */ function(_PureComponent) {
         return null;
       }
       var layerClass = clsx_default("recharts-trapezoids", className);
-      return /* @__PURE__ */ import_react50.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react75.default.createElement(Layer, {
         className: layerClass
       }, this.renderTrapezoids(), (!isAnimationActive || isAnimationFinished) && LabelList.renderCallByParent(this.props, trapezoids));
     }
@@ -56168,7 +64411,7 @@ var Funnel = /* @__PURE__ */ function(_PureComponent) {
       return null;
     }
   }]);
-}(import_react50.PureComponent);
+}(import_react75.PureComponent);
 _Funnel = Funnel;
 _defineProperty55(Funnel, "displayName", "Funnel");
 _defineProperty55(Funnel, "defaultProps", {
@@ -56186,7 +64429,7 @@ _defineProperty55(Funnel, "defaultProps", {
 });
 _defineProperty55(Funnel, "getRealFunnelData", function(item) {
   var _item$props = item.props, data = _item$props.data, children = _item$props.children;
-  var presentationProps = filterProps(item.props, false);
+  var presentationProps = filterProps2(item.props, false);
   var cells = findAllByType(children, Cell);
   if (data && data.length) {
     return data.map(function(entry, index) {
@@ -56330,8 +64573,8 @@ var FunnelChart = generateCategoricalChart({
 });
 
 // app.js
-var import_jsx_runtime = __toESM(require_jsx_runtime());
-var { ResponsiveContainer: ResponsiveContainer2, LineChart: LineChart2, Line: Line2, XAxis: XAxis2, YAxis: YAxis2, CartesianGrid: CartesianGrid2, Tooltip: ReTooltip, Legend: Legend2, Area: Area2, AreaChart: AreaChart2, PieChart: PieChart2, Pie: Pie2, Cell: Cell3 } = es6_exports;
+var import_jsx_runtime6 = __toESM(require_jsx_runtime());
+var { ResponsiveContainer: ResponsiveContainer2, LineChart: LineChart2, Line: Line2, XAxis: XAxis2, YAxis: YAxis2, CartesianGrid: CartesianGrid2, Tooltip: ReTooltip, Legend: Legend2, Area: Area2, AreaChart: AreaChart2, PieChart: PieChart2, Pie: Pie2, Cell: Cell3, BarChart: BarChart2, Bar: Bar2 } = es6_exports;
 var fmt = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 });
 var uid = () => Math.random().toString(36).slice(2, 9);
 var store = {
@@ -56346,25 +64589,10 @@ var store = {
     localStorage.setItem(k2, JSON.stringify(v));
   }
 };
-function computeInitialDark(lsValue, prefersDark) {
-  if (lsValue === "true") return true;
-  if (lsValue === "false") return false;
-  return !!prefersDark;
-}
-function useDarkMode() {
-  const [dark, setDark] = (0, import_react51.useState)(() => {
-    const ls = localStorage.getItem("ui.dark");
-    const prefers = matchMedia("(prefers-color-scheme: dark)").matches;
-    return computeInitialDark(ls, prefers);
-  });
-  (0, import_react51.useEffect)(() => {
-    const cl = document.documentElement.classList;
-    if (dark) cl.add("dark");
-    else cl.remove("dark");
-    localStorage.setItem("ui.dark", String(dark));
-  }, [dark]);
-  return [dark, setDark];
-}
+var fontStack = {
+  fontFamily: 'system-ui, -apple-system, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif'
+};
+var cn = (...cls) => cls.filter(Boolean).join(" ");
 var toast = {
   show(msg) {
     const el = document.getElementById("toast");
@@ -56380,74 +64608,6 @@ var toast = {
     this.show(msg);
   }
 };
-var Svg = ({ className, children, viewBox = "0 0 24 24" }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("svg", { className, width: "1em", height: "1em", viewBox, fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children });
-var Icon = {
-  Truck: (p) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Svg, { ...p, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M3 13V7h10l4 4v6H3z" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M13 7v4h4" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", { cx: "7", cy: "17", r: "2" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", { cx: "15", cy: "17", r: "2" })
-  ] }),
-  Trailer: (p) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Svg, { ...p, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("rect", { x: "3", y: "8", width: "14", height: "7", rx: "1" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", { cx: "9", cy: "17", r: "2" })
-  ] }),
-  Clipboard: (p) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Svg, { ...p, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("rect", { x: "4", y: "5", width: "16", height: "16", rx: "2" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("rect", { x: "9", y: "3", width: "6", height: "4", rx: "1" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M8 11h8M8 15h8" })
-  ] }),
-  Chart: (p) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Svg, { ...p, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M3 3v18h18" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("rect", { x: "6", y: "10", width: "3", height: "7" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("rect", { x: "11", y: "6", width: "3", height: "11" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("rect", { x: "16", y: "12", width: "3", height: "5" })
-  ] }),
-  Dollar: (p) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Svg, { ...p, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M12 1v22" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M17 5c0-1.657-2.239-3-5-3S7 3.343 7 5s2.239 3 5 3 5 1.343 5 3-2.239 3-5 3-5 1.343-5 3 2.239 3 5 3 5-1.343 5-3" })
-  ] }),
-  Wallet: (p) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Svg, { ...p, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("rect", { x: "3", y: "6", width: "18", height: "12", rx: "2" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", { cx: "16", cy: "12", r: "1.5" })
-  ] }),
-  Sun: (p) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Svg, { ...p, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", { cx: "12", cy: "12", r: "4" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5" })
-  ] }),
-  Moon: (p) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Svg, { ...p, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79Z" }) }),
-  Search: (p) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Svg, { ...p, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", { cx: "11", cy: "11", r: "7" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M21 21l-4.3-4.3" })
-  ] }),
-  Plus: (p) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Svg, { ...p, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M12 5v14M5 12h14" }) }),
-  X: (p) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Svg, { ...p, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M18 6L6 18M6 6l12 12" }) }),
-  Upload: (p) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Svg, { ...p, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M12 17V7" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M7 12l5-5 5 5" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M5 20h14" })
-  ] }),
-  Pencil: (p) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Svg, { ...p, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M12 20h9" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z" })
-  ] })
-};
-function Button({ children, variant = "default", size = "md", className = "", ...rest }) {
-  const cls = ["btn", variant === "primary" ? "btn-primary" : "", variant === "ghost" ? "btn-ghost" : "", size === "sm" ? "btn-sm" : "", className].join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { className: cls, ...rest, children });
-}
-function Badge({ children, variant = "default", className = "" }) {
-  const cls = ["badge", variant === "destructive" ? "badge-destructive" : "", className].join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: cls, children });
-}
-function Switch({ checked, onChange }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { style: { display: "inline-flex", alignItems: "center", gap: 8, cursor: "pointer" }, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { type: "checkbox", checked, onChange: (e) => onChange(e.target.checked), style: { display: "none" } }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { style: { width: 36, height: 22, background: checked ? "var(--brand)" : "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 999, position: "relative", display: "inline-block", transition: "all var(--t) var(--ease)" }, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("i", { style: { position: "absolute", top: 2, left: checked ? 18 : 2, width: 18, height: 18, background: "#fff", borderRadius: "50%", transition: "all var(--t) var(--ease)" } }) })
-  ] });
-}
-var STAGES = ["New", "Diagnose", "Estimate", "Approval", "Parts", "Repair", "QA", "Closed"];
-var STAGE_ALL = "__ALL__";
 var SEED = {
   trucks: [
     { id: "3252", make: "Freightliner", model: "Cascadia", year: 2021, vin: "1FUJHHDR0MLMJ4879", status: "Active", miles: 618230, pmInterval: 2e4, pmDueAt: 618230, notes: "Oil change due now" },
@@ -56455,564 +64615,414 @@ var SEED = {
   ],
   trailers: [
     { id: "XTRA-40123", type: "Dry Van", owner: "XTRA Lease", status: "On Road", extId: "SkyB-12345", notes: "External tracked" },
-    { id: "UST-9001", type: "Dry Van", owner: "US TEAM", status: "Yard", extId: "\xE2\u20AC\u201D", notes: "Ready" }
+    { id: "UST-9001", type: "Dry Van", owner: "US TEAM", status: "Yard", extId: "\u2014", notes: "Ready" }
   ],
   cases: [
     { id: uid(), assetType: "truck", assetId: "3252", title: "Coolant leak", priority: "High", stage: "Diagnose", createdAt: Date.now() - 864e5 * 2, cost: 0, assigned: "Jack", timeline: [{ t: Date.now() - 864e5 * 2, note: "Driver reports coolant on ground." }], invoices: [] },
     { id: uid(), assetType: "trailer", assetId: "XTRA-40123", title: "ABS light ON", priority: "Medium", stage: "Parts", createdAt: Date.now() - 864e5 * 1, cost: 75, assigned: "Aidar", timeline: [{ t: Date.now() - 864e5, note: "Mobile tech scheduled." }], invoices: [] }
   ],
   ledger: [
-    { id: uid(), type: "expense", amount: 535, category: "Tires", note: "Steer tire fix \xE2\u20AC\u201D Houston, TX", ref: "2023/00" },
-    { id: uid(), type: "expense", amount: 325, category: "Windshield", note: "Windshield mobile \xE2\u20AC\u201D Wichita, KS", ref: "2025/09/04" },
+    { id: uid(), type: "expense", amount: 535, category: "Tires", note: "Steer tire fix \u2014 Houston, TX", ref: "2023/00" },
+    { id: uid(), type: "expense", amount: 325, category: "Windshield", note: "Windshield mobile \u2014 Wichita, KS", ref: "2025/09/04" },
     { id: uid(), type: "income", amount: 4200, category: "Load", note: "Load #AB-778, Jack", ref: "2025/09/03" }
   ]
 };
 function useSeededState(key, initial) {
-  const [state, setState] = (0, import_react51.useState)(() => store.get(key, null) ?? (initial ?? SEED[key]));
-  (0, import_react51.useEffect)(() => {
+  const [state, setState] = (0, import_react76.useState)(() => store.get(key, null) ?? (initial ?? SEED[key]));
+  (0, import_react76.useEffect)(() => {
     store.set(key, state);
   }, [key, state]);
   return [state, setState];
 }
-function Stat({ label, value, icon: IconCmp }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "panel", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "p-2", style: { display: "flex", alignItems: "center", gap: 12 }, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-2xl p-2", style: { background: "var(--bg-2)", border: "1px solid var(--border)" }, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(IconCmp, { className: "icon" }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: { fontSize: 12, color: "var(--muted)" }, children: label }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: { fontSize: 18, fontWeight: 700 }, children: value })
-    ] })
-  ] }) });
-}
-function Row({ children }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "grid", children });
-}
-function BrandMark({ src = "logo.png" }) {
-  const [err, setErr] = (0, import_react51.useState)(false);
-  if (err) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: { width: 30, height: 30, borderRadius: 12, display: "grid", placeItems: "center", background: "black", color: "white", fontWeight: 800 }, children: "B" });
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { src, alt: "Logo", onError: () => setErr(true) });
+var Chip = ({ active, children, onClick }) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+  "button",
+  {
+    onClick,
+    className: cn(
+      "px-3 py-1.5 rounded-full text-sm font-semibold transition-all",
+      active ? "bg-black text-white dark:bg-white dark:text-black shadow" : "bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+    ),
+    children
+  }
+);
+var Card = ({ title, toolbar, children }) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+  motion.div,
+  {
+    layout: true,
+    initial: { opacity: 0, y: 6 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -6 },
+    transition: { type: "spring", stiffness: 260, damping: 26 },
+    className: "rounded-2xl bg-white/70 dark:bg-zinc-900/70 backdrop-blur border border-gray-200 dark:border-gray-800 shadow-sm",
+    children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-800", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h3", { className: "text-sm font-medium text-gray-600 dark:text-gray-300", children: title }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "flex items-center gap-2", children: toolbar })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "p-4", children })
+    ]
+  }
+);
+var SidebarItem = ({ icon: Icon2, label, active, onClick }) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+  "button",
+  {
+    onClick,
+    className: cn(
+      "w-full h-10 flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-semibold transition-colors",
+      active ? "bg-gray-900 text-white dark:bg-white dark:text-black" : "text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+    ),
+    children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Icon2, { size: 18 }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "leading-none", children: label })
+    ]
+  }
+);
+var TopButton = ({ icon: Icon2, label, onClick }) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+  "button",
+  {
+    onClick,
+    className: "inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold",
+    "aria-label": label,
+    children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Icon2, { size: 16 })
+  }
+);
+var Pill = ({ tone = "neutral", children }) => {
+  const tones = {
+    success: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300",
+    warning: "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300",
+    danger: "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300",
+    neutral: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: cn("px-2 py-1 rounded-full text-xs", tones[tone]), children });
+};
+var StatusDot = ({ status }) => {
+  const m = {
+    Active: "bg-emerald-500",
+    "In-progress": "bg-blue-500",
+    Delayed: "bg-amber-500",
+    Cancelled: "bg-rose-500",
+    "On Road": "bg-blue-500",
+    Yard: "bg-gray-500",
+    Service: "bg-amber-500",
+    Repair: "bg-rose-500"
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: cn("inline-block w-2 h-2 rounded-full", m[status] || "bg-gray-400") });
+};
+function useDarkMode() {
+  const [dark, setDark] = (0, import_react76.useState)(() => {
+    const stored = typeof window !== "undefined" ? localStorage.getItem("theme") : null;
+    if (stored) {
+      return stored === "dark";
+    } else {
+      return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+  });
+  (0, import_react76.useEffect)(() => {
+    try {
+      localStorage.setItem("theme", dark ? "dark" : "light");
+    } catch {
+    }
+  }, [dark]);
+  return [dark, setDark];
 }
 function Dashboard({ trucks, trailers, cases, ledger }) {
-  const exp = (0, import_react51.useMemo)(() => ledger.filter((l) => l.type === "expense").reduce((a2, b) => a2 + b.amount, 0), [ledger]);
-  const inc = (0, import_react51.useMemo)(() => ledger.filter((l) => l.type === "income").reduce((a2, b) => a2 + b.amount, 0), [ledger]);
+  const exp = (0, import_react76.useMemo)(() => ledger.filter((l) => l.type === "expense").reduce((a2, b) => a2 + b.amount, 0), [ledger]);
+  const inc = (0, import_react76.useMemo)(() => ledger.filter((l) => l.type === "income").reduce((a2, b) => a2 + b.amount, 0), [ledger]);
   const openCases = cases.filter((c2) => c2.stage !== "Closed").length;
-  const chartData = (0, import_react51.useMemo)(() => {
-    const days = [...Array(10)].map((_, i) => {
-      const day = new Date(Date.now() - (9 - i) * 864e5);
-      const key = day.toISOString().slice(5, 10);
-      const e = ledger.filter((l) => l.type === "expense" && Math.random() > 0.5).reduce((a2, b) => a2 + b.amount, 0);
-      const r2 = ledger.filter((l) => l.type === "income" && Math.random() > 0.5).reduce((a2, b) => a2 + b.amount, 0);
-      return { day: key, Expenses: e, Revenue: r2 };
-    });
-    return days;
-  }, [ledger]);
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "space-y", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Row, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "span-4", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Stat, { label: "Active trucks", value: trucks.length, icon: Icon.Truck }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "span-4", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Stat, { label: "Trailers", value: trailers.length, icon: Icon.Trailer }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "span-4", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Stat, { label: "Open cases", value: openCases, icon: Icon.Clipboard }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "span-4", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Stat, { label: "Revenue (est)", value: fmt.format(inc), icon: Icon.Dollar }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "span-4", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Stat, { label: "Expenses", value: fmt.format(exp), icon: Icon.Wallet }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "span-4", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Stat, { label: "Net", value: fmt.format(inc - exp), icon: Icon.Chart }) })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "panel span-12", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h3", { className: "mb-2", style: { display: "flex", alignItems: "center", gap: 8 }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon.Chart, {}),
-        " 10\xE2\u20AC\u2018day Finance Trend"
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: { height: 260 }, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ResponsiveContainer2, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(AreaChart2, { data: chartData, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("defs", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("linearGradient", { id: "g1", x1: "0", y1: "0", x2: "0", y2: "1", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("stop", { offset: "5%", stopColor: "currentColor", stopOpacity: 0.18 }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("stop", { offset: "95%", stopColor: "currentColor", stopOpacity: 0 })
-        ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CartesianGrid2, { strokeDasharray: "3 3" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(XAxis2, { dataKey: "day" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(YAxis2, {}),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ReTooltip, {}),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Legend2, {}),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Area2, { type: "monotone", dataKey: "Revenue", strokeWidth: 2, stroke: "currentColor", fill: "url(#g1)" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Area2, { type: "monotone", dataKey: "Expenses", strokeWidth: 2, stroke: "currentColor", fill: "url(#g1)" })
-      ] }) }) })
-    ] })
-  ] });
-}
-function Trucks({ trucks, setTrucks }) {
-  const [q, setQ] = (0, import_react51.useState)("");
-  const [open, setOpen] = (0, import_react51.useState)(false);
-  const filtered = trucks.filter((t) => [t.id, t.vin, t.make, t.model].join(" ").toLowerCase().includes(q.toLowerCase()));
-  function addTruck(e) {
-    e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    const t = {
-      id: String(f.get("id")).trim() || uid(),
-      make: f.get("make"),
-      model: f.get("model"),
-      year: Number(f.get("year")),
-      vin: f.get("vin"),
-      status: f.get("status"),
-      miles: Number(f.get("miles")),
-      pmInterval: Number(f.get("pmInterval")),
-      pmDueAt: Number(f.get("pmDueAt")),
-      notes: f.get("notes")
-    };
-    setTrucks((prev) => [...prev, t]);
-    e.currentTarget.reset();
-    setOpen(false);
-    toast.success("Truck added");
-  }
-  const remove = (id) => setTrucks((prev) => prev.filter((t) => t.id !== id));
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "space-y", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginBottom: 8 }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { style: { fontSize: 18, fontWeight: 700 }, children: "Trucks" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: 8 }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "search", style: { minWidth: 280 }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon.Search, { className: "icon" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { placeholder: "Search ID / VIN / make", value: q, onChange: (e) => setQ(e.target.value) })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, { className: "btn btn-primary", onClick: () => setOpen(true), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon.Plus, {}),
-          " Add"
-        ] })
-      ] })
-    ] }),
-    open && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "panel", style: { position: "fixed", inset: 0, background: "rgba(0,0,0,.45)", display: "grid", placeItems: "center", zIndex: 50 }, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "panel", style: { maxWidth: 720, width: "92%" }, children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: "Add truck" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { className: "btn btn-ghost", onclick: "this.closest('[style*=inset]').remove()", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\xC3\u2014" }) })
-    ] }) }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "grid", children: filtered.map((t) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "panel span-4", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mb-2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between" }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h3", { style: { fontSize: 15 }, children: [
-            "# ",
-            t.id,
-            " \xE2\u20AC\xA2 ",
-            t.make,
-            " ",
-            t.model
-          ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Badge, { children: [
-            " ",
-            t.status,
-            " "
-          ] })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { fontSize: 12, color: "var(--muted)" }, children: [
-          "VIN ",
-          t.vin
-        ] })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "space-y", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "text-sm", children: [
-          "Odo: ",
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: t.miles.toLocaleString() }),
-          " mi"
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "text-sm", children: [
-          "PM interval: ",
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: t.pmInterval.toLocaleString() }),
-          " mi"
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "text-sm", children: [
-          "PM due @ ",
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: t.pmDueAt.toLocaleString() }),
-          " mi"
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { style: { color: "var(--muted)" }, children: t.notes }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", justifyContent: "flex-end", gap: 8 }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, { className: "btn", children: "Edit" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, { className: "btn badge-destructive", onClick: () => remove(t.id), children: "Delete" })
-        ] })
-      ] })
-    ] }, t.id)) })
-  ] });
-}
-function Trailers({ trailers, setTrailers }) {
-  const [q, setQ] = (0, import_react51.useState)("");
-  const [open, setOpen] = (0, import_react51.useState)(false);
-  const filtered = trailers.filter((t) => [t.id, t.type, t.owner, t.extId].join(" ").toLowerCase().includes(q.toLowerCase()));
-  function addTrailer(e) {
-    e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    const t = { id: f.get("id"), type: f.get("type"), owner: f.get("owner"), status: f.get("status"), extId: f.get("extId"), notes: f.get("notes") };
-    setTrailers((prev) => [...prev, t]);
-    e.currentTarget.reset();
-    setOpen(false);
-    toast.success("Trailer added");
-  }
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "space-y", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginBottom: 8 }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { style: { fontSize: 18, fontWeight: 700 }, children: "Trailers" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: 8 }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "search", style: { minWidth: 280 }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon.Search, { className: "icon" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { placeholder: "Search ID / owner / extId", value: q, onChange: (e) => setQ(e.target.value) })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, { className: "btn btn-primary", onClick: () => setOpen(true), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon.Plus, {}),
-          " Add"
-        ] })
-      ] })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "grid", children: filtered.map((t) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "panel span-4", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mb-2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between" }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h3", { style: { fontSize: 15 }, children: [
-            t.id,
-            " \xE2\u20AC\xA2 ",
-            t.type
-          ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Badge, { children: t.status })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { fontSize: 12, color: "var(--muted)" }, children: [
-          "Owner ",
-          t.owner,
-          " \xE2\u20AC\xA2 Ext ",
-          t.extId || "\xE2\u20AC\u201D"
-        ] })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { style: { color: "var(--muted)" }, children: t.notes }) })
-    ] }, t.id)) }),
-    open && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "modal", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "panel", style: { maxWidth: 720, width: "92%" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: "Add trailer" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { className: "btn btn-ghost", onClick: () => setOpen(false), children: "\xC3\u2014" })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("form", { className: "grid", onSubmit: (e) => {
-        e.preventDefault();
-      } })
-    ] }) })
-  ] });
-}
-function Cases({ cases, setCases }) {
-  const [q, setQ] = (0, import_react51.useState)("");
-  const [stageFilter, setStageFilter] = (0, import_react51.useState)(STAGE_ALL);
-  const filtered = cases.filter((c2) => {
-    const hay = [c2.assetId, c2.title, c2.priority, c2.stage, c2.assigned].join(" ").toLowerCase();
-    const matchQ = hay.includes(q.toLowerCase());
-    const matchS = stageFilter === STAGE_ALL ? true : c2.stage === stageFilter;
-    return matchQ && matchS;
-  });
-  function addCase(e) {
-    e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    const c2 = {
-      id: uid(),
-      assetType: f.get("assetType"),
-      assetId: f.get("assetId"),
-      title: f.get("title"),
-      priority: f.get("priority"),
-      stage: "New",
-      createdAt: Date.now(),
-      cost: 0,
-      assigned: f.get("assigned"),
-      timeline: [{ t: Date.now(), note: "Case created" }],
-      invoices: []
-    };
-    setCases((prev) => [c2, ...prev]);
-    e.currentTarget.reset();
-    toast.success("Case created");
-  }
-  function pushStage(id) {
-    setCases((prev) => prev.map((c2) => {
-      if (c2.id !== id) return c2;
-      const idx = STAGES.indexOf(c2.stage);
-      const next = Math.min(idx + 1, STAGES.length - 1);
-      const nc = { ...c2, stage: STAGES[next], timeline: [...c2.timeline, { t: Date.now(), note: `Moved \xE2\u2020\u2019 ${STAGES[next]}` }] };
-      if (STAGES[next] === "Closed") nc.timeline.push({ t: Date.now(), note: "Case closed" });
-      return nc;
+  const chartData = (0, import_react76.useMemo)(() => {
+    const months = ["Sep 22", "Oct 22", "Nov 22", "Dec 22", "Jan 23", "Feb 23", "Mar 23", "Apr 23", "May 23", "Jun 23", "Jul 23", "Aug 23"];
+    return months.map((m, i) => ({
+      name: m,
+      Revenue: inc / 12 + i * 300 + (i % 3 === 0 ? 800 : -400),
+      Expenses: exp / 12 + i * 200 + (i % 2 === 0 ? 300 : -200)
     }));
-  }
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "space-y", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginBottom: 8 }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { style: { fontSize: 18, fontWeight: 700 }, children: "Cases" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: 8 }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "search", style: { minWidth: 280 }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon.Search, { className: "icon" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { placeholder: "Search case / asset / assignee", value: q, onChange: (e) => setQ(e.target.value) })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", { value: stageFilter, onChange: (e) => setStageFilter(e.target.value), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: STAGE_ALL, children: "All" }),
-          STAGES.map((s2) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: s2, children: s2 }, s2))
-        ] })
-      ] })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "grid", children: filtered.map((c2) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "panel span-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mb-2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between" }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h3", { style: { fontSize: 15 }, children: [
-            c2.title,
-            " \xE2\u20AC\xA2 ",
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { style: { color: "var(--muted)" }, children: c2.assetId })
+  }, [ledger, inc, exp]);
+  const barData = [
+    { name: "Oil", uv: 24 },
+    { name: "Fluid", uv: 12 },
+    { name: "Battery", uv: 18 },
+    { name: "Belts", uv: 14 },
+    { name: "Susp.", uv: 20 }
+  ];
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "space-y-4", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "grid md:grid-cols-2 gap-4", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+        Card,
+        {
+          title: "Fleet performance",
+          toolbar: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Chip, { active: true, children: "Monthly" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Chip, { children: "Yearly" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Badge, { className: c2.priority === "High" || c2.priority === "Critical" ? "badge-destructive" : "", children: c2.priority })
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-3 mb-3", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "text-3xl font-semibold", children: fmt.format(inc) }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Pill, { tone: "success", children: "\u2191 2.9%" })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "h-36", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ResponsiveContainer2, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(AreaChart2, { data: chartData, margin: { top: 6, right: 0, left: -20, bottom: 0 }, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("defs", { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("linearGradient", { id: "grad", x1: "0", y1: "0", x2: "0", y2: "1", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("stop", { offset: "5%", stopOpacity: 0.5 }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("stop", { offset: "95%", stopOpacity: 0 })
+              ] }) }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(XAxis2, { dataKey: "name", tick: { fontSize: 12 } }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(YAxis2, { hide: true }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ReTooltip, { contentStyle: { borderRadius: 12 } }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Area2, { type: "monotone", dataKey: "Revenue", strokeWidth: 2, fillOpacity: 0.2, fill: "url(#grad)" })
+            ] }) }) })
+          ]
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+        Card,
+        {
+          title: "Driver Performance",
+          toolbar: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Chip, { active: true, children: "Monthly" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Chip, { children: "Yearly" })
+          ] }),
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-3 mb-3", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "text-3xl font-semibold", children: fmt.format(exp) }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Pill, { tone: "danger", children: "\u2193 2.9%" })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "h-36", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ResponsiveContainer2, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(AreaChart2, { data: chartData.slice().reverse(), margin: { top: 6, right: 0, left: -20, bottom: 0 }, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(XAxis2, { dataKey: "name", tick: { fontSize: 12 } }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(YAxis2, { hide: true }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ReTooltip, { contentStyle: { borderRadius: 12 } }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Area2, { type: "monotone", dataKey: "Expenses", strokeWidth: 2, fillOpacity: 0.2, fill: "url(#grad)" })
+            ] }) }) })
+          ]
+        }
+      )
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "grid lg:grid-cols-2 gap-4", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+        Card,
+        {
+          title: "Maintenance overview",
+          toolbar: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Chip, { active: true, children: "Monthly" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Chip, { children: "Yearly" })
+          ] }),
+          children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "h-44", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ResponsiveContainer2, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(BarChart2, { data: barData, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(XAxis2, { dataKey: "name", tick: { fontSize: 12 } }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(YAxis2, {}),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ReTooltip, { contentStyle: { borderRadius: 12 } }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Bar2, { dataKey: "uv", radius: [8, 8, 0, 0] })
+          ] }) }) })
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+        Card,
+        {
+          title: "Cost details",
+          toolbar: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Chip, { active: true, children: "Monthly" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Chip, { children: "Yearly" })
+          ] }),
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-baseline gap-3 mb-4", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "text-3xl font-semibold", children: fmt.format(inc - exp) }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Pill, { tone: "success", children: "\u2191 2.9%" })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("ul", { className: "space-y-2 text-sm", children: [
+              ["Oil cost", "+$515"],
+              ["Fluid cost", "+$109"],
+              ["Battery cost", "+$80"],
+              ["Belt & Hose cost", "+$150"],
+              ["Suspension cost", "+$200"]
+            ].map(([k2, v]) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("li", { className: "flex items-center justify-between", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "text-gray-600 dark:text-gray-300", children: k2 }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "font-medium", children: v })
+            ] }, k2)) })
+          ]
+        }
+      )
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+      Card,
+      {
+        title: "Fleet Status",
+        toolbar: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-2", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(Pill, { tone: "neutral", children: [
+            trucks.length + trailers.length,
+            " assets"
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { className: "px-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold", children: "Export CSV" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { fontSize: 12, color: "var(--muted)" }, children: [
-          "Stage: ",
-          c2.stage,
-          " \xE2\u20AC\xA2 Opened ",
-          new Date(c2.createdAt).toLocaleDateString()
-        ] })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "space-y", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "text-xs", style: { color: "var(--muted)" }, children: "Timeline" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: { maxHeight: 160, overflow: "auto", paddingRight: 6 }, children: c2.timeline.map((t, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: 8, fontSize: 13 }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { style: { width: 6, height: 6, borderRadius: 999, background: "var(--muted)" } }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: t.note }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { style: { fontSize: 10, color: "var(--muted)" }, children: new Date(t.t).toLocaleString() })
-        ] }, i)) }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: 8 }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { placeholder: "Add note\xE2\u20AC\xA6", onKeyDown: (e) => {
-            if (e.key === "Enter") {
-              const v = (e.target.value || "").trim();
-              if (v) {
-                setCases((prev) => prev.map((x2) => x2.id === c2.id ? { ...x2, timeline: [...x2.timeline, { t: Date.now(), note: v }] } : x2));
-                e.target.value = "";
-              }
-            }
-          } }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, { className: "btn", onClick: () => pushStage(c2.id), children: "Next \xE2\u2020\u2019" })
-        ] })
-      ] })
-    ] }, c2.id)) }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "panel span-12", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: "Open a case" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", { className: "grid", onSubmit: addCase, style: { gridTemplateColumns: "repeat(2, minmax(0,1fr))", gap: 12 }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { name: "assetType", placeholder: "Asset type (truck/trailer)", defaultValue: "truck" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { name: "assetId", placeholder: "Unit ID (e.g., 3252 / XTRA-40123)" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { name: "title", placeholder: "Issue title (e.g., Coolant leak)", className: "span-12" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { name: "priority", placeholder: "Priority (Low/Medium/High/Critical)", defaultValue: "Medium" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { name: "assigned", placeholder: "Assignee (e.g., Jack)" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "span-12", style: { display: "flex", justifyContent: "flex-end" }, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, { className: "btn btn-primary", type: "submit", children: "Create" }) })
-      ] })
-    ] })
+        children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "overflow-x-auto", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("table", { className: "min-w-full text-sm", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("thead", { className: "text-left text-gray-500", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("tr", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "#" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Asset ID" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Type" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Make/Model" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Status" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Notes" })
+          ] }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("tbody", { className: "divide-y divide-gray-100 dark:divide-gray-800", children: [
+            ...trucks.map((t) => ({ ...t, type: "Truck", makeModel: `${t.make} ${t.model}` })),
+            ...trailers.map((t) => ({ ...t, type: "Trailer", makeModel: t.type }))
+          ].map((asset, i) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("tr", { className: "hover:bg-gray-50 dark:hover:bg-gray-800/60", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: i + 1 }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 font-medium", children: asset.id }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: asset.type }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: asset.makeModel }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("span", { className: "inline-flex items-center gap-2", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(StatusDot, { status: asset.status }),
+              " ",
+              asset.status
+            ] }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 text-gray-600 dark:text-gray-300", children: asset.notes })
+          ] }, asset.id)) })
+        ] }) })
+      }
+    )
   ] });
 }
-function Finance({ ledger, setLedger }) {
-  const [type, setType] = (0, import_react51.useState)("expense");
-  const [q, setQ] = (0, import_react51.useState)("");
-  const filtered = ledger.filter((l) => [l.category, l.note, l.ref, l.type].join(" ").toLowerCase().includes(q.toLowerCase()));
-  const totals = (0, import_react51.useMemo)(() => ({
-    expense: ledger.filter((l) => l.type === "expense").reduce((a2, b) => a2 + b.amount, 0),
-    income: ledger.filter((l) => l.type === "income").reduce((a2, b) => a2 + b.amount, 0)
-  }), [ledger]);
-  function addItem(e) {
-    e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    const it = { id: uid(), type, amount: Number(f.get("amount")), category: f.get("category"), note: f.get("note"), ref: f.get("ref") };
-    setLedger((prev) => [it, ...prev]);
-    e.currentTarget.reset();
-  }
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "space-y", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Row, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "span-4", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Stat, { label: "Revenue", value: fmt.format(totals.income), icon: Icon.Dollar }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "span-4", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Stat, { label: "Expenses", value: fmt.format(totals.expense), icon: Icon.Wallet }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "span-4", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Stat, { label: "Net", value: fmt.format(totals.income - totals.expense), icon: Icon.Chart }) })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, margin: "8px 0" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { style: { fontSize: 18, fontWeight: 700 }, children: "Ledger" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: 8 }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "search", style: { minWidth: 280 }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon.Search, { className: "icon" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { placeholder: "Search notes / ref / category", value: q, onChange: (e) => setQ(e.target.value) })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", { value: type, onChange: (e) => setType(e.target.value), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "expense", children: "Expense" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "income", children: "Income" })
-        ] })
-      ] })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "panel", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: "overflow:auto;", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("table", { class: "table", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { children: "Type" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { children: "Amount" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { children: "Category" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { children: "Note" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { children: "Ref" })
-      ] }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("tbody", { children: filtered.map((row) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Badge, { className: row.type === "expense" ? "badge-destructive" : "", children: row.type }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { style: { fontWeight: 600 }, children: fmt.format(row.amount) }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: row.category }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { style: { color: "var(--muted)" }, children: row.note }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { style: { color: "var(--muted)" }, children: row.ref })
-      ] }, row.id)) })
-    ] }) }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "panel", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h3", { children: [
-        "Add ",
-        type
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", { className: "grid", onSubmit: addItem, style: { gridTemplateColumns: "repeat(2, minmax(0,1fr))", gap: 12 }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { name: "amount", type: "number", step: "0.01", placeholder: "Amount", required: true }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { name: "category", placeholder: "Category (e.g., Tires)", required: true }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { name: "ref", placeholder: "Ref (load # / invoice)" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "span-12", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", { name: "note", placeholder: "Note" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "span-12", style: { display: "flex", justifyContent: "flex-end" }, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, { className: "btn btn-primary", type: "submit", children: "Save" }) })
-      ] })
-    ] })
-  ] });
-}
-function Analytics({ ledger, cases }) {
-  const caseByStage = (0, import_react51.useMemo)(() => {
-    const mp = Object.fromEntries(STAGES.map((s2) => [s2, 0]));
-    cases.forEach((c2) => {
-      mp[c2.stage] = (mp[c2.stage] || 0) + 1;
-    });
-    return Object.entries(mp).map(([name, value]) => ({ name, value }));
-  }, [cases]);
-  const finance = (0, import_react51.useMemo)(() => {
-    const days = [...Array(14)].map((_, i) => {
-      const day = new Date(Date.now() - (13 - i) * 864e5).toISOString().slice(5, 10);
-      const exp = ledger.filter((l) => l.type === "expense" && Math.random() > 0.6).reduce((a2, b) => a2 + b.amount, 0);
-      const inc = ledger.filter((l) => l.type === "income" && Math.random() > 0.6).reduce((a2, b) => a2 + b.amount, 0);
-      return { day, Expenses: exp, Revenue: inc };
-    });
-    return days;
-  }, [ledger]);
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "space-y", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "grid", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "panel span-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: "Cases by stage" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: { height: 260 }, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ResponsiveContainer2, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(PieChart2, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Pie2, { data: caseByStage, dataKey: "value", nameKey: "name", outerRadius: 100, children: caseByStage.map((e, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cell3, {}, i)) }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ReTooltip, {}),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Legend2, {})
-      ] }) }) })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "panel span-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: "Revenue vs. Expenses (14d)" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: { height: 260 }, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ResponsiveContainer2, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(LineChart2, { data: finance, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CartesianGrid2, { strokeDasharray: "3 3" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(XAxis2, { dataKey: "day" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(YAxis2, {}),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ReTooltip, {}),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Legend2, {}),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Line2, { type: "monotone", dataKey: "Revenue", strokeWidth: 2 }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Line2, { type: "monotone", dataKey: "Expenses", strokeWidth: 2 })
-      ] }) }) })
-    ] })
-  ] }) });
-}
-function SettingsPanel() {
-  const [dark, setDark] = useDarkMode();
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "space-y", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "panel", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: "Appearance" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 8 }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: { fontWeight: 600 }, children: "Dark mode" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: { fontSize: 13, color: "var(--muted)" }, children: "Apple\xE2\u20AC\u2018style subtle dark theme" })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Switch, { checked: dark, onChange: setDark })
-      ] })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "panel", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: "Data export (free)" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { style: { fontSize: 13, color: "var(--muted)" }, children: "Local first: all data stored in browser (localStorage). Export/import JSON for backups." }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", gap: 8 }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, { onClick: () => {
-          const dump = ["trucks", "trailers", "cases", "ledger"].reduce((acc, k2) => (acc[k2] = store.get(k2, []), acc), {});
-          const blob = new Blob([JSON.stringify(dump, null, 2)], { type: "application/json" });
-          const url = URL.createObjectURL(blob);
-          const a2 = document.createElement("a");
-          a2.href = url;
-          a2.download = "tms-export.json";
-          a2.click();
-          URL.revokeObjectURL(url);
-        }, children: "Export JSON" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "btn", style: { cursor: "pointer" }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon.Upload, {}),
-          " Import JSON",
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { type: "file", accept: "application/json", style: "display:none", onchange: "" })
-        ] })
-      ] })
-    ] })
-  ] });
-}
-var NAV = [
-  { key: "dashboard", label: "Dashboard", icon: Icon.Chart },
-  { key: "trucks", label: "Trucks", icon: Icon.Truck },
-  { key: "trailers", label: "Trailers", icon: Icon.Trailer },
-  { key: "cases", label: "Cases", icon: Icon.Clipboard },
-  { key: "finance", label: "Finance", icon: Icon.Wallet },
-  { key: "analytics", label: "Analytics", icon: Icon.Chart },
-  { key: "settings", label: "Settings", icon: Icon.Chart }
-];
 function App() {
-  const [tab, setTab] = (0, import_react51.useState)("dashboard");
+  const [dark, setDark] = useDarkMode();
+  const sidebar = [
+    { id: "dashboard", label: "Dashboard", icon: LayoutGrid },
+    { id: "trucks", label: "Trucks", icon: Truck },
+    { id: "trailers", label: "Trailers", icon: Package },
+    { id: "cases", label: "Cases", icon: ClipboardList },
+    { id: "finance", label: "Finance", icon: DollarSign },
+    { id: "analytics", label: "Analytics", icon: ChartColumn },
+    { id: "settings", label: "Settings", icon: Settings }
+  ];
+  const [page, setPage] = (0, import_react76.useState)("dashboard");
+  const [tab, setTab] = (0, import_react76.useState)("Dashboard");
+  const tabs = ["Dashboard", "Fleet", "Reports"];
+  const [range6, setRange] = (0, import_react76.useState)({ from: "Dec 10, 2022", to: "Jul 18, 2023" });
   const [trucks, setTrucks] = useSeededState("trucks", SEED.trucks);
   const [trailers, setTrailers] = useSeededState("trailers", SEED.trailers);
   const [cases, setCases] = useSeededState("cases", SEED.cases);
   const [ledger, setLedger] = useSeededState("ledger", SEED.ledger);
-  const [dark, setDark] = useDarkMode();
-  (0, import_react51.useEffect)(() => {
-    const onK = (e) => {
-      if (e.ctrlKey && (e.key || "").toLowerCase() === "k") {
-        e.preventDefault();
-        const i = document.getElementById("global-search");
-        i && i.focus && i.focus();
-      }
-    };
-    window.addEventListener("keydown", onK);
-    return () => window.removeEventListener("keydown", onK);
-  }, []);
-  (0, import_react51.useEffect)(() => {
-    const main = document.getElementById("swap");
-    if (main) {
-      document.dispatchEvent(new CustomEvent("ui:swap", { detail: main }));
-    }
-  }, [tab]);
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "shell", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "topbar", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "brand", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrandMark, {}),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "title", children: "TranGo \xE2\u20AC\u201D TMS" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "badge", style: { marginLeft: 8 }, children: "Free" })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: 8 }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "search", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon.Search, { className: "icon" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { id: "global-search", placeholder: "Quick search (Ctrl+K)" })
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: dark ? "dark" : "", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: fontStack, className: "min-h-screen bg-gray-100 text-gray-900 transition-colors duration-300 antialiased dark:bg-[#0b0b0f] dark:text-gray-100", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("header", { className: "sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-black/30 border-b border-gray-200 dark:border-gray-800", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "max-w-7xl mx-auto px-4 py-3 flex items-center gap-3", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-2 font-semibold", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-white", children: "T" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "hidden sm:inline", children: "TranGo TMS" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, { className: "btn btn-ghost", onClick: () => setDark((v) => !v), "aria-label": "Toggle dark mode", children: dark ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon.Sun, {}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon.Moon, {}) }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, { className: "btn", children: [
-          " ",
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon.Upload, {}),
-          " Import "
-        ] })
-      ] })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "container", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("aside", { className: "sidebar", children: [
-        NAV.map((n) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { className: "nav-btn " + (tab === n.key ? "active" : ""), onClick: () => setTab(n.key), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(n.icon, { className: "icon" }),
-          " ",
-          n.label
-        ] }, n.key)),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "tips", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: { fontSize: 12 }, children: "Tips" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", { style: { fontSize: 12, marginTop: 6, paddingLeft: 16 }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Use Ctrl+K to quick\xE2\u20AC\u2018search" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Export JSON in Settings" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Attach invoices to cases" })
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "mx-3 text-sm text-gray-400", children: "/" }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("nav", { className: "flex items-center gap-1", children: tabs.map((t) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Chip, { active: t === tab, onClick: () => setTab(t), children: t }, t)) }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "ml-auto flex items-center gap-2", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "relative hidden md:flex", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+              "input",
+              {
+                placeholder: "Search",
+                className: "pl-9 pr-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-zinc-900/60 focus:outline-none focus:ring-2 focus:ring-black/10 dark:focus:ring-white/10 text-sm"
+              }
+            ),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Search, { className: "absolute left-3 top-2.5", size: 16 })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(TopButton, { icon: Bell, label: "Notifications" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(TopButton, { icon: Settings, label: "Settings" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+            "button",
+            {
+              onClick: () => setDark((d) => !d),
+              className: "inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold",
+              children: [
+                dark ? /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Sun, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Moon, { size: 16 }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "hidden sm:inline", children: dark ? "Light" : "Dark" })
+              ]
+            }
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("button", { className: "flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 font-semibold", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("img", { src: "https://i.pravatar.cc/36?img=5", alt: "avatar", className: "h-7 w-7 rounded-full" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "text-sm hidden sm:inline", children: "Admin" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ChevronDown, { size: 16 })
           ] })
         ] })
+      ] }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "max-w-7xl mx-auto grid grid-cols-12 gap-4 p-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("aside", { className: "col-span-12 md:col-span-3 lg:col-span-2 space-y-2", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "rounded-2xl p-2 bg-white/70 dark:bg-zinc-900/70 border border-gray-200 dark:border-gray-800", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { className: "px-2 pt-2 pb-1 text-xs uppercase tracking-wide text-gray-400", children: "Main menu" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "space-y-1", children: sidebar.map((item) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+            SidebarItem,
+            {
+              icon: item.icon,
+              label: item.label,
+              active: page === item.id,
+              onClick: () => setPage(item.id)
+            },
+            item.id
+          )) }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "pt-2 mt-2 border-t border-gray-200 dark:border-gray-800 flex justify-between px-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("button", { className: "text-xs font-semibold text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 inline-flex items-center gap-1", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(LogOut, { size: 14 }),
+              " Log out"
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "text-xs text-gray-400", children: "v1.0" })
+          ] })
+        ] }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("main", { className: "col-span-12 md:col-span-9 lg:col-span-10 space-y-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center justify-between", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "text-2xl font-semibold", children: sidebar.find((s2) => s2.id === page)?.label || "Dashboard" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+              "button",
+              {
+                onClick: () => {
+                  setRange(
+                    (r2) => r2.from === "Dec 10, 2022" ? { from: "Jan 01, 2023", to: "Sep 01, 2023" } : { from: "Dec 10, 2022", to: "Jul 18, 2023" }
+                  );
+                },
+                className: "inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold",
+                children: [
+                  range6.from,
+                  " - ",
+                  range6.to,
+                  " ",
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ChevronDown, { size: 16 })
+                ]
+              }
+            )
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(AnimatePresence, { mode: "wait", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+            motion.div,
+            {
+              initial: { opacity: 0, y: 10 },
+              animate: { opacity: 1, y: 0 },
+              exit: { opacity: 0, y: -10 },
+              transition: { duration: 0.2 },
+              children: [
+                page === "dashboard" && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Dashboard, { trucks, trailers, cases, ledger }),
+                page !== "dashboard" && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Card, { title: `${sidebar.find((s2) => s2.id === page)?.label} Section`, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "text-center py-8 text-gray-500 dark:text-gray-400", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "text-4xl mb-4", children: "\u{1F6A7}" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { children: "This section is under development." }),
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { className: "text-sm mt-2", children: "The original functionality will be integrated with the new design." })
+                ] }) })
+              ]
+            },
+            page
+          ) })
+        ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("main", { id: "swap", children: [
-        tab === "dashboard" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Dashboard, { trucks, trailers, cases, ledger }),
-        tab === "trucks" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trucks, { trucks, setTrucks }),
-        tab === "trailers" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trailers, { trailers, setTrailers }),
-        tab === "cases" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cases, { cases, setCases }),
-        tab === "finance" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Finance, { ledger, setLedger }),
-        tab === "analytics" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Analytics, { ledger, cases }),
-        tab === "settings" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SettingsPanel, {})
-      ] })
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(AnimatePresence, { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+        motion.button,
+        {
+          initial: { opacity: 0, y: 10 },
+          animate: { opacity: 1, y: 0 },
+          exit: { opacity: 0, y: 10 },
+          whileTap: { scale: 0.98 },
+          className: "fixed bottom-5 right-5 flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg bg-black text-white dark:bg-white dark:text-black",
+          onClick: () => toast.success("New design applied! All sections will be updated progressively."),
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(CircleCheck, { size: 16 }),
+            " New Design"
+          ]
+        },
+        "help"
+      ) }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("footer", { className: "max-w-7xl mx-auto px-4 py-8 text-sm text-gray-500 dark:text-gray-400", children: "Designed with smooth, Apple-like motion \u2022 Light & Dark themes \u2022 Ready for backend integration" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("footer", { className: "footer", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "italic", children: `" It's our duty to lead people to the light"` }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "mt-1", children: "by Dan Miller" })
-    ] })
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { id: "toast", role: "status", "aria-live": "polite", className: "fixed bottom-18 left-1/2 transform -translate-x-1/2 translate-y-full px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-full shadow-lg transition-transform duration-300 opacity-0 pointer-events-none z-50" })
   ] });
 }
-(0, import_client.createRoot)(document.getElementById("app")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App, {}));
+(0, import_client.createRoot)(document.getElementById("app")).render(/* @__PURE__ */ (0, import_jsx_runtime6.jsx)(App, {}));
 /*! Bundled license information:
 
 react/cjs/react.development.js:
@@ -57061,6 +65071,17 @@ react-dom/cjs/react-dom.development.js:
    * @license Modernizr 3.0.0pre (Custom Build) | MIT
    *)
 
+react/cjs/react-jsx-runtime.development.js:
+  (**
+   * @license React
+   * react-jsx-runtime.development.js
+   *
+   * Copyright (c) Facebook, Inc. and its affiliates.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE file in the root directory of this source tree.
+   *)
+
 react-is/cjs/react-is.development.js:
   (**
    * @license React
@@ -57092,14 +65113,155 @@ object-assign/index.js:
   @license MIT
   *)
 
-react/cjs/react-jsx-runtime.development.js:
+lucide-react/dist/esm/shared/src/utils.js:
   (**
-   * @license React
-   * react-jsx-runtime.development.js
+   * @license lucide-react v0.543.0 - ISC
    *
-   * Copyright (c) Facebook, Inc. and its affiliates.
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/defaultAttributes.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
    *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE file in the root directory of this source tree.
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/Icon.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/createLucideIcon.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/bell.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/chart-column.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/chevron-down.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/circle-check.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/clipboard-list.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/dollar-sign.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/layout-grid.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/log-out.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/moon.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/package.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/search.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/settings.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/sun.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/truck.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/lucide-react.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
    *)
 */

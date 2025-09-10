@@ -1,28 +1,47 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>TranGo — TMS</title>
+  <title>TranGo — Modern TMS</title>
   <meta name="color-scheme" content="dark light">
   <link rel="icon" href="logo.png">
-  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['system-ui', '-apple-system', '"SF Pro Text"', '"SF Pro Display"', '"Helvetica Neue"', 'Helvetica', 'Arial', '"Segoe UI"', 'Roboto', 'Ubuntu', 'Cantarell', '"Noto Sans"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom toast styles */
+    #toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+    
+    /* Smooth transitions */
+    * {
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 150ms;
+    }
+    
+    /* Backdrop blur support */
+    .backdrop-blur {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  </style>
 </head>
-<body>
+<body class="font-sans antialiased">
   <div id="app"></div>
-
-  <!-- Toast host -->
-  <div id="toast" role="status" aria-live="polite"></div>
-
-  <!-- Optional: smooth scroll for anchor nav -->
-  <script>try{history.scrollRestoration="manual"}catch{}</script>
-
-  <!-- Brand color extraction (from logo.png) -->
-  <script type="module" src="./brand.js"></script>
-  <!-- Motion helpers -->
-  <script type="module" src="./motion.js"></script>
-  <!-- React app (built) -->
   <script type="module" src="./dist/app.js"></script>
 </body>
 </html>
-

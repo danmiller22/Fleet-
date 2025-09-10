@@ -1,9 +1,29 @@
-
 import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  ChevronDown,
+  Moon,
+  Sun,
+  Bell,
+  Search,
+  Settings as SettingsIcon,
+  CheckCircle2,
+  FileBarChart,
+  GaugeCircle,
+  Car,
+  Package,
+  Truck,
+  BarChart3,
+  LayoutGrid,
+  LogOut,
+  Wrench,
+  DollarSign,
+  ClipboardList
+} from 'lucide-react';
 import * as Recharts from 'recharts';
 
-const { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip:ReTooltip, Legend, Area, AreaChart, PieChart, Pie, Cell } = Recharts;
+const { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip: ReTooltip, Legend, Area, AreaChart, PieChart, Pie, Cell, BarChart, Bar } = Recharts;
 
 /** Utilities **/
 const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 });
@@ -13,21 +33,16 @@ const store = {
   set(k, v){ localStorage.setItem(k, JSON.stringify(v)); }
 };
 
-// Dark mode
-function computeInitialDark(lsValue, prefersDark){ if(lsValue==='true') return true; if(lsValue==='false') return false; return !!prefersDark; }
-function useDarkMode(){
-  const [dark, setDark] = useState(()=>{
-    const ls = localStorage.getItem('ui.dark');
-    const prefers = matchMedia('(prefers-color-scheme: dark)').matches;
-    return computeInitialDark(ls, prefers);
-  });
-  useEffect(()=>{
-    const cl = document.documentElement.classList;
-    if(dark) cl.add('dark'); else cl.remove('dark');
-    localStorage.setItem('ui.dark', String(dark));
-  }, [dark]);
-  return [dark, setDark];
-}
+/**
+ * Apple-like font stack: prefers SF Pro on Apple devices.
+ */
+const fontStack = {
+  fontFamily:
+    'system-ui, -apple-system, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif'
+};
+
+// Small helpers
+const cn = (...cls) => cls.filter(Boolean).join(" ");
 
 // Toast
 const toast = {
@@ -36,49 +51,7 @@ const toast = {
   error(msg){ this.show(msg); }
 };
 
-/** Icons (inline) **/
-const Svg = ({className, children, viewBox='0 0 24 24'}) => <svg className={className} width="1em" height="1em" viewBox={viewBox} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{children}</svg>;
-const Icon = {
-  Truck:(p)=> <Svg {...p}><path d="M3 13V7h10l4 4v6H3z"/><path d="M13 7v4h4"/><circle cx="7" cy="17" r="2"/><circle cx="15" cy="17" r="2"/></Svg>,
-  Trailer:(p)=> <Svg {...p}><rect x="3" y="8" width="14" height="7" rx="1"/><circle cx="9" cy="17" r="2"/></Svg>,
-  Clipboard:(p)=> <Svg {...p}><rect x="4" y="5" width="16" height="16" rx="2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M8 11h8M8 15h8"/></Svg>,
-  Chart:(p)=> <Svg {...p}><path d="M3 3v18h18"/><rect x="6" y="10" width="3" height="7"/><rect x="11" y="6" width="3" height="11"/><rect x="16" y="12" width="3" height="5"/></Svg>,
-  Dollar:(p)=> <Svg {...p}><path d="M12 1v22"/><path d="M17 5c0-1.657-2.239-3-5-3S7 3.343 7 5s2.239 3 5 3 5 1.343 5 3-2.239 3-5 3-5 1.343-5 3 2.239 3 5 3 5-1.343 5-3"/></Svg>,
-  Wallet:(p)=> <Svg {...p}><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="16" cy="12" r="1.5"/></Svg>,
-  Sun:(p)=> <Svg {...p}><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></Svg>,
-  Moon:(p)=> <Svg {...p}><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79Z"/></Svg>,
-  Search:(p)=> <Svg {...p}><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></Svg>,
-  Plus:(p)=> <Svg {...p}><path d="M12 5v14M5 12h14"/></Svg>,
-  X:(p)=> <Svg {...p}><path d="M18 6L6 18M6 6l12 12"/></Svg>,
-  Upload:(p)=> <Svg {...p}><path d="M12 17V7"/><path d="M7 12l5-5 5 5"/><path d="M5 20h14"/></Svg>,
-  Pencil:(p)=> <Svg {...p}><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/></Svg>,
-};
-
-/** Primitive UI **/
-function Button({ children, variant='default', size='md', className='', ...rest }){
-  const cls = ['btn', variant==='primary'?'btn-primary':'', variant==='ghost'?'btn-ghost':'', size==='sm'?'btn-sm':'', className].join(' ');
-  return <button className={cls} {...rest}>{children}</button>;
-}
-const Input = (p) => <input {...p}/>;
-const Textarea = (p) => <textarea rows={3} {...p}/>;
-function Badge({ children, variant='default', className='' }){
-  const cls = ['badge', variant==='destructive'?'badge-destructive':'', className].join(' ');
-  return <span className={cls}>{children}</span>;
-}
-function Card({ children, className='' }){ return <div className={'panel '+className}>{children}</div>; }
-function CardHeader({ children, className='' }){ return <div className={'mb-2 '+className}>{children}</div>; }
-function CardContent({ children, className='' }){ return <div className={className}>{children}</div>; }
-function CardTitle({ children, className='' }){ return <h3 className={className}>{children}</h3>; }
-function Switch({checked, onChange}){
-  return <label style={{display:'inline-flex',alignItems:'center',gap:8,cursor:'pointer'}}>
-    <input type="checkbox" checked={checked} onChange={e=>onChange(e.target.checked)} style={{display:'none'}}/>
-    <span style={{width:36,height:22,background:checked?'var(--brand)':'var(--bg-2)',border:'1px solid var(--border)',borderRadius:999,position:'relative',display:'inline-block',transition:'all var(--t) var(--ease)'}}>
-      <i style={{position:'absolute',top:2,left:checked?18:2,width:18,height:18,background:'#fff',borderRadius:'50%',transition:'all var(--t) var(--ease)'}}/>
-    </span>
-  </label>
-}
-
-/** Local state hooks & seeds (ported from tms.jsx) **/
+/** Local state hooks & seeds **/
 const STAGES = ['New','Diagnose','Estimate','Approval','Parts','Repair','QA','Closed'];
 const STAGE_ALL = '__ALL__';
 const SEED = {
@@ -88,574 +61,470 @@ const SEED = {
   ],
   trailers: [
     { id: 'XTRA-40123', type: 'Dry Van', owner: 'XTRA Lease', status: 'On Road', extId: 'SkyB-12345', notes: 'External tracked' },
-    { id: 'UST-9001', type: 'Dry Van', owner: 'US TEAM', status: 'Yard', extId: 'â€”', notes: 'Ready' },
+    { id: 'UST-9001', type: 'Dry Van', owner: 'US TEAM', status: 'Yard', extId: '—', notes: 'Ready' },
   ],
   cases: [
     { id: uid(), assetType: 'truck', assetId: '3252', title: 'Coolant leak', priority: 'High', stage: 'Diagnose', createdAt: Date.now() - 86400000*2, cost: 0, assigned: 'Jack', timeline: [ { t: Date.now() - 86400000*2, note: 'Driver reports coolant on ground.' } ], invoices: [] },
     { id: uid(), assetType: 'trailer', assetId: 'XTRA-40123', title: 'ABS light ON', priority: 'Medium', stage: 'Parts', createdAt: Date.now() - 86400000*1, cost: 75, assigned: 'Aidar', timeline: [ { t: Date.now()- 86400000, note: 'Mobile tech scheduled.' } ], invoices: [] }
   ],
   ledger: [
-    { id: uid(), type: 'expense', amount: 535, category: 'Tires', note: 'Steer tire fix â€” Houston, TX', ref: '2023/00' },
-    { id: uid(), type: 'expense', amount: 325, category: 'Windshield', note: 'Windshield mobile â€” Wichita, KS', ref: '2025/09/04' },
+    { id: uid(), type: 'expense', amount: 535, category: 'Tires', note: 'Steer tire fix — Houston, TX', ref: '2023/00' },
+    { id: uid(), type: 'expense', amount: 325, category: 'Windshield', note: 'Windshield mobile — Wichita, KS', ref: '2025/09/04' },
     { id: uid(), type: 'income', amount: 4200, category: 'Load', note: 'Load #AB-778, Jack', ref: '2025/09/03' },
   ]
 };
+
 function useSeededState(key, initial) {
   const [state, setState] = useState(() => store.get(key, null) ?? (initial ?? SEED[key]));
   useEffect(()=>{ store.set(key, state); }, [key, state]);
   return [state, setState];
 }
 
-function Kbd({children}){ return <kbd className="kbd">{children}</kbd>; }
+// Modern UI Components
+const Chip = ({ active, children, onClick }) => (
+  <button
+    onClick={onClick}
+    className={cn(
+      "px-3 py-1.5 rounded-full text-sm font-semibold transition-all",
+      active
+        ? "bg-black text-white dark:bg-white dark:text-black shadow"
+        : "bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+    )}
+  >
+    {children}
+  </button>
+);
 
-/** Shared blocks **/
-function Stat({label, value, icon:IconCmp}){
-  return (
-    <div className="panel">
-      <div className="p-2" style={{display:'flex',alignItems:'center',gap:12}}>
-        <div className="rounded-2xl p-2" style={{background:'var(--bg-2)', border:'1px solid var(--border)'}}><IconCmp className="icon" /></div>
-        <div>
-          <div style={{fontSize:12, color:'var(--muted)'}}>{label}</div>
-          <div style={{fontSize:18, fontWeight:700}}>{value}</div>
-        </div>
-      </div>
+const Card = ({ title, toolbar, children }) => (
+  <motion.div
+    layout
+    initial={{ opacity: 0, y: 6 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -6 }}
+    transition={{ type: "spring", stiffness: 260, damping: 26 }}
+    className="rounded-2xl bg-white/70 dark:bg-zinc-900/70 backdrop-blur border border-gray-200 dark:border-gray-800 shadow-sm"
+  >
+    <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-800">
+      <h3 className="text-sm font-medium text-gray-600 dark:text-gray-300">{title}</h3>
+      <div className="flex items-center gap-2">{toolbar}</div>
     </div>
+    <div className="p-4">{children}</div>
+  </motion.div>
+);
+
+const SidebarItem = ({ icon: Icon, label, active, onClick }) => (
+  <button
+    onClick={onClick}
+    className={cn(
+      "w-full h-10 flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-semibold transition-colors",
+      active
+        ? "bg-gray-900 text-white dark:bg-white dark:text-black"
+        : "text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+    )}
+  >
+    <Icon size={18} />
+    <span className="leading-none">{label}</span>
+  </button>
+);
+
+const TopButton = ({ icon: Icon, label, onClick }) => (
+  <button
+    onClick={onClick}
+    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold"
+    aria-label={label}
+  >
+    <Icon size={16} />
+  </button>
+);
+
+const Pill = ({ tone = "neutral", children }) => {
+  const tones = {
+    success: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300",
+    warning: "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300",
+    danger: "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300",
+    neutral: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+  };
+  return (
+    <span className={cn("px-2 py-1 rounded-full text-xs", tones[tone])}>{children}</span>
   );
-}
-function Row({children}){ return <div className="grid">{children}</div>; }
+};
 
-function BrandMark({src='logo.png'}){
-  const [err, setErr] = useState(false);
-  if(err) return <div style={{width:30,height:30,borderRadius:12,display:'grid',placeItems:'center',background:'black',color:'white',fontWeight:800}}>B</div>;
-  return <img src={src} alt="Logo" onError={()=>setErr(true)} />;
+const StatusDot = ({ status }) => {
+  const m = {
+    Active: "bg-emerald-500",
+    "In-progress": "bg-blue-500",
+    Delayed: "bg-amber-500",
+    Cancelled: "bg-rose-500",
+    "On Road": "bg-blue-500",
+    Yard: "bg-gray-500",
+    Service: "bg-amber-500",
+    Repair: "bg-rose-500"
+  };
+  return <span className={cn("inline-block w-2 h-2 rounded-full", m[status] || "bg-gray-400")} />;
+};
+
+// Dark mode hook
+function useDarkMode(){
+  const [dark, setDark] = useState(()=>{
+    const stored = typeof window !== "undefined" ? localStorage.getItem("theme") : null;
+    if (stored) {
+      return stored === "dark";
+    } else {
+      return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+  });
+  
+  useEffect(()=>{
+    try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch {}
+  }, [dark]);
+  
+  return [dark, setDark];
 }
 
-/** Sections (ported from tms.jsx with minor native controls) **/
+/** Dashboard Section **/
 function Dashboard({ trucks, trailers, cases, ledger }){
   const exp = useMemo(() => ledger.filter(l=>l.type==='expense').reduce((a,b)=>a+b.amount,0), [ledger]);
   const inc = useMemo(() => ledger.filter(l=>l.type==='income').reduce((a,b)=>a+b.amount,0), [ledger]);
   const openCases = cases.filter(c=>c.stage!=='Closed').length;
 
   const chartData = useMemo(()=>{
-    const days = [...Array(10)].map((_,i)=>{
-      const day = new Date(Date.now() - (9-i)*86400000);
-      const key = day.toISOString().slice(5,10);
-      const e = ledger.filter(l=>l.type==='expense' && Math.random()>.5).reduce((a,b)=>a+b.amount,0);
-      const r = ledger.filter(l=>l.type==='income' && Math.random()>.5).reduce((a,b)=>a+b.amount,0);
-      return { day: key, Expenses: e, Revenue: r };
-    });
-    return days;
-  },[ledger]);
-
-  return (
-    <div className="space-y">
-      <Row>
-        <div className="span-4"><Stat label="Active trucks" value={trucks.length} icon={Icon.Truck}/></div>
-        <div className="span-4"><Stat label="Trailers" value={trailers.length} icon={Icon.Trailer}/></div>
-        <div className="span-4"><Stat label="Open cases" value={openCases} icon={Icon.Clipboard}/></div>
-        <div className="span-4"><Stat label="Revenue (est)" value={fmt.format(inc)} icon={Icon.Dollar}/></div>
-        <div className="span-4"><Stat label="Expenses" value={fmt.format(exp)} icon={Icon.Wallet}/></div>
-        <div className="span-4"><Stat label="Net" value={fmt.format(inc-exp)} icon={Icon.Chart}/></div>
-      </Row>
-
-      <div className="panel span-12">
-        <h3 className="mb-2" style={{display:'flex',alignItems:'center',gap:8}}><Icon.Chart/> 10â€‘day Finance Trend</h3>
-        <div style={{height:260}}>
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={chartData}>
-              <defs>
-                <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="currentColor" stopOpacity={0.18}/>
-                  <stop offset="95%" stopColor="currentColor" stopOpacity={0}/>
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="day" />
-              <YAxis />
-              <ReTooltip />
-              <Legend />
-              <Area type="monotone" dataKey="Revenue" strokeWidth={2} stroke="currentColor" fill="url(#g1)" />
-              <Area type="monotone" dataKey="Expenses" strokeWidth={2} stroke="currentColor" fill="url(#g1)" />
-            </AreaChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Trucks({ trucks, setTrucks }){
-  const [q, setQ] = useState('');
-  const [open, setOpen] = useState(false);
-  const filtered = trucks.filter(t => [t.id,t.vin,t.make,t.model].join(' ').toLowerCase().includes(q.toLowerCase()));
-
-  function addTruck(e){
-    e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    const t = {
-      id: String(f.get('id')).trim() || uid(),
-      make: f.get('make'), model: f.get('model'), year: Number(f.get('year')),
-      vin: f.get('vin'), status: f.get('status'), miles: Number(f.get('miles')),
-      pmInterval: Number(f.get('pmInterval')), pmDueAt: Number(f.get('pmDueAt')), notes: f.get('notes')
-    };
-    setTrucks(prev => [...prev, t]);
-    e.currentTarget.reset();
-    setOpen(false); toast.success('Truck added');
-  }
-  const remove = (id) => setTrucks(prev => prev.filter(t=>t.id!==id));
-
-  return (
-    <div className="space-y">
-      <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:12, marginBottom:8}}>
-        <h2 style={{fontSize:18,fontWeight:700}}>Trucks</h2>
-        <div style={{display:'flex',alignItems:'center',gap:8}}>
-          <div className="search" style={{minWidth:280}}>
-            <Icon.Search className="icon"/>
-            <input placeholder="Search ID / VIN / make" value={q} onChange={e=>setQ(e.target.value)}/>
-          </div>
-          <Button className="btn btn-primary" onClick={()=>setOpen(true)}><Icon.Plus/> Add</Button>
-        </div>
-      </div>
-
-      {open && (
-        <div className="panel" style={{position:'fixed', inset:0, background:'rgba(0,0,0,.45)', display:'grid', placeItems:'center', zIndex:50}}>
-          <div className="panel" style={{maxWidth:720, width:'92%'}}>
-            <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:8}}>
-              <h3>Add truck</h3>
-              <button className="btn btn-ghost" onclick="this.closest('[style*=inset]').remove()"><span>Ã—</span></button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      <div className="grid">
-        {filtered.map(t => (
-          <div key={t.id} className="panel span-4">
-            <div className="mb-2">
-              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-                <h3 style={{fontSize:15}}># {t.id} â€¢ {t.make} {t.model}</h3>
-                <Badge> {t.status} </Badge>
-              </div>
-              <div style={{fontSize:12,color:'var(--muted)'}}>VIN {t.vin}</div>
-            </div>
-            <div className="space-y">
-              <div className="text-sm">Odo: <b>{t.miles.toLocaleString()}</b> mi</div>
-              <div className="text-sm">PM interval: <b>{t.pmInterval.toLocaleString()}</b> mi</div>
-              <div className="text-sm">PM due @ <b>{t.pmDueAt.toLocaleString()}</b> mi</div>
-              <p style={{color:'var(--muted)'}}>{t.notes}</p>
-              <div style={{display:'flex',justifyContent:'flex-end',gap:8}}>
-                <Button className="btn">Edit</Button>
-                <Button className="btn badge-destructive" onClick={()=>remove(t.id)}>Delete</Button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function Trailers({ trailers, setTrailers }){
-  const [q, setQ] = useState('');
-  const [open, setOpen] = useState(false);
-  const filtered = trailers.filter(t => [t.id,t.type,t.owner,t.extId].join(' ').toLowerCase().includes(q.toLowerCase()));
-
-  function addTrailer(e){
-    e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    const t = { id: f.get('id'), type: f.get('type'), owner: f.get('owner'), status: f.get('status'), extId: f.get('extId'), notes: f.get('notes') };
-    setTrailers(prev => [...prev, t]);
-    e.currentTarget.reset(); setOpen(false); toast.success('Trailer added');
-  }
-
-  return (
-    <div className="space-y">
-      <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:12, marginBottom:8}}>
-        <h2 style={{fontSize:18,fontWeight:700}}>Trailers</h2>
-        <div style={{display:'flex',alignItems:'center',gap:8}}>
-          <div className="search" style={{minWidth:280}}>
-            <Icon.Search className="icon"/>
-            <input placeholder="Search ID / owner / extId" value={q} onChange={e=>setQ(e.target.value)}/>
-          </div>
-          <Button className="btn btn-primary" onClick={()=>setOpen(true)}><Icon.Plus/> Add</Button>
-        </div>
-      </div>
-
-      <div className="grid">
-        {filtered.map(t => (
-          <div key={t.id} className="panel span-4">
-            <div className="mb-2">
-              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-                <h3 style={{fontSize:15}}>{t.id} â€¢ {t.type}</h3>
-                <Badge>{t.status}</Badge>
-              </div>
-              <div style={{fontSize:12,color:'var(--muted)'}}>Owner {t.owner} â€¢ Ext {t.extId || 'â€”'}</div>
-            </div>
-            <div><p style={{color:'var(--muted)'}}>{t.notes}</p></div>
-          </div>
-        ))}
-      </div>
-
-      {open && (
-        <div className="modal">
-          <div className="panel" style={{maxWidth:720, width:'92%'}}>
-            <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:8}}>
-              <h3>Add trailer</h3>
-              <button className="btn btn-ghost" onClick={()=>setOpen(false)}>Ã—</button>
-            </div>
-            <form className="grid" onSubmit={(e)=>{e.preventDefault();}}>
-              {/* form omitted in this static modal; actual app.js below implements real modal via React */}
-            </form>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function Cases({ cases, setCases }){
-  const [q, setQ] = useState('');
-  const [stageFilter, setStageFilter] = useState(STAGE_ALL);
-
-  const filtered = cases.filter(c => {
-    const hay = [c.assetId,c.title,c.priority,c.stage,c.assigned].join(' ').toLowerCase();
-    const matchQ = hay.includes(q.toLowerCase());
-    const matchS = stageFilter === STAGE_ALL ? true : c.stage === stageFilter;
-    return matchQ && matchS;
-  });
-
-  function addCase(e){
-    e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    const c = {
-      id: uid(),
-      assetType: f.get('assetType'), assetId: f.get('assetId'),
-      title: f.get('title'), priority: f.get('priority'), stage: 'New',
-      createdAt: Date.now(), cost: 0, assigned: f.get('assigned'),
-      timeline: [{ t: Date.now(), note: 'Case created' }], invoices: []
-    };
-    setCases(prev => [c, ...prev]); e.currentTarget.reset(); toast.success('Case created');
-  }
-
-  function pushStage(id){
-    setCases(prev => prev.map(c => {
-      if(c.id!==id) return c;
-      const idx = STAGES.indexOf(c.stage); const next = Math.min(idx+1, STAGES.length-1);
-      const nc = { ...c, stage: STAGES[next], timeline: [...c.timeline, { t: Date.now(), note: `Moved â†’ ${STAGES[next]}` }] };
-      if (STAGES[next]==='Closed') nc.timeline.push({ t: Date.now(), note: 'Case closed' });
-      return nc;
+    const months = ["Sep 22", "Oct 22", "Nov 22", "Dec 22", "Jan 23", "Feb 23", "Mar 23", "Apr 23", "May 23", "Jun 23", "Jul 23", "Aug 23"];
+    return months.map((m, i) => ({
+      name: m,
+      Revenue: inc / 12 + i * 300 + (i % 3 === 0 ? 800 : -400),
+      Expenses: exp / 12 + i * 200 + (i % 2 === 0 ? 300 : -200)
     }));
-  }
+  },[ledger, inc, exp]);
+
+  const barData = [
+    { name: "Oil", uv: 24 },
+    { name: "Fluid", uv: 12 },
+    { name: "Battery", uv: 18 },
+    { name: "Belts", uv: 14 },
+    { name: "Susp.", uv: 20 }
+  ];
 
   return (
-    <div className="space-y">
-      <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:12, marginBottom:8}}>
-        <h2 style={{fontSize:18,fontWeight:700}}>Cases</h2>
-        <div style={{display:'flex',alignItems:'center',gap:8}}>
-          <div className="search" style={{minWidth:280}}>
-            <Icon.Search className="icon"/>
-            <input placeholder="Search case / asset / assignee" value={q} onChange={e=>setQ(e.target.value)}/>
-          </div>
-          <select value={stageFilter} onChange={(e)=>setStageFilter(e.target.value)}>
-            <option value={STAGE_ALL}>All</option>
-            {STAGES.map(s=> <option key={s} value={s}>{s}</option>)}
-          </select>
-        </div>
-      </div>
-
-      <div className="grid">
-        {filtered.map(c => (
-          <div key={c.id} className="panel span-6">
-            <div className="mb-2">
-              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-                <h3 style={{fontSize:15}}>{c.title} â€¢ <span style={{color:'var(--muted)'}}>{c.assetId}</span></h3>
-                <Badge className={c.priority==='High'||c.priority==='Critical'?'badge-destructive':''}>{c.priority}</Badge>
-              </div>
-              <div style={{fontSize:12,color:'var(--muted)'}}>Stage: {c.stage} â€¢ Opened {new Date(c.createdAt).toLocaleDateString()}</div>
+    <div className="space-y-4">
+      {/* Metrics Row */}
+      <div className="grid md:grid-cols-2 gap-4">
+        <Card
+          title="Fleet performance"
+          toolbar={
+            <div className="flex items-center gap-2">
+              <Chip active>Monthly</Chip>
+              <Chip>Yearly</Chip>
             </div>
-            <div className="space-y">
-              <div className="text-xs" style={{color:'var(--muted)'}}>Timeline</div>
-              <div style={{maxHeight:160, overflow:'auto', paddingRight:6}}>
-                {c.timeline.map((t,i)=>(
-                  <div key={i} style={{display:'flex', alignItems:'center', gap:8, fontSize:13}}>
-                    <span style={{width:6,height:6,borderRadius:999,background:'var(--muted)'}}/>
-                    <span>{t.note}</span>
-                    <span style={{fontSize:10,color:'var(--muted)'}}>{new Date(t.t).toLocaleString()}</span>
-                  </div>
-                ))}
-              </div>
-              <div style={{display:'flex', alignItems:'center', gap:8}}>
-                <input placeholder="Add noteâ€¦" onKeyDown={(e)=>{
-                  if(e.key==='Enter'){ const v=(e.target.value||'').trim(); if(v){ setCases(prev => prev.map(x => x.id===c.id ? { ...x, timeline:[...x.timeline, { t: Date.now(), note: v }] } : x)); e.target.value=''; } }
-                }}/>
-                <Button className="btn" onClick={()=>pushStage(c.id)}>Next â†’</Button>
-              </div>
+          }
+        >
+          <div className="flex items-center gap-3 mb-3">
+            <div className="text-3xl font-semibold">{fmt.format(inc)}</div>
+            <Pill tone="success">↑ 2.9%</Pill>
+          </div>
+          <div className="h-36">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={chartData} margin={{ top: 6, right: 0, left: -20, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopOpacity={0.5} />
+                    <stop offset="95%" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+                <YAxis hide />
+                <ReTooltip contentStyle={{ borderRadius: 12 }} />
+                <Area type="monotone" dataKey="Revenue" strokeWidth={2} fillOpacity={0.2} fill="url(#grad)" />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </Card>
+        <Card
+          title="Driver Performance"
+          toolbar={
+            <div className="flex items-center gap-2">
+              <Chip active>Monthly</Chip>
+              <Chip>Yearly</Chip>
             </div>
+          }
+        >
+          <div className="flex items-center gap-3 mb-3">
+            <div className="text-3xl font-semibold">{fmt.format(exp)}</div>
+            <Pill tone="danger">↓ 2.9%</Pill>
           </div>
-        ))}
-      </div>
-
-      <div className="panel span-12">
-        <h3>Open a case</h3>
-        <form className="grid" onSubmit={addCase} style={{gridTemplateColumns:'repeat(2, minmax(0,1fr))', gap:12}}>
-          <input name="assetType" placeholder="Asset type (truck/trailer)" defaultValue="truck"/>
-          <input name="assetId" placeholder="Unit ID (e.g., 3252 / XTRA-40123)"/>
-          <input name="title" placeholder="Issue title (e.g., Coolant leak)" className="span-12"/>
-          <input name="priority" placeholder="Priority (Low/Medium/High/Critical)" defaultValue="Medium"/>
-          <input name="assigned" placeholder="Assignee (e.g., Jack)"/>
-          <div className="span-12" style={{display:'flex',justifyContent:'flex-end'}}><Button className="btn btn-primary" type="submit">Create</Button></div>
-        </form>
-      </div>
-    </div>
-  );
-}
-
-function Finance({ ledger, setLedger }){
-  const [type, setType] = useState('expense');
-  const [q, setQ] = useState('');
-  const filtered = ledger.filter(l => [l.category,l.note,l.ref,l.type].join(' ').toLowerCase().includes(q.toLowerCase()));
-  const totals = useMemo(()=>({
-    expense: ledger.filter(l=>l.type==='expense').reduce((a,b)=>a+b.amount,0),
-    income: ledger.filter(l=>l.type==='income').reduce((a,b)=>a+b.amount,0),
-  }),[ledger]);
-
-  function addItem(e){
-    e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    const it = { id: uid(), type, amount: Number(f.get('amount')), category: f.get('category'), note: f.get('note'), ref: f.get('ref') };
-    setLedger(prev => [it, ...prev]); e.currentTarget.reset();
-  }
-
-  return (
-    <div className="space-y">
-      <Row>
-        <div className="span-4"><Stat label="Revenue" value={fmt.format(totals.income)} icon={Icon.Dollar}/></div>
-        <div className="span-4"><Stat label="Expenses" value={fmt.format(totals.expense)} icon={Icon.Wallet}/></div>
-        <div className="span-4"><Stat label="Net" value={fmt.format(totals.income - totals.expense)} icon={Icon.Chart}/></div>
-      </Row>
-
-      <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:12, margin:'8px 0'}}>
-        <h2 style={{fontSize:18,fontWeight:700}}>Ledger</h2>
-        <div style={{display:'flex',alignItems:'center',gap:8}}>
-          <div className="search" style={{minWidth:280}}>
-            <Icon.Search className="icon"/>
-            <input placeholder="Search notes / ref / category" value={q} onChange={e=>setQ(e.target.value)}/>
+          <div className="h-36">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={chartData.slice().reverse()} margin={{ top: 6, right: 0, left: -20, bottom: 0 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+                <YAxis hide />
+                <ReTooltip contentStyle={{ borderRadius: 12 }} />
+                <Area type="monotone" dataKey="Expenses" strokeWidth={2} fillOpacity={0.2} fill="url(#grad)" />
+              </AreaChart>
+            </ResponsiveContainer>
           </div>
-          <select value={type} onChange={(e)=>setType(e.target.value)}>
-            <option value="expense">Expense</option>
-            <option value="income">Income</option>
-          </select>
-        </div>
+        </Card>
       </div>
 
-      <div className="panel">
-        <div style="overflow:auto;">
-          <table class="table">
-            <thead>
+      {/* Middle Row */}
+      <div className="grid lg:grid-cols-2 gap-4">
+        <Card
+          title="Maintenance overview"
+          toolbar={
+            <div className="flex items-center gap-2">
+              <Chip active>Monthly</Chip>
+              <Chip>Yearly</Chip>
+            </div>
+          }
+        >
+          <div className="h-44">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={barData}>
+                <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+                <YAxis />
+                <ReTooltip contentStyle={{ borderRadius: 12 }} />
+                <Bar dataKey="uv" radius={[8, 8, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </Card>
+        <Card
+          title="Cost details"
+          toolbar={
+            <div className="flex items-center gap-2">
+              <Chip active>Monthly</Chip>
+              <Chip>Yearly</Chip>
+            </div>
+          }
+        >
+          <div className="flex items-baseline gap-3 mb-4">
+            <div className="text-3xl font-semibold">{fmt.format(inc - exp)}</div>
+            <Pill tone="success">↑ 2.9%</Pill>
+          </div>
+          <ul className="space-y-2 text-sm">
+            {[
+              ["Oil cost", "+$515"],
+              ["Fluid cost", "+$109"],
+              ["Battery cost", "+$80"],
+              ["Belt & Hose cost", "+$150"],
+              ["Suspension cost", "+$200"]
+            ].map(([k, v]) => (
+              <li key={k} className="flex items-center justify-between">
+                <span className="text-gray-600 dark:text-gray-300">{k}</span>
+                <span className="font-medium">{v}</span>
+              </li>
+            ))}
+          </ul>
+        </Card>
+      </div>
+
+      {/* Fleet Status */}
+      <Card
+        title="Fleet Status"
+        toolbar={
+          <div className="flex items-center gap-2">
+            <Pill tone="neutral">{trucks.length + trailers.length} assets</Pill>
+            <button className="px-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold">Export CSV</button>
+          </div>
+        }
+      >
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-sm">
+            <thead className="text-left text-gray-500">
               <tr>
-                <th>Type</th><th>Amount</th><th>Category</th><th>Note</th><th>Ref</th>
+                <th className="pb-2 pr-4">#</th>
+                <th className="pb-2 pr-4">Asset ID</th>
+                <th className="pb-2 pr-4">Type</th>
+                <th className="pb-2 pr-4">Make/Model</th>
+                <th className="pb-2 pr-4">Status</th>
+                <th className="pb-2 pr-4">Notes</th>
               </tr>
             </thead>
-            <tbody>
-              {filtered.map(row => (
-                <tr key={row.id}>
-                  <td><Badge className={row.type==='expense'?'badge-destructive':''}>{row.type}</Badge></td>
-                  <td style={{fontWeight:600}}>{fmt.format(row.amount)}</td>
-                  <td>{row.category}</td>
-                  <td style={{color:'var(--muted)'}}>{row.note}</td>
-                  <td style={{color:'var(--muted)'}}>{row.ref}</td>
+            <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+              {[...trucks.map(t => ({...t, type: 'Truck', makeModel: `${t.make} ${t.model}`})), 
+                ...trailers.map(t => ({...t, type: 'Trailer', makeModel: t.type}))].map((asset, i) => (
+                <tr key={asset.id} className="hover:bg-gray-50 dark:hover:bg-gray-800/60">
+                  <td className="py-3 pr-4">{i + 1}</td>
+                  <td className="py-3 pr-4 font-medium">{asset.id}</td>
+                  <td className="py-3 pr-4">{asset.type}</td>
+                  <td className="py-3 pr-4">{asset.makeModel}</td>
+                  <td className="py-3 pr-4">
+                    <span className="inline-flex items-center gap-2"><StatusDot status={asset.status}/> {asset.status}</span>
+                  </td>
+                  <td className="py-3 pr-4 text-gray-600 dark:text-gray-300">{asset.notes}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-      </div>
-
-      <div className="panel">
-        <h3>Add {type}</h3>
-        <form className="grid" onSubmit={addItem} style={{gridTemplateColumns:'repeat(2, minmax(0,1fr))', gap:12}}>
-          <input name="amount" type="number" step="0.01" placeholder="Amount" required/>
-          <input name="category" placeholder="Category (e.g., Tires)" required/>
-          <input name="ref" placeholder="Ref (load # / invoice)"/>
-          <div className="span-12"><textarea name="note" placeholder="Note"></textarea></div>
-          <div className="span-12" style={{display:'flex',justifyContent:'flex-end'}}><Button className="btn btn-primary" type="submit">Save</Button></div>
-        </form>
-      </div>
+      </Card>
     </div>
   );
 }
 
-function Analytics({ ledger, cases }){
-  const caseByStage = useMemo(()=>{
-    const mp = Object.fromEntries(STAGES.map(s=>[s,0]));
-    cases.forEach(c => { mp[c.stage] = (mp[c.stage]||0)+1; });
-    return Object.entries(mp).map(([name, value])=>({ name, value }));
-  },[cases]);
-
-  const finance = useMemo(()=>{
-    const days = [...Array(14)].map((_,i)=>{
-      const day = new Date(Date.now() - (13-i)*86400000).toISOString().slice(5,10);
-      const exp = ledger.filter(l=>l.type==='expense' && Math.random()>.6).reduce((a,b)=>a+b.amount,0);
-      const inc = ledger.filter(l=>l.type==='income' && Math.random()>.6).reduce((a,b)=>a+b.amount,0);
-      return { day, Expenses: exp, Revenue: inc };
-    });
-    return days;
-  },[ledger]);
-
-  return (
-    <div className="space-y">
-      <div className="grid">
-        <div className="panel span-6">
-          <h3>Cases by stage</h3>
-          <div style={{height:260}}>
-            <ResponsiveContainer>
-              <PieChart>
-                <Pie data={caseByStage} dataKey="value" nameKey="name" outerRadius={100}>
-                  {caseByStage.map((e,i)=> <Cell key={i} />)}
-                </Pie>
-                <ReTooltip/><Legend/>
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-        <div className="panel span-6">
-          <h3>Revenue vs. Expenses (14d)</h3>
-          <div style={{height:260}}>
-            <ResponsiveContainer>
-              <LineChart data={finance}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="day"/>
-                <YAxis/>
-                <ReTooltip/>
-                <Legend/>
-                <Line type="monotone" dataKey="Revenue" strokeWidth={2}/>
-                <Line type="monotone" dataKey="Expenses" strokeWidth={2}/>
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function SettingsPanel(){
-  const [dark, setDark] = useDarkMode();
-  return (
-    <div className="space-y">
-      <div className="panel">
-        <h3>Appearance</h3>
-        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between', marginTop:8}}>
-          <div>
-            <div style={{fontWeight:600}}>Dark mode</div>
-            <div style={{fontSize:13, color:'var(--muted)'}}>Appleâ€‘style subtle dark theme</div>
-          </div>
-          <Switch checked={dark} onChange={setDark} />
-        </div>
-      </div>
-      <div className="panel">
-        <h3>Data export (free)</h3>
-        <p style={{fontSize:13, color:'var(--muted)'}}>Local first: all data stored in browser (localStorage). Export/import JSON for backups.</p>
-        <div style={{display:'flex',gap:8}}>
-          <Button onClick={()=>{
-            const dump = ['trucks','trailers','cases','ledger'].reduce((acc,k)=> (acc[k]=store.get(k,[]), acc), {});
-            const blob = new Blob([JSON.stringify(dump,null,2)], {type:'application/json'});
-            const url = URL.createObjectURL(blob); const a=document.createElement('a');
-            a.href=url; a.download='tms-export.json'; a.click(); URL.revokeObjectURL(url);
-          }}>Export JSON</Button>
-          <label className="btn" style={{cursor:'pointer'}}>
-            <Icon.Upload/> Import JSON
-            <input type="file" accept="application/json" style="display:none" onchange=""/>
-          </label>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/** App shell **/
-const NAV = [
-  { key:'dashboard', label:'Dashboard', icon: Icon.Chart },
-  { key:'trucks', label:'Trucks', icon: Icon.Truck },
-  { key:'trailers', label:'Trailers', icon: Icon.Trailer },
-  { key:'cases', label:'Cases', icon: Icon.Clipboard },
-  { key:'finance', label:'Finance', icon: Icon.Wallet },
-  { key:'analytics', label:'Analytics', icon: Icon.Chart },
-  { key:'settings', label:'Settings', icon: Icon.Chart },
-];
-
+/** Main App Component **/
 function App(){
-  const [tab, setTab] = useState('dashboard');
+  // THEME
+  const [dark, setDark] = useDarkMode();
+
+  // NAVIGATION
+  const sidebar = [
+    { id: "dashboard", label: "Dashboard", icon: LayoutGrid },
+    { id: "trucks", label: "Trucks", icon: Truck },
+    { id: "trailers", label: "Trailers", icon: Package },
+    { id: "cases", label: "Cases", icon: ClipboardList },
+    { id: "finance", label: "Finance", icon: DollarSign },
+    { id: "analytics", label: "Analytics", icon: BarChart3 },
+    { id: "settings", label: "Settings", icon: SettingsIcon }
+  ];
+  const [page, setPage] = useState("dashboard");
+
+  // TABS
+  const [tab, setTab] = useState("Dashboard");
+  const tabs = ["Dashboard", "Fleet", "Reports"];
+
+  const [range, setRange] = useState({ from: "Dec 10, 2022", to: "Jul 18, 2023" });
+
+  // Data
   const [trucks, setTrucks] = useSeededState('trucks', SEED.trucks);
   const [trailers, setTrailers] = useSeededState('trailers', SEED.trailers);
   const [cases, setCases] = useSeededState('cases', SEED.cases);
   const [ledger, setLedger] = useSeededState('ledger', SEED.ledger);
-  const [dark, setDark] = useDarkMode();
-
-  useEffect(()=>{
-    const onK = (e) => { if(e.ctrlKey && (e.key||'').toLowerCase()==='k'){ e.preventDefault(); const i = document.getElementById('global-search'); i && i.focus && i.focus(); } };
-    window.addEventListener('keydown', onK); return ()=>window.removeEventListener('keydown', onK);
-  },[]);
-
-  useEffect(()=>{
-    const main = document.getElementById('swap'); if(main){ document.dispatchEvent(new CustomEvent('ui:swap', { detail: main })); }
-  }, [tab]);
 
   return (
-    <div className="shell">
-      <div className="topbar">
-        <div className="brand">
-          <BrandMark/>
-          <div className="title">TranGo â€” TMS</div>
-          <span className="badge" style={{marginLeft:8}}>Free</span>
-        </div>
-        <div style={{display:'flex',alignItems:'center',gap:8}}>
-          <div className="search">
-            <Icon.Search className="icon"/>
-            <input id="global-search" placeholder="Quick search (Ctrl+K)" />
+    <div className={dark ? "dark" : ""}>
+      <div style={fontStack} className="min-h-screen bg-gray-100 text-gray-900 transition-colors duration-300 antialiased dark:bg-[#0b0b0f] dark:text-gray-100">
+        {/* Top Bar */}
+        <header className="sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-black/30 border-b border-gray-200 dark:border-gray-800">
+          <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3">
+            <div className="flex items-center gap-2 font-semibold">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-white">T</span>
+              <span className="hidden sm:inline">TranGo TMS</span>
+            </div>
+            <div className="mx-3 text-sm text-gray-400">/</div>
+            <nav className="flex items-center gap-1">
+              {tabs.map((t) => (
+                <Chip key={t} active={t === tab} onClick={() => setTab(t)}>
+                  {t}
+                </Chip>
+              ))}
+            </nav>
+            <div className="ml-auto flex items-center gap-2">
+              <div className="relative hidden md:flex">
+                <input
+                  placeholder="Search"
+                  className="pl-9 pr-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-zinc-900/60 focus:outline-none focus:ring-2 focus:ring-black/10 dark:focus:ring-white/10 text-sm"
+                />
+                <Search className="absolute left-3 top-2.5" size={16} />
+              </div>
+              <TopButton icon={Bell} label="Notifications" />
+              <TopButton icon={SettingsIcon} label="Settings" />
+              <button
+                onClick={() => setDark((d) => !d)}
+                className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold"
+              >
+                {dark ? <Sun size={16} /> : <Moon size={16} />}<span className="hidden sm:inline">{dark ? "Light" : "Dark"}</span>
+              </button>
+              <button className="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 font-semibold">
+                <img src="https://i.pravatar.cc/36?img=5" alt="avatar" className="h-7 w-7 rounded-full" />
+                <span className="text-sm hidden sm:inline">Admin</span>
+                <ChevronDown size={16} />
+              </button>
+            </div>
           </div>
-          <Button className="btn btn-ghost" onClick={()=>setDark(v=>!v)} aria-label="Toggle dark mode">
-            {dark ? <Icon.Sun/> : <Icon.Moon/>}
-          </Button>
-          <Button className="btn"> <Icon.Upload/> Import </Button>
+        </header>
+
+        {/* App Shell */}
+        <div className="max-w-7xl mx-auto grid grid-cols-12 gap-4 p-4">
+          {/* Sidebar */}
+          <aside className="col-span-12 md:col-span-3 lg:col-span-2 space-y-2">
+            <div className="rounded-2xl p-2 bg-white/70 dark:bg-zinc-900/70 border border-gray-200 dark:border-gray-800">
+              <p className="px-2 pt-2 pb-1 text-xs uppercase tracking-wide text-gray-400">Main menu</p>
+              <div className="space-y-1">
+                {sidebar.map((item) => (
+                  <SidebarItem
+                    key={item.id}
+                    icon={item.icon}
+                    label={item.label}
+                    active={page === item.id}
+                    onClick={() => setPage(item.id)}
+                  />
+                ))}
+              </div>
+              <div className="pt-2 mt-2 border-t border-gray-200 dark:border-gray-800 flex justify-between px-2">
+                <button className="text-xs font-semibold text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 inline-flex items-center gap-1"><LogOut size={14}/> Log out</button>
+                <span className="text-xs text-gray-400">v1.0</span>
+              </div>
+            </div>
+          </aside>
+
+          {/* Main */}
+          <main className="col-span-12 md:col-span-9 lg:col-span-10 space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="text-2xl font-semibold">
+                {sidebar.find(s => s.id === page)?.label || 'Dashboard'}
+              </div>
+              <button
+                onClick={() => {
+                  setRange((r) =>
+                    r.from === "Dec 10, 2022"
+                      ? { from: "Jan 01, 2023", to: "Sep 01, 2023" }
+                      : { from: "Dec 10, 2022", to: "Jul 18, 2023" }
+                  );
+                }}
+                className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold"
+              >
+                {range.from} - {range.to} <ChevronDown size={16} />
+              </button>
+            </div>
+
+            {/* Content based on selected page */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={page}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+              >
+                {page === 'dashboard' && <Dashboard trucks={trucks} trailers={trailers} cases={cases} ledger={ledger} />}
+                {page !== 'dashboard' && (
+                  <Card title={`${sidebar.find(s => s.id === page)?.label} Section`}>
+                    <div className="text-center py-8 text-gray-500 dark:text-gray-400">
+                      <div className="text-4xl mb-4">🚧</div>
+                      <p>This section is under development.</p>
+                      <p className="text-sm mt-2">The original functionality will be integrated with the new design.</p>
+                    </div>
+                  </Card>
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </main>
         </div>
+
+        {/* Floating help */}
+        <AnimatePresence>
+          <motion.button
+            key="help"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            whileTap={{ scale: 0.98 }}
+            className="fixed bottom-5 right-5 flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg bg-black text-white dark:bg-white dark:text-black"
+            onClick={() => toast.success("New design applied! All sections will be updated progressively.")}
+          >
+            <CheckCircle2 size={16}/> New Design
+          </motion.button>
+        </AnimatePresence>
+
+        {/* Footer */}
+        <footer className="max-w-7xl mx-auto px-4 py-8 text-sm text-gray-500 dark:text-gray-400">
+          Designed with smooth, Apple-like motion • Light & Dark themes • Ready for backend integration
+        </footer>
       </div>
 
-      <div className="container">
-        <aside className="sidebar">
-          {NAV.map(n => (
-            <button key={n.key} className={'nav-btn '+(tab===n.key?'active':'')} onClick={()=>setTab(n.key)}>
-              <n.icon className="icon"/> {n.label}
-            </button>
-          ))}
-          <div className="tips">
-            <div style={{fontSize:12}}>Tips</div>
-            <ul style={{fontSize:12, marginTop:6, paddingLeft:16}}>
-              <li>Use Ctrl+K to quickâ€‘search</li>
-              <li>Export JSON in Settings</li>
-              <li>Attach invoices to cases</li>
-            </ul>
-          </div>
-        </aside>
-
-        <main id="swap">
-          {tab==='dashboard' && <Dashboard trucks={trucks} trailers={trailers} cases={cases} ledger={ledger}/>}
-          {tab==='trucks' && <Trucks trucks={trucks} setTrucks={setTrucks}/>}
-          {tab==='trailers' && <Trailers trailers={trailers} setTrailers={setTrailers}/>}
-          {tab==='cases' && <Cases cases={cases} setCases={setCases}/>}
-          {tab==='finance' && <Finance ledger={ledger} setLedger={setLedger}/>}
-          {tab==='analytics' && <Analytics ledger={ledger} cases={cases}/>}
-          {tab==='settings' && <SettingsPanel/>}
-        </main>
-      </div>
-
-      <footer className="footer">
-        <div className="italic">" It's our duty to lead people to the light"</div>
-        <div className="mt-1">by Dan Miller</div>
-      </footer>
+      {/* Toast host */}
+      <div id="toast" role="status" aria-live="polite" className="fixed bottom-18 left-1/2 transform -translate-x-1/2 translate-y-full px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-full shadow-lg transition-transform duration-300 opacity-0 pointer-events-none z-50"></div>
     </div>
   );
 }
 
 createRoot(document.getElementById('app')).render(<App/>);
-
