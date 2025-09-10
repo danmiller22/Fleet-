@@ -6,3 +6,4 @@ yarn-error.log
 pnpm-lock.yaml
 # Optional: local DB cache file created by server
 server/db.json
+.env
