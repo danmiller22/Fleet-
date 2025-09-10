@@ -220,6 +220,7 @@ th, td, .btn, .seg-btn, .kpi-title, .kpi-value, label, .chart-title, .nav-item{ 
   padding:14px; border-radius:16px; border:1px solid var(--border);
   background: var(--bg1);
   box-shadow: var(--shadow); transform: translateY(8px); opacity:0; animation: kpiIn var(--t-slow) var(--ease-out) forwards;
+  will-change: transform, opacity; contain: content;
 }
 .kpi:nth-child(1){ animation-delay: 60ms; }
 .kpi:nth-child(2){ animation-delay: 120ms; }
@@ -234,6 +235,7 @@ th, td, .btn, .seg-btn, .kpi-title, .kpi-value, label, .chart-title, .nav-item{ 
   border:1px solid var(--border); border-radius:18px; background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.00)), var(--bg1);
   background: var(--bg1);
   box-shadow: var(--shadow); padding:14px; animation: cardIn var(--t-slow) var(--ease-out);
+  will-change: transform, opacity; contain: content;
 }
 .panel-toolbar{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
 .field input{
@@ -262,6 +264,7 @@ tr:hover{ background: rgba(255,255,255,.04); }
 .icon-btn{
   border:1px solid var(--border); background: var(--bg2); border-radius:12px; padding:8px; cursor:pointer;
   transition: transform var(--t-fast) var(--ease-out), background var(--t) var(--ease-out), box-shadow var(--t) var(--ease-out);
+  will-change: transform, background, box-shadow;
 }
 .icon-btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.05); box-shadow: 0 10px 16px rgba(0,0,0,.2), 0 0 0 3px color-mix(in oklab, var(--brand), transparent 90%); filter: brightness(1.06); }
 

@@ -426,10 +426,9 @@
   });
 
   /* ---------- Search & Filter ---------- */
-  filterInput.addEventListener('input', e=>{ state.filter = e.target.value; render(); });
-  globalSearch.addEventListener('input', e=>{
-    state.filter = e.target.value; filterInput.value = e.target.value; render();
-  });
+  const debounce = (fn, ms=120)=>{ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), ms); }; };
+  filterInput.addEventListener('input', debounce(e=>{ state.filter = e.target.value; render(); }, 150));
+  globalSearch.addEventListener('input', debounce(e=>{ state.filter = e.target.value; filterInput.value = e.target.value; render(); }, 150));
 
   /* ---------- Export ---------- */
   exportBtn.addEventListener('click', ()=>{
@@ -607,7 +606,7 @@
     const { ctx, w, h } = setupCanvas(cv);
     const pad=10; const max=Math.max(1,...values); const min=Math.min(0,...values);
     const pts = toPoints(values, w, h, pad, min, max);
-    let start; const dur=900; // ms
+    let start; const dur=600; // ms, shorter for smoother feel
     function frame(ts){
       if(!start) start = ts; const t = Math.min(1, (ts-start)/dur); const p=easeOutCubic(t);
       ctx.clearRect(0,0,w,h);
