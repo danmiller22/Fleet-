@@ -432,7 +432,17 @@
   themeToggle.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); themeToggle.click(); } });
 
   function setTheme(mode){
-    document.documentElement.classList.toggle('light', mode==='light');
+    const root = document.documentElement;
+    const body = document.body;
+    const oldBg = getComputedStyle(root).getPropertyValue('--bg0').trim();
+    root.style.setProperty('--old-bg', oldBg);
+    root.classList.toggle('light', mode==='light');
+    body.classList.add('theme-swipe');
+    requestAnimationFrame(()=> body.classList.add('theme-swipe-active'));
+    setTimeout(()=>{
+      body.classList.remove('theme-swipe','theme-swipe-active');
+      root.style.removeProperty('--old-bg');
+    }, 700);
     themeToggle.classList.toggle('on', mode==='dark'); // knob right in dark
     localStorage.setItem('tms-theme', mode);
     toast(mode==='dark' ? 'Dark theme' : 'Light theme');

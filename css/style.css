@@ -51,6 +51,20 @@ body{
   color:var(--text);
 }
 
+body.theme-swipe::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background: var(--old-bg, var(--bg0));
+  transform: translateX(0);
+  transition: transform var(--t-slow) var(--ease-out);
+  z-index:999;
+  pointer-events:none;
+}
+body.theme-swipe.theme-swipe-active::before{
+  transform: translateX(100%);
+}
+
 /* Layout */
 .app{
   display:grid; grid-template-columns: 320px 1fr; height:100dvh; overflow:hidden;
@@ -106,7 +120,7 @@ body{
   padding:12px 14px; border-radius:12px; border:1px solid transparent;
   background: var(--bg);
   color:inherit; cursor:pointer; text-align:left;
-  transition: background var(--t) var(--ease-out), transform var(--t-fast) var(--ease-out), border-color var(--t) var(--ease-out);
+  transition: background var(--t) var(--ease-out), transform var(--t) var(--ease-out), border-color var(--t) var(--ease-out);
 }
 .nav-item .icon{ width:18px; height:18px; display:grid; place-items:center; opacity:.85; }
 .nav-item:hover{ transform: translateX(2px); background: rgba(255,255,255,.04); }
@@ -153,7 +167,7 @@ body{
 .seg{ display:flex; border:1px solid var(--border); border-radius:999px; padding:4px; background: var(--bg2); }
 .seg-btn{
   padding:8px 12px; border-radius:999px; border:0; background:transparent; color:inherit; cursor:pointer;
-  transition: transform var(--t-fast) var(--ease-out), background var(--t) var(--ease-out);
+  transition: transform var(--t) var(--ease-out), background var(--t) var(--ease-out);
 }
 .seg-btn:hover{ transform: translateY(-1px); }
 .seg-btn.active{ background: color-mix(in oklab, var(--brand), transparent 85%); }
@@ -171,7 +185,7 @@ th, td, .btn, .seg-btn, .kpi-title, .kpi-value, label, .chart-title, .nav-item{ 
   background: var(--bg);
   box-shadow: 0 1px 0 rgba(255,255,255,.05), 0 10px 20px rgba(0,0,0,.14);
   cursor:pointer; user-select:none;
-  transition: transform var(--t-fast) var(--ease-out), box-shadow var(--t) var(--ease-out), border-color var(--t) var(--ease-out), background var(--t) var(--ease-out);
+  transition: transform var(--t-slow) var(--ease-out), box-shadow var(--t) var(--ease-out), border-color var(--t) var(--ease-out), background var(--t) var(--ease-out);
 }
 .btn:hover{ transform: translateY(-1px); box-shadow: 0 14px 26px rgba(0,0,0,.22), 0 0 0 4px color-mix(in oklab, var(--brand), transparent 90%); filter: brightness(1.06); }
 .btn:active{ transform: translateY(0) scale(.995); }
@@ -260,7 +274,7 @@ tr:hover{ background: rgba(255,255,255,.04); }
 .row-actions{ display:flex; gap:8px; justify-content:flex-end; }
 .icon-btn{
   border:1px solid var(--border); background: var(--bg2); border-radius:12px; padding:8px; cursor:pointer;
-  transition: transform var(--t-fast) var(--ease-out), background var(--t) var(--ease-out), box-shadow var(--t) var(--ease-out);
+  transition: transform var(--t-slow) var(--ease-out), background var(--t) var(--ease-out), box-shadow var(--t) var(--ease-out);
 }
 .icon-btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.05); box-shadow: 0 10px 16px rgba(0,0,0,.2), 0 0 0 3px color-mix(in oklab, var(--brand), transparent 90%); filter: brightness(1.06); }
 
@@ -298,6 +312,14 @@ label{ color:var(--muted); font-size:12px; }
   z-index:140;
 }
 .toast.show{ opacity:1; transform: translateY(0); }
+
+/* Footer quote */
+.page-quote{
+  text-align:center;
+  margin-top:24px;
+  color:var(--muted);
+  font-style:italic;
+}
 
 /* Helpers & Animations */
 .kbd{ border:1px solid var(--border); border-radius:8px; padding:2px 6px; font-size:12px; color:var(--muted); }
