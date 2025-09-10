@@ -2,19 +2,13 @@
 
 Minimal demo of a Transport Management System UI. All data is local (stored in `localStorage`). No backend required.
 
-## How to run
-- Local (optional):
-  - Backend (Node, no deps): `node server/api-server.js` → http://localhost:3000
-  - Frontend (static dev server): `node tools/dev-server.js` → http://localhost:5173
-  - Or open `index.html` directly in a modern browser (Chrome / Safari / Edge)
-
-## Cloudflare Pages (free)
+## How to run`n- Local (one command):`n  - npm start then open http://localhost:8787`n  - Serves the SPA and REST API at /api/{trucks|trailers|cases|expenses} (JSON file server/db.json auto-seeded)`n  - Or open index.html directly in a modern browser (Chrome / Safari / Edge) for offline-only mode`n`n## Cloudflare Pages (free)
 - This repo contains Pages Functions under `functions/api` that expose the REST API using Cloudflare KV (binding `DB`).
 - Two ways to deploy:
   1) Dashboard → Pages → Create project → Connect Git (recommended). Build output directory: root (`/`). Functions: auto-detected from `functions/`.
   2) CLI: `npx wrangler pages deploy .` (free). Requires Node. `wrangler.toml` is included.
 - After creating the Pages project, go to Settings → Functions → KV Bindings and add a KV namespace named `DB`.
-- Endpoints: `GET/POST/PUT/DELETE /api/{trucks|trailers|repairs|expenses}`.
+- Endpoints: GET/POST/PUT/DELETE /api/{trucks|trailers|cases|expenses}.
 
 ## Supabase (free Postgres)
 - Optional: Use Supabase instead of KV. Steps:
@@ -27,7 +21,7 @@ Minimal demo of a Transport Management System UI. All data is local (stored in `
   5) Endpoints unchanged: `/api/{collection}`.
 
 ## Features
-- Sections: Trucks / Trailers / Repairs / Expenses
+- Sections: Dashboard / Trucks / Trailers / Cases / Finance / Analytics / Settings
 - CRUD modal forms (view, edit, create, delete)
 - Global and table search, CSV export
 - KPI counters and smooth animations
@@ -45,3 +39,6 @@ Minimal demo of a Transport Management System UI. All data is local (stored in `
 - Backend: JSON file store at `data/db.json`, REST endpoints under `/api`.
 - CORS enabled. Collections: `trucks`, `trailers`, `repairs`, `expenses`.
 - Cloudflare variant: KV-based storage (free tier). Seed data auto-initialized on first run.
+
+
+

@@ -1,4 +1,4 @@
-export const collections = ['trucks','trailers','repairs','expenses'];
+export const collections = ['trucks','trailers','repairs','expenses','cases'];
 
 export function json(data, init={}){
   return new Response(JSON.stringify(data), { headers:{ 'Content-Type':'application/json; charset=utf-8', 'Cache-Control':'no-store', ...corsHeaders() }, ...init });
@@ -33,6 +33,10 @@ export function seedData(){
       { id: uid(), category: 'Fuel',       amount: 320.45, date: '2025-03-13', notes: 'Card ••••4821, Driver: DO4' },
       { id: uid(), category: 'Tolls/Fees', amount:  45.70, date: '2025-03-14', notes: 'Toll #34' },
       { id: uid(), category: 'Parking',    amount: 210.00, date: '2025-03-10', notes: 'Night parking yard' },
+    ],
+    cases: [
+      { id: uid(), assetType: 'Truck',   assetId: 'A123BC',   title: 'Coolant leak', priority: 'High',   stage: 'Diagnose', createdAt: Date.now() - 86400000*2, cost: 0,  assigned: 'Jack',  timeline: [ { t: Date.now() - 86400000*2, note: 'Driver reports coolant on ground.' } ], invoices: [] },
+      { id: uid(), assetType: 'Trailer', assetId: 'TR-042',   title: 'ABS light ON', priority: 'Medium', stage: 'Parts',    createdAt: Date.now() - 86400000*1, cost: 75, assigned: 'Aidar', timeline: [ { t: Date.now() - 86400000,   note: 'Mobile tech scheduled.' } ], invoices: [] }
     ],
   };
 }

@@ -37,11 +37,26 @@ create table if not exists expenses (
   notes text
 );
 
+create table if not exists cases (
+  id text primary key,
+  assetType text,
+  assetId text,
+  title text,
+  priority text,
+  stage text,
+  createdAt bigint,
+  cost numeric,
+  assigned text,
+  timeline jsonb,
+  invoices jsonb
+);
+
 -- Enable RLS with simple permissive policies (adjust as needed)
 alter table trucks enable row level security;
 alter table trailers enable row level security;
 alter table repairs enable row level security;
 alter table expenses enable row level security;
+alter table cases enable row level security;
 
 create policy "public read" on trucks for select using (true);
 create policy "public write" on trucks for insert with check (true);
@@ -63,3 +78,7 @@ create policy "public write" on expenses for insert with check (true);
 create policy "public update" on expenses for update using (true);
 create policy "public delete" on expenses for delete using (true);
 
+create policy "public read" on cases for select using (true);
+create policy "public write" on cases for insert with check (true);
+create policy "public update" on cases for update using (true);
+create policy "public delete" on cases for delete using (true);
