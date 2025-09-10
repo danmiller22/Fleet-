@@ -19,7 +19,13 @@ import {
   LogOut,
   Wrench,
   DollarSign,
-  ClipboardList
+  ClipboardList,
+  Plus,
+  Edit,
+  Trash2,
+  Eye,
+  Filter,
+  Download
 } from 'lucide-react';
 import * as Recharts from 'recharts';
 
@@ -58,19 +64,24 @@ const SEED = {
   trucks: [
     { id: '3252', make: 'Freightliner', model: 'Cascadia', year: 2021, vin: '1FUJHHDR0MLMJ4879', status: 'Active', miles: 618230, pmInterval: 20000, pmDueAt: 618230, notes: 'Oil change due now' },
     { id: '5496', make: 'Volvo', model: 'VNL', year: 2024, vin: '4V4NC9EH0LN223912', status: 'Active', miles: 409659, pmInterval: 20000, pmDueAt: 409659, notes: 'Windshield replaced 2025-09-04' },
+    { id: '7834', make: 'Peterbilt', model: '579', year: 2020, vin: '1XPWD40X1ED123456', status: 'Service', miles: 742100, pmInterval: 20000, pmDueAt: 760000, notes: 'Scheduled maintenance' },
   ],
   trailers: [
     { id: 'XTRA-40123', type: 'Dry Van', owner: 'XTRA Lease', status: 'On Road', extId: 'SkyB-12345', notes: 'External tracked' },
     { id: 'UST-9001', type: 'Dry Van', owner: 'US TEAM', status: 'Yard', extId: '—', notes: 'Ready' },
+    { id: 'WABASH-5567', type: 'Refrigerated', owner: 'Wabash', status: 'On Road', extId: 'WB-5567', notes: 'Temperature controlled' },
   ],
   cases: [
     { id: uid(), assetType: 'truck', assetId: '3252', title: 'Coolant leak', priority: 'High', stage: 'Diagnose', createdAt: Date.now() - 86400000*2, cost: 0, assigned: 'Jack', timeline: [ { t: Date.now() - 86400000*2, note: 'Driver reports coolant on ground.' } ], invoices: [] },
-    { id: uid(), assetType: 'trailer', assetId: 'XTRA-40123', title: 'ABS light ON', priority: 'Medium', stage: 'Parts', createdAt: Date.now() - 86400000*1, cost: 75, assigned: 'Aidar', timeline: [ { t: Date.now()- 86400000, note: 'Mobile tech scheduled.' } ], invoices: [] }
+    { id: uid(), assetType: 'trailer', assetId: 'XTRA-40123', title: 'ABS light ON', priority: 'Medium', stage: 'Parts', createdAt: Date.now() - 86400000*1, cost: 75, assigned: 'Aidar', timeline: [ { t: Date.now()- 86400000, note: 'Mobile tech scheduled.' } ], invoices: [] },
+    { id: uid(), assetType: 'truck', assetId: '7834', title: 'Brake inspection', priority: 'Low', stage: 'Closed', createdAt: Date.now() - 86400000*7, cost: 450, assigned: 'Mike', timeline: [ { t: Date.now() - 86400000*7, note: 'Routine brake check completed.' } ], invoices: [] }
   ],
   ledger: [
     { id: uid(), type: 'expense', amount: 535, category: 'Tires', note: 'Steer tire fix — Houston, TX', ref: '2023/00' },
     { id: uid(), type: 'expense', amount: 325, category: 'Windshield', note: 'Windshield mobile — Wichita, KS', ref: '2025/09/04' },
     { id: uid(), type: 'income', amount: 4200, category: 'Load', note: 'Load #AB-778, Jack', ref: '2025/09/03' },
+    { id: uid(), type: 'expense', amount: 890, category: 'Fuel', note: 'Fuel stop — Denver, CO', ref: '2025/09/05' },
+    { id: uid(), type: 'income', amount: 3800, category: 'Load', note: 'Load #CD-445, Sarah', ref: '2025/09/06' },
   ]
 };
 
@@ -80,28 +91,41 @@ function useSeededState(key, initial) {
   return [state, setState];
 }
 
-// Modern UI Components
+// Modern UI Components with faster animations
+const pageTransition = {
+  initial: { opacity: 0, y: 8 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -8 },
+  transition: { duration: 0.15, ease: [0.22, 1, 0.36, 1] }
+};
+
+const cardTransition = {
+  initial: { opacity: 0, y: 4 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -4 },
+  transition: { type: "spring", stiffness: 400, damping: 30, mass: 0.8 }
+};
+
 const Chip = ({ active, children, onClick }) => (
-  <button
+  <motion.button
+    whileHover={{ scale: 1.02 }}
+    whileTap={{ scale: 0.98 }}
     onClick={onClick}
     className={cn(
-      "px-3 py-1.5 rounded-full text-sm font-semibold transition-all",
+      "px-3 py-1.5 rounded-full text-sm font-semibold transition-all duration-200",
       active
-        ? "bg-black text-white dark:bg-white dark:text-black shadow"
+        ? "bg-black text-white dark:bg-white dark:text-black shadow-md"
         : "bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
     )}
   >
     {children}
-  </button>
+  </motion.button>
 );
 
 const Card = ({ title, toolbar, children }) => (
   <motion.div
-    layout
-    initial={{ opacity: 0, y: 6 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -6 }}
-    transition={{ type: "spring", stiffness: 260, damping: 26 }}
+    {...cardTransition}
+    whileHover={{ y: -2, transition: { duration: 0.2 } }}
     className="rounded-2xl bg-white/70 dark:bg-zinc-900/70 backdrop-blur border border-gray-200 dark:border-gray-800 shadow-sm"
   >
     <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-800">
@@ -113,28 +137,32 @@ const Card = ({ title, toolbar, children }) => (
 );
 
 const SidebarItem = ({ icon: Icon, label, active, onClick }) => (
-  <button
+  <motion.button
+    whileHover={{ x: 2, transition: { duration: 0.15 } }}
+    whileTap={{ scale: 0.98 }}
     onClick={onClick}
     className={cn(
-      "w-full h-10 flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-semibold transition-colors",
+      "w-full h-10 flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-200",
       active
-        ? "bg-gray-900 text-white dark:bg-white dark:text-black"
+        ? "bg-gray-900 text-white dark:bg-white dark:text-black shadow-sm"
         : "text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
     )}
   >
     <Icon size={18} />
     <span className="leading-none">{label}</span>
-  </button>
+  </motion.button>
 );
 
 const TopButton = ({ icon: Icon, label, onClick }) => (
-  <button
+  <motion.button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
     onClick={onClick}
-    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold"
+    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold transition-all duration-200"
     aria-label={label}
   >
     <Icon size={16} />
-  </button>
+  </motion.button>
 );
 
 const Pill = ({ tone = "neutral", children }) => {
@@ -145,7 +173,7 @@ const Pill = ({ tone = "neutral", children }) => {
     neutral: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
   };
   return (
-    <span className={cn("px-2 py-1 rounded-full text-xs", tones[tone])}>{children}</span>
+    <span className={cn("px-2 py-1 rounded-full text-xs font-medium", tones[tone])}>{children}</span>
   );
 };
 
@@ -163,7 +191,7 @@ const StatusDot = ({ status }) => {
   return <span className={cn("inline-block w-2 h-2 rounded-full", m[status] || "bg-gray-400")} />;
 };
 
-// Dark mode hook
+// Dark mode hook with smooth transitions
 function useDarkMode(){
   const [dark, setDark] = useState(()=>{
     const stored = typeof window !== "undefined" ? localStorage.getItem("theme") : null;
@@ -205,7 +233,7 @@ function Dashboard({ trucks, trailers, cases, ledger }){
   ];
 
   return (
-    <div className="space-y-4">
+    <motion.div {...pageTransition} className="space-y-4">
       {/* Metrics Row */}
       <div className="grid md:grid-cols-2 gap-4">
         <Card
@@ -322,7 +350,13 @@ function Dashboard({ trucks, trailers, cases, ledger }){
         toolbar={
           <div className="flex items-center gap-2">
             <Pill tone="neutral">{trucks.length + trailers.length} assets</Pill>
-            <button className="px-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold">Export CSV</button>
+            <motion.button 
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold transition-all duration-200"
+            >
+              Export CSV
+            </motion.button>
           </div>
         }
       >
@@ -341,7 +375,13 @@ function Dashboard({ trucks, trailers, cases, ledger }){
             <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
               {[...trucks.map(t => ({...t, type: 'Truck', makeModel: `${t.make} ${t.model}`})), 
                 ...trailers.map(t => ({...t, type: 'Trailer', makeModel: t.type}))].map((asset, i) => (
-                <tr key={asset.id} className="hover:bg-gray-50 dark:hover:bg-gray-800/60">
+                <motion.tr 
+                  key={asset.id} 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="hover:bg-gray-50 dark:hover:bg-gray-800/60 transition-colors duration-150"
+                >
                   <td className="py-3 pr-4">{i + 1}</td>
                   <td className="py-3 pr-4 font-medium">{asset.id}</td>
                   <td className="py-3 pr-4">{asset.type}</td>
@@ -350,19 +390,370 @@ function Dashboard({ trucks, trailers, cases, ledger }){
                     <span className="inline-flex items-center gap-2"><StatusDot status={asset.status}/> {asset.status}</span>
                   </td>
                   <td className="py-3 pr-4 text-gray-600 dark:text-gray-300">{asset.notes}</td>
-                </tr>
+                </motion.tr>
               ))}
             </tbody>
           </table>
         </div>
       </Card>
-    </div>
+    </motion.div>
+  );
+}
+
+/** Trucks Section **/
+function TrucksPage({ trucks, setTrucks }) {
+  return (
+    <motion.div {...pageTransition} className="space-y-4">
+      <Card
+        title="Trucks Management"
+        toolbar={
+          <div className="flex items-center gap-2">
+            <Pill tone="neutral">{trucks.length} trucks</Pill>
+            <motion.button 
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black hover:opacity-90 text-sm font-semibold transition-all duration-200"
+            >
+              <Plus size={16} /> Add Truck
+            </motion.button>
+          </div>
+        }
+      >
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-sm">
+            <thead className="text-left text-gray-500">
+              <tr>
+                <th className="pb-2 pr-4">ID</th>
+                <th className="pb-2 pr-4">Make/Model</th>
+                <th className="pb-2 pr-4">Year</th>
+                <th className="pb-2 pr-4">VIN</th>
+                <th className="pb-2 pr-4">Status</th>
+                <th className="pb-2 pr-4">Mileage</th>
+                <th className="pb-2 pr-4">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+              {trucks.map((truck, i) => (
+                <motion.tr 
+                  key={truck.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="hover:bg-gray-50 dark:hover:bg-gray-800/60 transition-colors duration-150"
+                >
+                  <td className="py-3 pr-4 font-medium">{truck.id}</td>
+                  <td className="py-3 pr-4">{truck.make} {truck.model}</td>
+                  <td className="py-3 pr-4">{truck.year}</td>
+                  <td className="py-3 pr-4 font-mono text-xs">{truck.vin}</td>
+                  <td className="py-3 pr-4">
+                    <span className="inline-flex items-center gap-2">
+                      <StatusDot status={truck.status}/> {truck.status}
+                    </span>
+                  </td>
+                  <td className="py-3 pr-4">{truck.miles?.toLocaleString()} mi</td>
+                  <td className="py-3 pr-4">
+                    <div className="flex items-center gap-1">
+                      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150">
+                        <Eye size={14} />
+                      </motion.button>
+                      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150">
+                        <Edit size={14} />
+                      </motion.button>
+                      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded transition-colors duration-150 text-red-600">
+                        <Trash2 size={14} />
+                      </motion.button>
+                    </div>
+                  </td>
+                </motion.tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+    </motion.div>
+  );
+}
+
+/** Trailers Section **/
+function TrailersPage({ trailers, setTrailers }) {
+  return (
+    <motion.div {...pageTransition} className="space-y-4">
+      <Card
+        title="Trailers Management"
+        toolbar={
+          <div className="flex items-center gap-2">
+            <Pill tone="neutral">{trailers.length} trailers</Pill>
+            <motion.button 
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black hover:opacity-90 text-sm font-semibold transition-all duration-200"
+            >
+              <Plus size={16} /> Add Trailer
+            </motion.button>
+          </div>
+        }
+      >
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-sm">
+            <thead className="text-left text-gray-500">
+              <tr>
+                <th className="pb-2 pr-4">ID</th>
+                <th className="pb-2 pr-4">Type</th>
+                <th className="pb-2 pr-4">Owner</th>
+                <th className="pb-2 pr-4">Status</th>
+                <th className="pb-2 pr-4">External ID</th>
+                <th className="pb-2 pr-4">Notes</th>
+                <th className="pb-2 pr-4">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+              {trailers.map((trailer, i) => (
+                <motion.tr 
+                  key={trailer.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="hover:bg-gray-50 dark:hover:bg-gray-800/60 transition-colors duration-150"
+                >
+                  <td className="py-3 pr-4 font-medium">{trailer.id}</td>
+                  <td className="py-3 pr-4">{trailer.type}</td>
+                  <td className="py-3 pr-4">{trailer.owner}</td>
+                  <td className="py-3 pr-4">
+                    <span className="inline-flex items-center gap-2">
+                      <StatusDot status={trailer.status}/> {trailer.status}
+                    </span>
+                  </td>
+                  <td className="py-3 pr-4 font-mono text-xs">{trailer.extId}</td>
+                  <td className="py-3 pr-4 text-gray-600 dark:text-gray-300">{trailer.notes}</td>
+                  <td className="py-3 pr-4">
+                    <div className="flex items-center gap-1">
+                      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150">
+                        <Eye size={14} />
+                      </motion.button>
+                      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150">
+                        <Edit size={14} />
+                      </motion.button>
+                      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded transition-colors duration-150 text-red-600">
+                        <Trash2 size={14} />
+                      </motion.button>
+                    </div>
+                  </td>
+                </motion.tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+    </motion.div>
+  );
+}
+
+/** Cases Section **/
+function CasesPage({ cases, setCases }) {
+  return (
+    <motion.div {...pageTransition} className="space-y-4">
+      <Card
+        title="Cases Management"
+        toolbar={
+          <div className="flex items-center gap-2">
+            <Pill tone="neutral">{cases.length} cases</Pill>
+            <motion.button 
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black hover:opacity-90 text-sm font-semibold transition-all duration-200"
+            >
+              <Plus size={16} /> New Case
+            </motion.button>
+          </div>
+        }
+      >
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-sm">
+            <thead className="text-left text-gray-500">
+              <tr>
+                <th className="pb-2 pr-4">Asset</th>
+                <th className="pb-2 pr-4">Title</th>
+                <th className="pb-2 pr-4">Priority</th>
+                <th className="pb-2 pr-4">Stage</th>
+                <th className="pb-2 pr-4">Assigned</th>
+                <th className="pb-2 pr-4">Cost</th>
+                <th className="pb-2 pr-4">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+              {cases.map((case_, i) => (
+                <motion.tr 
+                  key={case_.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="hover:bg-gray-50 dark:hover:bg-gray-800/60 transition-colors duration-150"
+                >
+                  <td className="py-3 pr-4">
+                    <div className="flex items-center gap-2">
+                      {case_.assetType === 'truck' ? <Truck size={16} /> : <Package size={16} />}
+                      <span className="font-medium">{case_.assetId}</span>
+                    </div>
+                  </td>
+                  <td className="py-3 pr-4">{case_.title}</td>
+                  <td className="py-3 pr-4">
+                    <Pill tone={case_.priority === 'High' ? 'danger' : case_.priority === 'Medium' ? 'warning' : 'neutral'}>
+                      {case_.priority}
+                    </Pill>
+                  </td>
+                  <td className="py-3 pr-4">
+                    <Pill tone={case_.stage === 'Closed' ? 'success' : 'neutral'}>
+                      {case_.stage}
+                    </Pill>
+                  </td>
+                  <td className="py-3 pr-4">{case_.assigned}</td>
+                  <td className="py-3 pr-4 font-medium">{fmt.format(case_.cost)}</td>
+                  <td className="py-3 pr-4">
+                    <div className="flex items-center gap-1">
+                      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150">
+                        <Eye size={14} />
+                      </motion.button>
+                      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150">
+                        <Edit size={14} />
+                      </motion.button>
+                      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded transition-colors duration-150 text-red-600">
+                        <Trash2 size={14} />
+                      </motion.button>
+                    </div>
+                  </td>
+                </motion.tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+    </motion.div>
+  );
+}
+
+/** Finance Section **/
+function FinancePage({ ledger, setLedger }) {
+  const totalIncome = useMemo(() => ledger.filter(l => l.type === 'income').reduce((a, b) => a + b.amount, 0), [ledger]);
+  const totalExpenses = useMemo(() => ledger.filter(l => l.type === 'expense').reduce((a, b) => a + b.amount, 0), [ledger]);
+  const netProfit = totalIncome - totalExpenses;
+
+  return (
+    <motion.div {...pageTransition} className="space-y-4">
+      {/* Summary Cards */}
+      <div className="grid md:grid-cols-3 gap-4">
+        <Card title="Total Income">
+          <div className="text-2xl font-semibold text-emerald-600">{fmt.format(totalIncome)}</div>
+        </Card>
+        <Card title="Total Expenses">
+          <div className="text-2xl font-semibold text-red-600">{fmt.format(totalExpenses)}</div>
+        </Card>
+        <Card title="Net Profit">
+          <div className={cn("text-2xl font-semibold", netProfit >= 0 ? "text-emerald-600" : "text-red-600")}>
+            {fmt.format(netProfit)}
+          </div>
+        </Card>
+      </div>
+
+      <Card
+        title="Financial Records"
+        toolbar={
+          <div className="flex items-center gap-2">
+            <Pill tone="neutral">{ledger.length} records</Pill>
+            <motion.button 
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black hover:opacity-90 text-sm font-semibold transition-all duration-200"
+            >
+              <Plus size={16} /> Add Record
+            </motion.button>
+          </div>
+        }
+      >
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-sm">
+            <thead className="text-left text-gray-500">
+              <tr>
+                <th className="pb-2 pr-4">Type</th>
+                <th className="pb-2 pr-4">Category</th>
+                <th className="pb-2 pr-4">Amount</th>
+                <th className="pb-2 pr-4">Note</th>
+                <th className="pb-2 pr-4">Reference</th>
+                <th className="pb-2 pr-4">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+              {ledger.map((record, i) => (
+                <motion.tr 
+                  key={record.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="hover:bg-gray-50 dark:hover:bg-gray-800/60 transition-colors duration-150"
+                >
+                  <td className="py-3 pr-4">
+                    <Pill tone={record.type === 'income' ? 'success' : 'danger'}>
+                      {record.type}
+                    </Pill>
+                  </td>
+                  <td className="py-3 pr-4">{record.category}</td>
+                  <td className="py-3 pr-4 font-medium">
+                    <span className={record.type === 'income' ? 'text-emerald-600' : 'text-red-600'}>
+                      {record.type === 'income' ? '+' : '-'}{fmt.format(record.amount)}
+                    </span>
+                  </td>
+                  <td className="py-3 pr-4 text-gray-600 dark:text-gray-300">{record.note}</td>
+                  <td className="py-3 pr-4 font-mono text-xs">{record.ref}</td>
+                  <td className="py-3 pr-4">
+                    <div className="flex items-center gap-1">
+                      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150">
+                        <Eye size={14} />
+                      </motion.button>
+                      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150">
+                        <Edit size={14} />
+                      </motion.button>
+                      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded transition-colors duration-150 text-red-600">
+                        <Trash2 size={14} />
+                      </motion.button>
+                    </div>
+                  </td>
+                </motion.tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+    </motion.div>
+  );
+}
+
+/** Generic Page Component **/
+function GenericPage({ title, icon: Icon }) {
+  return (
+    <motion.div {...pageTransition} className="space-y-4">
+      <Card title={title}>
+        <div className="text-center py-12">
+          <Icon size={48} className="mx-auto mb-4 text-gray-400" />
+          <h3 className="text-lg font-semibold mb-2">{title}</h3>
+          <p className="text-gray-500 dark:text-gray-400 mb-4">
+            This section is under development and will be available soon.
+          </p>
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => toast.success(`${title} section coming soon!`)}
+            className="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-xl text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
+          >
+            Get Notified
+          </motion.button>
+        </div>
+      </Card>
+    </motion.div>
   );
 }
 
 /** Main App Component **/
 function App(){
-  // THEME
+  // THEME with smooth transitions
   const [dark, setDark] = useDarkMode();
 
   // NAVIGATION
@@ -373,6 +764,10 @@ function App(){
     { id: "cases", label: "Cases", icon: ClipboardList },
     { id: "finance", label: "Finance", icon: DollarSign },
     { id: "analytics", label: "Analytics", icon: BarChart3 },
+    { id: "fleet-analytics", label: "Fleet Analytics", icon: FileBarChart },
+    { id: "maintenance", label: "Maintenance", icon: Wrench },
+    { id: "driver-performance", label: "Driver Performance", icon: GaugeCircle },
+    { id: "fleet-assignment", label: "Fleet Assignment", icon: Car },
     { id: "settings", label: "Settings", icon: SettingsIcon }
   ];
   const [page, setPage] = useState("dashboard");
@@ -389,14 +784,38 @@ function App(){
   const [cases, setCases] = useSeededState('cases', SEED.cases);
   const [ledger, setLedger] = useSeededState('ledger', SEED.ledger);
 
+  const renderPage = () => {
+    switch(page) {
+      case 'dashboard':
+        return <Dashboard trucks={trucks} trailers={trailers} cases={cases} ledger={ledger} />;
+      case 'trucks':
+        return <TrucksPage trucks={trucks} setTrucks={setTrucks} />;
+      case 'trailers':
+        return <TrailersPage trailers={trailers} setTrailers={setTrailers} />;
+      case 'cases':
+        return <CasesPage cases={cases} setCases={setCases} />;
+      case 'finance':
+        return <FinancePage ledger={ledger} setLedger={setLedger} />;
+      default:
+        const sidebarItem = sidebar.find(s => s.id === page);
+        return <GenericPage title={sidebarItem?.label || 'Page'} icon={sidebarItem?.icon || LayoutGrid} />;
+    }
+  };
+
   return (
-    <div className={dark ? "dark" : ""}>
-      <div style={fontStack} className="min-h-screen bg-gray-100 text-gray-900 transition-colors duration-300 antialiased dark:bg-[#0b0b0f] dark:text-gray-100">
+    <div className={cn(dark ? "dark" : "", "transition-colors duration-500 ease-out")}>
+      <div style={fontStack} className="min-h-screen bg-gray-100 text-gray-900 transition-colors duration-500 ease-out antialiased dark:bg-[#0b0b0f] dark:text-gray-100">
         {/* Top Bar */}
-        <header className="sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-black/30 border-b border-gray-200 dark:border-gray-800">
+        <header className="sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-black/30 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
           <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3">
             <div className="flex items-center gap-2 font-semibold">
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-white">T</span>
+              <motion.span 
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-white"
+              >
+                T
+              </motion.span>
               <span className="hidden sm:inline">TranGo TMS</span>
             </div>
             <div className="mx-3 text-sm text-gray-400">/</div>
@@ -411,23 +830,35 @@ function App(){
               <div className="relative hidden md:flex">
                 <input
                   placeholder="Search"
-                  className="pl-9 pr-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-zinc-900/60 focus:outline-none focus:ring-2 focus:ring-black/10 dark:focus:ring-white/10 text-sm"
+                  className="pl-9 pr-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-zinc-900/60 focus:outline-none focus:ring-2 focus:ring-black/10 dark:focus:ring-white/10 text-sm transition-all duration-200"
                 />
                 <Search className="absolute left-3 top-2.5" size={16} />
               </div>
               <TopButton icon={Bell} label="Notifications" />
               <TopButton icon={SettingsIcon} label="Settings" />
-              <button
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setDark((d) => !d)}
-                className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold"
+                className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold transition-all duration-300"
               >
-                {dark ? <Sun size={16} /> : <Moon size={16} />}<span className="hidden sm:inline">{dark ? "Light" : "Dark"}</span>
-              </button>
-              <button className="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 font-semibold">
+                <motion.div
+                  animate={{ rotate: dark ? 180 : 0 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {dark ? <Sun size={16} /> : <Moon size={16} />}
+                </motion.div>
+                <span className="hidden sm:inline">{dark ? "Light" : "Dark"}</span>
+              </motion.button>
+              <motion.button 
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 font-semibold transition-all duration-200"
+              >
                 <img src="https://i.pravatar.cc/36?img=5" alt="avatar" className="h-7 w-7 rounded-full" />
                 <span className="text-sm hidden sm:inline">Admin</span>
                 <ChevronDown size={16} />
-              </button>
+              </motion.button>
             </div>
           </div>
         </header>
@@ -436,33 +867,56 @@ function App(){
         <div className="max-w-7xl mx-auto grid grid-cols-12 gap-4 p-4">
           {/* Sidebar */}
           <aside className="col-span-12 md:col-span-3 lg:col-span-2 space-y-2">
-            <div className="rounded-2xl p-2 bg-white/70 dark:bg-zinc-900/70 border border-gray-200 dark:border-gray-800">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3 }}
+              className="rounded-2xl p-2 bg-white/70 dark:bg-zinc-900/70 border border-gray-200 dark:border-gray-800 backdrop-blur transition-colors duration-300"
+            >
               <p className="px-2 pt-2 pb-1 text-xs uppercase tracking-wide text-gray-400">Main menu</p>
               <div className="space-y-1">
-                {sidebar.map((item) => (
-                  <SidebarItem
+                {sidebar.map((item, i) => (
+                  <motion.div
                     key={item.id}
-                    icon={item.icon}
-                    label={item.label}
-                    active={page === item.id}
-                    onClick={() => setPage(item.id)}
-                  />
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.03 }}
+                  >
+                    <SidebarItem
+                      icon={item.icon}
+                      label={item.label}
+                      active={page === item.id}
+                      onClick={() => setPage(item.id)}
+                    />
+                  </motion.div>
                 ))}
               </div>
               <div className="pt-2 mt-2 border-t border-gray-200 dark:border-gray-800 flex justify-between px-2">
-                <button className="text-xs font-semibold text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 inline-flex items-center gap-1"><LogOut size={14}/> Log out</button>
+                <motion.button 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="text-xs font-semibold text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 inline-flex items-center gap-1 transition-colors duration-200"
+                >
+                  <LogOut size={14}/> Log out
+                </motion.button>
                 <span className="text-xs text-gray-400">v1.0</span>
               </div>
-            </div>
+            </motion.div>
           </aside>
 
           {/* Main */}
           <main className="col-span-12 md:col-span-9 lg:col-span-10 space-y-4">
-            <div className="flex items-center justify-between">
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex items-center justify-between"
+            >
               <div className="text-2xl font-semibold">
                 {sidebar.find(s => s.id === page)?.label || 'Dashboard'}
               </div>
-              <button
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => {
                   setRange((r) =>
                     r.from === "Dec 10, 2022"
@@ -470,31 +924,16 @@ function App(){
                       : { from: "Dec 10, 2022", to: "Jul 18, 2023" }
                   );
                 }}
-                className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold"
+                className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold transition-all duration-200"
               >
                 {range.from} - {range.to} <ChevronDown size={16} />
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
 
             {/* Content based on selected page */}
             <AnimatePresence mode="wait">
-              <motion.div
-                key={page}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.2 }}
-              >
-                {page === 'dashboard' && <Dashboard trucks={trucks} trailers={trailers} cases={cases} ledger={ledger} />}
-                {page !== 'dashboard' && (
-                  <Card title={`${sidebar.find(s => s.id === page)?.label} Section`}>
-                    <div className="text-center py-8 text-gray-500 dark:text-gray-400">
-                      <div className="text-4xl mb-4">🚧</div>
-                      <p>This section is under development.</p>
-                      <p className="text-sm mt-2">The original functionality will be integrated with the new design.</p>
-                    </div>
-                  </Card>
-                )}
+              <motion.div key={page}>
+                {renderPage()}
               </motion.div>
             </AnimatePresence>
           </main>
@@ -504,25 +943,21 @@ function App(){
         <AnimatePresence>
           <motion.button
             key="help"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            whileTap={{ scale: 0.98 }}
-            className="fixed bottom-5 right-5 flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg bg-black text-white dark:bg-white dark:text-black"
-            onClick={() => toast.success("New design applied! All sections will be updated progressively.")}
+            initial={{ opacity: 0, y: 10, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.9 }}
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className="fixed bottom-5 right-5 flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg bg-black text-white dark:bg-white dark:text-black transition-all duration-200"
+            onClick={() => toast.success("Modern TMS interface with smooth animations!")}
           >
-            <CheckCircle2 size={16}/> New Design
+            <CheckCircle2 size={16}/> Modern UI
           </motion.button>
         </AnimatePresence>
-
-        {/* Footer */}
-        <footer className="max-w-7xl mx-auto px-4 py-8 text-sm text-gray-500 dark:text-gray-400">
-          Designed with smooth, Apple-like motion • Light & Dark themes • Ready for backend integration
-        </footer>
       </div>
 
       {/* Toast host */}
-      <div id="toast" role="status" aria-live="polite" className="fixed bottom-18 left-1/2 transform -translate-x-1/2 translate-y-full px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-full shadow-lg transition-transform duration-300 opacity-0 pointer-events-none z-50"></div>
+      <div id="toast" role="status" aria-live="polite" className="fixed bottom-18 left-1/2 transform -translate-x-1/2 translate-y-full px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-full shadow-lg transition-all duration-300 opacity-0 pointer-events-none z-50"></div>
     </div>
   );
 }
