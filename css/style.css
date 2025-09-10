@@ -142,6 +142,9 @@ body{
 .muted{ color:var(--muted); }
 
 .top-actions{ display:flex; align-items:center; gap:10px; }
+/* Searchbox in topbar */
+.searchbox{ display:flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background: var(--bg2); }
+.searchbox input{ width:180px; background:transparent; border:0; outline:none; color:var(--text); }
 /* Connection badge */
 .conn-badge{ padding:6px 10px; border:1px solid var(--border); border-radius:999px; background: var(--bg2); color:var(--muted); font-size:12px; }
 .conn-badge.online{ color: color-mix(in oklab, var(--brand), white 10%); background: color-mix(in oklab, var(--brand), transparent 88%); border-color: color-mix(in oklab, var(--brand), black 20%); }
@@ -322,3 +325,12 @@ canvas{ display:block; width:100%; height:auto; }
   .sidebar.open{ transform: translateX(0); }
   .topbar{ position:sticky; top:0; }
 }
+.stat-grid{ display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:12px; margin-bottom:12px; }
+.stat-card{ padding:12px; border-radius:16px; border:1px solid var(--border); background: var(--bg1); box-shadow: var(--shadow); }
+.stat-head{ color:var(--muted); font-size:12px; margin-bottom:6px; }
+canvas{ display:block; width:100%; height:auto; }
+
+/* Skeleton overlay */
+.skeleton{ position:fixed; inset:auto 18px 18px 340px; height:120px; border-radius:16px; background: linear-gradient(90deg, var(--bg1), var(--bg2), var(--bg1)); background-size:200% 100%; animation: shimmer 1.2s linear infinite; box-shadow: var(--shadow); display:none; }
+.skeleton.show{ display:block; }
+@keyframes shimmer{ 0%{ background-position: 0 0 } 100%{ background-position: 200% 0 } }

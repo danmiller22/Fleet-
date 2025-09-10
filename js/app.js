@@ -610,7 +610,25 @@
       const warnRGBA = 'rgba(255,193,7,1)';
       animateLine('expensesChart','expensesTip', exp.labels, exp.values, brandRGBA);
       animateLine('repairsChart','repairsTip', rep.labels, rep.values, warnRGBA);
+      // Sparklines
+      drawSpark('sparkExp', exp.values, brandRGBA);
+      drawSpark('sparkRep', rep.values, warnRGBA);
+      const activeRate = monthsRange(6).map(()=> (data.trucks.length+data.trailers.length)? ( (data.trucks.filter(t=>t.status===STATUS.ACTIVE).length+data.trailers.filter(t=>t.status===STATUS.ACTIVE).length) ):0);
+      drawSpark('sparkAct', activeRate, 'rgba(102,204,102,1)');
+      const avgMileage = [ ...Array(6) ].map(()=> (data.trucks.reduce((s,t)=>s+(t.mileage||0),0)/(data.trucks.length||1)) );
+      drawSpark('sparkMil', avgMileage, 'rgba(100,149,237,1)');
     }catch(e){ /* ignore */ }
+  }
+  function drawSpark(id, values, color){
+    const cv = qs('#'+id); if(!cv) return; const { ctx, w, h } = setupCanvas(cv);
+    const pad=6; const max=Math.max(1,...values); const min=Math.min(0,...values);
+    const pts = toPoints(values, w, h, pad, min, max);
+    drawGrid(ctx,w,h);
+    ctx.lineWidth=1.6; ctx.strokeStyle=color; smoothPath(ctx, pts); ctx.stroke();
+    const grad = ctx.createLinearGradient(0,0,0,h);
+    grad.addColorStop(0, color.replace('1)', '.18)'));
+    grad.addColorStop(1, color.replace('1)', '0)'));
+    ctx.lineTo(w-pad, h-pad); ctx.lineTo(pad, h-pad); ctx.closePath(); ctx.fillStyle=grad; ctx.fill();
   }
   function hexToRgb(hex){
     const s = hex.replace('#','');

@@ -63,6 +63,13 @@
           <span id="pageCount" class="muted"></span>
         </div>
         <div class="top-actions">
+          <div class="seg searchbox">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M21 21l-3.8-3.8M17 10.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <input id="topSearch" placeholder="Search" />
+          </div>
+          <button class="icon-btn" id="bellBtn" title="Notifications" aria-label="Notifications">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h11zm-7 0a3 3 0 006 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
           <div class="seg">
             <button class="seg-btn active" data-scope="all">All</button>
             <button class="seg-btn" data-scope="active">Active</button>
@@ -86,6 +93,7 @@
       </header>
 
       <section class="content">
+        <div class="skeleton" id="skeletonOverlay" aria-hidden="true"></div>
         <div class="kpi-row" id="kpiRow">
           <div class="kpi">
             <div class="kpi-title">Total assets</div>
@@ -103,6 +111,26 @@
           <div class="kpi">
             <div class="kpi-title">Average repair cost</div>
             <div class="kpi-value" id="kpiAvgRepair">—</div>
+          </div>
+        </div>
+
+        <!-- Stat cards with sparklines -->
+        <div class="stat-grid" id="statGrid">
+          <div class="stat-card">
+            <div class="stat-head">Expenses trend</div>
+            <canvas id="sparkExp" width="320" height="80"></canvas>
+          </div>
+          <div class="stat-card">
+            <div class="stat-head">Repairs cost trend</div>
+            <canvas id="sparkRep" width="320" height="80"></canvas>
+          </div>
+          <div class="stat-card">
+            <div class="stat-head">Active rate</div>
+            <canvas id="sparkAct" width="320" height="80"></canvas>
+          </div>
+          <div class="stat-card">
+            <div class="stat-head">Avg mileage</div>
+            <canvas id="sparkMil" width="320" height="80"></canvas>
           </div>
         </div>
 
