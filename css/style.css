@@ -17,7 +17,7 @@
   --t-fast: 160ms;
   --t: 280ms;
   --t-slow: 560ms;
-  --t-wipe: 900ms;
+  --t-wipe: 300ms;
 
   /* Motion curves */
   --ease-out: cubic-bezier(.22,1,.36,1);
@@ -313,6 +313,16 @@ label{ color:var(--muted); font-size:12px; }
   background: radial-gradient(1200px 600px at 10% 0%, var(--bg2, var(--bg2)), var(--bg0, var(--bg0)));
   animation: themeWipe var(--t-wipe) cubic-bezier(.22,1,.36,1) forwards;
 }
+
+/* Auth overlay */
+.auth{ position:fixed; inset:0; display:none; place-items:center; background: rgba(0,0,0,.45); backdrop-filter: blur(6px); z-index:1000; }
+.auth.open{ display:grid; }
+.auth-card{ width:min(420px, 94vw); border:1px solid var(--border); border-radius:20px; background: var(--bg1); box-shadow: var(--shadow); padding:18px; }
+.auth-title{ font-size:18px; font-weight:800; margin:0 0 8px 0; }
+.auth-note{ color:var(--muted); font-size:12px; margin-bottom:12px; }
+.auth .field{ display:flex; flex-direction:column; gap:6px; margin-bottom:10px; }
+.auth input{ padding:10px 12px; border:1px solid var(--border); border-radius:12px; background: var(--bg2); color:var(--text); outline:none; }
+.auth-actions{ display:flex; gap:10px; justify-content:flex-end; }
 
 /* Charts */
 .charts-row{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:12px; margin-top:12px; }

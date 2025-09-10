@@ -65,6 +65,12 @@
   const themeToggle = qs('#themeToggle');
   const brandCard = qs('#brandCard');
   const connBadge = qs('#connBadge');
+  const skeleton = qs('#skeletonOverlay');
+  const auth = qs('#auth');
+  const signInBtn = qs('#signInBtn');
+  const signUpBtn = qs('#signUpBtn');
+  const authUser = qs('#authUser');
+  const authPass = qs('#authPass');
 
   /* ---------- Helpers ---------- */
   function uid(){ return Math.random().toString(36).slice(2,9); }
@@ -75,6 +81,22 @@
   function html(str){ const t=document.createElement('template'); t.innerHTML=str.trim(); return t.content.firstElementChild; }
   function toast(msg){ const t=qs('#toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2300); }
   function setConn(on){ if(!connBadge) return; connBadge.textContent = on? 'Online' : 'Offline'; connBadge.classList.toggle('online', !!on); }
+  function setLoading(v){ if(!skeleton) return; skeleton.classList.toggle('show', !!v); }
+
+  /* ---------- Simple Auth (client-side) ---------- */
+  const AUTH = { user:'admin', pass:'1234' };
+  function checkAuth(){
+    if(localStorage.getItem('tms-auth')==='ok'){ auth?.classList.remove('open'); return true; }
+    auth?.classList.add('open'); return false;
+  }
+  function doSignIn(){
+    const u=(authUser?.value||'').trim(); const p=(authPass?.value||'').trim();
+    if(u===AUTH.user && p===AUTH.pass){ localStorage.setItem('tms-auth','ok'); auth?.classList.remove('open'); toast('Signed in'); render(); }
+    else{ toast('Invalid credentials'); }
+  }
+  signInBtn?.addEventListener('click', doSignIn);
+  signUpBtn?.addEventListener('click', ()=> alert('For access please contact Dan Miller 630-888-3047'));
+  authPass?.addEventListener('keydown', e=>{ if(e.key==='Enter') doSignIn(); });
   function clone(obj){
     try {
       return (typeof structuredClone === 'function') ? structuredClone(obj) : JSON.parse(JSON.stringify(obj));
@@ -438,17 +460,10 @@
     toast(mode==='dark' ? 'Dark theme' : 'Light theme');
   }
   function smoothSetTheme(mode){
-    // Create wipe overlay colored by target theme
-    const wipe = document.createElement('div');
-    wipe.className = 'theme-wipe';
-    // Temporarily apply target palette to overlay only
-    if(mode==='light') document.documentElement.classList.add('light'); else document.documentElement.classList.remove('light');
-    document.body.appendChild(wipe);
-    // After animation, finalize theme and remove overlay
-    setTimeout(()=>{
-      setTheme(mode);
-      wipe.remove();
-    }, 900);
+    // Apply theme immediately; run a short non-blocking wipe animation
+    setTheme(mode);
+    const wipe = document.createElement('div'); wipe.className='theme-wipe'; document.body.appendChild(wipe);
+    setTimeout(()=> wipe.remove(), 300);
   }
 
   /* ---------- Palette (⌘/Ctrl + K) ---------- */
@@ -633,26 +648,10 @@
       const warnRGBA = 'rgba(255,193,7,1)';
       animateLine('expensesChart','expensesTip', exp.labels, exp.values, brandRGBA);
       animateLine('repairsChart','repairsTip', rep.labels, rep.values, warnRGBA);
-      // Sparklines
-      drawSpark('sparkExp', exp.values, brandRGBA);
-      drawSpark('sparkRep', rep.values, warnRGBA);
-      const activeRate = monthsRange(6).map(()=> (data.trucks.length+data.trailers.length)? ( (data.trucks.filter(t=>t.status===STATUS.ACTIVE).length+data.trailers.filter(t=>t.status===STATUS.ACTIVE).length) ):0);
-      drawSpark('sparkAct', activeRate, 'rgba(102,204,102,1)');
-      const avgMileage = [ ...Array(6) ].map(()=> (data.trucks.reduce((s,t)=>s+(t.mileage||0),0)/(data.trucks.length||1)) );
-      drawSpark('sparkMil', avgMileage, 'rgba(100,149,237,1)');
+      // Sparklines removed by request
     }catch(e){ /* ignore */ }
   }
-  function drawSpark(id, values, color){
-    const cv = qs('#'+id); if(!cv) return; const { ctx, w, h } = setupCanvas(cv);
-    const pad=6; const max=Math.max(1,...values); const min=Math.min(0,...values);
-    const pts = toPoints(values, w, h, pad, min, max);
-    drawGrid(ctx,w,h);
-    ctx.lineWidth=1.6; ctx.strokeStyle=color; smoothPath(ctx, pts); ctx.stroke();
-    const grad = ctx.createLinearGradient(0,0,0,h);
-    grad.addColorStop(0, color.replace('1)', '.18)'));
-    grad.addColorStop(1, color.replace('1)', '0)'));
-    ctx.lineTo(w-pad, h-pad); ctx.lineTo(pad, h-pad); ctx.closePath(); ctx.fillStyle=grad; ctx.fill();
-  }
+  // drawSpark removed
   function hexToRgb(hex){
     const s = hex.replace('#','');
     const bigint = parseInt(s.length===3 ? s.split('').map(x=>x+x).join('') : s, 16);

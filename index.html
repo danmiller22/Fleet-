@@ -115,24 +115,7 @@
         </div>
 
         <!-- Stat cards with sparklines -->
-        <div class="stat-grid" id="statGrid">
-          <div class="stat-card">
-            <div class="stat-head">Expenses trend</div>
-            <canvas id="sparkExp" width="320" height="80"></canvas>
-          </div>
-          <div class="stat-card">
-            <div class="stat-head">Repairs cost trend</div>
-            <canvas id="sparkRep" width="320" height="80"></canvas>
-          </div>
-          <div class="stat-card">
-            <div class="stat-head">Active rate</div>
-            <canvas id="sparkAct" width="320" height="80"></canvas>
-          </div>
-          <div class="stat-card">
-            <div class="stat-head">Avg mileage</div>
-            <canvas id="sparkMil" width="320" height="80"></canvas>
-          </div>
-        </div>
+        <!-- stat cards removed by request -->
 
         <div class="panel" id="panel">
           <div class="panel-toolbar">
@@ -189,6 +172,20 @@
   </div>
 
   <div class="toast" id="toast"></div>
+
+  <!-- Auth -->
+  <div class="auth" id="auth">
+    <div class="auth-card">
+      <h3 class="auth-title">Sign in</h3>
+      <div class="auth-note">Access is restricted. Please sign in.</div>
+      <div class="field"><label for="authUser">Username</label><input id="authUser" type="text" autocomplete="username"></div>
+      <div class="field"><label for="authPass">Password</label><input id="authPass" type="password" autocomplete="current-password"></div>
+      <div class="auth-actions">
+        <button class="btn btn-ghost" id="signUpBtn">Sign up</button>
+        <button class="btn btn-primary" id="signInBtn">Sign in</button>
+      </div>
+    </div>
+  </div>
 
   <script src="./js/app.js"></script>
 </body>
