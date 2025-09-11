@@ -27,6 +27,8 @@ import {
   Filter,
   Download
 } from 'lucide-react';
+import { Card, Modal, Pill, StatusDot } from './components';
+import { cn, toast, pageTransition, cardTransition } from './utils';
 import * as Recharts from 'recharts';
 
 const { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip: ReTooltip, Legend, Area, AreaChart, PieChart, Pie, Cell, BarChart, Bar } = Recharts;
@@ -1009,9 +1011,11 @@ function App(){
         {/* Top Bar */}
         <header className="sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-black/30 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
           <div className="w-full px-4 py-3 flex items-center gap-3">
-            <div className="flex items-center gap-2 font-semibold">
-              <div className="w-10 h-10 bg-red-600 rounded-lg overflow-hidden flex items-center justify-center">
-                <span className="text-white font-bold text-2xl leading-none">T</span>
+            <div className="flex items-center gap-3 font-semibold">
+              <div className="flex-shrink-0 w-10 h-10 bg-red-600 rounded-lg overflow-hidden">
+                <div className="w-full h-full flex items-center justify-center">
+                  <span className="text-white font-bold text-2xl leading-none">T</span>
+                </div>
               </div>
               <span className="hidden sm:inline text-xl font-bold tracking-tight">US TEAM Fleet</span>
             </div>
