@@ -979,10 +979,9 @@ function App(){
               <motion.img
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
-                src="https://usteam.net/image/logo/usteam_logo_r_wb.png"
+                src="/logo.png"
                 alt="US TEAM Fleet Logo"
-                className="inline-flex h-12 w-auto rounded-none object-contain bg-transparent"
-                style={{ background: 'transparent' }}
+                className="inline-flex h-12 w-auto rounded-none object-contain"
               />
               <span className="hidden sm:inline text-xl font-bold tracking-tight">US TEAM Fleet</span>
             </div>
@@ -1114,5 +1113,7 @@ function App(){
     </div>
   );
 }
+
+// Remove ModernUI button
 
 createRoot(document.getElementById('app')).render(<App/>);
