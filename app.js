@@ -547,8 +547,22 @@ function TrucksPage({ trucks, setTrucks }) {
             <div className="p-6 text-center">
               <div className="mb-4 text-lg">Delete this truck?</div>
               <div className="flex gap-4 justify-center">
-                <button className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600" onClick={() => setConfirmDelete(null)}>Cancel</button>
-                <button className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700" onClick={() => handleDelete(confirmDelete)}>Delete</button>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
+                  onClick={() => setConfirmDelete(null)}
+                >
+                  Cancel
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700"
+                  onClick={() => handleDelete(confirmDelete)}
+                >
+                  Delete
+                </motion.button>
               </div>
             </div>
           </Modal>
@@ -603,8 +617,23 @@ function TruckForm({ truck, mode, onSave, onCancel }) {
         <input name="notes" value={form.notes} onChange={handleChange} placeholder="Notes" className="col-span-2 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800" />
       </div>
       <div className="flex gap-3 justify-end mt-4">
-        <button type="button" onClick={onCancel} className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600">Cancel</button>
-        <button type="submit" className="px-4 py-2 rounded bg-emerald-600 text-white hover:bg-emerald-700">{mode === 'add' ? 'Add' : 'Save'}</button>
+        <motion.button
+          type="button"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={onCancel}
+          className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
+        >
+          Cancel
+        </motion.button>
+        <motion.button
+          type="submit"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className="px-4 py-2 rounded bg-emerald-600 text-white hover:bg-emerald-700"
+        >
+          {mode === 'add' ? 'Add' : 'Save'}
+        </motion.button>
       </div>
     </form>
   );
@@ -945,14 +974,14 @@ function App(){
       <div style={fontStack} className="min-h-screen bg-gray-100 text-gray-900 transition-colors duration-500 ease-out antialiased dark:bg-[#0b0b0f] dark:text-gray-100">
         {/* Top Bar */}
         <header className="sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-black/30 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
-          <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3">
+          <div className="w-full px-4 py-3 flex items-center gap-3">
             <div className="flex items-center gap-2 font-semibold">
               <motion.img
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.5 }}
-                src="logo.png"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+                src="https://usteam.net/image/logo/usteam_logo_r_wb.png"
                 alt="US TEAM Fleet Logo"
-                className="inline-flex h-16 w-16 rounded-none object-contain bg-transparent"
+                className="inline-flex h-12 w-auto rounded-none object-contain bg-transparent"
                 style={{ background: 'transparent' }}
               />
               <span className="hidden sm:inline text-xl font-bold tracking-tight">US TEAM Fleet</span>
@@ -1003,9 +1032,9 @@ function App(){
         </header>
 
         {/* App Shell */}
-        <div className="max-w-7xl mx-auto grid grid-cols-12 gap-4 p-4">
+        <div className="w-full px-4 grid grid-cols-12 gap-4">
           {/* Sidebar */}
-          <aside className="col-span-12 md:col-span-3 lg:col-span-2 space-y-2">
+          <aside className="col-span-12 md:col-span-2 lg:col-span-2 space-y-2">
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -1044,7 +1073,7 @@ function App(){
           </aside>
 
           {/* Main */}
-          <main className="col-span-12 md:col-span-9 lg:col-span-10 space-y-4">
+          <main className="col-span-12 md:col-span-10 lg:col-span-10 space-y-4">
             <motion.div 
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -1078,21 +1107,6 @@ function App(){
           </main>
         </div>
 
-        {/* Floating help */}
-        <AnimatePresence>
-          <motion.button
-            key="help"
-            initial={{ opacity: 0, y: 10, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.9 }}
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="fixed bottom-5 right-5 flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg bg-black text-white dark:bg-white dark:text-black transition-all duration-200"
-            onClick={() => toast.success("Modern TMS interface with smooth animations!")}
-          >
-            <CheckCircle2 size={16}/> Modern UI
-          </motion.button>
-        </AnimatePresence>
       </div>
 
       {/* Toast host */}
