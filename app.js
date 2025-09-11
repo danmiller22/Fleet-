@@ -400,8 +400,27 @@ function Dashboard({ trucks, trailers, cases, ledger }){
   );
 }
 
-/** Trucks Section **/
+/** Trucks Section с интерактивным CRUD **/
 function TrucksPage({ trucks, setTrucks }) {
+  const [modal, setModal] = useState({ open: false, mode: 'add', truck: null });
+  const [confirmDelete, setConfirmDelete] = useState(null);
+
+  const emptyTruck = { id: '', make: '', model: '', year: '', vin: '', status: 'Active', miles: '', notes: '' };
+
+  const handleSave = (truck) => {
+    if (modal.mode === 'add') {
+      setTrucks([...trucks, { ...truck, id: Math.random().toString(36).slice(2, 9) }]);
+    } else {
+      setTrucks(trucks.map(t => t.id === truck.id ? truck : t));
+    }
+    setModal({ open: false, mode: 'add', truck: null });
+  };
+
+  const handleDelete = (id) => {
+    setTrucks(trucks.filter(t => t.id !== id));
+    setConfirmDelete(null);
+  };
+
   return (
     <motion.div {...pageTransition} className="space-y-4">
       <Card
@@ -413,6 +432,7 @@ function TrucksPage({ trucks, setTrucks }) {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black hover:opacity-90 text-sm font-semibold transition-all duration-200"
+              onClick={() => setModal({ open: true, mode: 'add', truck: emptyTruck })}
             >
               <Plus size={16} /> Add Truck
             </motion.button>
@@ -453,13 +473,10 @@ function TrucksPage({ trucks, setTrucks }) {
                   <td className="py-3 pr-4">{truck.miles?.toLocaleString()} mi</td>
                   <td className="py-3 pr-4">
                     <div className="flex items-center gap-1">
-                      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150">
-                        <Eye size={14} />
-                      </motion.button>
-                      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150">
+                      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150" onClick={() => setModal({ open: true, mode: 'edit', truck })}>
                         <Edit size={14} />
                       </motion.button>
-                      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded transition-colors duration-150 text-red-600">
+                      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded transition-colors duration-150 text-red-600" onClick={() => setConfirmDelete(truck.id)}>
                         <Trash2 size={14} />
                       </motion.button>
                     </div>
@@ -469,8 +486,85 @@ function TrucksPage({ trucks, setTrucks }) {
             </tbody>
           </table>
         </div>
+
+        {/* Модальное окно для добавления/редактирования */}
+        {modal.open && (
+          <Modal onClose={() => setModal({ open: false, mode: 'add', truck: null })}>
+            <TruckForm
+              truck={modal.truck}
+              mode={modal.mode}
+              onSave={handleSave}
+              onCancel={() => setModal({ open: false, mode: 'add', truck: null })}
+            />
+          </Modal>
+        )}
+
+        {/* Подтверждение удаления */}
+        {confirmDelete && (
+          <Modal onClose={() => setConfirmDelete(null)}>
+            <div className="p-6 text-center">
+              <div className="mb-4 text-lg">Delete this truck?</div>
+              <div className="flex gap-4 justify-center">
+                <button className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600" onClick={() => setConfirmDelete(null)}>Cancel</button>
+                <button className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700" onClick={() => handleDelete(confirmDelete)}>Delete</button>
+              </div>
+            </div>
+          </Modal>
+        )}
       </Card>
     </motion.div>
+  );
+}
+
+// Универсальное модальное окно
+function Modal({ children, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div className="bg-white dark:bg-zinc-900 rounded-xl shadow-xl p-0 min-w-[320px] max-w-[95vw] relative animate-fadeIn">
+        <button className="absolute top-2 right-2 text-gray-400 hover:text-black dark:hover:text-white" onClick={onClose}>&times;</button>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+// Форма для добавления/редактирования Truck
+function TruckForm({ truck, mode, onSave, onCancel }) {
+  const [form, setForm] = useState(truck);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm(f => ({ ...f, [name]: value }));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSave({ ...form, year: Number(form.year), miles: Number(form.miles) });
+  };
+  return (
+    <form onSubmit={handleSubmit} className="p-6 space-y-4">
+      <div className="text-lg font-semibold mb-2">{mode === 'add' ? 'Add Truck' : 'Edit Truck'}</div>
+      <div className="grid grid-cols-2 gap-3">
+        <input name="make" value={form.make} onChange={handleChange} placeholder="Make" required className="col-span-1 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800" />
+        <input name="model" value={form.model} onChange={handleChange} placeholder="Model" required className="col-span-1 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800" />
+        <input name="year" value={form.year} onChange={handleChange} placeholder="Year" type="number" required className="col-span-1 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800" />
+        <input name="vin" value={form.vin} onChange={handleChange} placeholder="VIN" required className="col-span-1 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800" />
+        <input name="miles" value={form.miles} onChange={handleChange} placeholder="Mileage" type="number" required className="col-span-1 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800" />
+        <select name="status" value={form.status} onChange={handleChange} className="col-span-1 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800">
+          <option value="Active">Active</option>
+          <option value="Service">Service</option>
+          <option value="Repair">Repair</option>
+        </select>
+        <input name="notes" value={form.notes} onChange={handleChange} placeholder="Notes" className="col-span-2 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800" />
+      </div>
+      <div className="flex gap-3 justify-end mt-4">
+        <button type="button" onClick={onCancel} className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600">Cancel</button>
+        <button type="submit" className="px-4 py-2 rounded bg-emerald-600 text-white hover:bg-emerald-700">{mode === 'add' ? 'Add' : 'Save'}</button>
+      </div>
+    </form>
   );
 }
 
