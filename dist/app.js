@@ -38830,51 +38830,28 @@ var __iconNode = [
 ];
 var Bell = createLucideIcon("bell", __iconNode);
 
-// node_modules/lucide-react/dist/esm/icons/car.js
-var __iconNode2 = [
-  [
-    "path",
-    {
-      d: "M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2",
-      key: "5owen"
-    }
-  ],
-  ["circle", { cx: "7", cy: "17", r: "2", key: "u2ysq9" }],
-  ["path", { d: "M9 17h6", key: "r8uit2" }],
-  ["circle", { cx: "17", cy: "17", r: "2", key: "axvx0g" }]
-];
-var Car = createLucideIcon("car", __iconNode2);
-
 // node_modules/lucide-react/dist/esm/icons/chart-column.js
-var __iconNode3 = [
+var __iconNode2 = [
   ["path", { d: "M3 3v16a2 2 0 0 0 2 2h16", key: "c24i48" }],
   ["path", { d: "M18 17V9", key: "2bz60n" }],
   ["path", { d: "M13 17V5", key: "1frdt8" }],
   ["path", { d: "M8 17v-3", key: "17ska0" }]
 ];
-var ChartColumn = createLucideIcon("chart-column", __iconNode3);
+var ChartColumn = createLucideIcon("chart-column", __iconNode2);
 
 // node_modules/lucide-react/dist/esm/icons/chevron-down.js
-var __iconNode4 = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
-var ChevronDown = createLucideIcon("chevron-down", __iconNode4);
+var __iconNode3 = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+var ChevronDown = createLucideIcon("chevron-down", __iconNode3);
 
 // node_modules/lucide-react/dist/esm/icons/circle-check.js
-var __iconNode5 = [
+var __iconNode4 = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
 ];
-var CircleCheck = createLucideIcon("circle-check", __iconNode5);
-
-// node_modules/lucide-react/dist/esm/icons/circle-gauge.js
-var __iconNode6 = [
-  ["path", { d: "M15.6 2.7a10 10 0 1 0 5.7 5.7", key: "1e0p6d" }],
-  ["circle", { cx: "12", cy: "12", r: "2", key: "1c9p78" }],
-  ["path", { d: "M13.4 10.6 19 5", key: "1kr7tw" }]
-];
-var CircleGauge = createLucideIcon("circle-gauge", __iconNode6);
+var CircleCheck = createLucideIcon("circle-check", __iconNode4);
 
 // node_modules/lucide-react/dist/esm/icons/clipboard-list.js
-var __iconNode7 = [
+var __iconNode5 = [
   ["rect", { width: "8", height: "4", x: "8", y: "2", rx: "1", ry: "1", key: "tgr4d6" }],
   [
     "path",
@@ -38888,17 +38865,17 @@ var __iconNode7 = [
   ["path", { d: "M8 11h.01", key: "1dfujw" }],
   ["path", { d: "M8 16h.01", key: "18s6g9" }]
 ];
-var ClipboardList = createLucideIcon("clipboard-list", __iconNode7);
+var ClipboardList = createLucideIcon("clipboard-list", __iconNode5);
 
 // node_modules/lucide-react/dist/esm/icons/dollar-sign.js
-var __iconNode8 = [
+var __iconNode6 = [
   ["line", { x1: "12", x2: "12", y1: "2", y2: "22", key: "7eqyqh" }],
   ["path", { d: "M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6", key: "1b0p4s" }]
 ];
-var DollarSign = createLucideIcon("dollar-sign", __iconNode8);
+var DollarSign = createLucideIcon("dollar-sign", __iconNode6);
 
 // node_modules/lucide-react/dist/esm/icons/eye.js
-var __iconNode9 = [
+var __iconNode7 = [
   [
     "path",
     {
@@ -38908,37 +38885,27 @@ var __iconNode9 = [
   ],
   ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
 ];
-var Eye = createLucideIcon("eye", __iconNode9);
-
-// node_modules/lucide-react/dist/esm/icons/file-chart-column-increasing.js
-var __iconNode10 = [
-  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
-  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
-  ["path", { d: "M8 18v-2", key: "qcmpov" }],
-  ["path", { d: "M12 18v-4", key: "q1q25u" }],
-  ["path", { d: "M16 18v-6", key: "15y0np" }]
-];
-var FileChartColumnIncreasing = createLucideIcon("file-chart-column-increasing", __iconNode10);
+var Eye = createLucideIcon("eye", __iconNode7);
 
 // node_modules/lucide-react/dist/esm/icons/layout-grid.js
-var __iconNode11 = [
+var __iconNode8 = [
   ["rect", { width: "7", height: "7", x: "3", y: "3", rx: "1", key: "1g98yp" }],
   ["rect", { width: "7", height: "7", x: "14", y: "3", rx: "1", key: "6d4xhi" }],
   ["rect", { width: "7", height: "7", x: "14", y: "14", rx: "1", key: "nxv5o0" }],
   ["rect", { width: "7", height: "7", x: "3", y: "14", rx: "1", key: "1bb6yr" }]
 ];
-var LayoutGrid = createLucideIcon("layout-grid", __iconNode11);
+var LayoutGrid = createLucideIcon("layout-grid", __iconNode8);
 
 // node_modules/lucide-react/dist/esm/icons/log-out.js
-var __iconNode12 = [
+var __iconNode9 = [
   ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
   ["path", { d: "M21 12H9", key: "dn1m92" }],
   ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
 ];
-var LogOut = createLucideIcon("log-out", __iconNode12);
+var LogOut = createLucideIcon("log-out", __iconNode9);
 
 // node_modules/lucide-react/dist/esm/icons/moon.js
-var __iconNode13 = [
+var __iconNode10 = [
   [
     "path",
     {
@@ -38947,10 +38914,10 @@ var __iconNode13 = [
     }
   ]
 ];
-var Moon = createLucideIcon("moon", __iconNode13);
+var Moon = createLucideIcon("moon", __iconNode10);
 
 // node_modules/lucide-react/dist/esm/icons/package.js
-var __iconNode14 = [
+var __iconNode11 = [
   [
     "path",
     {
@@ -38962,24 +38929,24 @@ var __iconNode14 = [
   ["polyline", { points: "3.29 7 12 12 20.71 7", key: "ousv84" }],
   ["path", { d: "m7.5 4.27 9 5.15", key: "1c824w" }]
 ];
-var Package = createLucideIcon("package", __iconNode14);
+var Package = createLucideIcon("package", __iconNode11);
 
 // node_modules/lucide-react/dist/esm/icons/plus.js
-var __iconNode15 = [
+var __iconNode12 = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "M12 5v14", key: "s699le" }]
 ];
-var Plus = createLucideIcon("plus", __iconNode15);
+var Plus = createLucideIcon("plus", __iconNode12);
 
 // node_modules/lucide-react/dist/esm/icons/search.js
-var __iconNode16 = [
+var __iconNode13 = [
   ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
   ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
 ];
-var Search = createLucideIcon("search", __iconNode16);
+var Search = createLucideIcon("search", __iconNode13);
 
 // node_modules/lucide-react/dist/esm/icons/settings.js
-var __iconNode17 = [
+var __iconNode14 = [
   [
     "path",
     {
@@ -38989,10 +38956,10 @@ var __iconNode17 = [
   ],
   ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
 ];
-var Settings = createLucideIcon("settings", __iconNode17);
+var Settings = createLucideIcon("settings", __iconNode14);
 
 // node_modules/lucide-react/dist/esm/icons/square-pen.js
-var __iconNode18 = [
+var __iconNode15 = [
   ["path", { d: "M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7", key: "1m0v6g" }],
   [
     "path",
@@ -39002,10 +38969,10 @@ var __iconNode18 = [
     }
   ]
 ];
-var SquarePen = createLucideIcon("square-pen", __iconNode18);
+var SquarePen = createLucideIcon("square-pen", __iconNode15);
 
 // node_modules/lucide-react/dist/esm/icons/sun.js
-var __iconNode19 = [
+var __iconNode16 = [
   ["circle", { cx: "12", cy: "12", r: "4", key: "4exip2" }],
   ["path", { d: "M12 2v2", key: "tus03m" }],
   ["path", { d: "M12 20v2", key: "1lh1kg" }],
@@ -39016,20 +38983,20 @@ var __iconNode19 = [
   ["path", { d: "m6.34 17.66-1.41 1.41", key: "1m8zz5" }],
   ["path", { d: "m19.07 4.93-1.41 1.41", key: "1shlcs" }]
 ];
-var Sun = createLucideIcon("sun", __iconNode19);
+var Sun = createLucideIcon("sun", __iconNode16);
 
 // node_modules/lucide-react/dist/esm/icons/trash-2.js
-var __iconNode20 = [
+var __iconNode17 = [
   ["path", { d: "M10 11v6", key: "nco0om" }],
   ["path", { d: "M14 11v6", key: "outv1u" }],
   ["path", { d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6", key: "miytrc" }],
   ["path", { d: "M3 6h18", key: "d0wm0j" }],
   ["path", { d: "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2", key: "e791ji" }]
 ];
-var Trash2 = createLucideIcon("trash-2", __iconNode20);
+var Trash2 = createLucideIcon("trash-2", __iconNode17);
 
 // node_modules/lucide-react/dist/esm/icons/truck.js
-var __iconNode21 = [
+var __iconNode18 = [
   ["path", { d: "M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2", key: "wrbu53" }],
   ["path", { d: "M15 18H9", key: "1lyqi6" }],
   [
@@ -39042,10 +39009,10 @@ var __iconNode21 = [
   ["circle", { cx: "17", cy: "18", r: "2", key: "332jqn" }],
   ["circle", { cx: "7", cy: "18", r: "2", key: "19iecd" }]
 ];
-var Truck = createLucideIcon("truck", __iconNode21);
+var Truck = createLucideIcon("truck", __iconNode18);
 
 // node_modules/lucide-react/dist/esm/icons/wrench.js
-var __iconNode22 = [
+var __iconNode19 = [
   [
     "path",
     {
@@ -39054,7 +39021,7 @@ var __iconNode22 = [
     }
   ]
 ];
-var Wrench = createLucideIcon("wrench", __iconNode22);
+var Wrench = createLucideIcon("wrench", __iconNode19);
 
 // node_modules/recharts/es6/index.js
 var es6_exports = {};
@@ -65300,10 +65267,7 @@ function App() {
     { id: "cases", label: "Cases", icon: ClipboardList },
     { id: "finance", label: "Finance", icon: DollarSign },
     { id: "analytics", label: "Analytics", icon: ChartColumn },
-    { id: "fleet-analytics", label: "Fleet Analytics", icon: FileChartColumnIncreasing },
     { id: "maintenance", label: "Maintenance", icon: Wrench },
-    { id: "driver-performance", label: "Driver Performance", icon: CircleGauge },
-    { id: "fleet-assignment", label: "Fleet Assignment", icon: Car },
     { id: "settings", label: "Settings", icon: Settings }
   ];
   const [page, setPage] = (0, import_react76.useState)("dashboard");
@@ -65326,9 +65290,14 @@ function App() {
         return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(CasesPage, { cases, setCases });
       case "finance":
         return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(FinancePage, { ledger, setLedger });
+      case "analytics":
+        return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(GenericPage, { title: "Analytics", icon: ChartColumn });
+      case "maintenance":
+        return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(GenericPage, { title: "Maintenance", icon: Wrench });
+      case "settings":
+        return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(GenericPage, { title: "Settings", icon: Settings });
       default:
-        const sidebarItem = sidebar.find((s2) => s2.id === page);
-        return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(GenericPage, { title: sidebarItem?.label || "Page", icon: sidebarItem?.icon || LayoutGrid });
+        return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(GenericPage, { title: "Page", icon: LayoutGrid });
     }
   };
   return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: cn(dark ? "dark" : "", "transition-colors duration-500 ease-out"), children: [
@@ -65336,15 +65305,17 @@ function App() {
       /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("header", { className: "sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-black/30 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "max-w-7xl mx-auto px-4 py-3 flex items-center gap-3", children: [
         /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-2 font-semibold", children: [
           /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
-            motion.span,
+            motion.img,
             {
               whileHover: { rotate: 360 },
               transition: { duration: 0.5 },
-              className: "inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-white",
-              children: "T"
+              src: "logo.png",
+              alt: "US TEAM Fleet Logo",
+              className: "inline-flex h-12 w-12 rounded-none object-contain bg-transparent",
+              style: { background: "transparent" }
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "hidden sm:inline", children: "TranGo TMS" })
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "hidden sm:inline", children: "US TEAM Fleet" })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "mx-3 text-sm text-gray-400", children: "/" }),
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("nav", { className: "flex items-center gap-1", children: tabs.map((t) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Chip, { active: t === tab, onClick: () => setTab(t), children: t }, t)) }),
@@ -65629,14 +65600,6 @@ lucide-react/dist/esm/icons/bell.js:
    * See the LICENSE file in the root directory of this source tree.
    *)
 
-lucide-react/dist/esm/icons/car.js:
-  (**
-   * @license lucide-react v0.543.0 - ISC
-   *
-   * This source code is licensed under the ISC license.
-   * See the LICENSE file in the root directory of this source tree.
-   *)
-
 lucide-react/dist/esm/icons/chart-column.js:
   (**
    * @license lucide-react v0.543.0 - ISC
@@ -65661,14 +65624,6 @@ lucide-react/dist/esm/icons/circle-check.js:
    * See the LICENSE file in the root directory of this source tree.
    *)
 
-lucide-react/dist/esm/icons/circle-gauge.js:
-  (**
-   * @license lucide-react v0.543.0 - ISC
-   *
-   * This source code is licensed under the ISC license.
-   * See the LICENSE file in the root directory of this source tree.
-   *)
-
 lucide-react/dist/esm/icons/clipboard-list.js:
   (**
    * @license lucide-react v0.543.0 - ISC
@@ -65686,14 +65641,6 @@ lucide-react/dist/esm/icons/dollar-sign.js:
    *)
 
 lucide-react/dist/esm/icons/eye.js:
-  (**
-   * @license lucide-react v0.543.0 - ISC
-   *
-   * This source code is licensed under the ISC license.
-   * See the LICENSE file in the root directory of this source tree.
-   *)
-
-lucide-react/dist/esm/icons/file-chart-column-increasing.js:
   (**
    * @license lucide-react v0.543.0 - ISC
    *
