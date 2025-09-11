@@ -809,14 +809,15 @@ function App(){
         <header className="sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-black/30 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
           <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3">
             <div className="flex items-center gap-2 font-semibold">
-              <motion.span 
+              <motion.img 
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.5 }}
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-white"
-              >
-                T
-              </motion.span>
-              <span className="hidden sm:inline">TranGo TMS</span>
+                src="logo.png"
+                alt="US TEAM Fleet Logo"
+                className="inline-flex h-8 w-8 rounded-lg bg-black object-contain"
+                style={{ background: 'black' }}
+              />
+              <span className="hidden sm:inline">US TEAM Fleet</span>
             </div>
             <div className="mx-3 text-sm text-gray-400">/</div>
             <nav className="flex items-center gap-1">
