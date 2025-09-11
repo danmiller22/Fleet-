@@ -976,13 +976,15 @@ function App(){
         <header className="sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-black/30 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
           <div className="w-full px-4 py-3 flex items-center gap-3">
             <div className="flex items-center gap-2 font-semibold">
-              <motion.img
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-                src="/logo.png"
-                alt="US TEAM Fleet Logo"
-                className="inline-flex h-12 w-auto rounded-none object-contain"
-              />
+              <div className="bg-red-600 rounded-lg p-2">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                  className="text-white font-bold text-2xl"
+                >
+                  T
+                </motion.div>
+              </div>
               <span className="hidden sm:inline text-xl font-bold tracking-tight">US TEAM Fleet</span>
             </div>
             <div className="mx-3 text-sm text-gray-400">/</div>
