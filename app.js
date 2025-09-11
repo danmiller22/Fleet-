@@ -33,6 +33,20 @@ const { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Toolt
 
 /** Utilities **/
 const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 });
+
+// Toast notification helper
+const toast = {
+  success: (message) => {
+    const toastEl = document.getElementById('toast');
+    toastEl.textContent = message;
+    toastEl.style.opacity = '1';
+    toastEl.style.transform = 'translate(-50%, -100%)';
+    setTimeout(() => {
+      toastEl.style.opacity = '0';
+      toastEl.style.transform = 'translate(-50%, 100%)';
+    }, 3000);
+  }
+};
 const uid = () => Math.random().toString(36).slice(2, 9);
 const store = {
   get(k, fallback){ try{return JSON.parse(localStorage.getItem(k)||'null') ?? fallback;}catch{return fallback;} },
@@ -370,6 +384,7 @@ function Dashboard({ trucks, trailers, cases, ledger }){
                 <th className="pb-2 pr-4">Make/Model</th>
                 <th className="pb-2 pr-4">Status</th>
                 <th className="pb-2 pr-4">Notes</th>
+                <th className="pb-2 pr-4">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
@@ -390,6 +405,34 @@ function Dashboard({ trucks, trailers, cases, ledger }){
                     <span className="inline-flex items-center gap-2"><StatusDot status={asset.status}/> {asset.status}</span>
                   </td>
                   <td className="py-3 pr-4 text-gray-600 dark:text-gray-300">{asset.notes}</td>
+                  <td className="py-3 pr-4">
+                    <div className="flex items-center gap-1">
+                      <motion.button 
+                        whileHover={{ scale: 1.1 }} 
+                        whileTap={{ scale: 0.9 }} 
+                        onClick={() => handleView(asset)}
+                        className="p-1 hover:bg-blue-100 dark:hover:bg-blue-700 rounded transition-colors duration-150 text-blue-600"
+                      >
+                        <Eye size={14} />
+                      </motion.button>
+                      <motion.button 
+                        whileHover={{ scale: 1.1 }} 
+                        whileTap={{ scale: 0.9 }} 
+                        onClick={() => handleEdit(asset)}
+                        className="p-1 hover:bg-green-100 dark:hover:bg-green-700 rounded transition-colors duration-150 text-green-600"
+                      >
+                        <Edit size={14} />
+                      </motion.button>
+                      <motion.button 
+                        whileHover={{ scale: 1.1 }} 
+                        whileTap={{ scale: 0.9 }} 
+                        onClick={() => handleDelete(asset)}
+                        className="p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded transition-colors duration-150 text-red-600"
+                      >
+                        <Trash2 size={14} />
+                      </motion.button>
+                    </div>
+                  </td>
                 </motion.tr>
               ))}
             </tbody>
@@ -910,10 +953,10 @@ function App(){
                 transition={{ duration: 0.5 }}
                 src="logo.png"
                 alt="US TEAM Fleet Logo"
-                className="inline-flex h-12 w-12 rounded-none object-contain bg-transparent"
+                className="inline-flex h-16 w-16 rounded-none object-contain bg-transparent"
                 style={{ background: 'transparent' }}
               />
-              <span className="hidden sm:inline">US TEAM Fleet</span>
+              <span className="hidden sm:inline text-xl font-bold tracking-tight">US TEAM Fleet</span>
             </div>
             <div className="mx-3 text-sm text-gray-400">/</div>
             <nav className="flex items-center gap-1">

@@ -64962,7 +64962,39 @@ function Dashboard({ trucks, trailers, cases, ledger }) {
                   " ",
                   asset.status
                 ] }) }),
-                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 text-gray-600 dark:text-gray-300", children: asset.notes })
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 text-gray-600 dark:text-gray-300", children: asset.notes }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+                    motion.button,
+                    {
+                      whileHover: { scale: 1.1 },
+                      whileTap: { scale: 0.9 },
+                      onClick: () => handleView(asset),
+                      className: "p-1 hover:bg-blue-100 dark:hover:bg-blue-700 rounded transition-colors duration-150 text-blue-600",
+                      children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Eye, { size: 14 })
+                    }
+                  ),
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+                    motion.button,
+                    {
+                      whileHover: { scale: 1.1 },
+                      whileTap: { scale: 0.9 },
+                      onClick: () => handleEdit(asset),
+                      className: "p-1 hover:bg-green-100 dark:hover:bg-green-700 rounded transition-colors duration-150 text-green-600",
+                      children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(SquarePen, { size: 14 })
+                    }
+                  ),
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+                    motion.button,
+                    {
+                      whileHover: { scale: 1.1 },
+                      whileTap: { scale: 0.9 },
+                      onClick: () => handleDelete(asset),
+                      className: "p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded transition-colors duration-150 text-red-600",
+                      children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Trash2, { size: 14 })
+                    }
+                  )
+                ] }) })
               ]
             },
             asset.id
@@ -64973,7 +65005,22 @@ function Dashboard({ trucks, trailers, cases, ledger }) {
   ] });
 }
 function TrucksPage({ trucks, setTrucks }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.div, { ...pageTransition, className: "space-y-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+  const [modal, setModal] = (0, import_react76.useState)({ open: false, mode: "add", truck: null });
+  const [confirmDelete, setConfirmDelete] = (0, import_react76.useState)(null);
+  const emptyTruck = { id: "", make: "", model: "", year: "", vin: "", status: "Active", miles: "", notes: "" };
+  const handleSave = (truck) => {
+    if (modal.mode === "add") {
+      setTrucks([...trucks, { ...truck, id: Math.random().toString(36).slice(2, 9) }]);
+    } else {
+      setTrucks(trucks.map((t) => t.id === truck.id ? truck : t));
+    }
+    setModal({ open: false, mode: "add", truck: null });
+  };
+  const handleDelete2 = (id3) => {
+    setTrucks(trucks.filter((t) => t.id !== id3));
+    setConfirmDelete(null);
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.div, { ...pageTransition, className: "space-y-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
     Card,
     {
       title: "Trucks Management",
@@ -64988,6 +65035,7 @@ function TrucksPage({ trucks, setTrucks }) {
             whileHover: { scale: 1.02 },
             whileTap: { scale: 0.98 },
             className: "inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black hover:opacity-90 text-sm font-semibold transition-all duration-200",
+            onClick: () => setModal({ open: true, mode: "add", truck: emptyTruck }),
             children: [
               /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Plus, { size: 16 }),
               " Add Truck"
@@ -64995,53 +65043,114 @@ function TrucksPage({ trucks, setTrucks }) {
           }
         )
       ] }),
-      children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "overflow-x-auto", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("table", { className: "min-w-full text-sm", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("thead", { className: "text-left text-gray-500", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("tr", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "ID" }),
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Make/Model" }),
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Year" }),
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "VIN" }),
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Status" }),
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Mileage" }),
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Actions" })
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "overflow-x-auto", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("table", { className: "min-w-full text-sm", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("thead", { className: "text-left text-gray-500", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("tr", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "ID" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Make/Model" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Year" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "VIN" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Status" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Mileage" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Actions" })
+          ] }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("tbody", { className: "divide-y divide-gray-100 dark:divide-gray-800", children: trucks.map((truck, i) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+            motion.tr,
+            {
+              initial: { opacity: 0, y: 10 },
+              animate: { opacity: 1, y: 0 },
+              transition: { delay: i * 0.05 },
+              className: "hover:bg-gray-50 dark:hover:bg-gray-800/60 transition-colors duration-150",
+              children: [
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 font-medium", children: truck.id }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("td", { className: "py-3 pr-4", children: [
+                  truck.make,
+                  " ",
+                  truck.model
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: truck.year }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 font-mono text-xs", children: truck.vin }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("span", { className: "inline-flex items-center gap-2", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(StatusDot, { status: truck.status }),
+                  " ",
+                  truck.status
+                ] }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("td", { className: "py-3 pr-4", children: [
+                  truck.miles?.toLocaleString(),
+                  " mi"
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.button, { whileHover: { scale: 1.1 }, whileTap: { scale: 0.9 }, className: "p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150", onClick: () => setModal({ open: true, mode: "edit", truck }), children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(SquarePen, { size: 14 }) }),
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.button, { whileHover: { scale: 1.1 }, whileTap: { scale: 0.9 }, className: "p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded transition-colors duration-150 text-red-600", onClick: () => setConfirmDelete(truck.id), children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Trash2, { size: 14 }) })
+                ] }) })
+              ]
+            },
+            truck.id
+          )) })
         ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("tbody", { className: "divide-y divide-gray-100 dark:divide-gray-800", children: trucks.map((truck, i) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
-          motion.tr,
+        modal.open && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Modal, { onClose: () => setModal({ open: false, mode: "add", truck: null }), children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+          TruckForm,
           {
-            initial: { opacity: 0, y: 10 },
-            animate: { opacity: 1, y: 0 },
-            transition: { delay: i * 0.05 },
-            className: "hover:bg-gray-50 dark:hover:bg-gray-800/60 transition-colors duration-150",
-            children: [
-              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 font-medium", children: truck.id }),
-              /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("td", { className: "py-3 pr-4", children: [
-                truck.make,
-                " ",
-                truck.model
-              ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: truck.year }),
-              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 font-mono text-xs", children: truck.vin }),
-              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("span", { className: "inline-flex items-center gap-2", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(StatusDot, { status: truck.status }),
-                " ",
-                truck.status
-              ] }) }),
-              /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("td", { className: "py-3 pr-4", children: [
-                truck.miles?.toLocaleString(),
-                " mi"
-              ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-1", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.button, { whileHover: { scale: 1.1 }, whileTap: { scale: 0.9 }, className: "p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Eye, { size: 14 }) }),
-                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.button, { whileHover: { scale: 1.1 }, whileTap: { scale: 0.9 }, className: "p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(SquarePen, { size: 14 }) }),
-                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.button, { whileHover: { scale: 1.1 }, whileTap: { scale: 0.9 }, className: "p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded transition-colors duration-150 text-red-600", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Trash2, { size: 14 }) })
-              ] }) })
-            ]
-          },
-          truck.id
-        )) })
-      ] }) })
+            truck: modal.truck,
+            mode: modal.mode,
+            onSave: handleSave,
+            onCancel: () => setModal({ open: false, mode: "add", truck: null })
+          }
+        ) }),
+        confirmDelete && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Modal, { onClose: () => setConfirmDelete(null), children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "p-6 text-center", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "mb-4 text-lg", children: "Delete this truck?" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex gap-4 justify-center", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { className: "px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600", onClick: () => setConfirmDelete(null), children: "Cancel" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { className: "px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700", onClick: () => handleDelete2(confirmDelete), children: "Delete" })
+          ] })
+        ] }) })
+      ]
     }
   ) });
+}
+function Modal({ children, onClose }) {
+  (0, import_react76.useEffect)(() => {
+    const onKey = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "fixed inset-0 z-50 flex items-center justify-center bg-black/40", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "bg-white dark:bg-zinc-900 rounded-xl shadow-xl p-0 min-w-[320px] max-w-[95vw] relative animate-fadeIn", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { className: "absolute top-2 right-2 text-gray-400 hover:text-black dark:hover:text-white", onClick: onClose, children: "\xD7" }),
+    children
+  ] }) });
+}
+function TruckForm({ truck, mode, onSave, onCancel }) {
+  const [form, setForm] = (0, import_react76.useState)(truck);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((f) => ({ ...f, [name]: value }));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSave({ ...form, year: Number(form.year), miles: Number(form.miles) });
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("form", { onSubmit: handleSubmit, className: "p-6 space-y-4", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "text-lg font-semibold mb-2", children: mode === "add" ? "Add Truck" : "Edit Truck" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "grid grid-cols-2 gap-3", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("input", { name: "make", value: form.make, onChange: handleChange, placeholder: "Make", required: true, className: "col-span-1 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800" }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("input", { name: "model", value: form.model, onChange: handleChange, placeholder: "Model", required: true, className: "col-span-1 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800" }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("input", { name: "year", value: form.year, onChange: handleChange, placeholder: "Year", type: "number", required: true, className: "col-span-1 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800" }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("input", { name: "vin", value: form.vin, onChange: handleChange, placeholder: "VIN", required: true, className: "col-span-1 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800" }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("input", { name: "miles", value: form.miles, onChange: handleChange, placeholder: "Mileage", type: "number", required: true, className: "col-span-1 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800" }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("select", { name: "status", value: form.status, onChange: handleChange, className: "col-span-1 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("option", { value: "Active", children: "Active" }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("option", { value: "Service", children: "Service" }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("option", { value: "Repair", children: "Repair" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("input", { name: "notes", value: form.notes, onChange: handleChange, placeholder: "Notes", className: "col-span-2 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800" })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex gap-3 justify-end mt-4", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { type: "button", onClick: onCancel, className: "px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600", children: "Cancel" }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { type: "submit", className: "px-4 py-2 rounded bg-emerald-600 text-white hover:bg-emerald-700", children: mode === "add" ? "Add" : "Save" })
+    ] })
+  ] });
 }
 function TrailersPage({ trailers, setTrailers }) {
   return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.div, { ...pageTransition, className: "space-y-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
@@ -65311,11 +65420,11 @@ function App() {
               transition: { duration: 0.5 },
               src: "logo.png",
               alt: "US TEAM Fleet Logo",
-              className: "inline-flex h-12 w-12 rounded-none object-contain bg-transparent",
+              className: "inline-flex h-16 w-16 rounded-none object-contain bg-transparent",
               style: { background: "transparent" }
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "hidden sm:inline", children: "US TEAM Fleet" })
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "hidden sm:inline text-xl font-bold tracking-tight", children: "US TEAM Fleet" })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "mx-3 text-sm text-gray-400", children: "/" }),
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("nav", { className: "flex items-center gap-1", children: tabs.map((t) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Chip, { active: t === tab, onClick: () => setTab(t), children: t }, t)) }),
