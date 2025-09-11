@@ -640,7 +640,7 @@ function TruckForm({ truck, mode, onSave, onCancel }) {
 }
 
 /** Trailers Section **/
-function TrailersPage({ trailers, setTrailers }) {
+import { TrailersPage } from './components/TrailersPage';
   const [modal, setModal] = useState({ open: false, mode: 'add', trailer: null });
   const [confirmDelete, setConfirmDelete] = useState(null);
 
@@ -1010,13 +1010,9 @@ function App(){
         <header className="sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-black/30 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
           <div className="w-full px-4 py-3 flex items-center gap-3">
             <div className="flex items-center gap-2 font-semibold">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-                className="bg-red-600 rounded-xl p-2 w-10 h-10 flex items-center justify-center"
-              >
-                <span className="text-white font-bold text-2xl">T</span>
-              </motion.div>
+              <div className="w-10 h-10 bg-red-600 rounded-lg overflow-hidden flex items-center justify-center">
+                <span className="text-white font-bold text-2xl leading-none">T</span>
+              </div>
               <span className="hidden sm:inline text-xl font-bold tracking-tight">US TEAM Fleet</span>
             </div>
             <div className="mx-3 text-sm text-gray-400">/</div>
