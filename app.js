@@ -33,20 +33,6 @@ const { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Toolt
 
 /** Utilities **/
 const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 });
-
-// Toast notification helper
-const toast = {
-  success: (message) => {
-    const toastEl = document.getElementById('toast');
-    toastEl.textContent = message;
-    toastEl.style.opacity = '1';
-    toastEl.style.transform = 'translate(-50%, -100%)';
-    setTimeout(() => {
-      toastEl.style.opacity = '0';
-      toastEl.style.transform = 'translate(-50%, 100%)';
-    }, 3000);
-  }
-};
 const uid = () => Math.random().toString(36).slice(2, 9);
 const store = {
   get(k, fallback){ try{return JSON.parse(localStorage.getItem(k)||'null') ?? fallback;}catch{return fallback;} },
@@ -228,6 +214,19 @@ function Dashboard({ trucks, trailers, cases, ledger }){
   const exp = useMemo(() => ledger.filter(l=>l.type==='expense').reduce((a,b)=>a+b.amount,0), [ledger]);
   const inc = useMemo(() => ledger.filter(l=>l.type==='income').reduce((a,b)=>a+b.amount,0), [ledger]);
   const openCases = cases.filter(c=>c.stage!=='Closed').length;
+
+  // Asset handlers
+  const handleView = (asset) => {
+    toast.success(`Viewing details for ${asset.type} ${asset.id}`);
+  };
+
+  const handleEdit = (asset) => {
+    toast.success(`Opening edit form for ${asset.type} ${asset.id}`);
+  };
+
+  const handleDelete = (asset) => {
+    toast.success(`Delete request for ${asset.type} ${asset.id}`);
+  };
 
   const chartData = useMemo(()=>{
     const months = ["Sep 22", "Oct 22", "Nov 22", "Dec 22", "Jan 23", "Feb 23", "Mar 23", "Apr 23", "May 23", "Jun 23", "Jul 23", "Aug 23"];
@@ -1097,7 +1096,7 @@ function App(){
       </div>
 
       {/* Toast host */}
-      <div id="toast" role="status" aria-live="polite" className="fixed bottom-18 left-1/2 transform -translate-x-1/2 translate-y-full px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-full shadow-lg transition-all duration-300 opacity-0 pointer-events-none z-50"></div>
+      <div id="toast" role="status" aria-live="polite" className="fixed bottom-8 left-1/2 transform -translate-x-1/2 px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-full shadow-lg transition-all duration-300 opacity-0 pointer-events-none z-50"></div>
     </div>
   );
 }
