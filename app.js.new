@@ -1,7 +1,8 @@
-// React and hooks
-const { useState, useEffect, useMemo } = window.React;
+// React imports
+const { useState, useEffect, useMemo } = React;
+const { motion, AnimatePresence } = window.Motion;
 
-// Icons from Lucide
+// Import icons from Lucide CDN
 const {
   ChevronDown, Moon, Sun, Bell, Search,
   Settings, CheckCircle2, FileBarChart, GaugeCircle,
@@ -10,7 +11,4 @@ const {
   Plus, Edit, Trash2, Eye, Filter, Download
 } = window.lucide;
 
-// Animation imports
-const { motion, AnimatePresence } = window.Motion;
-
-// ...existing code...
+[... rest of your existing app.js code ...]
