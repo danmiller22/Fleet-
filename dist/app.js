@@ -38843,15 +38843,8 @@ var ChartColumn = createLucideIcon("chart-column", __iconNode2);
 var __iconNode3 = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
 var ChevronDown = createLucideIcon("chevron-down", __iconNode3);
 
-// node_modules/lucide-react/dist/esm/icons/circle-check.js
-var __iconNode4 = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
-];
-var CircleCheck = createLucideIcon("circle-check", __iconNode4);
-
 // node_modules/lucide-react/dist/esm/icons/clipboard-list.js
-var __iconNode5 = [
+var __iconNode4 = [
   ["rect", { width: "8", height: "4", x: "8", y: "2", rx: "1", ry: "1", key: "tgr4d6" }],
   [
     "path",
@@ -38865,17 +38858,17 @@ var __iconNode5 = [
   ["path", { d: "M8 11h.01", key: "1dfujw" }],
   ["path", { d: "M8 16h.01", key: "18s6g9" }]
 ];
-var ClipboardList = createLucideIcon("clipboard-list", __iconNode5);
+var ClipboardList = createLucideIcon("clipboard-list", __iconNode4);
 
 // node_modules/lucide-react/dist/esm/icons/dollar-sign.js
-var __iconNode6 = [
+var __iconNode5 = [
   ["line", { x1: "12", x2: "12", y1: "2", y2: "22", key: "7eqyqh" }],
   ["path", { d: "M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6", key: "1b0p4s" }]
 ];
-var DollarSign = createLucideIcon("dollar-sign", __iconNode6);
+var DollarSign = createLucideIcon("dollar-sign", __iconNode5);
 
 // node_modules/lucide-react/dist/esm/icons/eye.js
-var __iconNode7 = [
+var __iconNode6 = [
   [
     "path",
     {
@@ -38885,27 +38878,27 @@ var __iconNode7 = [
   ],
   ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
 ];
-var Eye = createLucideIcon("eye", __iconNode7);
+var Eye = createLucideIcon("eye", __iconNode6);
 
 // node_modules/lucide-react/dist/esm/icons/layout-grid.js
-var __iconNode8 = [
+var __iconNode7 = [
   ["rect", { width: "7", height: "7", x: "3", y: "3", rx: "1", key: "1g98yp" }],
   ["rect", { width: "7", height: "7", x: "14", y: "3", rx: "1", key: "6d4xhi" }],
   ["rect", { width: "7", height: "7", x: "14", y: "14", rx: "1", key: "nxv5o0" }],
   ["rect", { width: "7", height: "7", x: "3", y: "14", rx: "1", key: "1bb6yr" }]
 ];
-var LayoutGrid = createLucideIcon("layout-grid", __iconNode8);
+var LayoutGrid = createLucideIcon("layout-grid", __iconNode7);
 
 // node_modules/lucide-react/dist/esm/icons/log-out.js
-var __iconNode9 = [
+var __iconNode8 = [
   ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
   ["path", { d: "M21 12H9", key: "dn1m92" }],
   ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
 ];
-var LogOut = createLucideIcon("log-out", __iconNode9);
+var LogOut = createLucideIcon("log-out", __iconNode8);
 
 // node_modules/lucide-react/dist/esm/icons/moon.js
-var __iconNode10 = [
+var __iconNode9 = [
   [
     "path",
     {
@@ -38914,10 +38907,10 @@ var __iconNode10 = [
     }
   ]
 ];
-var Moon = createLucideIcon("moon", __iconNode10);
+var Moon = createLucideIcon("moon", __iconNode9);
 
 // node_modules/lucide-react/dist/esm/icons/package.js
-var __iconNode11 = [
+var __iconNode10 = [
   [
     "path",
     {
@@ -38929,24 +38922,24 @@ var __iconNode11 = [
   ["polyline", { points: "3.29 7 12 12 20.71 7", key: "ousv84" }],
   ["path", { d: "m7.5 4.27 9 5.15", key: "1c824w" }]
 ];
-var Package = createLucideIcon("package", __iconNode11);
+var Package = createLucideIcon("package", __iconNode10);
 
 // node_modules/lucide-react/dist/esm/icons/plus.js
-var __iconNode12 = [
+var __iconNode11 = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "M12 5v14", key: "s699le" }]
 ];
-var Plus = createLucideIcon("plus", __iconNode12);
+var Plus = createLucideIcon("plus", __iconNode11);
 
 // node_modules/lucide-react/dist/esm/icons/search.js
-var __iconNode13 = [
+var __iconNode12 = [
   ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
   ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
 ];
-var Search = createLucideIcon("search", __iconNode13);
+var Search = createLucideIcon("search", __iconNode12);
 
 // node_modules/lucide-react/dist/esm/icons/settings.js
-var __iconNode14 = [
+var __iconNode13 = [
   [
     "path",
     {
@@ -38956,10 +38949,10 @@ var __iconNode14 = [
   ],
   ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
 ];
-var Settings = createLucideIcon("settings", __iconNode14);
+var Settings = createLucideIcon("settings", __iconNode13);
 
 // node_modules/lucide-react/dist/esm/icons/square-pen.js
-var __iconNode15 = [
+var __iconNode14 = [
   ["path", { d: "M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7", key: "1m0v6g" }],
   [
     "path",
@@ -38969,10 +38962,10 @@ var __iconNode15 = [
     }
   ]
 ];
-var SquarePen = createLucideIcon("square-pen", __iconNode15);
+var SquarePen = createLucideIcon("square-pen", __iconNode14);
 
 // node_modules/lucide-react/dist/esm/icons/sun.js
-var __iconNode16 = [
+var __iconNode15 = [
   ["circle", { cx: "12", cy: "12", r: "4", key: "4exip2" }],
   ["path", { d: "M12 2v2", key: "tus03m" }],
   ["path", { d: "M12 20v2", key: "1lh1kg" }],
@@ -38983,20 +38976,20 @@ var __iconNode16 = [
   ["path", { d: "m6.34 17.66-1.41 1.41", key: "1m8zz5" }],
   ["path", { d: "m19.07 4.93-1.41 1.41", key: "1shlcs" }]
 ];
-var Sun = createLucideIcon("sun", __iconNode16);
+var Sun = createLucideIcon("sun", __iconNode15);
 
 // node_modules/lucide-react/dist/esm/icons/trash-2.js
-var __iconNode17 = [
+var __iconNode16 = [
   ["path", { d: "M10 11v6", key: "nco0om" }],
   ["path", { d: "M14 11v6", key: "outv1u" }],
   ["path", { d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6", key: "miytrc" }],
   ["path", { d: "M3 6h18", key: "d0wm0j" }],
   ["path", { d: "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2", key: "e791ji" }]
 ];
-var Trash2 = createLucideIcon("trash-2", __iconNode17);
+var Trash2 = createLucideIcon("trash-2", __iconNode16);
 
 // node_modules/lucide-react/dist/esm/icons/truck.js
-var __iconNode18 = [
+var __iconNode17 = [
   ["path", { d: "M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2", key: "wrbu53" }],
   ["path", { d: "M15 18H9", key: "1lyqi6" }],
   [
@@ -39009,10 +39002,10 @@ var __iconNode18 = [
   ["circle", { cx: "17", cy: "18", r: "2", key: "332jqn" }],
   ["circle", { cx: "7", cy: "18", r: "2", key: "19iecd" }]
 ];
-var Truck = createLucideIcon("truck", __iconNode18);
+var Truck = createLucideIcon("truck", __iconNode17);
 
 // node_modules/lucide-react/dist/esm/icons/wrench.js
-var __iconNode19 = [
+var __iconNode18 = [
   [
     "path",
     {
@@ -39021,7 +39014,7 @@ var __iconNode19 = [
     }
   ]
 ];
-var Wrench = createLucideIcon("wrench", __iconNode19);
+var Wrench = createLucideIcon("wrench", __iconNode18);
 
 // node_modules/recharts/es6/index.js
 var es6_exports = {};
@@ -64804,6 +64797,15 @@ function Dashboard({ trucks, trailers, cases, ledger }) {
   const exp = (0, import_react76.useMemo)(() => ledger.filter((l) => l.type === "expense").reduce((a2, b) => a2 + b.amount, 0), [ledger]);
   const inc = (0, import_react76.useMemo)(() => ledger.filter((l) => l.type === "income").reduce((a2, b) => a2 + b.amount, 0), [ledger]);
   const openCases = cases.filter((c2) => c2.stage !== "Closed").length;
+  const handleView = (asset) => {
+    toast.success(`Viewing details for ${asset.type} ${asset.id}`);
+  };
+  const handleEdit = (asset) => {
+    toast.success(`Opening edit form for ${asset.type} ${asset.id}`);
+  };
+  const handleDelete = (asset) => {
+    toast.success(`Delete request for ${asset.type} ${asset.id}`);
+  };
   const chartData = (0, import_react76.useMemo)(() => {
     const months = ["Sep 22", "Oct 22", "Nov 22", "Dec 22", "Jan 23", "Feb 23", "Mar 23", "Apr 23", "May 23", "Jun 23", "Jul 23", "Aug 23"];
     return months.map((m, i) => ({
@@ -64940,7 +64942,8 @@ function Dashboard({ trucks, trailers, cases, ledger }) {
             /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Type" }),
             /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Make/Model" }),
             /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Status" }),
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Notes" })
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Notes" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Actions" })
           ] }) }),
           /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("tbody", { className: "divide-y divide-gray-100 dark:divide-gray-800", children: [
             ...trucks.map((t) => ({ ...t, type: "Truck", makeModel: `${t.make} ${t.model}` })),
@@ -65016,7 +65019,7 @@ function TrucksPage({ trucks, setTrucks }) {
     }
     setModal({ open: false, mode: "add", truck: null });
   };
-  const handleDelete2 = (id3) => {
+  const handleDelete = (id3) => {
     setTrucks(trucks.filter((t) => t.id !== id3));
     setConfirmDelete(null);
   };
@@ -65100,8 +65103,26 @@ function TrucksPage({ trucks, setTrucks }) {
         confirmDelete && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Modal, { onClose: () => setConfirmDelete(null), children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "p-6 text-center", children: [
           /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "mb-4 text-lg", children: "Delete this truck?" }),
           /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex gap-4 justify-center", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { className: "px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600", onClick: () => setConfirmDelete(null), children: "Cancel" }),
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { className: "px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700", onClick: () => handleDelete2(confirmDelete), children: "Delete" })
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+              motion.button,
+              {
+                whileHover: { scale: 1.02 },
+                whileTap: { scale: 0.98 },
+                className: "px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600",
+                onClick: () => setConfirmDelete(null),
+                children: "Cancel"
+              }
+            ),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+              motion.button,
+              {
+                whileHover: { scale: 1.02 },
+                whileTap: { scale: 0.98 },
+                className: "px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700",
+                onClick: () => handleDelete(confirmDelete),
+                children: "Delete"
+              }
+            )
           ] })
         ] }) })
       ]
@@ -65147,8 +65168,27 @@ function TruckForm({ truck, mode, onSave, onCancel }) {
       /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("input", { name: "notes", value: form.notes, onChange: handleChange, placeholder: "Notes", className: "col-span-2 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800" })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex gap-3 justify-end mt-4", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { type: "button", onClick: onCancel, className: "px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600", children: "Cancel" }),
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { type: "submit", className: "px-4 py-2 rounded bg-emerald-600 text-white hover:bg-emerald-700", children: mode === "add" ? "Add" : "Save" })
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+        motion.button,
+        {
+          type: "button",
+          whileHover: { scale: 1.02 },
+          whileTap: { scale: 0.98 },
+          onClick: onCancel,
+          className: "px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600",
+          children: "Cancel"
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+        motion.button,
+        {
+          type: "submit",
+          whileHover: { scale: 1.02 },
+          whileTap: { scale: 0.98 },
+          className: "px-4 py-2 rounded bg-emerald-600 text-white hover:bg-emerald-700",
+          children: mode === "add" ? "Add" : "Save"
+        }
+      )
     ] })
   ] });
 }
@@ -65411,17 +65451,16 @@ function App() {
   };
   return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: cn(dark ? "dark" : "", "transition-colors duration-500 ease-out"), children: [
     /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: fontStack, className: "min-h-screen bg-gray-100 text-gray-900 transition-colors duration-500 ease-out antialiased dark:bg-[#0b0b0f] dark:text-gray-100", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("header", { className: "sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-black/30 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "max-w-7xl mx-auto px-4 py-3 flex items-center gap-3", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("header", { className: "sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-black/30 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "w-full px-4 py-3 flex items-center gap-3", children: [
         /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-2 font-semibold", children: [
           /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
             motion.img,
             {
-              whileHover: { rotate: 360 },
-              transition: { duration: 0.5 },
-              src: "logo.png",
+              whileHover: { scale: 1.05 },
+              transition: { duration: 0.2 },
+              src: "/logo.png",
               alt: "US TEAM Fleet Logo",
-              className: "inline-flex h-16 w-16 rounded-none object-contain bg-transparent",
-              style: { background: "transparent" }
+              className: "inline-flex h-12 w-auto rounded-none object-contain"
             }
           ),
           /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "hidden sm:inline text-xl font-bold tracking-tight", children: "US TEAM Fleet" })
@@ -65476,8 +65515,8 @@ function App() {
           )
         ] })
       ] }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "max-w-7xl mx-auto grid grid-cols-12 gap-4 p-4", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("aside", { className: "col-span-12 md:col-span-3 lg:col-span-2 space-y-2", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "w-full px-4 grid grid-cols-12 gap-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("aside", { className: "col-span-12 md:col-span-2 lg:col-span-2 space-y-2", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
           motion.div,
           {
             initial: { opacity: 0, x: -20 },
@@ -65522,7 +65561,7 @@ function App() {
             ]
           }
         ) }),
-        /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("main", { className: "col-span-12 md:col-span-9 lg:col-span-10 space-y-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("main", { className: "col-span-12 md:col-span-10 lg:col-span-10 space-y-4", children: [
           /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
             motion.div,
             {
@@ -65556,26 +65595,9 @@ function App() {
           ),
           /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(AnimatePresence, { mode: "wait", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.div, { children: renderPage() }, page) })
         ] })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(AnimatePresence, { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
-        motion.button,
-        {
-          initial: { opacity: 0, y: 10, scale: 0.9 },
-          animate: { opacity: 1, y: 0, scale: 1 },
-          exit: { opacity: 0, y: 10, scale: 0.9 },
-          whileHover: { scale: 1.05, y: -2 },
-          whileTap: { scale: 0.95 },
-          className: "fixed bottom-5 right-5 flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg bg-black text-white dark:bg-white dark:text-black transition-all duration-200",
-          onClick: () => toast.success("Modern TMS interface with smooth animations!"),
-          children: [
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(CircleCheck, { size: 16 }),
-            " Modern UI"
-          ]
-        },
-        "help"
-      ) })
+      ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { id: "toast", role: "status", "aria-live": "polite", className: "fixed bottom-18 left-1/2 transform -translate-x-1/2 translate-y-full px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-full shadow-lg transition-all duration-300 opacity-0 pointer-events-none z-50" })
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { id: "toast", role: "status", "aria-live": "polite", className: "fixed bottom-8 left-1/2 transform -translate-x-1/2 px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-full shadow-lg transition-all duration-300 opacity-0 pointer-events-none z-50" })
   ] });
 }
 (0, import_client.createRoot)(document.getElementById("app")).render(/* @__PURE__ */ (0, import_jsx_runtime6.jsx)(App, {}));
@@ -65718,14 +65740,6 @@ lucide-react/dist/esm/icons/chart-column.js:
    *)
 
 lucide-react/dist/esm/icons/chevron-down.js:
-  (**
-   * @license lucide-react v0.543.0 - ISC
-   *
-   * This source code is licensed under the ISC license.
-   * See the LICENSE file in the root directory of this source tree.
-   *)
-
-lucide-react/dist/esm/icons/circle-check.js:
   (**
    * @license lucide-react v0.543.0 - ISC
    *
