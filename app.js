@@ -764,10 +764,7 @@ function App(){
     { id: "cases", label: "Cases", icon: ClipboardList },
     { id: "finance", label: "Finance", icon: DollarSign },
     { id: "analytics", label: "Analytics", icon: BarChart3 },
-    { id: "fleet-analytics", label: "Fleet Analytics", icon: FileBarChart },
     { id: "maintenance", label: "Maintenance", icon: Wrench },
-    { id: "driver-performance", label: "Driver Performance", icon: GaugeCircle },
-    { id: "fleet-assignment", label: "Fleet Assignment", icon: Car },
     { id: "settings", label: "Settings", icon: SettingsIcon }
   ];
   const [page, setPage] = useState("dashboard");
@@ -796,9 +793,14 @@ function App(){
         return <CasesPage cases={cases} setCases={setCases} />;
       case 'finance':
         return <FinancePage ledger={ledger} setLedger={setLedger} />;
+      case 'analytics':
+        return <GenericPage title="Analytics" icon={BarChart3} />;
+      case 'maintenance':
+        return <GenericPage title="Maintenance" icon={Wrench} />;
+      case 'settings':
+        return <GenericPage title="Settings" icon={SettingsIcon} />;
       default:
-        const sidebarItem = sidebar.find(s => s.id === page);
-        return <GenericPage title={sidebarItem?.label || 'Page'} icon={sidebarItem?.icon || LayoutGrid} />;
+        return <GenericPage title="Page" icon={LayoutGrid} />;
     }
   };
 
