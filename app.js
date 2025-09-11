@@ -641,6 +641,39 @@ function TruckForm({ truck, mode, onSave, onCancel }) {
 
 /** Trailers Section **/
 function TrailersPage({ trailers, setTrailers }) {
+  const [modal, setModal] = useState({ open: false, mode: 'add', trailer: null });
+  const [confirmDelete, setConfirmDelete] = useState(null);
+
+  const emptyTrailer = { id: '', type: '', owner: '', status: 'On Road', extId: '', notes: '' };
+
+  const handleAdd = () => {
+    setModal({ open: true, mode: 'add', trailer: emptyTrailer });
+  };
+
+  const handleEdit = (trailer) => {
+    setModal({ open: true, mode: 'edit', trailer });
+  };
+
+  const handleDelete = (id) => {
+    setConfirmDelete(id);
+  };
+
+  const confirmDeleteTrailer = (id) => {
+    setTrailers(trailers.filter(t => t.id !== id));
+    setConfirmDelete(null);
+    toast.success('Trailer deleted successfully');
+  };
+
+  const handleSave = (trailer) => {
+    if (modal.mode === 'add') {
+      setTrailers([...trailers, { ...trailer, id: 'TR-' + Math.random().toString(36).slice(2, 7).toUpperCase() }]);
+    } else {
+      setTrailers(trailers.map(t => t.id === trailer.id ? trailer : t));
+    }
+    setModal({ open: false, mode: 'add', trailer: null });
+    toast.success(`Trailer ${modal.mode === 'add' ? 'added' : 'updated'} successfully`);
+  };
+
   return (
     <motion.div {...pageTransition} className="space-y-4">
       <Card
@@ -651,6 +684,7 @@ function TrailersPage({ trailers, setTrailers }) {
             <motion.button 
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
+              onClick={handleAdd}
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black hover:opacity-90 text-sm font-semibold transition-all duration-200"
             >
               <Plus size={16} /> Add Trailer
@@ -976,15 +1010,13 @@ function App(){
         <header className="sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-black/30 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
           <div className="w-full px-4 py-3 flex items-center gap-3">
             <div className="flex items-center gap-2 font-semibold">
-              <div className="bg-red-600 rounded-lg p-2">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                  className="text-white font-bold text-2xl"
-                >
-                  T
-                </motion.div>
-              </div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+                className="bg-red-600 rounded-xl p-2 w-10 h-10 flex items-center justify-center"
+              >
+                <span className="text-white font-bold text-2xl">T</span>
+              </motion.div>
               <span className="hidden sm:inline text-xl font-bold tracking-tight">US TEAM Fleet</span>
             </div>
             <div className="mx-3 text-sm text-gray-400">/</div>
@@ -1024,7 +1056,9 @@ function App(){
                 whileTap={{ scale: 0.98 }}
                 className="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 font-semibold transition-all duration-200"
               >
-                <img src="https://i.pravatar.cc/36?img=5" alt="avatar" className="h-7 w-7 rounded-full" />
+                <div className="h-7 w-7 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                  <span className="text-sm font-medium">A</span>
+                </div>
                 <span className="text-sm hidden sm:inline">Admin</span>
                 <ChevronDown size={16} />
               </motion.button>
