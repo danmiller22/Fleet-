@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { fetchDeliveriesSafe, supabase } from './lib/supabase.js';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ChevronDown,
@@ -45,7 +46,7 @@ const barData = [
   { name: 'Belts', uv: 14 },
   { name: 'Susp.', uv: 20 },
 ];
-const deliveries = [
+const seedDeliveries = [
   { id: '3457790', fleetId: '76031847', fleet: 'Tata Nexon', status: 'In-progress', phone: '+61488850430' },
   { id: '37737320', fleetId: '55700223', fleet: 'Hyundai i10', status: 'Active', phone: '+61480013910' },
   { id: '39201015', fleetId: '55700201', fleet: 'Kia Seltos', status: 'Delayed', phone: '+61470012345' },
@@ -158,6 +159,7 @@ export default function FastFleetPreview() {
     { id: 'settings', label: 'Settings', icon: SettingsIcon },
   ];
   const [page, setPage] = useState('dashboard');
+  const [rows, setRows] = useState(seedDeliveries);
   const [range, setRange] = useState({ from: 'Dec 10, 2022', to: 'Jul 18, 2023' });
   const cycleRange = () =>
     setRange(r => (r.from === 'Dec 10, 2022' ? { from: 'Jan 01, 2023', to: 'Sep 01, 2023' } : { from: 'Dec 10, 2022', to: 'Jul 18, 2023' }));
@@ -167,6 +169,26 @@ export default function FastFleetPreview() {
     const seed = tab === 'Order' ? 142000 : tab === 'Delivery' ? 120400 : 156098;
     return { fleetPerformance: seed, driverPerformance: seed - 2940, trend: 2.9 };
   }, [tab]);
+
+  // Fetch deliveries from Supabase if env is configured
+  useEffect(() => {
+    let ignore = false;
+    (async () => {
+      const { data, error } = await fetchDeliveriesSafe();
+      if (!ignore && data && !error && Array.isArray(data) && data.length) {
+        // Normalize keys in case columns differ in casing
+        const mapped = data.map(d => ({
+          id: d.id ?? '',
+          fleetId: d.fleetId ?? d.fleet_id ?? '',
+          fleet: d.fleet ?? d.vehicle ?? '',
+          status: d.status ?? 'Active',
+          phone: d.phone ?? '',
+        }));
+        setRows(mapped);
+      }
+    })();
+    return () => { ignore = true };
+  }, []);
 
   return (
     <div className={dark ? 'dark' : ''}>
@@ -322,7 +344,7 @@ export default function FastFleetPreview() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
-                    {deliveries.map((d, i) => (
+                    {rows.map((d, i) => (
                       <tr key={d.id} className="hover:bg-gray-50 dark:hover:bg-gray-800/60">
                         <td className="py-3 pr-4">{i + 1}</td>
                         <td className="py-3 pr-4 font-medium">{d.id}</td>
@@ -362,4 +384,3 @@ export default function FastFleetPreview() {
     </div>
   );
 }
-
