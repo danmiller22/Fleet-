@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Plus, Eye, Edit, Trash2 } from 'lucide-react';
-import { Card, Modal, Pill, StatusDot } from './common';
+import { Card, Modal, Pill, StatusDot } from './index';
+import { pageTransition, toast } from '../utils';
 
 export function TrailersPage({ trailers, setTrailers }) {
   const [modal, setModal] = useState({ open: false, mode: 'add', trailer: null });
@@ -208,3 +209,4 @@ export function TrailersPage({ trailers, setTrailers }) {
     </motion.div>
   );
 }
+

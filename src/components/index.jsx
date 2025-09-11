@@ -58,3 +58,4 @@ export const StatusDot = ({ status }) => {
   };
   return <span className={cn("inline-block w-2 h-2 rounded-full", m[status] || "bg-gray-400")} />;
 };
+

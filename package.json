@@ -2,12 +2,13 @@
   "name": "fleet-ui",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "description": "TranGo TMS demo SPA + Node API server",
   "scripts": {
-    "build": "esbuild app.js --bundle --format=esm --jsx=automatic --loader:.js=jsx --outfile=dist/app.js",
-    "prestart": "npm run build",
-    "start": "node server/api-server.js",
-    "dev": "node server/api-server.js"
+    "build": "vite build",
+    "build:css": "tailwindcss -i ./src/styles.css -o ./dist/styles.css",
+    "dev": "vite",
+    "preview": "vite preview"
   },
   "engines": {
     "node": ">=18"
@@ -20,6 +21,13 @@
     "recharts": "^2.12.7"
   },
   "devDependencies": {
-    "esbuild": "^0.24.2"
+    "@tailwindcss/postcss": "^4.1.13",
+    "@vitejs/plugin-react": "^5.0.2",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.1",
+    "esbuild": "^0.24.2",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.13",
+    "vite": "^7.1.5"
   }
 }
