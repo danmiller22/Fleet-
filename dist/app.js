@@ -38830,28 +38830,51 @@ var __iconNode = [
 ];
 var Bell = createLucideIcon("bell", __iconNode);
 
-// node_modules/lucide-react/dist/esm/icons/chart-column.js
+// node_modules/lucide-react/dist/esm/icons/car.js
 var __iconNode2 = [
+  [
+    "path",
+    {
+      d: "M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2",
+      key: "5owen"
+    }
+  ],
+  ["circle", { cx: "7", cy: "17", r: "2", key: "u2ysq9" }],
+  ["path", { d: "M9 17h6", key: "r8uit2" }],
+  ["circle", { cx: "17", cy: "17", r: "2", key: "axvx0g" }]
+];
+var Car = createLucideIcon("car", __iconNode2);
+
+// node_modules/lucide-react/dist/esm/icons/chart-column.js
+var __iconNode3 = [
   ["path", { d: "M3 3v16a2 2 0 0 0 2 2h16", key: "c24i48" }],
   ["path", { d: "M18 17V9", key: "2bz60n" }],
   ["path", { d: "M13 17V5", key: "1frdt8" }],
   ["path", { d: "M8 17v-3", key: "17ska0" }]
 ];
-var ChartColumn = createLucideIcon("chart-column", __iconNode2);
+var ChartColumn = createLucideIcon("chart-column", __iconNode3);
 
 // node_modules/lucide-react/dist/esm/icons/chevron-down.js
-var __iconNode3 = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
-var ChevronDown = createLucideIcon("chevron-down", __iconNode3);
+var __iconNode4 = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+var ChevronDown = createLucideIcon("chevron-down", __iconNode4);
 
 // node_modules/lucide-react/dist/esm/icons/circle-check.js
-var __iconNode4 = [
+var __iconNode5 = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
 ];
-var CircleCheck = createLucideIcon("circle-check", __iconNode4);
+var CircleCheck = createLucideIcon("circle-check", __iconNode5);
+
+// node_modules/lucide-react/dist/esm/icons/circle-gauge.js
+var __iconNode6 = [
+  ["path", { d: "M15.6 2.7a10 10 0 1 0 5.7 5.7", key: "1e0p6d" }],
+  ["circle", { cx: "12", cy: "12", r: "2", key: "1c9p78" }],
+  ["path", { d: "M13.4 10.6 19 5", key: "1kr7tw" }]
+];
+var CircleGauge = createLucideIcon("circle-gauge", __iconNode6);
 
 // node_modules/lucide-react/dist/esm/icons/clipboard-list.js
-var __iconNode5 = [
+var __iconNode7 = [
   ["rect", { width: "8", height: "4", x: "8", y: "2", rx: "1", ry: "1", key: "tgr4d6" }],
   [
     "path",
@@ -38865,34 +38888,57 @@ var __iconNode5 = [
   ["path", { d: "M8 11h.01", key: "1dfujw" }],
   ["path", { d: "M8 16h.01", key: "18s6g9" }]
 ];
-var ClipboardList = createLucideIcon("clipboard-list", __iconNode5);
+var ClipboardList = createLucideIcon("clipboard-list", __iconNode7);
 
 // node_modules/lucide-react/dist/esm/icons/dollar-sign.js
-var __iconNode6 = [
+var __iconNode8 = [
   ["line", { x1: "12", x2: "12", y1: "2", y2: "22", key: "7eqyqh" }],
   ["path", { d: "M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6", key: "1b0p4s" }]
 ];
-var DollarSign = createLucideIcon("dollar-sign", __iconNode6);
+var DollarSign = createLucideIcon("dollar-sign", __iconNode8);
+
+// node_modules/lucide-react/dist/esm/icons/eye.js
+var __iconNode9 = [
+  [
+    "path",
+    {
+      d: "M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0",
+      key: "1nclc0"
+    }
+  ],
+  ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
+];
+var Eye = createLucideIcon("eye", __iconNode9);
+
+// node_modules/lucide-react/dist/esm/icons/file-chart-column-increasing.js
+var __iconNode10 = [
+  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
+  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
+  ["path", { d: "M8 18v-2", key: "qcmpov" }],
+  ["path", { d: "M12 18v-4", key: "q1q25u" }],
+  ["path", { d: "M16 18v-6", key: "15y0np" }]
+];
+var FileChartColumnIncreasing = createLucideIcon("file-chart-column-increasing", __iconNode10);
 
 // node_modules/lucide-react/dist/esm/icons/layout-grid.js
-var __iconNode7 = [
+var __iconNode11 = [
   ["rect", { width: "7", height: "7", x: "3", y: "3", rx: "1", key: "1g98yp" }],
   ["rect", { width: "7", height: "7", x: "14", y: "3", rx: "1", key: "6d4xhi" }],
   ["rect", { width: "7", height: "7", x: "14", y: "14", rx: "1", key: "nxv5o0" }],
   ["rect", { width: "7", height: "7", x: "3", y: "14", rx: "1", key: "1bb6yr" }]
 ];
-var LayoutGrid = createLucideIcon("layout-grid", __iconNode7);
+var LayoutGrid = createLucideIcon("layout-grid", __iconNode11);
 
 // node_modules/lucide-react/dist/esm/icons/log-out.js
-var __iconNode8 = [
+var __iconNode12 = [
   ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
   ["path", { d: "M21 12H9", key: "dn1m92" }],
   ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
 ];
-var LogOut = createLucideIcon("log-out", __iconNode8);
+var LogOut = createLucideIcon("log-out", __iconNode12);
 
 // node_modules/lucide-react/dist/esm/icons/moon.js
-var __iconNode9 = [
+var __iconNode13 = [
   [
     "path",
     {
@@ -38901,10 +38947,10 @@ var __iconNode9 = [
     }
   ]
 ];
-var Moon = createLucideIcon("moon", __iconNode9);
+var Moon = createLucideIcon("moon", __iconNode13);
 
 // node_modules/lucide-react/dist/esm/icons/package.js
-var __iconNode10 = [
+var __iconNode14 = [
   [
     "path",
     {
@@ -38916,17 +38962,24 @@ var __iconNode10 = [
   ["polyline", { points: "3.29 7 12 12 20.71 7", key: "ousv84" }],
   ["path", { d: "m7.5 4.27 9 5.15", key: "1c824w" }]
 ];
-var Package = createLucideIcon("package", __iconNode10);
+var Package = createLucideIcon("package", __iconNode14);
+
+// node_modules/lucide-react/dist/esm/icons/plus.js
+var __iconNode15 = [
+  ["path", { d: "M5 12h14", key: "1ays0h" }],
+  ["path", { d: "M12 5v14", key: "s699le" }]
+];
+var Plus = createLucideIcon("plus", __iconNode15);
 
 // node_modules/lucide-react/dist/esm/icons/search.js
-var __iconNode11 = [
+var __iconNode16 = [
   ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
   ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
 ];
-var Search = createLucideIcon("search", __iconNode11);
+var Search = createLucideIcon("search", __iconNode16);
 
 // node_modules/lucide-react/dist/esm/icons/settings.js
-var __iconNode12 = [
+var __iconNode17 = [
   [
     "path",
     {
@@ -38936,10 +38989,23 @@ var __iconNode12 = [
   ],
   ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
 ];
-var Settings = createLucideIcon("settings", __iconNode12);
+var Settings = createLucideIcon("settings", __iconNode17);
+
+// node_modules/lucide-react/dist/esm/icons/square-pen.js
+var __iconNode18 = [
+  ["path", { d: "M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7", key: "1m0v6g" }],
+  [
+    "path",
+    {
+      d: "M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z",
+      key: "ohrbg2"
+    }
+  ]
+];
+var SquarePen = createLucideIcon("square-pen", __iconNode18);
 
 // node_modules/lucide-react/dist/esm/icons/sun.js
-var __iconNode13 = [
+var __iconNode19 = [
   ["circle", { cx: "12", cy: "12", r: "4", key: "4exip2" }],
   ["path", { d: "M12 2v2", key: "tus03m" }],
   ["path", { d: "M12 20v2", key: "1lh1kg" }],
@@ -38950,10 +39016,20 @@ var __iconNode13 = [
   ["path", { d: "m6.34 17.66-1.41 1.41", key: "1m8zz5" }],
   ["path", { d: "m19.07 4.93-1.41 1.41", key: "1shlcs" }]
 ];
-var Sun = createLucideIcon("sun", __iconNode13);
+var Sun = createLucideIcon("sun", __iconNode19);
+
+// node_modules/lucide-react/dist/esm/icons/trash-2.js
+var __iconNode20 = [
+  ["path", { d: "M10 11v6", key: "nco0om" }],
+  ["path", { d: "M14 11v6", key: "outv1u" }],
+  ["path", { d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6", key: "miytrc" }],
+  ["path", { d: "M3 6h18", key: "d0wm0j" }],
+  ["path", { d: "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2", key: "e791ji" }]
+];
+var Trash2 = createLucideIcon("trash-2", __iconNode20);
 
 // node_modules/lucide-react/dist/esm/icons/truck.js
-var __iconNode14 = [
+var __iconNode21 = [
   ["path", { d: "M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2", key: "wrbu53" }],
   ["path", { d: "M15 18H9", key: "1lyqi6" }],
   [
@@ -38966,7 +39042,19 @@ var __iconNode14 = [
   ["circle", { cx: "17", cy: "18", r: "2", key: "332jqn" }],
   ["circle", { cx: "7", cy: "18", r: "2", key: "19iecd" }]
 ];
-var Truck = createLucideIcon("truck", __iconNode14);
+var Truck = createLucideIcon("truck", __iconNode21);
+
+// node_modules/lucide-react/dist/esm/icons/wrench.js
+var __iconNode22 = [
+  [
+    "path",
+    {
+      d: "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z",
+      key: "1ngwbx"
+    }
+  ]
+];
+var Wrench = createLucideIcon("wrench", __iconNode22);
 
 // node_modules/recharts/es6/index.js
 var es6_exports = {};
@@ -64255,13 +64343,13 @@ function _toPrimitive56(t, r2) {
   return ("string" === r2 ? String : Number)(t);
 }
 var Funnel = /* @__PURE__ */ function(_PureComponent) {
-  function Funnel2() {
+  function Funnel3() {
     var _this;
-    _classCallCheck30(this, Funnel2);
+    _classCallCheck30(this, Funnel3);
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
-    _this = _callSuper26(this, Funnel2, [].concat(args));
+    _this = _callSuper26(this, Funnel3, [].concat(args));
     _defineProperty55(_this, "state", {
       isAnimationFinished: false
     });
@@ -64285,8 +64373,8 @@ var Funnel = /* @__PURE__ */ function(_PureComponent) {
     });
     return _this;
   }
-  _inherits27(Funnel2, _PureComponent);
-  return _createClass30(Funnel2, [{
+  _inherits27(Funnel3, _PureComponent);
+  return _createClass30(Funnel3, [{
     key: "isActiveIndex",
     value: function isActiveIndex(i) {
       var activeIndex = this.props.activeIndex;
@@ -64611,20 +64699,25 @@ var toast = {
 var SEED = {
   trucks: [
     { id: "3252", make: "Freightliner", model: "Cascadia", year: 2021, vin: "1FUJHHDR0MLMJ4879", status: "Active", miles: 618230, pmInterval: 2e4, pmDueAt: 618230, notes: "Oil change due now" },
-    { id: "5496", make: "Volvo", model: "VNL", year: 2024, vin: "4V4NC9EH0LN223912", status: "Active", miles: 409659, pmInterval: 2e4, pmDueAt: 409659, notes: "Windshield replaced 2025-09-04" }
+    { id: "5496", make: "Volvo", model: "VNL", year: 2024, vin: "4V4NC9EH0LN223912", status: "Active", miles: 409659, pmInterval: 2e4, pmDueAt: 409659, notes: "Windshield replaced 2025-09-04" },
+    { id: "7834", make: "Peterbilt", model: "579", year: 2020, vin: "1XPWD40X1ED123456", status: "Service", miles: 742100, pmInterval: 2e4, pmDueAt: 76e4, notes: "Scheduled maintenance" }
   ],
   trailers: [
     { id: "XTRA-40123", type: "Dry Van", owner: "XTRA Lease", status: "On Road", extId: "SkyB-12345", notes: "External tracked" },
-    { id: "UST-9001", type: "Dry Van", owner: "US TEAM", status: "Yard", extId: "\u2014", notes: "Ready" }
+    { id: "UST-9001", type: "Dry Van", owner: "US TEAM", status: "Yard", extId: "\u2014", notes: "Ready" },
+    { id: "WABASH-5567", type: "Refrigerated", owner: "Wabash", status: "On Road", extId: "WB-5567", notes: "Temperature controlled" }
   ],
   cases: [
     { id: uid(), assetType: "truck", assetId: "3252", title: "Coolant leak", priority: "High", stage: "Diagnose", createdAt: Date.now() - 864e5 * 2, cost: 0, assigned: "Jack", timeline: [{ t: Date.now() - 864e5 * 2, note: "Driver reports coolant on ground." }], invoices: [] },
-    { id: uid(), assetType: "trailer", assetId: "XTRA-40123", title: "ABS light ON", priority: "Medium", stage: "Parts", createdAt: Date.now() - 864e5 * 1, cost: 75, assigned: "Aidar", timeline: [{ t: Date.now() - 864e5, note: "Mobile tech scheduled." }], invoices: [] }
+    { id: uid(), assetType: "trailer", assetId: "XTRA-40123", title: "ABS light ON", priority: "Medium", stage: "Parts", createdAt: Date.now() - 864e5 * 1, cost: 75, assigned: "Aidar", timeline: [{ t: Date.now() - 864e5, note: "Mobile tech scheduled." }], invoices: [] },
+    { id: uid(), assetType: "truck", assetId: "7834", title: "Brake inspection", priority: "Low", stage: "Closed", createdAt: Date.now() - 864e5 * 7, cost: 450, assigned: "Mike", timeline: [{ t: Date.now() - 864e5 * 7, note: "Routine brake check completed." }], invoices: [] }
   ],
   ledger: [
     { id: uid(), type: "expense", amount: 535, category: "Tires", note: "Steer tire fix \u2014 Houston, TX", ref: "2023/00" },
     { id: uid(), type: "expense", amount: 325, category: "Windshield", note: "Windshield mobile \u2014 Wichita, KS", ref: "2025/09/04" },
-    { id: uid(), type: "income", amount: 4200, category: "Load", note: "Load #AB-778, Jack", ref: "2025/09/03" }
+    { id: uid(), type: "income", amount: 4200, category: "Load", note: "Load #AB-778, Jack", ref: "2025/09/03" },
+    { id: uid(), type: "expense", amount: 890, category: "Fuel", note: "Fuel stop \u2014 Denver, CO", ref: "2025/09/05" },
+    { id: uid(), type: "income", amount: 3800, category: "Load", note: "Load #CD-445, Sarah", ref: "2025/09/06" }
   ]
 };
 function useSeededState(key, initial) {
@@ -64634,13 +64727,27 @@ function useSeededState(key, initial) {
   }, [key, state]);
   return [state, setState];
 }
+var pageTransition = {
+  initial: { opacity: 0, y: 8 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -8 },
+  transition: { duration: 0.15, ease: [0.22, 1, 0.36, 1] }
+};
+var cardTransition = {
+  initial: { opacity: 0, y: 4 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -4 },
+  transition: { type: "spring", stiffness: 400, damping: 30, mass: 0.8 }
+};
 var Chip = ({ active, children, onClick }) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
-  "button",
+  motion.button,
   {
+    whileHover: { scale: 1.02 },
+    whileTap: { scale: 0.98 },
     onClick,
     className: cn(
-      "px-3 py-1.5 rounded-full text-sm font-semibold transition-all",
-      active ? "bg-black text-white dark:bg-white dark:text-black shadow" : "bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+      "px-3 py-1.5 rounded-full text-sm font-semibold transition-all duration-200",
+      active ? "bg-black text-white dark:bg-white dark:text-black shadow-md" : "bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
     ),
     children
   }
@@ -64648,11 +64755,8 @@ var Chip = ({ active, children, onClick }) => /* @__PURE__ */ (0, import_jsx_run
 var Card = ({ title, toolbar, children }) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
   motion.div,
   {
-    layout: true,
-    initial: { opacity: 0, y: 6 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -6 },
-    transition: { type: "spring", stiffness: 260, damping: 26 },
+    ...cardTransition,
+    whileHover: { y: -2, transition: { duration: 0.2 } },
     className: "rounded-2xl bg-white/70 dark:bg-zinc-900/70 backdrop-blur border border-gray-200 dark:border-gray-800 shadow-sm",
     children: [
       /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-800", children: [
@@ -64664,12 +64768,14 @@ var Card = ({ title, toolbar, children }) => /* @__PURE__ */ (0, import_jsx_runt
   }
 );
 var SidebarItem = ({ icon: Icon2, label, active, onClick }) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
-  "button",
+  motion.button,
   {
+    whileHover: { x: 2, transition: { duration: 0.15 } },
+    whileTap: { scale: 0.98 },
     onClick,
     className: cn(
-      "w-full h-10 flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-semibold transition-colors",
-      active ? "bg-gray-900 text-white dark:bg-white dark:text-black" : "text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+      "w-full h-10 flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-200",
+      active ? "bg-gray-900 text-white dark:bg-white dark:text-black shadow-sm" : "text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
     ),
     children: [
       /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Icon2, { size: 18 }),
@@ -64678,10 +64784,12 @@ var SidebarItem = ({ icon: Icon2, label, active, onClick }) => /* @__PURE__ */ (
   }
 );
 var TopButton = ({ icon: Icon2, label, onClick }) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
-  "button",
+  motion.button,
   {
+    whileHover: { scale: 1.05 },
+    whileTap: { scale: 0.95 },
     onClick,
-    className: "inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold",
+    className: "inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold transition-all duration-200",
     "aria-label": label,
     children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Icon2, { size: 16 })
   }
@@ -64693,7 +64801,7 @@ var Pill = ({ tone = "neutral", children }) => {
     danger: "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300",
     neutral: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: cn("px-2 py-1 rounded-full text-xs", tones[tone]), children });
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: cn("px-2 py-1 rounded-full text-xs font-medium", tones[tone]), children });
 };
 var StatusDot = ({ status }) => {
   const m = {
@@ -64744,7 +64852,7 @@ function Dashboard({ trucks, trailers, cases, ledger }) {
     { name: "Belts", uv: 14 },
     { name: "Susp.", uv: 20 }
   ];
-  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "space-y-4", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(motion.div, { ...pageTransition, className: "space-y-4", children: [
     /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "grid md:grid-cols-2 gap-4", children: [
       /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
         Card,
@@ -64848,7 +64956,15 @@ function Dashboard({ trucks, trailers, cases, ledger }) {
             trucks.length + trailers.length,
             " assets"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { className: "px-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold", children: "Export CSV" })
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+            motion.button,
+            {
+              whileHover: { scale: 1.02 },
+              whileTap: { scale: 0.98 },
+              className: "px-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold transition-all duration-200",
+              children: "Export CSV"
+            }
+          )
         ] }),
         children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "overflow-x-auto", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("table", { className: "min-w-full text-sm", children: [
           /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("thead", { className: "text-left text-gray-500", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("tr", { children: [
@@ -64862,22 +64978,318 @@ function Dashboard({ trucks, trailers, cases, ledger }) {
           /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("tbody", { className: "divide-y divide-gray-100 dark:divide-gray-800", children: [
             ...trucks.map((t) => ({ ...t, type: "Truck", makeModel: `${t.make} ${t.model}` })),
             ...trailers.map((t) => ({ ...t, type: "Trailer", makeModel: t.type }))
-          ].map((asset, i) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("tr", { className: "hover:bg-gray-50 dark:hover:bg-gray-800/60", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: i + 1 }),
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 font-medium", children: asset.id }),
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: asset.type }),
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: asset.makeModel }),
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("span", { className: "inline-flex items-center gap-2", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(StatusDot, { status: asset.status }),
-              " ",
-              asset.status
-            ] }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 text-gray-600 dark:text-gray-300", children: asset.notes })
-          ] }, asset.id)) })
+          ].map((asset, i) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+            motion.tr,
+            {
+              initial: { opacity: 0 },
+              animate: { opacity: 1 },
+              transition: { delay: i * 0.05 },
+              className: "hover:bg-gray-50 dark:hover:bg-gray-800/60 transition-colors duration-150",
+              children: [
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: i + 1 }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 font-medium", children: asset.id }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: asset.type }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: asset.makeModel }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("span", { className: "inline-flex items-center gap-2", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(StatusDot, { status: asset.status }),
+                  " ",
+                  asset.status
+                ] }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 text-gray-600 dark:text-gray-300", children: asset.notes })
+              ]
+            },
+            asset.id
+          )) })
         ] }) })
       }
     )
   ] });
+}
+function TrucksPage({ trucks, setTrucks }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.div, { ...pageTransition, className: "space-y-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+    Card,
+    {
+      title: "Trucks Management",
+      toolbar: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(Pill, { tone: "neutral", children: [
+          trucks.length,
+          " trucks"
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+          motion.button,
+          {
+            whileHover: { scale: 1.02 },
+            whileTap: { scale: 0.98 },
+            className: "inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black hover:opacity-90 text-sm font-semibold transition-all duration-200",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Plus, { size: 16 }),
+              " Add Truck"
+            ]
+          }
+        )
+      ] }),
+      children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "overflow-x-auto", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("table", { className: "min-w-full text-sm", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("thead", { className: "text-left text-gray-500", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "ID" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Make/Model" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Year" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "VIN" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Status" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Mileage" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Actions" })
+        ] }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("tbody", { className: "divide-y divide-gray-100 dark:divide-gray-800", children: trucks.map((truck, i) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+          motion.tr,
+          {
+            initial: { opacity: 0, y: 10 },
+            animate: { opacity: 1, y: 0 },
+            transition: { delay: i * 0.05 },
+            className: "hover:bg-gray-50 dark:hover:bg-gray-800/60 transition-colors duration-150",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 font-medium", children: truck.id }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("td", { className: "py-3 pr-4", children: [
+                truck.make,
+                " ",
+                truck.model
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: truck.year }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 font-mono text-xs", children: truck.vin }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("span", { className: "inline-flex items-center gap-2", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(StatusDot, { status: truck.status }),
+                " ",
+                truck.status
+              ] }) }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("td", { className: "py-3 pr-4", children: [
+                truck.miles?.toLocaleString(),
+                " mi"
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-1", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.button, { whileHover: { scale: 1.1 }, whileTap: { scale: 0.9 }, className: "p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Eye, { size: 14 }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.button, { whileHover: { scale: 1.1 }, whileTap: { scale: 0.9 }, className: "p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(SquarePen, { size: 14 }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.button, { whileHover: { scale: 1.1 }, whileTap: { scale: 0.9 }, className: "p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded transition-colors duration-150 text-red-600", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Trash2, { size: 14 }) })
+              ] }) })
+            ]
+          },
+          truck.id
+        )) })
+      ] }) })
+    }
+  ) });
+}
+function TrailersPage({ trailers, setTrailers }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.div, { ...pageTransition, className: "space-y-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+    Card,
+    {
+      title: "Trailers Management",
+      toolbar: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(Pill, { tone: "neutral", children: [
+          trailers.length,
+          " trailers"
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+          motion.button,
+          {
+            whileHover: { scale: 1.02 },
+            whileTap: { scale: 0.98 },
+            className: "inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black hover:opacity-90 text-sm font-semibold transition-all duration-200",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Plus, { size: 16 }),
+              " Add Trailer"
+            ]
+          }
+        )
+      ] }),
+      children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "overflow-x-auto", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("table", { className: "min-w-full text-sm", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("thead", { className: "text-left text-gray-500", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "ID" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Type" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Owner" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Status" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "External ID" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Notes" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Actions" })
+        ] }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("tbody", { className: "divide-y divide-gray-100 dark:divide-gray-800", children: trailers.map((trailer, i) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+          motion.tr,
+          {
+            initial: { opacity: 0, y: 10 },
+            animate: { opacity: 1, y: 0 },
+            transition: { delay: i * 0.05 },
+            className: "hover:bg-gray-50 dark:hover:bg-gray-800/60 transition-colors duration-150",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 font-medium", children: trailer.id }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: trailer.type }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: trailer.owner }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("span", { className: "inline-flex items-center gap-2", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(StatusDot, { status: trailer.status }),
+                " ",
+                trailer.status
+              ] }) }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 font-mono text-xs", children: trailer.extId }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 text-gray-600 dark:text-gray-300", children: trailer.notes }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-1", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.button, { whileHover: { scale: 1.1 }, whileTap: { scale: 0.9 }, className: "p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Eye, { size: 14 }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.button, { whileHover: { scale: 1.1 }, whileTap: { scale: 0.9 }, className: "p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(SquarePen, { size: 14 }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.button, { whileHover: { scale: 1.1 }, whileTap: { scale: 0.9 }, className: "p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded transition-colors duration-150 text-red-600", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Trash2, { size: 14 }) })
+              ] }) })
+            ]
+          },
+          trailer.id
+        )) })
+      ] }) })
+    }
+  ) });
+}
+function CasesPage({ cases, setCases }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.div, { ...pageTransition, className: "space-y-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+    Card,
+    {
+      title: "Cases Management",
+      toolbar: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(Pill, { tone: "neutral", children: [
+          cases.length,
+          " cases"
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+          motion.button,
+          {
+            whileHover: { scale: 1.02 },
+            whileTap: { scale: 0.98 },
+            className: "inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black hover:opacity-90 text-sm font-semibold transition-all duration-200",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Plus, { size: 16 }),
+              " New Case"
+            ]
+          }
+        )
+      ] }),
+      children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "overflow-x-auto", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("table", { className: "min-w-full text-sm", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("thead", { className: "text-left text-gray-500", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Asset" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Title" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Priority" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Stage" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Assigned" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Cost" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Actions" })
+        ] }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("tbody", { className: "divide-y divide-gray-100 dark:divide-gray-800", children: cases.map((case_, i) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+          motion.tr,
+          {
+            initial: { opacity: 0, y: 10 },
+            animate: { opacity: 1, y: 0 },
+            transition: { delay: i * 0.05 },
+            className: "hover:bg-gray-50 dark:hover:bg-gray-800/60 transition-colors duration-150",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-2", children: [
+                case_.assetType === "truck" ? /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Truck, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Package, { size: 16 }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "font-medium", children: case_.assetId })
+              ] }) }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: case_.title }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Pill, { tone: case_.priority === "High" ? "danger" : case_.priority === "Medium" ? "warning" : "neutral", children: case_.priority }) }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Pill, { tone: case_.stage === "Closed" ? "success" : "neutral", children: case_.stage }) }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: case_.assigned }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 font-medium", children: fmt.format(case_.cost) }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-1", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.button, { whileHover: { scale: 1.1 }, whileTap: { scale: 0.9 }, className: "p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Eye, { size: 14 }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.button, { whileHover: { scale: 1.1 }, whileTap: { scale: 0.9 }, className: "p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(SquarePen, { size: 14 }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.button, { whileHover: { scale: 1.1 }, whileTap: { scale: 0.9 }, className: "p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded transition-colors duration-150 text-red-600", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Trash2, { size: 14 }) })
+              ] }) })
+            ]
+          },
+          case_.id
+        )) })
+      ] }) })
+    }
+  ) });
+}
+function FinancePage({ ledger, setLedger }) {
+  const totalIncome = (0, import_react76.useMemo)(() => ledger.filter((l) => l.type === "income").reduce((a2, b) => a2 + b.amount, 0), [ledger]);
+  const totalExpenses = (0, import_react76.useMemo)(() => ledger.filter((l) => l.type === "expense").reduce((a2, b) => a2 + b.amount, 0), [ledger]);
+  const netProfit = totalIncome - totalExpenses;
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(motion.div, { ...pageTransition, className: "space-y-4", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "grid md:grid-cols-3 gap-4", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Card, { title: "Total Income", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "text-2xl font-semibold text-emerald-600", children: fmt.format(totalIncome) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Card, { title: "Total Expenses", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "text-2xl font-semibold text-red-600", children: fmt.format(totalExpenses) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Card, { title: "Net Profit", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: cn("text-2xl font-semibold", netProfit >= 0 ? "text-emerald-600" : "text-red-600"), children: fmt.format(netProfit) }) })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+      Card,
+      {
+        title: "Financial Records",
+        toolbar: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-2", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(Pill, { tone: "neutral", children: [
+            ledger.length,
+            " records"
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+            motion.button,
+            {
+              whileHover: { scale: 1.02 },
+              whileTap: { scale: 0.98 },
+              className: "inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black hover:opacity-90 text-sm font-semibold transition-all duration-200",
+              children: [
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Plus, { size: 16 }),
+                " Add Record"
+              ]
+            }
+          )
+        ] }),
+        children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "overflow-x-auto", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("table", { className: "min-w-full text-sm", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("thead", { className: "text-left text-gray-500", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("tr", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Type" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Category" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Amount" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Note" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Reference" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("th", { className: "pb-2 pr-4", children: "Actions" })
+          ] }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("tbody", { className: "divide-y divide-gray-100 dark:divide-gray-800", children: ledger.map((record, i) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+            motion.tr,
+            {
+              initial: { opacity: 0, y: 10 },
+              animate: { opacity: 1, y: 0 },
+              transition: { delay: i * 0.05 },
+              className: "hover:bg-gray-50 dark:hover:bg-gray-800/60 transition-colors duration-150",
+              children: [
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Pill, { tone: record.type === "income" ? "success" : "danger", children: record.type }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: record.category }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 font-medium", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("span", { className: record.type === "income" ? "text-emerald-600" : "text-red-600", children: [
+                  record.type === "income" ? "+" : "-",
+                  fmt.format(record.amount)
+                ] }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 text-gray-600 dark:text-gray-300", children: record.note }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4 font-mono text-xs", children: record.ref }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("td", { className: "py-3 pr-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.button, { whileHover: { scale: 1.1 }, whileTap: { scale: 0.9 }, className: "p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Eye, { size: 14 }) }),
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.button, { whileHover: { scale: 1.1 }, whileTap: { scale: 0.9 }, className: "p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-150", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(SquarePen, { size: 14 }) }),
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.button, { whileHover: { scale: 1.1 }, whileTap: { scale: 0.9 }, className: "p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded transition-colors duration-150 text-red-600", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Trash2, { size: 14 }) })
+                ] }) })
+              ]
+            },
+            record.id
+          )) })
+        ] }) })
+      }
+    )
+  ] });
+}
+function GenericPage({ title, icon: Icon2 }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.div, { ...pageTransition, className: "space-y-4", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Card, { title, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "text-center py-12", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Icon2, { size: 48, className: "mx-auto mb-4 text-gray-400" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h3", { className: "text-lg font-semibold mb-2", children: title }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { className: "text-gray-500 dark:text-gray-400 mb-4", children: "This section is under development and will be available soon." }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+      motion.button,
+      {
+        whileHover: { scale: 1.02 },
+        whileTap: { scale: 0.98 },
+        onClick: () => toast.success(`${title} section coming soon!`),
+        className: "px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-xl text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200",
+        children: "Get Notified"
+      }
+    )
+  ] }) }) });
 }
 function App() {
   const [dark, setDark] = useDarkMode();
@@ -64888,6 +65300,10 @@ function App() {
     { id: "cases", label: "Cases", icon: ClipboardList },
     { id: "finance", label: "Finance", icon: DollarSign },
     { id: "analytics", label: "Analytics", icon: ChartColumn },
+    { id: "fleet-analytics", label: "Fleet Analytics", icon: FileChartColumnIncreasing },
+    { id: "maintenance", label: "Maintenance", icon: Wrench },
+    { id: "driver-performance", label: "Driver Performance", icon: CircleGauge },
+    { id: "fleet-assignment", label: "Fleet Assignment", icon: Car },
     { id: "settings", label: "Settings", icon: Settings }
   ];
   const [page, setPage] = (0, import_react76.useState)("dashboard");
@@ -64898,11 +65314,36 @@ function App() {
   const [trailers, setTrailers] = useSeededState("trailers", SEED.trailers);
   const [cases, setCases] = useSeededState("cases", SEED.cases);
   const [ledger, setLedger] = useSeededState("ledger", SEED.ledger);
-  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: dark ? "dark" : "", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: fontStack, className: "min-h-screen bg-gray-100 text-gray-900 transition-colors duration-300 antialiased dark:bg-[#0b0b0f] dark:text-gray-100", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("header", { className: "sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-black/30 border-b border-gray-200 dark:border-gray-800", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "max-w-7xl mx-auto px-4 py-3 flex items-center gap-3", children: [
+  const renderPage = () => {
+    switch (page) {
+      case "dashboard":
+        return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Dashboard, { trucks, trailers, cases, ledger });
+      case "trucks":
+        return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(TrucksPage, { trucks, setTrucks });
+      case "trailers":
+        return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(TrailersPage, { trailers, setTrailers });
+      case "cases":
+        return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(CasesPage, { cases, setCases });
+      case "finance":
+        return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(FinancePage, { ledger, setLedger });
+      default:
+        const sidebarItem = sidebar.find((s2) => s2.id === page);
+        return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(GenericPage, { title: sidebarItem?.label || "Page", icon: sidebarItem?.icon || LayoutGrid });
+    }
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: cn(dark ? "dark" : "", "transition-colors duration-500 ease-out"), children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: fontStack, className: "min-h-screen bg-gray-100 text-gray-900 transition-colors duration-500 ease-out antialiased dark:bg-[#0b0b0f] dark:text-gray-100", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("header", { className: "sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-black/30 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "max-w-7xl mx-auto px-4 py-3 flex items-center gap-3", children: [
         /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center gap-2 font-semibold", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-white", children: "T" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+            motion.span,
+            {
+              whileHover: { rotate: 360 },
+              transition: { duration: 0.5 },
+              className: "inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-white",
+              children: "T"
+            }
+          ),
           /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "hidden sm:inline", children: "TranGo TMS" })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "mx-3 text-sm text-gray-400", children: "/" }),
@@ -64913,7 +65354,7 @@ function App() {
               "input",
               {
                 placeholder: "Search",
-                className: "pl-9 pr-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-zinc-900/60 focus:outline-none focus:ring-2 focus:ring-black/10 dark:focus:ring-white/10 text-sm"
+                className: "pl-9 pr-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-zinc-900/60 focus:outline-none focus:ring-2 focus:ring-black/10 dark:focus:ring-white/10 text-sm transition-all duration-200"
               }
             ),
             /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Search, { className: "absolute left-3 top-2.5", size: 16 })
@@ -64921,105 +65362,140 @@ function App() {
           /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(TopButton, { icon: Bell, label: "Notifications" }),
           /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(TopButton, { icon: Settings, label: "Settings" }),
           /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
-            "button",
+            motion.button,
             {
+              whileHover: { scale: 1.05 },
+              whileTap: { scale: 0.95 },
               onClick: () => setDark((d) => !d),
-              className: "inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold",
+              className: "inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold transition-all duration-300",
               children: [
-                dark ? /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Sun, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Moon, { size: 16 }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+                  motion.div,
+                  {
+                    animate: { rotate: dark ? 180 : 0 },
+                    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+                    children: dark ? /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Sun, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Moon, { size: 16 })
+                  }
+                ),
                 /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "hidden sm:inline", children: dark ? "Light" : "Dark" })
               ]
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("button", { className: "flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 font-semibold", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("img", { src: "https://i.pravatar.cc/36?img=5", alt: "avatar", className: "h-7 w-7 rounded-full" }),
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "text-sm hidden sm:inline", children: "Admin" }),
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ChevronDown, { size: 16 })
-          ] })
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+            motion.button,
+            {
+              whileHover: { scale: 1.02 },
+              whileTap: { scale: 0.98 },
+              className: "flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-800 font-semibold transition-all duration-200",
+              children: [
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("img", { src: "https://i.pravatar.cc/36?img=5", alt: "avatar", className: "h-7 w-7 rounded-full" }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "text-sm hidden sm:inline", children: "Admin" }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ChevronDown, { size: 16 })
+              ]
+            }
+          )
         ] })
       ] }) }),
       /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "max-w-7xl mx-auto grid grid-cols-12 gap-4 p-4", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("aside", { className: "col-span-12 md:col-span-3 lg:col-span-2 space-y-2", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "rounded-2xl p-2 bg-white/70 dark:bg-zinc-900/70 border border-gray-200 dark:border-gray-800", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { className: "px-2 pt-2 pb-1 text-xs uppercase tracking-wide text-gray-400", children: "Main menu" }),
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "space-y-1", children: sidebar.map((item) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
-            SidebarItem,
-            {
-              icon: item.icon,
-              label: item.label,
-              active: page === item.id,
-              onClick: () => setPage(item.id)
-            },
-            item.id
-          )) }),
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "pt-2 mt-2 border-t border-gray-200 dark:border-gray-800 flex justify-between px-2", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("button", { className: "text-xs font-semibold text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 inline-flex items-center gap-1", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(LogOut, { size: 14 }),
-              " Log out"
-            ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "text-xs text-gray-400", children: "v1.0" })
-          ] })
-        ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("main", { className: "col-span-12 md:col-span-9 lg:col-span-10 space-y-4", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-center justify-between", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "text-2xl font-semibold", children: sidebar.find((s2) => s2.id === page)?.label || "Dashboard" }),
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
-              "button",
-              {
-                onClick: () => {
-                  setRange(
-                    (r2) => r2.from === "Dec 10, 2022" ? { from: "Jan 01, 2023", to: "Sep 01, 2023" } : { from: "Dec 10, 2022", to: "Jul 18, 2023" }
-                  );
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("aside", { className: "col-span-12 md:col-span-3 lg:col-span-2 space-y-2", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+          motion.div,
+          {
+            initial: { opacity: 0, x: -20 },
+            animate: { opacity: 1, x: 0 },
+            transition: { duration: 0.3 },
+            className: "rounded-2xl p-2 bg-white/70 dark:bg-zinc-900/70 border border-gray-200 dark:border-gray-800 backdrop-blur transition-colors duration-300",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { className: "px-2 pt-2 pb-1 text-xs uppercase tracking-wide text-gray-400", children: "Main menu" }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "space-y-1", children: sidebar.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+                motion.div,
+                {
+                  initial: { opacity: 0, x: -10 },
+                  animate: { opacity: 1, x: 0 },
+                  transition: { delay: i * 0.03 },
+                  children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+                    SidebarItem,
+                    {
+                      icon: item.icon,
+                      label: item.label,
+                      active: page === item.id,
+                      onClick: () => setPage(item.id)
+                    }
+                  )
                 },
-                className: "inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold",
-                children: [
-                  range6.from,
-                  " - ",
-                  range6.to,
-                  " ",
-                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ChevronDown, { size: 16 })
-                ]
-              }
-            )
-          ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(AnimatePresence, { mode: "wait", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+                item.id
+              )) }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "pt-2 mt-2 border-t border-gray-200 dark:border-gray-800 flex justify-between px-2", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+                  motion.button,
+                  {
+                    whileHover: { scale: 1.05 },
+                    whileTap: { scale: 0.95 },
+                    className: "text-xs font-semibold text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 inline-flex items-center gap-1 transition-colors duration-200",
+                    children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(LogOut, { size: 14 }),
+                      " Log out"
+                    ]
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "text-xs text-gray-400", children: "v1.0" })
+              ] })
+            ]
+          }
+        ) }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("main", { className: "col-span-12 md:col-span-9 lg:col-span-10 space-y-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
             motion.div,
             {
-              initial: { opacity: 0, y: 10 },
+              initial: { opacity: 0, y: -10 },
               animate: { opacity: 1, y: 0 },
-              exit: { opacity: 0, y: -10 },
-              transition: { duration: 0.2 },
+              className: "flex items-center justify-between",
               children: [
-                page === "dashboard" && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Dashboard, { trucks, trailers, cases, ledger }),
-                page !== "dashboard" && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Card, { title: `${sidebar.find((s2) => s2.id === page)?.label} Section`, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "text-center py-8 text-gray-500 dark:text-gray-400", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "text-4xl mb-4", children: "\u{1F6A7}" }),
-                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { children: "This section is under development." }),
-                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { className: "text-sm mt-2", children: "The original functionality will be integrated with the new design." })
-                ] }) })
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "text-2xl font-semibold", children: sidebar.find((s2) => s2.id === page)?.label || "Dashboard" }),
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+                  motion.button,
+                  {
+                    whileHover: { scale: 1.02 },
+                    whileTap: { scale: 0.98 },
+                    onClick: () => {
+                      setRange(
+                        (r2) => r2.from === "Dec 10, 2022" ? { from: "Jan 01, 2023", to: "Sep 01, 2023" } : { from: "Dec 10, 2022", to: "Jul 18, 2023" }
+                      );
+                    },
+                    className: "inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-semibold transition-all duration-200",
+                    children: [
+                      range6.from,
+                      " - ",
+                      range6.to,
+                      " ",
+                      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ChevronDown, { size: 16 })
+                    ]
+                  }
+                )
               ]
-            },
-            page
-          ) })
+            }
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(AnimatePresence, { mode: "wait", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(motion.div, { children: renderPage() }, page) })
         ] })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(AnimatePresence, { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
         motion.button,
         {
-          initial: { opacity: 0, y: 10 },
-          animate: { opacity: 1, y: 0 },
-          exit: { opacity: 0, y: 10 },
-          whileTap: { scale: 0.98 },
-          className: "fixed bottom-5 right-5 flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg bg-black text-white dark:bg-white dark:text-black",
-          onClick: () => toast.success("New design applied! All sections will be updated progressively."),
+          initial: { opacity: 0, y: 10, scale: 0.9 },
+          animate: { opacity: 1, y: 0, scale: 1 },
+          exit: { opacity: 0, y: 10, scale: 0.9 },
+          whileHover: { scale: 1.05, y: -2 },
+          whileTap: { scale: 0.95 },
+          className: "fixed bottom-5 right-5 flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg bg-black text-white dark:bg-white dark:text-black transition-all duration-200",
+          onClick: () => toast.success("Modern TMS interface with smooth animations!"),
           children: [
             /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(CircleCheck, { size: 16 }),
-            " New Design"
+            " Modern UI"
           ]
         },
         "help"
-      ) }),
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("footer", { className: "max-w-7xl mx-auto px-4 py-8 text-sm text-gray-500 dark:text-gray-400", children: "Designed with smooth, Apple-like motion \u2022 Light & Dark themes \u2022 Ready for backend integration" })
+      ) })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { id: "toast", role: "status", "aria-live": "polite", className: "fixed bottom-18 left-1/2 transform -translate-x-1/2 translate-y-full px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-full shadow-lg transition-transform duration-300 opacity-0 pointer-events-none z-50" })
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { id: "toast", role: "status", "aria-live": "polite", className: "fixed bottom-18 left-1/2 transform -translate-x-1/2 translate-y-full px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-full shadow-lg transition-all duration-300 opacity-0 pointer-events-none z-50" })
   ] });
 }
 (0, import_client.createRoot)(document.getElementById("app")).render(/* @__PURE__ */ (0, import_jsx_runtime6.jsx)(App, {}));
@@ -65153,6 +65629,14 @@ lucide-react/dist/esm/icons/bell.js:
    * See the LICENSE file in the root directory of this source tree.
    *)
 
+lucide-react/dist/esm/icons/car.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
 lucide-react/dist/esm/icons/chart-column.js:
   (**
    * @license lucide-react v0.543.0 - ISC
@@ -65177,6 +65661,14 @@ lucide-react/dist/esm/icons/circle-check.js:
    * See the LICENSE file in the root directory of this source tree.
    *)
 
+lucide-react/dist/esm/icons/circle-gauge.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
 lucide-react/dist/esm/icons/clipboard-list.js:
   (**
    * @license lucide-react v0.543.0 - ISC
@@ -65186,6 +65678,22 @@ lucide-react/dist/esm/icons/clipboard-list.js:
    *)
 
 lucide-react/dist/esm/icons/dollar-sign.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/eye.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/file-chart-column-increasing.js:
   (**
    * @license lucide-react v0.543.0 - ISC
    *
@@ -65225,6 +65733,14 @@ lucide-react/dist/esm/icons/package.js:
    * See the LICENSE file in the root directory of this source tree.
    *)
 
+lucide-react/dist/esm/icons/plus.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
 lucide-react/dist/esm/icons/search.js:
   (**
    * @license lucide-react v0.543.0 - ISC
@@ -65241,6 +65757,14 @@ lucide-react/dist/esm/icons/settings.js:
    * See the LICENSE file in the root directory of this source tree.
    *)
 
+lucide-react/dist/esm/icons/square-pen.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
 lucide-react/dist/esm/icons/sun.js:
   (**
    * @license lucide-react v0.543.0 - ISC
@@ -65249,7 +65773,23 @@ lucide-react/dist/esm/icons/sun.js:
    * See the LICENSE file in the root directory of this source tree.
    *)
 
+lucide-react/dist/esm/icons/trash-2.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
 lucide-react/dist/esm/icons/truck.js:
+  (**
+   * @license lucide-react v0.543.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/wrench.js:
   (**
    * @license lucide-react v0.543.0 - ISC
    *
